@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hxy.activiti.dao.ExtendActNodefieldDao">
+
+
+    <resultMap type="com.hxy.activiti.entity.ExtendActNodefieldEntity" id="extendActNodefieldMap">
+        <result property="id" column="id"/>
+        <result property="nodeId" column="node_id"/>
+        <result property="fieldName" column="field_name"/>
+        <result property="fieldType" column="field_type"/>
+        <result property="rule" column="rule"/>
+        <result property="fieldVal" column="field_val"/>
+        <result property="elOperator" column="el_operator"/>
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+		id, 
+		node_id, 
+		field_name, 
+		field_type, 
+		rule, 
+		field_val,
+		el_operator
+    </sql>
+
+	<select id="queryObject" resultType="com.hxy.activiti.entity.ExtendActNodefieldEntity" resultMap="extendActNodefieldMap">
+		select
+		<include refid="Base_Column_List" />
+		from extend_act_nodefield
+		where id = #{value}
+	</select>
+
+	<!--根据节点集合查询-->
+	<select id="queryByNodes" resultType="com.hxy.activiti.entity.ExtendActNodefieldEntity" resultMap="extendActNodefieldMap">
+		select
+		<include refid="Base_Column_List" />
+		from extend_act_nodefield
+		where node_id IN
+		<foreach item="nodeId" collection="list" open="(" separator="," close=")">
+			#{nodeId}
+		</foreach>
+	</select>
+
+	<select id="queryList" resultType="com.hxy.activiti.entity.ExtendActNodefieldEntity" resultMap="extendActNodefieldMap">
+		select
+		<include refid="Base_Column_List" />
+		from extend_act_nodefield
+		WHERE 1=1
+		<if test="nodeId !=null and nodeId !='' ">
+			AND node_id = #{nodeId}
+		</if>
+		<if test="fieldType !=null and fieldType !='' ">
+			AND field_type = #{fieldType}
+		</if>
+		ORDER BY sort;
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from extend_act_nodefield
+	</select>
+	 
+	<insert id="save" parameterType="com.hxy.activiti.entity.ExtendActNodefieldEntity">
+		insert into extend_act_nodefield
+		(
+			`id`, 
+			`node_id`, 
+			`field_name`, 
+			`field_type`, 
+			`rule`, 
+			`field_val`,
+			`el_operator`,
+		)
+		values
+		(
+			#{id}, 
+			#{nodeId}, 
+			#{fieldName}, 
+			#{fieldType}, 
+			#{rule}, 
+			#{fieldVal},
+			#{elOperator}
+		)
+	</insert>
+
+	<insert id="saveBatch" parameterType="com.hxy.activiti.entity.ExtendActNodeuserEntity">
+		insert into extend_act_nodefield
+		(
+			`id`,
+			`node_id`,
+			`field_name`,
+			`field_type`,
+			`rule`,
+			`field_val`,
+			`el_operator`,
+			`sort`
+		)
+		values
+		<foreach item="item" collection="list" separator="," >
+			(
+				#{item.id},
+				#{item.nodeId},
+				#{item.fieldName},
+				#{item.fieldType},
+				#{item.rule},
+				#{item.fieldVal},
+				#{item.elOperator},
+				#{item.sort}
+			)
+		</foreach>
+
+	</insert>
+	 
+	<update id="update" parameterType="com.hxy.activiti.entity.ExtendActNodefieldEntity">
+		update extend_act_nodefield 
+		<set>
+			<if test="nodeId != null">`node_id` = #{nodeId}, </if>
+			<if test="fieldName != null">`field_name` = #{fieldName}, </if>
+			<if test="fieldType != null">`field_type` = #{fieldType}, </if>
+			<if test="rule != null">`rule` = #{rule}, </if>
+			<if test="fieldVal != null">`field_val` = #{fieldVal}</if>
+			<if test="elOperator != null">`el_operator` = #{elOperator}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from extend_act_nodefield where id = #{value}
+	</delete>
+
+	<!--根据节点id删除-->
+	<delete id="delByNodeId">
+		delete from extend_act_nodefield where node_id = #{nodelId}
+	</delete>
+
+	<delete id="deleteBatch">
+		delete from extend_act_nodefield where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

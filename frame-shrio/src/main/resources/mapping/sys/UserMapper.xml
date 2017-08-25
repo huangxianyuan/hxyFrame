@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hxy.sys.dao.UserDao">
+
+
+    <resultMap type="com.hxy.sys.entity.UserEntity" id="userMap">
+        <result property="id" column="id"/>
+        <result property="bapid" column="bapid"/>
+        <result property="baid" column="baid"/>
+        <result property="userName" column="user_name"/>
+        <result property="loginName" column="login_name"/>
+        <result property="passWord" column="pass_word"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="status" column="status"/>
+        <result property="phone" column="phone"/>
+        <result property="photo" column="photo"/>
+        <result property="email" column="email"/>
+        <result property="createId" column="create_id"/>
+        <result property="updateId" column="update_id"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+		id, 
+		bapid,
+		baid,
+		user_name,
+		login_name, 
+		pass_word, 
+		create_time, 
+		update_time, 
+		status, 
+		phone, 
+		photo, 
+		email, 
+		create_id, 
+		update_id, 
+		remark
+    </sql>
+
+	<select id="queryObject" resultType="com.hxy.sys.entity.UserEntity" resultMap="userMap">
+		select
+		<include refid="Base_Column_List" />,(SELECT name FROM sys_organ o WHERE o.id=s.baid) AS baName
+		from sys_user s
+		where id = #{value}
+	</select>
+	<!--根据登陆用户查询有效的用户-->
+	<select id="queryByLoginName" resultType="com.hxy.sys.entity.UserEntity" resultMap="userMap">
+		select
+		<include refid="Base_Column_List" />,(SELECT name FROM sys_organ o WHERE o.id=u.baid) AS baName,
+		(SELECT name FROM sys_organ o WHERE o.id=u.bapid) AS bapName
+		from sys_user u
+		where login_name = #{0} AND status = #{1}
+	</select>
+
+	<!--用户对应的组织id,数据权限控制-->
+	<select id="queryOrganIdByUserId" resultType="java.util.Map">
+		select
+			o.id organId,orl.role_id roleId
+		from sys_user_role ur LEFT JOIN
+			sys_organ_role orl ON ur.role_id=orl.role_id LEFT JOIN
+			sys_organ o ON orl.organ_id=o.id
+		where ur.user_id=#{0} AND o.type=#{1}
+	</select>
+
+	<!--用户对应的组织id,数据权限控制 返回数组-->
+	<select id="queryOrganIdByUserIdArray" resultType="java.lang.String">
+		select
+		o.id
+		from sys_user_role ur LEFT JOIN
+		sys_organ_role orl ON ur.role_id=orl.role_id LEFT JOIN
+		sys_organ o ON orl.organ_id=o.id
+		where ur.user_id=#{0} AND o.type=#{1}
+	</select>
+
+	<select id="queryList" resultType="com.hxy.sys.entity.UserEntity" resultMap="userMap">
+		select
+		<include refid="Base_Column_List" />,(SELECT name FROM sys_organ o WHERE o.id=s.baid) AS baName,
+		(SELECT name FROM sys_organ o WHERE o.id=s.bapid) AS bapName
+		from sys_user s
+		WHERE 1=1
+		<if test="userName != null and userName.trim() != ''" >
+			AND user_name=#{userName}
+		</if>
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+
+	<select id="queryListByBean" resultType="com.hxy.dto.UserWindowDto">
+		select
+			id,user_name AS name,bapid
+		from sys_user
+		WHERE 1=1
+		<if test="name != null and name.trim() != ''" >
+			AND user_name LIKE concat('%',#{name},'%')
+		</if>
+
+	</select>
+
+
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from sys_user
+	</select>
+	 
+	<insert id="save"  parameterType="com.hxy.sys.entity.UserEntity">
+		insert into sys_user
+		(
+			`id`, 
+			`bapid`,
+			`baid`,
+			`user_name`,
+			`login_name`, 
+			`pass_word`, 
+			`create_time`, 
+			`update_time`, 
+			`status`, 
+			`phone`, 
+			`photo`, 
+			`email`, 
+			`create_id`, 
+			`update_id`, 
+			`remark`
+		)
+		values
+		(
+			#{id}, 
+			#{bapid},
+			#{baid},
+			#{userName},
+			#{loginName}, 
+			#{passWord}, 
+			#{createTime}, 
+			#{updateTime}, 
+			#{status}, 
+			#{phone}, 
+			#{photo}, 
+			#{email}, 
+			#{createId}, 
+			#{updateId}, 
+			#{remark}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.hxy.sys.entity.UserEntity">
+		update sys_user 
+		<set>
+			<if test="bapid != null">`bapid` = #{bapid}, </if>
+			<if test="baid != null">`baid` = #{baid}, </if>
+			<if test="userName != null">`user_name` = #{userName}, </if>
+			<if test="loginName != null">`login_name` = #{loginName}, </if>
+			<if test="passWord != null">`pass_word` = #{passWord}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="updateTime != null">`update_time` = #{updateTime}, </if>
+			<if test="status != null">`status` = #{status}, </if>
+			<if test="phone != null">`phone` = #{phone}, </if>
+			<if test="photo != null">`photo` = #{photo}, </if>
+			<if test="email != null">`email` = #{email}, </if>
+			<if test="createId != null">`create_id` = #{createId}, </if>
+			<if test="updateId != null">`update_id` = #{updateId}, </if>
+			<if test="remark != null">`remark` = #{remark}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from sys_user where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from sys_user where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

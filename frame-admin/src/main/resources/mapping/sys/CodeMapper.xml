@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hxy.sys.dao.CodeDao">
+
+
+    <resultMap type="com.hxy.sys.entity.CodeEntity" id="codeMap">
+        <result property="id" column="id"/>
+        <result property="mark" column="mark"/>
+        <result property="value" column="value"/>
+        <result property="name" column="name"/>
+        <result property="type" column="type"/>
+        <result property="parentId" column="parent_id"/>
+        <result property="sort" column="sort"/>
+        <result property="open" column="open"/>
+        <result property="remark" column="remark"/>
+        <result property="createId" column="create_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateId" column="update_id"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+		id,
+		mark,
+		value,
+		name,
+		type,
+		parent_id,
+		sort,
+		remark,
+		open,
+		create_id,
+		create_time,
+		update_id,
+		update_time
+    </sql>
+
+	<select id="queryObject" resultType="com.hxy.sys.entity.CodeEntity" resultMap="codeMap">
+		select
+		<include refid="Base_Column_List" />,(SELECT tc.name FROM sys_code tc WHERE tc.id=sc.parent_id) AS parentName
+		from sys_code sc
+		where id = #{value}
+	</select>
+
+	<!--根据字典标识查询-->
+	<select id="queryByMark" resultType="com.hxy.sys.entity.CodeEntity" resultMap="codeMap">
+		select
+		<include refid="Base_Column_List" />,(SELECT tc.name FROM sys_code tc WHERE tc.id=sc.parent_id) AS parentName
+		from sys_code sc
+		where mark = #{mark}
+	</select>
+
+	<select id="queryList" resultType="com.hxy.sys.entity.CodeEntity" resultMap="codeMap">
+		select
+		<include refid="Base_Column_List" />
+		from sys_code
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+
+	<select id="queryListByBean" resultType="com.hxy.sys.entity.CodeEntity" resultMap="codeMap">
+		select
+		<include refid="Base_Column_List" />
+		from sys_code
+		WHERE 1=1
+			<if test="mark!=null and mark !='' ">
+				AND mark=#{mark}
+			</if>
+		ORDER BY sort
+	</select>
+	<!--查询所有的字典及子字典(用做字典缓存)-->
+	<select id="queryAllCode" resultType="java.lang.String" resultMap="codeMap">
+		select
+		<include refid="Base_Column_List" />,(SELECT group_concat(b.mark ORDER BY b.sort) FROM sys_code b WHERE b.parent_id=a.id) AS childs
+		from sys_code a
+		WHERE 1=1
+		<if test="_parameter != null and _parameter != '' ">
+			AND type =#{type}
+		</if>
+		ORDER BY sort
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from sys_code
+	</select>
+	 
+	<insert id="save" parameterType="com.hxy.sys.entity.CodeEntity">
+		insert into sys_code
+		(
+			`id`, 
+			`mark`, 
+			`value`, 
+			`type`,
+			`name`,
+			`parent_id`,
+			`sort`, 
+			`remark`,
+			`open`,
+			`create_id`,
+			`create_time`, 
+			`update_id`, 
+			`update_time`
+		)
+		values
+		(
+			#{id}, 
+			#{mark}, 
+			#{value}, 
+			#{type}, 
+			#{name},
+			#{parentId},
+			#{sort}, 
+			#{remark}, 
+			#{open},
+			#{createId},
+			#{createTime}, 
+			#{updateId}, 
+			#{updateTime}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.hxy.sys.entity.CodeEntity">
+		update sys_code 
+		<set>
+			<if test="mark != null">`mark` = #{mark}, </if>
+			<if test="value != null">`value` = #{value}, </if>
+			<if test="name != null">`name` = #{name}, </if>
+			<if test="type != null">`type` = #{type}, </if>
+			<if test="parentId != null">`parent_id` = #{parentId}, </if>
+			<if test="sort != null">`sort` = #{sort}, </if>
+			<if test="remark != null">`remark` = #{remark}, </if>
+			<if test="open != null">`open` = #{open}, </if>
+			<if test="createId != null">`create_id` = #{createId}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="updateId != null">`update_id` = #{updateId}, </if>
+			<if test="updateTime != null">`update_time` = #{updateTime}</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<!--删除当前字典和当前字典的下级字典-->
+	<delete id="delete">
+		delete from sys_code where id = #{value} OR parent_id=#{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from sys_code where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

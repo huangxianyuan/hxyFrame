@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0">
+  <display-name>Archetype Created Web Application</display-name>
+  <!-- Spring和mybatis的配置文件 -->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+      classpath*:spring-scheduler.xml
+      classpath*:spring-mybatis.xml
+      classpath*:spring-shrio.xml
+      classpath*:spring-activiti.xml
+      <!--classpath*:spring-ActiveMQ.xml-->
+    </param-value>
+  </context-param>
+  <!-- 设置由Sprng载入的Log4j配置文件位置 -->
+  <context-param>
+    <param-name>log4jConfigLocation</param-name>
+    <param-value>classpath:conf/log4j.properties</param-value>
+  </context-param>
+  <!-- Spring刷新Log4j配置文件变动的间隔,单位为毫秒 -->
+  <context-param>
+    <param-name>log4jRefreshInterval</param-name>
+    <param-value>10000</param-value>
+  </context-param>
+  <listener>
+    <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+  </listener>
+
+  <!-- 配置Shiro过滤器,先让Shiro过滤系统接收到的请求 -->
+  <!-- 这里filter-name必须对应applicationContext.xml中定义的<bean id="shiroFilter"/> -->
+  <!-- 使用[/*]匹配所有请求,保证所有的可控请求都经过Shiro的过滤 -->
+  <!-- 通常会将此filter-mapping放置到最前面(即其他filter-mapping前面),以保证它是过滤器链中第一个起作用的 -->
+  <filter>
+    <filter-name>shiroFilter</filter-name>
+    <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    <init-param>
+      <!-- 该值缺省为false,表示生命周期由SpringApplicationContext管理,设置为true则表示由servlet container管理 -->
+      <param-name>targetFilterLifecycle</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>shiroFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <!-- Spring监听器 -->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <!-- 防止Spring内存溢出监听器 -->
+  <listener>
+    <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+  </listener>
+
+  <!-- Spring MVC servlet -->
+  <servlet>
+    <servlet-name>SpringMVC</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:spring-mvc.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+    <async-supported>true</async-supported>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SpringMVC</servlet-name>
+    <!-- 此处可以可以配置成*.do，对应struts的后缀习惯 -->
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+
+  <!-- activiti Modeler的Rest服务 -->
+  <servlet>
+    <servlet-name>ModelRestServlet</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>classpath:spring-mvc-modeler.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModelRestServlet</servlet-name>
+    <url-pattern>/service/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>InitServlet</servlet-name>
+    <servlet-class>com.hxy.sys.servelt.InitServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+<!--  <filter> 由于activiti流程配置中用到了特殊符号，这里先注解，后面解决
+    <filter-name>xssFilter</filter-name>
+    <filter-class>com.hxy.base.xss.XssFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>xssFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>-->
+
+  <welcome-file-list>
+    <welcome-file>/login.html</welcome-file>
+  </welcome-file-list>
+
+</web-app>

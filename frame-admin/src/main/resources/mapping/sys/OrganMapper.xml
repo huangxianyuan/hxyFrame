@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hxy.sys.dao.OrganDao">
+
+
+    <resultMap type="com.hxy.sys.entity.OrganEntity" id="organMap">
+        <result property="id" column="id"/>
+        <result property="bapid" column="bapid"/>
+        <result property="type" column="type"/>
+        <result property="code" column="code"/>
+        <result property="name" column="name"/>
+        <result property="parentId" column="parent_id"/>
+        <result property="isDel" column="is_del"/>
+        <result property="sysmark" column="sysmark"/>
+        <result property="sort" column="sort"/>
+        <result property="open" column="open"/>
+        <result property="remark" column="remark"/>
+        <result property="createId" column="create_id"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateId" column="update_id"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+		id, 
+		bapid, 
+		type, 
+		code, 
+		name, 
+		parent_id, 
+		is_del,
+		sysmark, 
+		sort, 
+		open, 
+		remark, 
+		create_id, 
+		create_time, 
+		update_id, 
+		update_time
+    </sql>
+
+	<select id="queryObject" resultType="com.hxy.sys.entity.OrganEntity" resultMap="organMap">
+		select
+		<include refid="Base_Column_List" />,
+		(CASE WHEN type = '0'THEN '/statics/plugins/ztree/css/zTreeStyle/img/diy/1_open.png'
+		WHEN type ='1' THEN '/statics/plugins/ztree/css/zTreeStyle/img/diy/8.png'
+		ELSE '/statics/plugins/ztree/css/zTreeStyle/img/diy/2.png'
+		END
+		) AS icon
+		from sys_organ
+		where id = #{value}
+	</select>
+
+	<select id="queryList" resultType="com.hxy.sys.entity.OrganEntity" resultMap="organMap">
+		select
+		<include refid="Base_Column_List" />
+		from sys_organ
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	<!--查询组织审批选择范围-->
+	<select id="queryPageByDto" resultType="com.hxy.dto.UserWindowDto" >
+		select
+			id,name,bapid
+		from sys_organ
+        WHERE 1=1
+		<if test="name != null and name.trim() != ''" >
+			AND name=#{name}
+		</if>
+	</select>
+
+	<select id="queryListByBean" resultType="com.hxy.sys.entity.OrganEntity" resultMap="organMap">
+		select
+		<include refid="Base_Column_List" />,
+		(CASE WHEN type = '0'THEN '/statics/plugins/ztree/css/zTreeStyle/img/diy/1_open.png'
+		  WHEN type ='1' THEN '/statics/plugins/ztree/css/zTreeStyle/img/diy/8.png'
+		  ELSE '/statics/plugins/ztree/css/zTreeStyle/img/diy/2.png'
+		  END
+		) AS icon
+		from sys_organ
+		WHERE 1=1
+			<if test="isDel!=null and isDel !='' ">
+				AND is_del=#{isDel}
+			</if>
+			<if test="code!=null and code !='' ">
+				AND code=#{code}
+			</if>
+		ORDER BY sort
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from sys_organ
+	</select>
+	 
+	<insert id="save" parameterType="com.hxy.sys.entity.OrganEntity">
+		insert into sys_organ
+		(
+			`id`, 
+			`bapid`, 
+			`type`, 
+			`code`, 
+			`name`, 
+			`parent_id`, 
+			`is_del`,
+			`sysmark`, 
+			`sort`, 
+			`open`, 
+			`remark`, 
+			`create_id`, 
+			`create_time`, 
+			`update_id`, 
+			`update_time`
+		)
+		values
+		(
+			#{id}, 
+			#{bapid}, 
+			#{type}, 
+			#{code}, 
+			#{name}, 
+			#{parentId}, 
+			#{isDel},
+			#{sysmark}, 
+			#{sort}, 
+			#{open}, 
+			#{remark}, 
+			#{createId}, 
+			#{createTime}, 
+			#{updateId}, 
+			#{updateTime}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.hxy.sys.entity.OrganEntity">
+		update sys_organ 
+		<set>
+			<if test="bapid != null">`bapid` = #{bapid}, </if>
+			<if test="type != null">`type` = #{type}, </if>
+			<if test="code != null">`code` = #{code}, </if>
+			<if test="name != null">`name` = #{name}, </if>
+			<if test="parentId != null">`parent_id` = #{parentId}, </if>
+			<if test="isDel != null">`is_del` = #{isDel}, </if>
+			<if test="sysmark != null">`sysmark` = #{sysmark}, </if>
+			<if test="sort != null">`sort` = #{sort}, </if>
+			<if test="open != null">`open` = #{open}, </if>
+			<if test="remark != null">`remark` = #{remark}, </if>
+			<if test="createId != null">`create_id` = #{createId}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="updateId != null">`update_id` = #{updateId}, </if>
+			<if test="updateTime != null">`update_time` = #{updateTime}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from sys_organ where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from sys_organ where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

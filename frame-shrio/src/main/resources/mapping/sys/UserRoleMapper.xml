@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hxy.sys.dao.UserRoleDao">
+
+
+    <resultMap type="com.hxy.sys.entity.UserRoleEntity" id="userRoleMap">
+        <result property="userId" column="user_id"/>
+        <result property="roleId" column="role_id"/>
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+		user_id, 
+		role_id
+    </sql>
+
+	<select id="queryObject" resultType="com.hxy.sys.entity.UserRoleEntity" resultMap="userRoleMap">
+		select
+		<include refid="Base_Column_List" />
+		from sys_user_role
+		where user_id = #{value}
+	</select>
+
+	<select id="queryList" resultType="com.hxy.sys.entity.UserRoleEntity" resultMap="userRoleMap">
+		select
+		<include refid="Base_Column_List" />
+		from sys_user_role
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by user_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from sys_user_role
+	</select>
+	 
+	<insert id="save" parameterType="com.hxy.sys.entity.UserRoleEntity">
+		insert into sys_user_role
+		(
+			`user_id`, 
+			`role_id`
+		)
+		values
+		<foreach collection="roleIdList" item="item" index="index" separator="," >
+		(
+			#{userId}, 
+			#{item}
+		)
+		</foreach>
+	</insert>
+	 
+	<update id="update" parameterType="com.hxy.sys.entity.UserRoleEntity">
+		update sys_user_role 
+		<set>
+			<if test="roleId != null">`role_id` = #{roleId}</if>
+		</set>
+		where user_id = #{userId}
+	</update>
+
+	<!--删除用户下的所有用户角色权限-->
+	<delete id="delete">
+		delete from sys_user_role where user_id = #{value}
+	</delete>
+	<!--根据用户list批量删除用户角色中间表-->
+	<delete id="deleteBatchByUserId">
+		delete from sys_user_role where user_id in
+		<foreach item="userId" collection="array" open="(" separator="," close=")">
+			#{userId}
+		</foreach>
+	</delete>
+	<!--根据角色list批量删除用户角色中间表-->
+	<delete id="deleteBatchByRoleId">
+		delete from sys_user_role where role_id in
+		<foreach item="roleId" collection="array" open="(" separator="," close=")">
+			#{roleId}
+		</foreach>
+	</delete>
+
+	<select id="queryRoleIdList" resultType="String">
+		select role_id from sys_user_role where user_id = #{value,jdbcType=VARCHAR}
+	</select>
+
+</mapper>

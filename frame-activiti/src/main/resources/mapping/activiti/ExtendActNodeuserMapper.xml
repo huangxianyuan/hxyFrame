@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hxy.activiti.dao.ExtendActNodeuserDao">
+
+
+    <resultMap type="com.hxy.activiti.entity.ExtendActNodeuserEntity" id="extendActNodeuserMap">
+        <result property="id" column="id"/>
+        <result property="nodeId" column="node_id"/>
+        <result property="userType" column="user_type"/>
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+		id, 
+		node_id, 
+		user_type
+    </sql>
+
+	<select id="queryObject" resultType="com.hxy.activiti.entity.ExtendActNodeuserEntity" resultMap="extendActNodeuserMap">
+		select
+		<include refid="Base_Column_List" />
+		from extend_act_nodeuser
+		where id = #{value}
+	</select>
+
+	<select id="queryList" resultType="com.hxy.activiti.entity.ExtendActNodeuserEntity" resultMap="extendActNodeuserMap">
+		select
+		<include refid="Base_Column_List" />
+		from extend_act_nodeuser
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+
+	<!--根据节点获取节点审批人员信息-->
+	<select id="getNodeUserByNodeId" resultType="com.hxy.activiti.entity.ExtendActNodeuserEntity" resultMap="extendActNodeuserMap">
+		select
+		<include refid="Base_Column_List" />,
+		(CASE WHEN user_type='1' THEN (SELECT user_name FROM sys_user u WHERE an.ID = u.ID)
+		  	  WHEN user_type='2' THEN (SELECT name FROM sys_role s WHERE s.ID = an.ID)
+			  WHEN user_type='3' THEN (SELECT name FROM sys_organ o WHERE o.ID = an.ID
+		)END )userTitle,
+		(SELECT name FROM sys_code WHERE mark=concat('act_user_type_',user_type)) typeName
+		from extend_act_nodeuser an
+		WHERE node_id=#{nodeId}
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from extend_act_nodeuser
+	</select>
+	 
+	<insert id="save" parameterType="com.hxy.activiti.entity.ExtendActNodeuserEntity">
+		insert into extend_act_nodeuser
+		(
+			`id`, 
+			`node_id`, 
+			`user_type`
+		)
+		values
+		(
+			#{id}, 
+			#{nodeId}, 
+			#{userType}
+		)
+	</insert>
+
+	<insert id="saveBatch" parameterType="com.hxy.activiti.entity.ExtendActNodeuserEntity">
+		insert into extend_act_nodeuser
+		(
+			`id`,
+			`node_id`,
+			`user_type`
+		)
+		values
+		<foreach item="item" collection="list" separator="," >
+			(#{item.id},#{item.nodeId},#{item.userType})
+		</foreach>
+
+	</insert>
+
+	<update id="update" parameterType="com.hxy.activiti.entity.ExtendActNodeuserEntity">
+		update extend_act_nodeuser 
+		<set>
+			<if test="nodeId != null">`node_id` = #{nodeId}, </if>
+			<if test="userType != null">`user_type` = #{userType}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from extend_act_nodeuser where id = #{value}
+	</delete>
+
+	<!--根据节点Id删除-->
+	<delete id="delByNodeId">
+		delete from extend_act_nodeuser where node_id = #{nodeId}
+	</delete>
+
+	<delete id="deleteBatch">
+		delete from extend_act_nodeuser where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+
+
+</mapper>

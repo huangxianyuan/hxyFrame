@@ -1,0 +1,21 @@
+一、表信息解析：
+qrtz_blob_triggers : 以Blob 类型存储的触发器。
+qrtz_caledars：存放日历信息， quartz可配置一个日历来指定一个时间范围。
+qrtz_cron_triggers：存放cron类型的触发器。
+qrtz_fired_triggers：存放已触发的触发器。
+qrtz_job_details：存放一个jobDetail信息。
+qrtz_job_listeners：job**监听器**。
+qrtz_locks： 存储程序的悲观锁的信息(假如使用了悲观锁)。
+qrtz_paused_trigger_graps：存放暂停掉的触发器。
+qrtz_scheduler_state：调度器状态。
+qrtz_simple_triggers：简单触发器的信息。
+qrtz_trigger_listeners：触发器监听器。
+qrtz_triggers：触发器的基本信息。
+
+二、Quartz的触发时间的配置的三种方式：
+2.1.cron 方式：采用cronExpression表达式配置时间。
+2.2.simple 方式：和JavaTimer差不多，可以指定一个开始时间和结束时间外加一个循环时间。
+2.3.calendars 方式：可以和cron配合使用，用cron表达式指定一个触发时间规律，用calendar指定一个范围。
+
+注意：cron方式需要用到的4张数据表：
+qrtz_triggers，qrtz_cron_triggers，qrtz_fired_triggers，qrtz_job_details。

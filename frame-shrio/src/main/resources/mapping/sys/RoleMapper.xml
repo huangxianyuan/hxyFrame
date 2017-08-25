@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hxy.sys.dao.RoleDao">
+
+
+    <resultMap type="com.hxy.sys.entity.RoleEntity" id="roleMap">
+        <result property="id" column="id"/>
+        <result property="bapid" column="bapid"/>
+        <result property="baid" column="baid"/>
+        <result property="name" column="name"/>
+        <result property="code" column="code"/>
+        <result property="status" column="status"/>
+        <result property="roleType" column="role_type"/>
+        <result property="remark" column="remark"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateId" column="update_id"/>
+        <result property="createId" column="create_id"/>
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+		id, 
+		name,
+		code, 
+		status, 
+		role_type, 
+		remark, 
+		update_time, 
+		create_time, 
+		update_id, 
+		create_id
+    </sql>
+
+	<select id="queryObject" resultType="com.hxy.sys.entity.RoleEntity" resultMap="roleMap">
+		select
+		<include refid="Base_Column_List" />
+		from sys_role
+		where id = #{value}
+	</select>
+	<select id="queryByUserId" resultType="com.hxy.sys.entity.RoleEntity" resultMap="roleMap">
+		select
+		r.id,r.name,r.code,r.status
+		from sys_user_role ur
+		LEFT JOIN sys_role r ON ur.role_id=r.id
+		where ur.user_id = #{0} AND r.status = #{1}
+	</select>
+
+	<!--根据角色id查询可用的组织机构-->
+	<select id="queryOrganRoleByRoleId" resultType="String" >
+		select
+			orl.organ_id AS id
+		from sys_organ_role orl
+		LEFT JOIN sys_organ o ON orl.organ_id = o.id
+		where orl.role_id = #{roleId} AND o.is_del = #{isDel}
+	</select>
+
+	<!--根据角色id查询可用的组织机构-->
+	<select id="queryPageByDto" resultType="com.hxy.dto.UserWindowDto" >
+		select
+			id,name,bapid
+		from sys_role
+		where 1=1
+		<if test="name != null and name != '' ">
+			AND name LIKE concat('%',#{name},'%')
+		</if>
+	</select>
+	<select id="queryList" resultType="com.hxy.sys.entity.RoleEntity" resultMap="roleMap">
+		select
+		<include refid="Base_Column_List" />
+		from sys_role
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from sys_role
+	</select>
+	 
+	<insert id="save" parameterType="com.hxy.sys.entity.RoleEntity">
+		insert into sys_role
+		(
+			`id`, 
+			`bapid`,
+			`baid`,
+			`name`,
+			`code`, 
+			`status`, 
+			`role_type`, 
+			`remark`, 
+			`update_time`, 
+			`create_time`, 
+			`update_id`, 
+			`create_id`
+		)
+		values
+		(
+			#{id}, 
+			#{bapid},
+			#{baid},
+			#{name},
+			#{code}, 
+			#{status}, 
+			#{roleType}, 
+			#{remark}, 
+			#{updateTime}, 
+			#{createTime}, 
+			#{updateId}, 
+			#{createId}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.hxy.sys.entity.RoleEntity">
+		update sys_role 
+		<set>
+			<if test="name != null">`name` = #{name}, </if>
+			<if test="code != null">`code` = #{code}, </if>
+			<if test="status != null">`status` = #{status}, </if>
+			<if test="roleType != null">`role_type` = #{roleType}, </if>
+			<if test="remark != null">`remark` = #{remark}, </if>
+			<if test="updateTime != null">`update_time` = #{updateTime}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="updateId != null">`update_id` = #{updateId}, </if>
+			<if test="createId != null">`create_id` = #{createId}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from sys_role where id = #{value}
+	</delete>
+
+	<!--根据角色id删除角色和组织关系表-->
+	<delete id="delRoleOrganByRoleId">
+		delete from sys_organ_role where role_id = #{roleId}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from sys_role where id in 
+		<foreach item="roleId" collection="array" open="(" separator="," close=")">
+			#{roleId}
+		</foreach>
+	</delete>
+
+	<!--批量保存组织机构与角色关系表-->
+	<insert id="batchSaveRoleOrgan" parameterType="java.util.Map">
+		insert into sys_organ_role
+		(
+		`role_id`,
+		`organ_id`
+		)
+		values
+		<foreach collection="organIdList" item="item" index="index" separator="," >
+			(
+			#{role_id},
+			#{item}
+			)
+		</foreach>
+	</insert>
+
+</mapper>

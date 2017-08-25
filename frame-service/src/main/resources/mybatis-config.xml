@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <!-- 打印查询语句 -->
+        <setting name="logImpl" value="STDOUT_LOGGING" />
+        <!--数据库中test_xx 转为驼峰命名testXx-->
+        <setting name="mapUnderscoreToCamelCase" value="true" />
+    </settings>
+    <plugins>
+        <plugin interceptor="com.hxy.base.page.PageHelper"></plugin>
+    </plugins>
+
+    <!-- mapper已经在spring-mybatis.xml中的sqlSessionFactory配置，这里不再需要配置 -->
+    <!--     <mappers> -->
+    <!--         <mapper resource="com/a/b/c/dao/BusinessInfoDaoMapper.xml" /> -->
+    <!--     </mappers> -->
+</configuration>

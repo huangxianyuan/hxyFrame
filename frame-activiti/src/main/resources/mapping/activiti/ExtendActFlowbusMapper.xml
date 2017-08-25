@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hxy.activiti.dao.ExtendActFlowbusDao">
+
+
+    <resultMap type="com.hxy.activiti.entity.ExtendActFlowbusEntity" id="extendActFlowbusMap">
+        <result property="id" column="id"/>
+        <result property="busId" column="bus_id"/>
+        <result property="status" column="status"/>
+        <result property="startTime" column="start_time"/>
+        <result property="instanceId" column="instance_id"/>
+        <result property="defid" column="defid"/>
+        <result property="startUserId" column="start_user_Id"/>
+        <result property="code" column="code"/>
+        <result property="actKey" column="act_key"/>
+        <result property="tableName" column="table_name"/>
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+		id, 
+		bus_id, 
+		status, 
+		start_time, 
+		instance_id, 
+		defid, 
+		start_user_Id, 
+		code, 
+		act_key, 
+		table_name
+    </sql>
+
+	<select id="queryObject" resultType="com.hxy.activiti.entity.ExtendActFlowbusEntity" resultMap="extendActFlowbusMap">
+		select
+		<include refid="Base_Column_List" />
+		from extend_act_flowbus
+		where id = #{value}
+	</select>
+
+	<!--根据业务id和流程实例id查询-->
+	<select id="queryByBusIdInsId" resultType="com.hxy.activiti.entity.ExtendActFlowbusEntity" resultMap="extendActFlowbusMap">
+		select
+		<include refid="Base_Column_List" />
+		from extend_act_flowbus
+		WHERE instance_id = #{instanceId} and bus_id = #{busId}
+	</select>
+
+	<select id="queryList" resultType="com.hxy.activiti.entity.ExtendActFlowbusEntity" resultMap="extendActFlowbusMap">
+		select
+		<include refid="Base_Column_List" />
+		from extend_act_flowbus
+		WHERE 1=1
+		<if test="instanceId != null and instanceId != null">
+			and instance_id = #{instanceId}
+		</if>
+		<if test="busId != null and busId != null">
+			and bus_id = #{busId}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from extend_act_flowbus
+	</select>
+	 
+	<insert id="save" parameterType="com.hxy.activiti.entity.ExtendActFlowbusEntity">
+		insert into extend_act_flowbus
+		(
+			`id`, 
+			`bus_id`, 
+			`status`, 
+			`start_time`, 
+			`instance_id`, 
+			`defid`, 
+			`start_user_Id`, 
+			`code`, 
+			`act_key`, 
+			`table_name`
+		)
+		values
+		(
+			#{id}, 
+			#{busId}, 
+			#{status}, 
+			#{startTime}, 
+			#{instanceId}, 
+			#{defid}, 
+			#{startUserId}, 
+			#{code}, 
+			#{actKey}, 
+			#{tableName}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.hxy.activiti.entity.ExtendActFlowbusEntity">
+		update extend_act_flowbus 
+		<set>
+			<if test="busId != null">`bus_id` = #{busId}, </if>
+			<if test="status != null">`status` = #{status}, </if>
+			<if test="startTime != null">`start_time` = #{startTime}, </if>
+			<if test="instanceId != null">`instance_id` = #{instanceId}, </if>
+			<if test="defid != null">`defid` = #{defid}, </if>
+			<if test="startUserId != null">`start_user_Id` = #{startUserId}, </if>
+			<if test="code != null">`code` = #{code}, </if>
+			<if test="actKey != null">`act_key` = #{actKey}, </if>
+			<if test="tableName != null">`table_name` = #{tableName}</if>
+		</set>
+		where id = #{id}
+	</update>
+	<!--根据业务id更新-->
+	<update id="updateByBusId" parameterType="com.hxy.activiti.entity.ExtendActFlowbusEntity">
+		update extend_act_flowbus
+		<set>
+			<if test="busId != null">`bus_id` = #{busId}, </if>
+			<if test="status != null">`status` = #{status}, </if>
+			<if test="startTime != null">`start_time` = #{startTime}, </if>
+			<if test="instanceId != null">`instance_id` = #{instanceId}, </if>
+			<if test="defid != null">`defid` = #{defid}, </if>
+			<if test="startUserId != null">`start_user_Id` = #{startUserId}, </if>
+			<if test="code != null">`code` = #{code}, </if>
+			<if test="actKey != null">`act_key` = #{actKey}, </if>
+			<if test="tableName != null">`table_name` = #{tableName}</if>
+		</set>
+		where bus_id = #{busId}
+	</update>
+
+	<delete id="delete">
+		delete from extend_act_flowbus where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from extend_act_flowbus where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+
+
+</mapper>

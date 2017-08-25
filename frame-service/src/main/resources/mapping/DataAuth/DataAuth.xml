@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hxy.base.dao">
+    <!-- 数据权限公共控制类 -->
+    <sql id="DataAuth">
+        AND (
+             auth.baid IN
+              <choose>
+                <when  test="baidList != null and baidList.size > 0">
+                    <foreach item="item" index="index" collection="baidList" open="(" separator="," close=")">
+                        #{baidList[${index}]}
+                    </foreach>
+                </when >
+                <otherwise>
+                    ('')
+                </otherwise>
+              </choose>
+             OR auth.bapid IN
+                <choose>
+                    <when  test="bapidList != null and bapidList.size > 0">
+                        <foreach item="item" index="index" collection="bapidList" open="(" separator="," close=")">
+                            #{bapidList[${index}]}
+                        </foreach>
+                    </when >
+                    <otherwise>
+                        ('')
+                    </otherwise>
+                </choose>
+             OR auth.create_id = #{createId}
+         )
+    </sql>
+</mapper>

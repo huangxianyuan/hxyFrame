@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hxy.demo.dao.LeaveDao">
+
+
+    <resultMap type="com.hxy.demo.entity.LeaveEntity" id="leaveMap">
+        <result property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="title" column="title"/>
+        <result property="day" column="day"/>
+        <result property="leavewhy" column="leavewhy"/>
+        <result property="status" column="status"/>
+        <result property="startTime" column="start_time"/>
+        <result property="instanceId" column="instance_id"/>
+        <result property="defid" column="defid"/>
+        <result property="startUserId" column="start_user_id"/>
+        <result property="code" column="code"/>
+        <result property="createTime" column="create_time"/>
+        <result property="createId" column="create_id"/>
+        <result property="updateId" column="update_id"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+        <result property="actResult" column="act_result"/>
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+		id, 
+		user_id, 
+		title, 
+		day, 
+		status,
+		start_time,
+		instance_id,
+		defid,
+		start_user_id,
+		code,
+		create_time,
+		create_id,
+		update_time,
+		update_id,
+		remark,
+		act_result,
+		leavewhy
+    </sql>
+
+	<select id="queryObject" resultType="com.hxy.demo.entity.LeaveEntity" resultMap="leaveMap">
+		select
+		<include refid="Base_Column_List" />
+		from leaveAply
+		where id = #{value}
+	</select>
+
+	<select id="queryList" resultType="com.hxy.demo.entity.LeaveEntity" resultMap="leaveMap">
+		select
+			<include refid="Base_Column_List" />,(SELECT user_name FROM sys_user s WHERE s.id=l.user_id)AS leaveUser
+		from leaveAply l
+		WHERE 1=1
+		<if test="title!=null and title!='' ">
+			AND title LIKE concat('%',#{title},'%')
+		</if>
+		ORDER BY create_time DESC
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from leaveAply
+	</select>
+	 
+	<insert id="save" parameterType="com.hxy.demo.entity.LeaveEntity">
+		insert into leaveAply
+		(
+			<include refid="Base_Column_List" />
+		)
+		values
+		(
+			#{id},
+			#{userId}, 
+			#{title}, 
+			#{day}, 
+			#{status},
+			#{startTime},
+			#{instanceId},
+			#{defid},
+			#{startUserId},
+			#{code},
+			#{createTime},
+			#{createId},
+			#{updateId},
+			#{updateTime},
+			#{remark},
+			#{actResult},
+			#{leavewhy}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.hxy.demo.entity.LeaveEntity">
+		update leaveAply
+		<set>
+			<if test="userId != null">`user_id` = #{userId}, </if>
+			<if test="title != null">`title` = #{title}, </if>
+			<if test="day != null">`day` = #{day}, </if>
+			<if test="status != null">`status` = #{status},</if>
+			<if test="startTime != null">`start_time` = #{startTime},</if>
+			<if test="instanceId != null">`instance_id` = #{instanceId},</if>
+			<if test="defid != null">`defid` = #{defid},</if>
+			<if test="startUserId != null">`start_user_id` = #{startUserId},</if>
+			<if test="createId != null">`create_id` = #{createId},</if>
+			<if test="createTime != null">`create_time` = #{createTime},</if>
+			<if test="updateId != null">`update_id` = #{updateId},</if>
+			<if test="updateTime != null">`update_time` = #{updateTime},</if>
+			<if test="remark != null">`remark` = #{remark},</if>
+			<if test="actResult != null">`actResult` = #{actResult},</if>
+			<if test="leavewhy != null">`leaveWhy` = #{leavewhy},</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from leaveAply where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from leaveAply where id in
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

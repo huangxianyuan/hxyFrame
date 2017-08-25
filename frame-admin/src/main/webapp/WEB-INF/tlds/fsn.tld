@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+        version="2.0">
+
+    <description>自定义函数</description>
+    <display-name>diy functions </display-name>
+    <tlib-version>1.0</tlib-version>
+    <short-name>fns</short-name>
+    <uri>hxyfus</uri>
+    
+    <function>
+        <description>获取字典中文名</description>
+        <name>getCodeName</name>
+        <function-class>com.hxy.utils.CodeUtils</function-class>
+        <function-signature>java.lang.String getCodeName(java.lang.String,java.lang.String))</function-signature>
+        <example>${fns:getCodeName("act_examine_type","1")}</example>
+    </function>
+</taglib>

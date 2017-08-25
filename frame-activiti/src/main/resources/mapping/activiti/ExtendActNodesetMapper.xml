@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hxy.activiti.dao.ExtendActNodesetDao">
+
+
+    <resultMap type="com.hxy.activiti.entity.ExtendActNodesetEntity" id="extendActNodesetMap">
+        <result property="id" column="id"/>
+        <result property="modelId" column="model_id"/>
+        <result property="defid" column="defid"/>
+        <result property="nodeId" column="node_id"/>
+        <result property="nodeType" column="node_type"/>
+        <result property="nodeAction" column="node_action"/>
+        <result property="changeFiles" column="change_files"/>
+        <result property="callBack" column="call_back"/>
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+		id, 
+		model_id, 
+		defid, 
+		node_id, 
+		node_type, 
+		node_action, 
+		change_files, 
+		call_back
+    </sql>
+
+	<select id="queryObject" resultType="com.hxy.activiti.entity.ExtendActNodesetEntity" resultMap="extendActNodesetMap">
+		select
+		<include refid="Base_Column_List" />
+		from extend_act_nodeset
+		where id = #{value}
+	</select>
+	<!--根据nodeId查询节点信息-->
+	<select id="queryByNodeId" resultType="com.hxy.activiti.entity.ExtendActNodesetEntity" resultMap="extendActNodesetMap">
+		select
+		<include refid="Base_Column_List" />
+		from extend_act_nodeset
+		where node_id = #{nodeId}
+	</select>
+	<!--根据nodeId和modelId查询节点信息-->
+	<select id="queryByNodeIdModelId" resultType="com.hxy.activiti.entity.ExtendActNodesetEntity" resultMap="extendActNodesetMap">
+		select
+		<include refid="Base_Column_List" />
+		from extend_act_nodeset
+		where node_id = #{0} AND model_id = #{1}
+	</select>
+
+
+	<select id="queryList" resultType="com.hxy.activiti.entity.ExtendActNodesetEntity" resultMap="extendActNodesetMap">
+		select
+		<include refid="Base_Column_List" />
+		from extend_act_nodeset
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from extend_act_nodeset
+	</select>
+	 
+	<insert id="save" parameterType="com.hxy.activiti.entity.ExtendActNodesetEntity">
+		insert into extend_act_nodeset
+		(
+			`id`, 
+			`model_id`, 
+			`defid`, 
+			`node_id`, 
+			`node_type`, 
+			`node_action`, 
+			`change_files`, 
+			`call_back`
+		)
+		values
+		(
+			#{id}, 
+			#{modelId}, 
+			#{defid}, 
+			#{nodeId}, 
+			#{nodeType}, 
+			#{nodeAction}, 
+			#{changeFiles}, 
+			#{callBack}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.hxy.activiti.entity.ExtendActNodesetEntity">
+		update extend_act_nodeset 
+		<set>
+			<if test="modelId != null">`model_id` = #{modelId}, </if>
+			<if test="defid != null">`defid` = #{defid}, </if>
+			<if test="nodeId != null">`node_id` = #{nodeId}, </if>
+			<if test="nodeType != null">`node_type` = #{nodeType}, </if>
+			<if test="nodeAction != null">`node_action` = #{nodeAction}, </if>
+			`change_files` = #{changeFiles},
+			<if test="callBack != null">`call_back` = #{callBack}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from extend_act_nodeset where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from extend_act_nodeset where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hxy.sys.dao.RoleMenuDao">
+
+
+    <resultMap type="com.hxy.sys.entity.RoleMenuEntity" id="roleMenuMap">
+        <result property="roleId" column="role_id"/>
+        <result property="menuId" column="menu_id"/>
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+		role_id, 
+		menu_id
+    </sql>
+
+	<!--根据角色获取资源权限-->
+	<select id="queryListByRoleId" resultType="String">
+		select
+		  menu_id AS id
+		from sys_role_menu WHERE role_id=#{roleId}
+	</select>
+	 
+	<insert id="save" parameterType="com.hxy.sys.entity.RoleMenuEntity">
+		insert into sys_role_menu
+		(
+			`role_id`, 
+			`menu_id`
+		)
+		values
+		<foreach collection="menuIdList" item="item" index="index" separator="," >
+		(
+			#{roleId},
+			#{item}
+		)
+		</foreach>
+	</insert>
+
+	<!--删除角色下的所有资源菜单-->
+	<delete id="delete">
+		delete from sys_role_menu where role_id = #{value}
+	</delete>
+
+	<!--根据角色list批量删除权限中间表-->
+	<delete id="deleteBatch">
+		delete from sys_role_menu where role_id in
+		<foreach item="roleId" collection="array" open="(" separator="," close=")">
+			#{roleId}
+		</foreach>
+	</delete>
+
+</mapper>

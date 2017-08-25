@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.apache.activemq:activemq-client:5.12.1">
+    <CLASSES>
+      <root url="jar://E:/maven/repos2/org/apache/activemq/activemq-client/5.12.1/activemq-client-5.12.1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://E:/maven/repos2/org/apache/activemq/activemq-client/5.12.1/activemq-client-5.12.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://E:/maven/repos2/org/apache/activemq/activemq-client/5.12.1/activemq-client-5.12.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

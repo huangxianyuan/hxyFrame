@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hxy.sys.dao.MenuDao">
+
+
+    <resultMap type="com.hxy.sys.entity.MenuEntity" id="menuMap">
+        <result property="id" column="id"/>
+        <result property="parentId" column="parent_id"/>
+        <result property="parentIds" column="parent_ids"/>
+        <result property="name" column="name"/>
+        <result property="url" column="url"/>
+        <result property="icon" column="icon"/>
+        <result property="sort" column="sort"/>
+        <result property="status" column="status"/>
+        <result property="permission" column="permission"/>
+        <result property="remark" column="remark"/>
+        <result property="createTime" column="create_time"/>
+        <result property="createId" column="create_id"/>
+        <result property="updateId" column="update_id"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="type" column="type"/>
+        <result property="open" column="pen"/>
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+		id, 
+		parent_id, 
+		parent_ids, 
+		name, 
+		url,
+		open,
+		icon, 
+		sort, 
+		status, 
+		permission, 
+		remark, 
+		create_time, 
+		create_id, 
+		update_id, 
+		update_time,
+		type
+    </sql>
+
+	<select id="queryObject" resultType="com.hxy.sys.entity.MenuEntity" resultMap="menuMap">
+		select
+		<include refid="Base_Column_List"  />,(SELECT tm.name FROM sys_menu tm WHERE tm.id=m.parent_id ) AS parentName
+		from sys_menu m
+		where id = #{value}
+	</select>
+
+	<!--根据父菜单Id查询菜单-->
+	<select id="queryListParentId" resultType="com.hxy.sys.entity.MenuEntity" resultMap="menuMap">
+		select
+		<include refid="Base_Column_List" />,(SELECT tm.name FROM sys_menu tm WHERE tm.id=m.parent_id ) AS parentName
+		from sys_menu m
+		where parent_id = #{parentId} ORDER BY sort
+	</select>
+
+	<!--根据登陆用户Id,查询出所有授权菜单-->
+	<select id="queryByUserId" resultType="com.hxy.sys.entity.MenuEntity" resultMap="menuMap">
+		select
+		m.*,(SELECT tm.name FROM sys_menu tm WHERE tm.id=m.parent_id ) AS parentName
+		FROM sys_user_role ur LEFT JOIN
+		sys_role r on ur.role_id=r.id LEFT JOIN
+		sys_role_menu rm ON r.id=rm.role_id LEFT JOIN
+		sys_menu m on m.id=rm.menu_id
+		WHERE ur.user_id= #{userId} ORDER BY sort;
+	</select>
+
+	<!--查询所有不包括按钮 的菜单-->
+	<select id="queryNotButtonnList" resultType="com.hxy.sys.entity.MenuEntity" resultMap="menuMap">
+		select
+		<include refid="Base_Column_List" />,(SELECT tm.name FROM sys_menu tm WHERE tm.id=m.parent_id ) AS parentName
+		FROM sys_menu m
+		WHERE m.TYPE IN
+		<foreach item="type" collection="array" open="(" separator="," close=")">
+			#{type}
+		</foreach>
+	</select>
+
+	<select id="queryList" resultType="com.hxy.sys.entity.MenuEntity" resultMap="menuMap">
+		select
+		<include refid="Base_Column_List" />,(SELECT tm.name FROM sys_menu tm WHERE tm.id=m.parent_id ) AS parentName
+		from sys_menu m
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from sys_menu
+	</select>
+	 
+	<insert id="save" parameterType="com.hxy.sys.entity.MenuEntity">
+		insert into sys_menu
+		(
+			`id`, 
+			`parent_id`, 
+			`parent_ids`, 
+			`name`, 
+			`url`,
+			 open,
+			`icon`, 
+			`sort`, 
+			`status`, 
+			`permission`, 
+			`remark`, 
+			`create_time`, 
+			`create_id`, 
+			`update_id`, 
+			`update_time`,
+			type
+		)
+		values
+		(
+			#{id}, 
+			#{parentId}, 
+			#{parentIds}, 
+			#{name}, 
+			#{url}, 
+			#{open},
+			#{icon},
+			#{sort}, 
+			#{status}, 
+			#{permission}, 
+			#{remark}, 
+			#{createTime}, 
+			#{createId}, 
+			#{updateId}, 
+			#{updateTime},
+			#{type}
+		)
+	</insert>
+
+	<update id="update" parameterType="com.hxy.sys.entity.MenuEntity">
+		update sys_menu
+		<set>
+			<if test="parentId != null">
+				parent_id = #{parentId,jdbcType=VARCHAR},
+			</if>
+			<if test="parentIds != null">
+				parent_ids = #{parentIds,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				NAME = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="url != null">
+				url = #{url,jdbcType=VARCHAR},
+			</if>
+			<if test="open != null">
+				open = #{open,jdbcType=VARCHAR},
+			</if>
+			<if test="icon != null">
+				icon = #{icon,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=DECIMAL},
+			</if>
+			<if test="permission != null">
+				permission = #{permission,jdbcType=VARCHAR},
+			</if>
+			<if test="remark != null">
+				remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="updateId != null">
+				update_id = #{updateId,jdbcType=VARCHAR},
+			</if>
+			<if test="sort != null">
+				sort = #{sort,jdbcType=INTEGER},
+			</if>
+			<if test="type != null">
+				type = #{type,jdbcType=VARCHAR},
+			</if>
+			<if test="updateTime != null">
+				UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	
+	<delete id="delete">
+		delete from sys_menu where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from sys_menu where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

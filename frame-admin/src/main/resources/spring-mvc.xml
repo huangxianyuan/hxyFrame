@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 扫描service、dao组件 -->
+    <!--<context:component-scan base-package="com.**.service,com.**.dao" />-->
+
+    <!-- 注解方式 -->
+    <mvc:annotation-driven />
+    <!--静态资源的访问-->
+    <mvc:default-servlet-handler />
+
+    <aop:aspectj-autoproxy proxy-target-class="true" />
+
+    <context:component-scan base-package="com.hxy" />
+
+    <!-- 自动扫描Controller -->
+    <!--<context:component-scan base-package="com.**.controller" />-->
+
+    <!--扫描系统日志，切面处理类-->
+    <!--<context:component-scan base-package="com.hxy.sys.aop" />-->
+    <!--扫描定时任务-->
+    <!--<context:component-scan base-package="com.hxy.sys.task" />-->
+    <!--RequestMappingHandlerAdapter可以根据@requestmapping标注调用实际的函数，MappingJackson2HttpMessageConverter是json转换器-->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+            </list>
+        </property>
+    </bean>
+
+    <!-- 框架异常处理Handler -->
+    <bean id="exceptionResolver" class="com.hxy.base.exception.MyHandlerExceptionResoler"></bean>
+
+    <!-- Velocity视图解析器    默认视图  -->
+    <bean id="velocityViewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+        <property name="contentType" value="text/html;charset=UTF-8" />
+        <property name="viewNames" value="*.html" />
+        <property name="suffix" value=""/>
+        <property name="dateToolAttribute" value="date" />
+        <property name="numberToolAttribute" value="number" />
+        <property name="toolboxConfigLocation" value="/WEB-INF/velocity-toolbox.xml" />
+        <property name="requestContextAttribute" value="rc"/>
+        <property name="order" value="0"/>
+    </bean>
+
+    <bean id="velocityConfigurer" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+        <property name="resourceLoaderPath" value="/WEB-INF/views/" />
+        <property name="velocityProperties">
+            <props>
+                <prop key="input.encoding">UTF-8</prop>
+                <prop key="output.encoding">UTF-8</prop>
+                <prop key="contentType">text/html;charset=UTF-8</prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- JSP视图解析器  -->
+    <bean id="viewResolverJsp" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/"/>
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="viewNames" value="*.jsp" />
+        <property name="suffix" value=""/>
+        <property name="order" value="1"/>
+    </bean>
+
+    <!-- FreeMarker视图解析器 -->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
+        <property name="contentType" value="text/html; charset=utf-8"/>
+        <property name="cache" value="false"/>
+        <property name="viewNames" value="*.ftl" />
+        <property name="suffix" value=""/>
+        <property name="order" value="2"/>
+    </bean>
+
+    <!-- 支持文件上传 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    </bean>
+
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="org.apache.shiro.authz.UnauthorizedException">/admin/403</prop>
+            </props>
+        </property>
+    </bean>
+    <!-- Kaptcha验证码生成器 -->
+    <bean name="producer" class="com.google.code.kaptcha.impl.DefaultKaptcha" scope="singleton">
+        <property name="config">
+            <bean class="com.google.code.kaptcha.util.Config">
+                <constructor-arg>
+                    <props>
+                        <prop key="kaptcha.border">no</prop>
+                        <prop key="kaptcha.textproducer.font.color">black</prop>
+                        <prop key="kaptcha.textproducer.char.space">5</prop>
+                    </props>
+                </constructor-arg>
+            </bean>
+        </property>
+    </bean>
+
+</beans>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hxy.activiti.dao.ExtendActTasklogDao">
+
+
+    <resultMap type="com.hxy.activiti.entity.ExtendActTasklogEntity" id="extendActTasklogMap">
+        <result property="id" column="id"/>
+        <result property="busId" column="bus_id"/>
+        <result property="defId" column="def_id"/>
+        <result property="instanceId" column="instance_id"/>
+        <result property="taskId" column="task_id"/>
+        <result property="taskName" column="task_Name"/>
+        <result property="advanceId" column="advance_id"/>
+        <result property="dealId" column="deal_id"/>
+        <result property="dealTime" column="deal_time"/>
+        <result property="createTime" column="create_time"/>
+        <result property="agenId" column="agen_id"/>
+        <result property="appOpinion" column="app_opinion"/>
+        <result property="appAction" column="app_action"/>
+        <result property="isSign" column="is_sign"/>
+        <result property="columns" column="columns"/>
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+		id, 
+		bus_id, 
+		def_id, 
+		instance_id, 
+		task_id, 
+		task_Name, 
+		advance_id, 
+		deal_id, 
+		deal_time, 
+		create_time,
+		agen_id,
+		app_opinion, 
+		app_action, 
+		is_sign, 
+		columns
+    </sql>
+
+	<select id="queryObject" resultType="com.hxy.activiti.entity.ExtendActTasklogEntity" resultMap="extendActTasklogMap">
+		select
+		<include refid="Base_Column_List" />,(SELECT user_name FROM sys_user s WHERE s.id=t.advance_id) AS advanceName,
+		(SELECT user_name FROM sys_user s WHERE s.id=t.deal_id) AS dealName
+		from extend_act_tasklog t
+		where id = #{value}
+	</select>
+
+	<select id="queryList" resultType="com.hxy.activiti.entity.ExtendActTasklogEntity" resultMap="extendActTasklogMap">
+		select
+		<include refid="Base_Column_List" />,(SELECT user_name FROM sys_user s WHERE s.id=t.advance_id) AS advanceName,
+		(SELECT user_name FROM sys_user s WHERE s.id=t.deal_id) AS dealName
+		from extend_act_tasklog t
+		WHERE 1=1
+	  	<if test="busId != null and bus_id != '' ">
+			AND bus_id=#{busId}
+		</if>
+		ORDER BY create_time
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from extend_act_tasklog
+	</select>
+	 
+	<insert id="save" parameterType="com.hxy.activiti.entity.ExtendActTasklogEntity">
+		insert into extend_act_tasklog
+		(
+			`id`, 
+			`bus_id`, 
+			`def_id`, 
+			`instance_id`, 
+			`task_id`, 
+			`task_Name`, 
+			`advance_id`, 
+			`deal_id`, 
+			`deal_time`, 
+			`create_time`,
+			`agen_id`,
+			`app_opinion`, 
+			`app_action`, 
+			`is_sign`, 
+			`columns`
+		)
+		values
+		(
+			#{id}, 
+			#{busId}, 
+			#{defId}, 
+			#{instanceId}, 
+			#{taskId}, 
+			#{taskName}, 
+			#{advanceId}, 
+			#{dealId}, 
+			#{dealTime}, 
+			#{createTime},
+			#{agenId},
+			#{appOpinion}, 
+			#{appAction}, 
+			#{isSign}, 
+			#{columns}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.hxy.activiti.entity.ExtendActTasklogEntity">
+		update extend_act_tasklog 
+		<set>
+			<if test="busId != null">`bus_id` = #{busId}, </if>
+			<if test="defId != null">`def_id` = #{defId}, </if>
+			<if test="instanceId != null">`instance_id` = #{instanceId}, </if>
+			<if test="taskId != null">`task_id` = #{taskId}, </if>
+			<if test="taskName != null">`task_Name` = #{taskName}, </if>
+			<if test="advanceId != null">`advance_id` = #{advanceId}, </if>
+			<if test="dealId != null">`deal_id` = #{dealId}, </if>
+			<if test="dealTime != null">`deal_time` = #{dealTime}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="agenId != null">`agen_id` = #{agenId}, </if>
+			<if test="appOpinion != null">`app_opinion` = #{appOpinion}, </if>
+			<if test="appAction != null">`app_action` = #{appAction}, </if>
+			<if test="isSign != null">`is_sign` = #{isSign}, </if>
+			<if test="columns != null">`columns` = #{columns}</if>
+		</set>
+		where id = #{id}
+	</update>
+
+	<update id="updateByTaskId" parameterType="com.hxy.activiti.entity.ExtendActTasklogEntity">
+		update extend_act_tasklog
+		<set>
+			<if test="busId != null">`bus_id` = #{busId}, </if>
+			<if test="defId != null">`def_id` = #{defId}, </if>
+			<if test="taskName != null">`task_Name` = #{taskName}, </if>
+			<if test="advanceId != null">`advance_id` = #{advanceId}, </if>
+			<if test="dealId != null">`deal_id` = #{dealId}, </if>
+			<if test="dealTime != null">`deal_time` = #{dealTime}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="agenId != null">`agen_id` = #{agenId}, </if>
+			<if test="appOpinion != null">`app_opinion` = #{appOpinion}, </if>
+			<if test="appAction != null">`app_action` = #{appAction}, </if>
+			<if test="isSign != null">`is_sign` = #{isSign}, </if>
+			<if test="columns != null">`columns` = #{columns}</if>
+		</set>
+		where task_id = #{taskId}
+	</update>
+	
+	<delete id="delete">
+		delete from extend_act_tasklog where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from extend_act_tasklog where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

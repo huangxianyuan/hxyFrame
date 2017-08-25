@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hxy.activiti.dao.ExtendActModelDao">
+
+
+    <resultMap type="com.hxy.activiti.entity.ExtendActModelEntity" id="extendActModelMap">
+        <result property="id" column="id"/>
+        <result property="actVersion" column="act_version"/>
+        <result property="extendActBusinessId" column="extend_act_business_id"/>
+        <result property="deploymentId" column="deployment_id"/>
+        <result property="description" column="description"/>
+        <result property="modelId" column="model_id"/>
+        <result property="name" column="name"/>
+        <result property="status" column="status"/>
+        <result property="baid" column="baid"/>
+        <result property="bapid" column="bapid"/>
+        <result property="code" column="code"/>
+        <result property="defid" column="defid"/>
+        <result property="instanceId" column="instance_id"/>
+        <result property="remark" column="remark"/>
+        <result property="updateId" column="update_id"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="createTime" column="create_time"/>
+        <result property="createId" column="create_id"/>
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+		id, 
+		act_version, 
+		extend_act_business_id, 
+		deployment_id, 
+		description, 
+		model_id, 
+		name, 
+		status, 
+		baid,
+		bapid, 
+		code, 
+		defid, 
+		instance_id, 
+		remark,
+		update_id,
+		update_time, 
+		create_time, 
+		create_id
+    </sql>
+
+	<select id="queryObject" resultType="com.hxy.activiti.entity.ExtendActModelEntity" resultMap="extendActModelMap">
+		select
+		<include refid="Base_Column_List" />,(SELECT name FROM extend_act_business b WHERE b.id =m.extend_act_business_id) AS businessName
+		from extend_act_model m
+		where id = #{value}
+	</select>
+
+	<!--根据模型id获取流程模型和业务相关信息-->
+	<select id="getModelAndBusInfo" resultType="com.hxy.activiti.entity.ExtendActModelEntity" resultMap="extendActModelMap">
+		select
+			m.id,m.name,m.remark,b.act_key AS actKey
+		from extend_act_model m,extend_act_business b
+		where m.model_id = #{value} AND m.extend_act_business_id = b.id
+	</select>
+
+	<select id="queryList" resultType="com.hxy.activiti.entity.ExtendActModelEntity" resultMap="extendActModelMap">
+		select
+		<include refid="Base_Column_List" />,(SELECT name FROM extend_act_business b WHERE b.id=auth.extend_act_business_id) AS businessName,
+		(SELECT name FROM sys_organ o WHERE o.id=auth.bapid) AS bapName,(SELECT name FROM sys_organ o WHERE o.id=auth.baid) AS baName
+		from extend_act_model auth
+		WHERE 1=1
+			/*数据权限sql*/
+			<include refid="com.hxy.base.dao.DataAuth"/>
+			<if test="name != null and name != ''">
+				and name like concat('%',#{name},'%')
+			</if>
+		ORDER BY create_time DESC
+	</select>
+	
+
+	<insert id="save" parameterType="com.hxy.activiti.entity.ExtendActModelEntity">
+		insert into extend_act_model
+		(
+			`id`, 
+			`act_version`, 
+			`extend_act_business_id`, 
+			`deployment_id`, 
+			`description`, 
+			`model_id`, 
+			`name`, 
+			`status`, 
+			`baid`,
+			`bapid`, 
+			`code`, 
+			`defid`, 
+			`instance_id`, 
+			`remark`,
+			`update_id`,
+			`update_time`, 
+			`create_time`, 
+			`create_id`
+		)
+		values
+		(
+			#{id}, 
+			#{actVersion}, 
+			#{extendActBusinessId}, 
+			#{deploymentId}, 
+			#{description}, 
+			#{modelId}, 
+			#{name}, 
+			#{status}, 
+			#{baid},
+			#{bapid}, 
+			#{code}, 
+			#{defid}, 
+			#{instanceId}, 
+			#{remark},
+			#{updateId},
+			#{updateTime}, 
+			#{createTime}, 
+			#{createId}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.hxy.activiti.entity.ExtendActModelEntity">
+		update extend_act_model 
+		<set>
+			<if test="actVersion != null">`act_version` = #{actVersion}, </if>
+			<if test="extendActBusinessId != null">`extend_act_business_id` = #{extendActBusinessId}, </if>
+			<if test="deploymentId != null">`deployment_id` = #{deploymentId}, </if>
+			<if test="description != null">`description` = #{description}, </if>
+			<if test="modelId != null">`model_id` = #{modelId}, </if>
+			<if test="name != null">`name` = #{name}, </if>
+			<if test="status != null">`status` = #{status}, </if>
+			<if test="baid != null">`baid` = #{baid}, </if>
+			<if test="bapid != null">`bapid` = #{bapid}, </if>
+			<if test="code != null">`code` = #{code}, </if>
+			<if test="defid != null">`defid` = #{defid}, </if>
+			<if test="instanceId != null">`instance_id` = #{instanceId}, </if>
+			<if test="remark != null">`remark` = #{remark}, </if>
+			<if test="updateId != null">`update_id` = #{updateId}, </if>
+			<if test="updateTime != null">`update_time` = #{updateTime}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="createId != null">`create_id` = #{createId}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from extend_act_model where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from extend_act_model where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>
