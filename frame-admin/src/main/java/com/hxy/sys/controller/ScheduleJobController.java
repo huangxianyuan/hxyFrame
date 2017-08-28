@@ -56,7 +56,7 @@ public class ScheduleJobController {
 	 * 保存定时任务
 	 */
 	@RequestMapping("/save")
-	@RequiresPermissions("sys:schedule:save")
+	@RequiresPermissions("sys:schedule:update")
 	public Result save(@RequestBody ScheduleJobEntity scheduleJob){
 		scheduleJobService.save(scheduleJob);
 		

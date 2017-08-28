@@ -66,7 +66,7 @@ public class MenuController extends BaseController{
 	 * 保存
 	 */
 	@RequestMapping("/save")
-	@RequiresPermissions("sys:menu:save")
+	@RequiresPermissions("sys:menu:update")
 	public Result save(@RequestBody MenuEntity menu){
         String id = menuService.save(menu);
         MenuEntity menuEntity = menuService.queryObject(id);

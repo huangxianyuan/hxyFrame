@@ -173,7 +173,6 @@ var vm = new Vue({
 				btn: ['修改','取消'],
 				btn1: function (index) {
 					var data = "passWord="+vm.passWord+"&newPassWord="+vm.newPassWord;
-					debugger
 					$.ajax({
 						type: "POST",
 					    url: "sys/user/updatePassword",
@@ -182,7 +181,7 @@ var vm = new Vue({
 					    success: function(result){
 							if(result.code == 0){
 								layer.close(index);
-								layer.alert('修改成功', function(index){
+								layer.alert(result, function(index){
 									location.reload();
 								});
 							}else{

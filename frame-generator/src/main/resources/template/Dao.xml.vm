@@ -40,6 +40,13 @@
 			limit #{offset}, #{limit}
 		</if>
 	</select>
+
+    <select id="queryListByBean" resultType="${package}.entity.${className}Entity" resultMap="${classname}Map">
+        select
+        <include refid="Base_Column_List" />
+        from ${tableName}
+        WHERE 1=1
+    </select>
 	
  	<select id="queryTotal" resultType="int">
 		select count(*) from ${tableName}

@@ -54,24 +54,6 @@ public class ExtendActDealController {
     ExtendActNodesetService nodesetService;
 
     @Autowired
-    ExtendActNodefieldService fieldService;
-
-    @Autowired
-    ExtendActNodeuserService nodeuserService;
-
-    @Autowired
-    UserService userService;
-
-    @Autowired
-    RoleService roleService;
-
-    @Autowired
-    OrganService organService;
-
-    @Autowired
-    ExtendActBusinessService businessService;
-
-    @Autowired
     ExtendActTasklogService tasklogService;
 
     @Autowired

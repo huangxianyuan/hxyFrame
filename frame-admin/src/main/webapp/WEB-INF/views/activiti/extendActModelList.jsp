@@ -16,7 +16,7 @@
                     <input type="text" name="name" value="${model.name}"  placeholder="请输入标题"  class="layui-input" >
                 </div>
                 <button class="layui-btn" id="searchSubmit"><i class="layui-icon">&#xe615;</i>查 询</button>
-                <button class="layui-btn" type="button" id="refresh">重 置</button>
+                <button class="layui-btn layui-btn-warm" type="button" id="refresh">重 置</button>
                 <button class="layui-btn" type="button" onclick="modelInfo()"><i class="layui-icon">&#xe61f;</i> 新 增</button>
             </div>
         </form>

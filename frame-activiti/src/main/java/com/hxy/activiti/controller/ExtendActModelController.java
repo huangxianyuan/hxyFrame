@@ -14,6 +14,7 @@ import com.hxy.sys.service.RoleService;
 import com.hxy.sys.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -75,6 +76,7 @@ public class ExtendActModelController {
      * @return
      */
     @RequestMapping("list")
+    @RequiresPermissions("act:model:all")
     public String list(Model model,ExtendActModelEntity actModelEntity, HttpServletRequest request){
         int pageNum = Utils.parseInt(request.getParameter("pageNum"), 1);
         Page<ExtendActModelEntity> page = extendActModelService.findPage(actModelEntity, pageNum);
@@ -89,6 +91,7 @@ public class ExtendActModelController {
      * @return
      */
     @RequestMapping("info")
+    @RequiresPermissions("act:model:all")
     public String info(Model model,String id){
         if(StringUtils.isNotEmpty(id)){
             ExtendActModelEntity extendActModelEntity = extendActModelService.queryObject(id);
@@ -106,6 +109,7 @@ public class ExtendActModelController {
      */
     @RequestMapping("save")
     @ResponseBody
+    @RequiresPermissions("act:model:all")
     public Result save(ExtendActModelEntity modelEntity){
         try {
             String modelId = extendActModelService.save(modelEntity);
@@ -127,6 +131,7 @@ public class ExtendActModelController {
      */
     @RequestMapping("update")
     @ResponseBody
+    @RequiresPermissions("act:model:all")
     public Result update(ExtendActModelEntity modelEntity){
         int count = extendActModelService.update(modelEntity);
         if(count>0){
@@ -224,6 +229,7 @@ public class ExtendActModelController {
      * @return
      */
     @RequestMapping(value = "showFlowImg")
+    @RequiresPermissions("act:model:all")
     public ResponseEntity<byte[]> showFlowImg(String modelId){
         return actModelerService.showFlowImg(modelId);
     }
@@ -236,6 +242,7 @@ public class ExtendActModelController {
      */
     @RequestMapping("del")
     @ResponseBody
+    @RequiresPermissions("act:model:all")
     public Result del(String id){
         try {
             int count = extendActModelService.delete(id);
@@ -257,6 +264,7 @@ public class ExtendActModelController {
      */
     @RequestMapping(value = "saveNode",method = RequestMethod.POST)
     @ResponseBody
+    @RequiresPermissions("act:model:all")
     public Result saveNode(ExtendActNodesetEntity nodesetEntity){
         try {
             ExtendActNodesetEntity nodeSet = nodesetService.saveNode(nodesetEntity);
@@ -274,6 +282,7 @@ public class ExtendActModelController {
      */
     @RequestMapping(value = "deploy",method = RequestMethod.POST)
     @ResponseBody
+    @RequiresPermissions("act:model:all")
     public Result deploy(String modelId){
         try {
             extendActModelService.deploy(modelId);

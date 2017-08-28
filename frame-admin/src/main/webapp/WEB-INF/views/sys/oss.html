@@ -9,9 +9,11 @@
 <div id="rrapp" v-cloak>
 	<div v-show="showList">
 		<div class="grid-btn">
-			<button class="layui-btn" @click="addConfig" type="button"><i class="layui-icon">&#xe614;</i> 云存储配置 </button>
-			<button class="layui-btn" id="upload" type="button"><i class="layui-icon">&#xe67c;</i> 上传文件 </button>
-			<button class="layui-btn layui-btn-danger" @click="del" type="button" @click="del"><i class="layui-icon">&#xe640;</i>删除</button>
+			#if($shiro.hasPermission("sys:oss:all"))
+				<button class="layui-btn" @click="addConfig" type="button"><i class="layui-icon">&#xe614;</i> 云存储配置 </button>
+				<button class="layui-btn" id="upload" type="button"><i class="layui-icon">&#xe67c;</i> 上传文件 </button>
+				<button class="layui-btn layui-btn-danger" @click="del" type="button" @click="del"><i class="layui-icon">&#xe640;</i>删除</button>
+			#end
 		</div>
 	    <table id="jqGrid"></table>
 	    <div id="jqGridPager"></div>
@@ -151,7 +153,9 @@
 				</div>
 			</div>
 			<div class="form-group" style="margin-left: 30%;margin-top: 30px;">
-				<button class="layui-btn" type="button" @click="saveOrUpdate" >确定</button>
+				#if($shiro.hasPermission("sys:oss:all"))
+					<button class="layui-btn" type="button" @click="saveOrUpdate" >确定</button>
+				#end
 				<button class="layui-btn layui-btn-warm" type="button" @click="reload" style="margin-left: 30px">返回</button>
 			</div>
 		</form>

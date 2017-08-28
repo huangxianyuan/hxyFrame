@@ -49,6 +49,6 @@ $header
 	</div>
 </div>
 
-<script src="${rc.contextPath}/js/generator/${pathName}.js?_${date.systemTime}"></script>
+<script src="${rc.contextPath}/statics/js/generator/${pathName}.js?_${date.systemTime}"></script>
 </body>
 </html>

@@ -57,7 +57,7 @@ public class SysConfigController extends BaseController {
 	 * 保存配置
 	 */
 	@RequestMapping("/save")
-	@RequiresPermissions("sys:config:save")
+	@RequiresPermissions("sys:config:update")
 	public Result save(@RequestBody SysConfigEntity config){
 		ValidatorUtils.validateEntity(config);
 

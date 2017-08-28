@@ -79,7 +79,7 @@ public class UserController extends BaseController{
 	 * 保存
 	 */
 	@RequestMapping("/save")
-	@RequiresPermissions("sys:user:save")
+	@RequiresPermissions("sys:user:update")
 	public Result save(@RequestBody UserEntity user){
 		if(StringUtils.isNotEmpty(user.getPassWord())){
 			user.setPassWord(MD5.MD5Encode(user.getPassWord()));

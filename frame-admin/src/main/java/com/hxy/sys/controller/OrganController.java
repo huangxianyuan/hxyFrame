@@ -36,7 +36,7 @@ public class OrganController extends BaseController{
 	 * 列表
 	 */
 	@RequestMapping("/list")
-	@RequiresPermissions("organ:list")
+	@RequiresPermissions("sys:organ:all")
 	public Result list(@RequestParam Map<String, Object> params){
 		//查询列表数据
         Query query = new Query(params);
@@ -54,7 +54,7 @@ public class OrganController extends BaseController{
 	 * 信息
 	 */
 	@RequestMapping("/info/{id}")
-	@RequiresPermissions("organ:info")
+	@RequiresPermissions("sys:organ:all")
 	public Result info(@PathVariable("id") String id){
 		OrganEntity organ = organService.queryObject(id);
 		
@@ -65,7 +65,7 @@ public class OrganController extends BaseController{
 	 * 保存
 	 */
 	@RequestMapping("/save")
-	@RequiresPermissions("organ:save")
+	@RequiresPermissions("sys:organ:all")
 	public Result save(@RequestBody OrganEntity organ){
         List<OrganEntity> organEntities = organService.queryListByCode(organ.getCode());
         if(organEntities != null && organEntities.size()>0){
@@ -83,7 +83,7 @@ public class OrganController extends BaseController{
      * 修改
      */
     @RequestMapping("/update")
-    @RequiresPermissions("organ:update")
+    @RequiresPermissions("sys:organ:all")
     public Result update(@RequestBody OrganEntity organEntity){
         int count = organService.update(organEntity);
         if(count<1){
@@ -99,6 +99,7 @@ public class OrganController extends BaseController{
 	 * @return
 	 */
 	@RequestMapping(value = "/organTree")
+	@RequiresPermissions("sys:organ:all")
 	public Result codeTree(){
         List<OrganEntity> organEntities = organService.queryListByBean(new OrganEntity());
         return Result.ok().put("organTree", organEntities);
@@ -108,7 +109,7 @@ public class OrganController extends BaseController{
 	 * 删除
 	 */
 	@RequestMapping("/delete")
-	@RequiresPermissions("organ:delete")
+	@RequiresPermissions("sys:organ:all")
 	public Result delete(@RequestBody String id){
         int count = organService.updateIsdel(id,Constant.YESNO.YES.getValue());
         if(count<1){

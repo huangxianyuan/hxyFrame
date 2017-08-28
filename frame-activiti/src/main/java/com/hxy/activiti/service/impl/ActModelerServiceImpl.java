@@ -428,7 +428,9 @@ public class ActModelerServiceImpl implements ActModelerService{
                     ExtendActNodesetEntity nodesetEntity = nodesetService.queryByNodeId(node.getId());
                     //如果该节点配置有回调函数，则执行回调
                     if(nodesetEntity != null && StringUtils.isNotEmpty(nodesetEntity.getCallBack())){
-                        // TODO: 2017/8/4 这里为性能考虑，打算采用异步执行回调 待完善
+                        if(StringUtils.isNotEmpty(nodesetEntity.getCallBack())){
+                            executeCallback(nodesetEntity.getCallBack(),processTaskDto);
+                        }
                     }
                     //流程结束发送通知 待完善
                     // TODO: 2017/8/4 流程结束发送通知 待完善
@@ -707,8 +709,26 @@ public class ActModelerServiceImpl implements ActModelerService{
         }
         // TODO: 2017/8/10 任务审批完成后，执行回调函数
         if(StringUtils.isNotEmpty(nodesetEntity.getCallBack())){
-
+            executeCallback(nodesetEntity.getCallBack(),processTaskDto);
         }
+    }
+
+
+    /**
+     * 节点回调方法 执行
+     * @param callBack
+     * @param processTaskDto
+     * @throws Exception
+     */
+    public void executeCallback(String callBack,ProcessTaskDto processTaskDto) throws Exception {
+        int lastIndex = callBack.lastIndexOf(".");
+        String methodStr = callBack.substring(lastIndex+1);//方法名
+        String classUrl = callBack.substring(0, lastIndex);//类路径
+        Class<?> clazz = Class.forName(classUrl);
+        Object o = clazz.newInstance();
+        //回调方法参数 这里可扩展
+        Method method = clazz.getMethod(methodStr, ProcessTaskDto.class);
+        method.invoke(processTaskDto);
     }
 
     /**

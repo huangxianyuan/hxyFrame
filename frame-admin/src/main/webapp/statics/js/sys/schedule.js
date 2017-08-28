@@ -75,6 +75,7 @@ var vm = new Vue({
 		},
 		saveOrUpdate: function (event) {
 			var url = vm.schedule.jobId == null ? "../sys/schedule/save" : "../sys/schedule/update";
+            debugger
 			$.ajax({
 				type: "POST",
 			    url: url,
@@ -82,8 +83,7 @@ var vm = new Vue({
 			    data: JSON.stringify(vm.schedule),
 			    success: function(r){
 			    	if(r.code === 0){
-			    		debugger
-						alert('操作成功', function(index){
+						alert(r, function(index){
 							vm.reload();
 						});
 					}else{
@@ -106,7 +106,7 @@ var vm = new Vue({
 				    data: JSON.stringify(jobIds),
 				    success: function(r){
 						if(r.code == 0){
-							alert('操作成功', function(index){
+							alert(r, function(index){
 								vm.reload();
 							});
 						}else{
@@ -130,7 +130,7 @@ var vm = new Vue({
 				    data: JSON.stringify(jobIds),
 				    success: function(r){
 						if(r.code == 0){
-							alert('操作成功', function(index){
+							alert(r, function(index){
 								vm.reload();
 							});
 						}else{
@@ -154,7 +154,7 @@ var vm = new Vue({
 				    data: JSON.stringify(jobIds),
 				    success: function(r){
 						if(r.code == 0){
-							alert('操作成功', function(index){
+							alert(r, function(index){
 								vm.reload();
 							});
 						}else{
@@ -178,7 +178,7 @@ var vm = new Vue({
 				    data: JSON.stringify(jobIds),
 				    success: function(r){
 						if(r.code == 0){
-							alert('操作成功', function(index){
+							alert(r, function(index){
 								vm.reload();
 							});
 						}else{

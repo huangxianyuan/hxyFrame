@@ -54,7 +54,6 @@ public class CodeController extends BaseController{
         return Result.ok().put("codeTree", codeEntities);
 	}
 
-	
 	/**
 	 * 信息
 	 */
@@ -70,7 +69,7 @@ public class CodeController extends BaseController{
 	 * 保存
 	 */
 	@RequestMapping("/save")
-	@RequiresPermissions("sys:code:save")
+	@RequiresPermissions("sys:code:update")
 	public Result save(@RequestBody CodeEntity code){
 		CodeEntity queryCode = new CodeEntity();
 		queryCode.setMark(code.getMark());

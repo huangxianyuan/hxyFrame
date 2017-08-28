@@ -109,7 +109,7 @@
 	</select>
 
 
-	
+
  	<select id="queryTotal" resultType="int">
 		select count(*) from sys_user
 	</select>
@@ -173,7 +173,13 @@
 		</set>
 		where id = #{id}
 	</update>
-	
+
+	<update id="updatePassword" parameterType="java.util.Map">
+		update sys_user
+		set pass_word=#{passWord}
+		where id = #{id}
+	</update>
+
 	<delete id="delete">
 		delete from sys_user where id = #{value}
 	</delete>

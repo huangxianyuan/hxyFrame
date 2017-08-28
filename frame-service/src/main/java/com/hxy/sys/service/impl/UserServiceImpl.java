@@ -217,9 +217,9 @@ public class UserServiceImpl implements UserService {
         if(!vialPassWord.equals(currentUser.getPassWord())){
             throw new MyException("密码不正确");
         }
-        UserEntity updateUser = new UserEntity();
-        updateUser.setId(currentUser.getId());
-        updateUser.setPassWord(user.getNewPassWord());
-        return userDao.update(user);
+        Map<String,Object> params = new HashMap<>();
+        params.put("id",currentUser.getId());
+        params.put("passWord",MD5.MD5Encode((user.getNewPassWord())));
+        return userDao.updatePassword(params);
     }
 }

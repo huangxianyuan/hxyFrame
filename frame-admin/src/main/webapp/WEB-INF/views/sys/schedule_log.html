@@ -11,7 +11,7 @@
 			<input type="text" class="form-control" v-model="q.jobId" @keyup.enter="query" placeholder="任务ID">
 		</div>
 		<button class="layui-btn" id="searchSubmit" @click="query"><i class="layui-icon">&#xe615;</i>查 询</button>
-		&nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="back" value="返回"/>
+		<button class="layui-btn layui-btn-warm" id="back" @click="back">返 回</button>
 	</div>
     <table id="jqGrid"></table>
     <div id="jqGridPager"></div>

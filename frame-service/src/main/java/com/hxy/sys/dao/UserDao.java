@@ -49,5 +49,12 @@ public interface UserDao extends BaseDao<UserEntity> {
      */
     List<UserWindowDto> queryListByBean(UserWindowDto userWindowDto);
 
+    /**
+     * 更新密码
+     * @param params key:passWord 密码， key:id 主键id
+     * @return
+     */
+    int updatePassword(Map<String,Object> params);
+
 
 }

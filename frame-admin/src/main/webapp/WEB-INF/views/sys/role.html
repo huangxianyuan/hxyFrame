@@ -67,7 +67,9 @@
 
 			</div>
 			<div class="form-group" style="margin-left: 30%;margin-top: 30px;">
+				#if($shiro.hasPermission("sys:role:update"))
 				<button class="layui-btn" type="button" @click="saveOrUpdate" >确定</button>
+				#end
 				<button class="layui-btn layui-btn-warm" type="button" @click="reload" style="margin-left: 30px">返回</button>
 			</div>
 		</form>
