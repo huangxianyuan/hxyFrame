@@ -30,7 +30,19 @@
 - 麻烦帮忙Watch、Star项目，这样才能关注到项目的最新更新，谢谢亲的支持！
 
 **项目图片：**
-![登陆界面](http://osaowv4s0.bkt.clouddn.com/upload/20170828/0e4ae20f3963422c8c93ae0408956be3 "登陆界面")
+![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/0e4ae20f3963422c8c93ae0408956be3 "图片说明")
+![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/7ca41c6baa324f729cf9ef82994fa056 "图片说明")
+![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/a4e43a7f37314fc0aeaa02a53de75ae2 "图片说明")
+![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/fd4d21b767b440e5845364e696801690 "图片说明")
+![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/590dc2d93f91436299ca7b32f50fd388 "图片说明")
+![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/2400965ea8534360840553657549a5cb "图片说明")
+![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/2fa6368a983a4f14a4ee95a9379092a7 "图片说明")
+![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/932cc2ed67c34690bea97c3c9766ab2c "图片说明")
+![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/f07ca986851248cb98ea2a5008c5daea "图片说明")
+![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/859c2607a84340529114e618ac293872 "图片说明")
+![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/16cf304535b840f2b0233eb1a16f3a1b "图片说明")
+![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/31fa0f9cc88241ec80ca76f90a462243 "图片说明")
+
 
 
 
@@ -59,11 +71,9 @@
 
  **本地部署**
 - 通过git下载源码
-- 创建数据库renren-security，数据库编码为UTF-8
-- 执行doc/db.sql文件，初始化数据【按需导入表结构及数据】
+- 创建数据库hxyframe，数据库编码为UTF-8
 - 修改db.properties文件，更新MySQL账号和密码
-- Eclipse、IDEA执行【clean package tomcat7:run】命令，即可运行项目
 - 项目访问路径：http://localhost
 - 非Maven方式启动，则默认访问路径为：http://localhost:8080/
-- 账号密码：admin/admin
+- 账号密码：hxy/a
 
