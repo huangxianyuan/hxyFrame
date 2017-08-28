@@ -26,7 +26,7 @@
 - 开发文档：待完善
 - oschina仓库：
 - github仓库：https://github.com/huangxianyuan/hxyFrame.git
-- 交流QQ群：324780204、145799952
+- 交流QQ群：
 - 麻烦帮忙Watch、Star项目，这样才能关注到项目的最新更新，谢谢亲的支持！
 
 **项目图片：**
