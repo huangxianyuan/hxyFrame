@@ -188,3 +188,41 @@
 2017-08-29 15:56:01,071 - ResourceManager : found template/list.html.vm with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
 2017-08-29 15:56:01,087 - ResourceManager : found template/list.js.vm with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
 2017-08-29 15:56:01,091 - ResourceManager : found template/menu.sql.vm with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+2017-08-29 18:20:22,826 - Log4JLogChute initialized using file 'velocity.log'
+2017-08-29 18:20:22,828 - Initializing Velocity, Calling init()...
+2017-08-29 18:20:22,828 - Starting Apache Velocity v1.7 (compiled: 2010-11-19 12:14:37)
+2017-08-29 18:20:22,828 - Default Properties File: org\apache\velocity\runtime\defaults\velocity.properties
+2017-08-29 18:20:22,828 - Trying to use logger class org.apache.velocity.runtime.log.AvalonLogChute
+2017-08-29 18:20:22,828 - Target log system for org.apache.velocity.runtime.log.AvalonLogChute is not available (java.lang.NoClassDefFoundError: org/apache/log/format/Formatter).  Falling back to next log system...
+2017-08-29 18:20:22,828 - Trying to use logger class org.apache.velocity.runtime.log.Log4JLogChute
+2017-08-29 18:20:22,828 - Using logger class org.apache.velocity.runtime.log.Log4JLogChute
+2017-08-29 18:20:22,838 - ResourceLoader instantiated: org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+2017-08-29 18:20:22,850 - ResourceCache: initialized (class org.apache.velocity.runtime.resource.ResourceCacheImpl) with class java.util.Collections$SynchronizedMap cache map.
+2017-08-29 18:20:22,852 - Loaded System Directive: org.apache.velocity.runtime.directive.Stop
+2017-08-29 18:20:22,853 - Loaded System Directive: org.apache.velocity.runtime.directive.Define
+2017-08-29 18:20:22,854 - Loaded System Directive: org.apache.velocity.runtime.directive.Break
+2017-08-29 18:20:22,855 - Loaded System Directive: org.apache.velocity.runtime.directive.Evaluate
+2017-08-29 18:20:22,856 - Loaded System Directive: org.apache.velocity.runtime.directive.Literal
+2017-08-29 18:20:22,857 - Loaded System Directive: org.apache.velocity.runtime.directive.Macro
+2017-08-29 18:20:22,859 - Loaded System Directive: org.apache.velocity.runtime.directive.Parse
+2017-08-29 18:20:22,861 - Loaded System Directive: org.apache.velocity.runtime.directive.Include
+2017-08-29 18:20:22,862 - Loaded System Directive: org.apache.velocity.runtime.directive.Foreach
+2017-08-29 18:20:22,883 - Created '20' parsers.
+2017-08-29 18:20:22,887 - Velocimacro : "velocimacro.library" is not set.  Trying default library: VM_global_library.vm
+2017-08-29 18:20:22,888 - Could not load resource 'VM_global_library.vm' from ResourceLoader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader: ClasspathResourceLoader Error: cannot find resource VM_global_library.vm
+2017-08-29 18:20:22,888 - Velocimacro : Default library not found.
+2017-08-29 18:20:22,888 - Velocimacro : allowInline = true : VMs can be defined inline in templates
+2017-08-29 18:20:22,888 - Velocimacro : allowInlineToOverride = false : VMs defined inline may NOT replace previous VM definitions
+2017-08-29 18:20:22,888 - Velocimacro : allowInlineLocal = false : VMs defined inline will be global in scope if allowed.
+2017-08-29 18:20:22,888 - Velocimacro : autoload off : VM system will not automatically reload global library macros
+2017-08-29 18:20:22,911 - ResourceManager : found template/Entity.java.vm with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+2017-08-29 18:20:22,932 - ResourceManager : found template/Dao.java.vm with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+2017-08-29 18:20:22,955 - ResourceManager : found template/Dao.xml.vm with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+2017-08-29 18:20:23,008 - Null reference [template 'template/Dao.xml.vm', line 33, column 26] : ${sidx} cannot be resolved.
+2017-08-29 18:20:23,009 - Null reference [template 'template/Dao.xml.vm', line 33, column 34] : ${order} cannot be resolved.
+2017-08-29 18:20:23,040 - ResourceManager : found template/Service.java.vm with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+2017-08-29 18:20:23,072 - ResourceManager : found template/ServiceImpl.java.vm with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+2017-08-29 18:20:23,103 - ResourceManager : found template/Controller.java.vm with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+2017-08-29 18:20:23,122 - ResourceManager : found template/list.html.vm with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+2017-08-29 18:20:23,228 - ResourceManager : found template/list.js.vm with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+2017-08-29 18:20:23,235 - ResourceManager : found template/menu.sql.vm with loader org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader

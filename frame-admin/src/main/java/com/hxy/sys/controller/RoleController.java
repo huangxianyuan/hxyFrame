@@ -72,7 +72,7 @@ public class RoleController extends BaseController{
 	 * 保存
 	 */
 	@RequestMapping("/save")
-	@RequiresPermissions("sys:role:save")
+	@RequiresPermissions("sys:role:update")
 	public Result save(@RequestBody RoleEntity role){
         Result result = Result.ok();
         try {

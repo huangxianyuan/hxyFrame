@@ -116,7 +116,7 @@ public class ExtendActBusinessServiceImpl implements ExtendActBusinessService {
         temMap.put("value", "isAgree");
         temMap.put("name", "是否通过");
         judgs.add(temMap);
-        writes.add(temMap);
+        //writes.add(temMap);
         List<Map<String, Object>> mapList = AnnotationUtils.getActFieldByClazz(classurl);
         for (Map remap:mapList){
             temMap = new HashMap();

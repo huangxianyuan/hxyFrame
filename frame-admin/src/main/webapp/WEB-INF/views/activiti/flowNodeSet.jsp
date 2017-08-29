@@ -76,9 +76,9 @@
 								</div>
 								<div class="row">
 									<div class="form-group col-sm-12 " isHide="2">
-										<label class="col-sm-2"><i class="red"> * </i>节点修改信息:</label>
+										<label class="col-sm-2"><i class="red"> * </i>可修改信息:</label>
 										<div class="col-sm-10">
-											<span class="col-xs-11">
+											<span class="col-xs-11" style='margin-left: -50px'>
 												<tag:checkbox name="changeFiles" isJXdata="true" data="${writes }"/>
 											</span>
 										</div>

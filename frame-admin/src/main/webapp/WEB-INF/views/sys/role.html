@@ -13,7 +13,7 @@
 			</div>
 			<button class="layui-btn" id="searchSubmit" @click="query"><i class="layui-icon">&#xe615;</i>查 询</button>
 			
-			#if($shiro.hasPermission("sys:role:save"))
+			#if($shiro.hasPermission("sys:role:update"))
 				<button class="layui-btn" @click="add" type="button"><i class="layui-icon">&#xe61f;</i> 新 增</button>
 			#end
 			#if($shiro.hasPermission("sys:role:update"))
