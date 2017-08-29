@@ -24,9 +24,9 @@
 
 
 **项目信息** 
-- 项目demo地址：待完善
+- 项目demo地址：http://hxy982610150.6655.la:24736/frame-admin 帐户/密码:hxy/a
 - 开发文档：待完善
-- oschina仓库：
+- oschina仓库：https://git.oschina.net/huangxianyuan/hxyFrame.git
 - github仓库：https://github.com/huangxianyuan/hxyFrame.git
 - 交流QQ群：210315502
 - 麻烦帮忙Watch、Star项目，这样才能关注到项目的最新更新，谢谢亲的支持！
@@ -52,18 +52,16 @@
 
 
  **本地部署**
-- 通过git下载源码
-- 创建数据库hxyframe，数据库编码为UTF-8
-- 修改jdbc.properties文件，更新MySQL账号和密码
-- 项目访问路径：http://localhost
-- 非Maven方式启动，则默认访问路径为：http://localhost:8080/
-- 账号密码：hxy/a
+- 注：目前还未整理完善，请持续关注。
+
 
  **捐赠**
+ 
  ![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170829/59da2d5b80464f67a035f529b6eb0dad "图片说明")
 
 
 **项目图片：**
+
 ![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/0e4ae20f3963422c8c93ae0408956be3 "图片说明")
 ![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/7ca41c6baa324f729cf9ef82994fa056 "图片说明")
 ![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/a4e43a7f37314fc0aeaa02a53de75ae2 "图片说明")
