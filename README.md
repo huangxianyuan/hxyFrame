@@ -60,7 +60,7 @@
 - 账号密码：hxy/a
 
  **捐赠**
- ![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170829/06529a732823426d8db3f5c92c341431 "图片说明")
+ ![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170829/59da2d5b80464f67a035f529b6eb0dad "图片说明")
 
 
 **项目图片：**
