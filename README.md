@@ -54,6 +54,9 @@
  **本地部署**
 - 注：目前还未整理完善，请持续关注。
 
+**友请链接** 
+- 项目部分内容参考了人人开源项目,oschina地址:https://git.oschina.net/babaio/renren-security.git
+
 
  **捐赠**
  
