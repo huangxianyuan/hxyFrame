@@ -30,7 +30,9 @@
 - github仓库：https://github.com/huangxianyuan/hxyFrame.git
 - 交流QQ群：210315502
 - 麻烦帮忙Watch、Star项目，这样才能关注到项目的最新更新，谢谢亲的支持！
- **技术选型：** 
+
+ **技术选型：**
+  
 - 核心框架：Spring Framework 4.3.7.RELEASE
 - 工作流引擎：Activiti 5.22.0
 - 全文搜索：Solr 6.5.1
