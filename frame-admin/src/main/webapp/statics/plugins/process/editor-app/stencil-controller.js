@@ -73,7 +73,6 @@ angular.module('activitiModeler')
             	//var ignoreForPaletteDefinition = ['SequenceFlow', 'MessageFlow', 'Association', 'DataAssociation', 'DataStore', 'SendTask'];
                 //var ignoreForPaletteDefinition = ['MessageFlow', 'Association', 'DataAssociation', 'DataStore', 'SendTask'];
 
-                //TODO 这里有点傻逼了，其他改下面的判断逻辑比较好，由于时间问题这次不做修改
                 var ignoreForPaletteDefinition = ['StartTimerEvent', 'StartSignalEvent', 'StartMessageEvent', 'StartErrorEvent',
                     'ServiceTask', 'ScriptTask', 'BusinessRule', 'ReceiveTask', 'ManualTask', 'MailTask', 'CamelTask',
                     'MuleTask', 'SendTask', 'SubProcess', 'EventSubProcess', 'CallActivity', 'ParallelGateway', 'InclusiveGateway',

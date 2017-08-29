@@ -1,6 +1,8 @@
 modeler页面
 修改 stencil-controller.js中数组ignoreForPaletteDefinition是不显示菜单按钮
 
+修改 app-cfg.js中contextRoot：项目名/service
+
 自定义select
 <tag:select name="test" nameKey="YES_NO" clazz="form-control" isAddDefaltOption="true" defaltOptionValue="--请选择--"/>
 

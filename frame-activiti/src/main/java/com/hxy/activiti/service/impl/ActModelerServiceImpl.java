@@ -52,6 +52,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Method;
@@ -102,6 +103,9 @@ public class ActModelerServiceImpl implements ActModelerService{
     @Autowired
     private HistoryService historyService;
 
+    @Autowired
+    private HttpServletRequest request;
+
     @Override
     @Transactional
     public String CreateModeler(ExtendActModelEntity extendActModelEntity) throws Exception {
@@ -137,6 +141,7 @@ public class ActModelerServiceImpl implements ActModelerService{
 
     @Override
     public  List<Map<String,String>> getflows(String modelId) throws Exception {
+        String contextPath = request.getContextPath();
         //转换
         JsonNode jsonNode = objectMapper.readTree(repositoryService.getModelEditorSource(modelId));
         BpmnModel bpmnModel = new BpmnJsonConverter().convertToBpmnModel(jsonNode);
@@ -147,29 +152,29 @@ public class ActModelerServiceImpl implements ActModelerService{
         Process process = bpmnModel.getProcesses().get(0);
         Collection<FlowElement> flowElements = process.getFlowElements();
         //取得其中关键数据
-        List<Map<String,String>> lists=new ArrayList<Map<String,String>>();
+        List<Map<String,String>> lists=new ArrayList<>();
         Map<String,String> tempmap=null;
-        Map<String, Map<String,String>> allmap=new HashMap<String, Map<String,String>>();
+        Map<String, Map<String,String>> allmap=new HashMap<>();
         for (FlowElement flowElement : flowElements) {
-            tempmap=new HashMap<String,String>();
+            tempmap=new HashMap<>();
             tempmap.put("treeId", flowElement.getId());
             tempmap.put("modelId", modelId);
             if(flowElement instanceof StartEvent){
                 tempmap.put("treeName", "开始节点");
                 tempmap.put("type", "1");
-                tempmap.put("icon", "/statics/images/sys/none.png");
+                tempmap.put("icon", contextPath+"/statics/images/sys/none.png");
             }else if(flowElement instanceof UserTask){
                 tempmap.put("type", "2");
                 tempmap.put("treeName",flowElement.getName());
-                tempmap.put("icon", "/statics/images/sys/typeuser.png");
+                tempmap.put("icon", contextPath+"/statics/images/sys/typeuser.png");
             }else if(flowElement instanceof ExclusiveGateway){
                 tempmap.put("type", "3");
                 tempmap.put("treeName",flowElement.getName());
-                tempmap.put("icon", "/statics/images/sys/exclusive.png");
+                tempmap.put("icon", contextPath+"/statics/images/sys/exclusive.png");
             } else if(flowElement instanceof SequenceFlow){
                 tempmap.put("type", "4");
                 tempmap.put("treeName",flowElement.getName());
-                tempmap.put("icon", "/statics/images/sys/sequenceflow.png");
+                tempmap.put("icon", contextPath+"/statics/images/sys/sequenceflow.png");
             }else if(flowElement instanceof EndEvent){
                 tempmap.put("type", "5");
                 if(StringUtils.isNotEmpty(flowElement.getName())){
@@ -177,7 +182,7 @@ public class ActModelerServiceImpl implements ActModelerService{
                 }else{
                     tempmap.put("treeName","结束");
                 }
-                tempmap.put("icon", "/statics/images/sys/endnone.png");
+                tempmap.put("icon", contextPath+"/statics/images/sys/endnone.png");
             }
             String pid="0";
             if(flowElement instanceof SequenceFlow){

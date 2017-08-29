@@ -42,12 +42,7 @@
 
 	<select id="queryObject" resultType="com.hxy.sys.entity.OrganEntity" resultMap="organMap">
 		select
-		<include refid="Base_Column_List" />,
-		(CASE WHEN type = '0'THEN '/statics/plugins/ztree/css/zTreeStyle/img/diy/1_open.png'
-		WHEN type ='1' THEN '/statics/plugins/ztree/css/zTreeStyle/img/diy/8.png'
-		ELSE '/statics/plugins/ztree/css/zTreeStyle/img/diy/2.png'
-		END
-		) AS icon
+		<include refid="Base_Column_List" />
 		from sys_organ
 		where id = #{value}
 	</select>
@@ -82,9 +77,9 @@
 	<select id="queryListByBean" resultType="com.hxy.sys.entity.OrganEntity" resultMap="organMap">
 		select
 		<include refid="Base_Column_List" />,
-		(CASE WHEN type = '0'THEN '/statics/plugins/ztree/css/zTreeStyle/img/diy/1_open.png'
-		  WHEN type ='1' THEN '/statics/plugins/ztree/css/zTreeStyle/img/diy/8.png'
-		  ELSE '/statics/plugins/ztree/css/zTreeStyle/img/diy/2.png'
+		(CASE WHEN type = '0'THEN '../statics/plugins/ztree/css/zTreeStyle/img/diy/1_open.png'
+		  WHEN type ='1' THEN '../statics/plugins/ztree/css/zTreeStyle/img/diy/8.png'
+		  ELSE '../statics/plugins/ztree/css/zTreeStyle/img/diy/2.png'
 		  END
 		) AS icon
 		from sys_organ

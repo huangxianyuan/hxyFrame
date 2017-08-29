@@ -1,5 +1,6 @@
 **项目说明** 
-- hxyFrame是一个OA办公系统，采用流行的框架springMvc+spring+mybatis+shiro+ehcache开发,还集成了权限管理（菜单权限、数据权限），完善的代码生成器，solr全文搜索引擎，activiti工作流程引擎，cas单点登陆等功能，努力做到快速开发OA办公系统。
+- hxyFrame是一个OA办公系统，采用流行的框架springMvc+spring+mybatis+shiro+ehcache开发,还集成了权限管理（菜单权限、数据权限），完善的代码生成器，solr全文搜索引擎，activiti工作流程引擎，cas单点登陆等功能，后期还会考虑改造成Dubbo微服务化,做到模块的相对独立，使用更加灵活，努力做到快速开发OA办公系统。
+感兴趣可以Watch、Start持续关注项目最新状态，加入QQ群：210315502 大家一起学习开发解决问题。
 
 
 **项目功能** 
@@ -23,11 +24,11 @@
 
 
 **项目信息** 
-- 项目demo地址：
+- 项目demo地址：待完善
 - 开发文档：待完善
 - oschina仓库：
 - github仓库：https://github.com/huangxianyuan/hxyFrame.git
-- 交流QQ群：
+- 交流QQ群：210315502
 - 麻烦帮忙Watch、Star项目，这样才能关注到项目的最新更新，谢谢亲的支持！
  **技术选型：** 
 - 核心框架：Spring Framework 4.3.7.RELEASE
@@ -42,7 +43,7 @@
 - 前端页面：Vue2.x、jstl、bootstrap、layer、layerUI
 
 
- **软件需求** 
+ **软件环境** 
 - JDK1.7+
 - MySQL5.5+
 - Maven3.0+
@@ -53,10 +54,14 @@
  **本地部署**
 - 通过git下载源码
 - 创建数据库hxyframe，数据库编码为UTF-8
-- 修改db.properties文件，更新MySQL账号和密码
+- 修改jdbc.properties文件，更新MySQL账号和密码
 - 项目访问路径：http://localhost
 - 非Maven方式启动，则默认访问路径为：http://localhost:8080/
 - 账号密码：hxy/a
+
+ **捐赠**
+ ![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170829/06529a732823426d8db3f5c92c341431 "图片说明")
+
 
 **项目图片：**
 ![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/0e4ae20f3963422c8c93ae0408956be3 "图片说明")
@@ -64,7 +69,7 @@
 ![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/a4e43a7f37314fc0aeaa02a53de75ae2 "图片说明")
 ![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/fd4d21b767b440e5845364e696801690 "图片说明")
 ![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/590dc2d93f91436299ca7b32f50fd388 "图片说明")
-![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/2400965ea8534360840553657549a5cb "图片说明")
+![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170829/c5ba9fe470da42169a6ecfdbaa03fc17 "图片说明")
 ![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/2fa6368a983a4f14a4ee95a9379092a7 "图片说明")
 ![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/932cc2ed67c34690bea97c3c9766ab2c "图片说明")
 ![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/f07ca986851248cb98ea2a5008c5daea "图片说明")

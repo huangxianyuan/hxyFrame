@@ -57,7 +57,7 @@
                                     <button class="layui-btn layui-btn-small layui-btn-danger" type="button" onclick="delModel('${model.id}')"><i class="layui-icon">&#xe640;</i>删除</button>
                                 </c:if>
                                 <c:if test="${model.status == 0}">
-                                    <button class="layui-btn layui-btn-small layui-btn-primary" type="button" onclick="deploy('${model.modelId}','升级')"><i class="layui-icon">&#xe62f;</i>升级版本</button>
+                                    <button class="layui-btn layui-btn-small" type="button" onclick="deploy('${model.modelId}','升级')"><i class="layui-icon">&#xe62f;</i>升级版本</button>
                                 </c:if>
                             </div>
                         </td>

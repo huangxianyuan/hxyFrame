@@ -71,7 +71,7 @@ public interface ActModelerService {
      * 启动流程
      * @param processTaskDto
      */
-    void startFlow(ProcessTaskDto processTaskDto) throws ClassNotFoundException, Exception;
+    void startFlow(ProcessTaskDto processTaskDto) throws Exception;
 
     /**
      * 根据流程实例id查询实时的流程图
