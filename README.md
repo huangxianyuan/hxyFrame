@@ -18,6 +18,7 @@
 - 采用layer友好的弹框，和layerUI相对漂亮的界面，让OA系统看起来不那么Low....
 
 **项目结构** 
+
 ![项目结构](http://osaowv4s0.bkt.clouddn.com/upload/20170828/9906e6ef50914343ad7a896975f1fe7b "项目结构")
 
 
@@ -38,14 +39,14 @@
 - 持久层框架：MyBatis 3.3
 - 数据库：mysql 5.7
 - 定时器：Quartz 2.2.3
-- 页面交互：Vue2.x、jstl
+- 前端页面：Vue2.x、jstl、bootstrap、layer、layerUI
 
 
  **软件需求** 
 - JDK1.7+
 - MySQL5.5+
-- Tomcat7.0+
 - Maven3.0+
+- Tomcat7.0+
 
 
 
