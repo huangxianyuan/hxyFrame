@@ -43,7 +43,7 @@ public class GenUtils {
 		templates.add("template/Controller.java.vm");
 		templates.add("template/list.html.vm");
 		templates.add("template/list.js.vm");
-		templates.add("template/menu.sql.vm");
+		//templates.add("template/menu.sql.vm");
 		return templates;
 	}
 
@@ -210,7 +210,7 @@ public class GenUtils {
 	 */
 	public static Configuration getConfig(){
 		try {
-			return new PropertiesConfiguration("generatorjsp.properties");
+			return new PropertiesConfiguration("generator.properties");
 		} catch (ConfigurationException e) {
 			throw new RRException("获取配置文件失败，", e);
 		}
@@ -253,10 +253,10 @@ public class GenUtils {
 		if(template.contains("list.js.vm")){
 			return config.getString("js") + File.separator + className.toLowerCase() + ".js";
 		}
-
+/*
 		if(template.contains("menu.sql.vm")){
 			return config.getString("sql") + File.separator + className.toLowerCase() + "_menu.sql";
-		}
+		}*/
 		return null;
 	}
     /**
@@ -301,9 +301,9 @@ public class GenUtils {
             return "main" + File.separator + "webapp" + File.separator + "js" + File.separator + "generator" + File.separator + className.toLowerCase() + ".js";
         }
 
-        if(template.contains("menu.sql.vm")){
+        /*if(template.contains("menu.sql.vm")){
             return className.toLowerCase() + "_menu.sql";
-        }
+        }*/
 
         return null;
     }

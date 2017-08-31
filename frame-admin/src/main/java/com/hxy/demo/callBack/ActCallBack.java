@@ -1,5 +1,6 @@
 package com.hxy.demo.callBack;
 
+import com.hxy.activiti.dto.ProcessTaskDto;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ActCallBack {
 
-    public void leaveBack(){
+    public void leaveBack(ProcessTaskDto processTaskDto){
         System.out.println("请假回调成功啦！！！！！！！");
     }
 }

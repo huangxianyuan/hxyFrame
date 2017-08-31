@@ -18,7 +18,7 @@ public interface ${className}Service {
 	
 	List<${className}Entity> queryList(Map<String, Object> map);
 
-    List<${className}Entity> queryListByBean(${className}Entity entity) {
+    List<${className}Entity> queryListByBean(${className}Entity entity);
 	
 	int queryTotal(Map<String, Object> map);
 	

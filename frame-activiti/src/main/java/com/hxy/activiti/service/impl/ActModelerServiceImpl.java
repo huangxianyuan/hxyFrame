@@ -20,7 +20,11 @@ import com.hxy.base.page.Page;
 import com.hxy.base.page.PageHelper;
 import com.hxy.base.utils.Result;
 import com.hxy.base.utils.Utils;
+import com.hxy.sys.entity.NoticeEntity;
+import com.hxy.sys.entity.NoticeUserEntity;
 import com.hxy.sys.entity.UserEntity;
+import com.hxy.sys.service.NoticeService;
+import com.hxy.sys.service.NoticeUserService;
 import com.hxy.utils.CodeUtils;
 import com.hxy.utils.UserUtils;
 import org.activiti.bpmn.model.*;
@@ -105,6 +109,13 @@ public class ActModelerServiceImpl implements ActModelerService{
 
     @Autowired
     private HttpServletRequest request;
+
+    @Autowired
+    private NoticeService noticeService;
+
+    @Autowired
+    private NoticeUserService noticeUserService;
+
 
     @Override
     @Transactional
@@ -468,6 +479,21 @@ public class ActModelerServiceImpl implements ActModelerService{
     }
 
     @Override
+    public int myUpcomingCount() {
+        Map<String,Object> params = new HashMap<>();
+        //超级管理员可查看所有待办
+        if(!Constant.SUPERR_USER.equals(UserUtils.getCurrentUserId())){
+            params.put("dealId",UserUtils.getCurrentUserId());
+        }
+        int count = 0;
+        List<ProcessTaskDto> myUpcomingPage = actExtendDao.findMyUpcomingPage(params);
+        if(myUpcomingPage != null){
+            count=myUpcomingPage.size();
+        }
+        return count;
+    }
+
+    @Override
     public Page<ExtendActModelEntity> myDonePage(Map<String, Object> params, int pageNum) {
         PageHelper.startPage(pageNum, Constant.pageSize);
         //超级管理员可查看所有待办
@@ -539,7 +565,7 @@ public class ActModelerServiceImpl implements ActModelerService{
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor=Exception.class)
     public void doActTask(ProcessTaskDto processTaskDto,Map<String,Object> map) throws Exception {
         if(StringUtils.isEmpty(processTaskDto.getTaskId())){
             throw new MyException("流程任务id不能为空");
@@ -593,6 +619,8 @@ public class ActModelerServiceImpl implements ActModelerService{
         for (PvmActivity pvmActivity:pvmActivities) {
             //下一节点为结束节点时，完成任务更新业务表
             if ("endEvent".equals(pvmActivity.getProperty("type"))) {
+                //查询结束节点信息（主要查询回调）
+                ExtendActNodesetEntity endNodeSet = nodesetService.queryByNodeId(pvmActivity.getId());
                 //提交任务设置流程变量
                 taskService.complete(task.getId(), elMap);
                 //当前节点为会签节点时
@@ -621,6 +649,14 @@ public class ActModelerServiceImpl implements ActModelerService{
                         flowbusEntity.setStatus(Constant.ActStauts.END.getValue());
                         flowbusEntity.setBusId(processTaskDto.getBusId());
                         flowbusService.updateByBusId(flowbusEntity);
+                        //会签节点结束后,执行当前节点上的回调
+                        if(StringUtils.isNotEmpty(nodesetEntity.getCallBack())){
+                            executeCallback(nodesetEntity.getCallBack(),processTaskDto);
+                        }
+                        //执行结束节点回调
+                        if(StringUtils.isNotEmpty(endNodeSet.getCallBack())){
+                            executeCallback(endNodeSet.getCallBack(),processTaskDto);
+                        }
                     }
                 } else if (Constant.ActAction.APPROVE.getValue().equals(nodesetEntity.getNodeAction())) {
                     //当前节点为普通审批节点
@@ -635,9 +671,18 @@ public class ActModelerServiceImpl implements ActModelerService{
                     flowbusEntity.setStatus(Constant.ActStauts.END.getValue());
                     flowbusEntity.setBusId(processTaskDto.getBusId());
                     flowbusService.updateByBusId(flowbusEntity);
+                    //执行当前节点上的回调
+                    if(StringUtils.isNotEmpty(nodesetEntity.getCallBack())){
+                        executeCallback(nodesetEntity.getCallBack(),processTaskDto);
+                    }
+                    //执行结束节点回调
+                    if(StringUtils.isNotEmpty(endNodeSet.getCallBack())){
+                        executeCallback(endNodeSet.getCallBack(),processTaskDto);
+                    }
                 }
-                // TODO: 2017/8/10 流程结束可以在这里写一些通知信息 待开发
-
+                //流程结束可以在这里写一些通知信息
+                ExtendActFlowbusEntity flowBus = flowbusService.queryByBusIdInsId(processTaskDto.getInstanceId(), processTaskDto.getBusId());
+                sendNoticeMsg(flowBus.getStartUserId(),businessEntity);
             } else {
               //下一个节点不为结束节点
                 //查询下个节点信息
@@ -712,10 +757,28 @@ public class ActModelerServiceImpl implements ActModelerService{
         if(i<1){
             throw new MyException("更新任务日志失败");
         }
-        // TODO: 2017/8/10 任务审批完成后，执行回调函数
-        if(StringUtils.isNotEmpty(nodesetEntity.getCallBack())){
-            executeCallback(nodesetEntity.getCallBack(),processTaskDto);
-        }
+    }
+
+    /**
+     * 发送待办消息
+     */
+    public void sendNoticeMsg(String userId,ExtendActBusinessEntity businessEntity){
+        NoticeEntity noticeEntity = new NoticeEntity();
+        noticeEntity.setTitle("流程通知【"+businessEntity.getName()+"】");
+        noticeEntity.setContext("亲，你提交的流程【"+businessEntity.getName()+"】已经审批结束了,请查阅对应模块！");
+        noticeEntity.setCreateTime(new Date());
+        noticeEntity.setIsUrgent(Constant.YESNO.YES.getValue());
+        noticeEntity.setReleaseTimee(new Date());
+        noticeEntity.setSoucre(Constant.noticeType.ACT_NOTICE.getValue());
+        noticeEntity.setId(Utils.uuid());
+        noticeEntity.setStatus(Constant.YESNO.YES.getValue());
+        NoticeUserEntity noticeUserEntity = new NoticeUserEntity();
+        noticeUserEntity.setId(Utils.uuid());
+        noticeUserEntity.setNoticeId(noticeEntity.getId());
+        noticeUserEntity.setStatus(Constant.YESNO.NO.getValue());
+        noticeUserEntity.setUserId(userId);
+        noticeService.save(noticeEntity);
+        noticeUserService.save(noticeUserEntity);
     }
 
 
@@ -726,14 +789,15 @@ public class ActModelerServiceImpl implements ActModelerService{
      * @throws Exception
      */
     public void executeCallback(String callBack,ProcessTaskDto processTaskDto) throws Exception {
-        int lastIndex = callBack.lastIndexOf(".");
-        String methodStr = callBack.substring(lastIndex+1);//方法名
-        String classUrl = callBack.substring(0, lastIndex);//类路径
-        Class<?> clazz = Class.forName(classUrl);
-        Object o = clazz.newInstance();
-        //回调方法参数 这里可扩展
-        Method method = clazz.getMethod(methodStr, ProcessTaskDto.class);
-        method.invoke(processTaskDto);
+            int lastIndex = callBack.lastIndexOf(".");
+            String methodStr = callBack.substring(lastIndex+1);//方法名
+            String classUrl = callBack.substring(0, lastIndex);//类路径
+            Class<?> clazz = Class.forName(classUrl);
+            Object o = clazz.newInstance();
+            //回调方法参数 这里可扩展
+            Method method = clazz.getMethod(methodStr, ProcessTaskDto.class);
+            method.invoke(o,processTaskDto);
+
     }
 
     /**

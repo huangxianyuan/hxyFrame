@@ -3,6 +3,7 @@ package com.hxy.sys.controller;
 import java.util.List;
 import java.util.Map;
 
+import com.hxy.activiti.service.ActModelerService;
 import com.hxy.base.utils.MD5;
 import com.hxy.sys.entity.UserEntity;
 import com.hxy.sys.service.UserRoleService;
@@ -32,6 +33,8 @@ public class UserController extends BaseController{
 	private UserService userService;
 	@Autowired
 	private UserRoleService userRoleService;
+	@Autowired
+	private ActModelerService actModelerService;
 	
 	/**
 	 * 列表
@@ -72,7 +75,8 @@ public class UserController extends BaseController{
 	@RequestMapping("/info")
 	public Result info(){
 		UserEntity user = userService.queryObject(ShiroUtils.getUserId());
-		return Result.ok().put("user", user);
+        int myUpcomingCount = actModelerService.myUpcomingCount();
+        return Result.ok().put("user", user).put("myUpcomingCount",myUpcomingCount);
 	}
 	
 	/**

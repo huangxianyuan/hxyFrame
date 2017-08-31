@@ -29,7 +29,7 @@ public class genTest {
     @Test
     public void generatorCode(){
 
-        byte[] bytes=generatorService.generatorCode(new String[]{"extend_act_flowbus"}, Constant.genType.local.getValue());
+        byte[] bytes=generatorService.generatorCode(new String[]{"sys_notice"}, Constant.genType.local.getValue());
 
 
     }

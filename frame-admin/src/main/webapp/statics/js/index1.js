@@ -154,14 +154,22 @@ var vm = new Vue({
 		menuList:{},
         passWord:'',
         newPassWord:'',
-        navTitle:"首页"
+        navTitle:"首页",
+        myUpcomingCount:"",
 	},
 	methods: {
 		getUser: function(){
 			$.getJSON("sys/user/info?_"+$.now(), function(r){
 				vm.user = r.user;
+				vm.myUpcomingCount=r.myUpcomingCount;
 			});
 		},
+        myUpcoming:function () {
+			debugger
+			$("#menuTree a[data-url='act/deal/myUpcoming']").parent().parent().parent().click();
+			$("#menuTree a[data-url='act/deal/myUpcoming']").parent().parent().parent().attr("class","layui-nav-item layui-nav-itemed");
+			$("#menuTree a[data-url='act/deal/myUpcoming']").click();
+        },
 		updatePassword: function(){
 			layer.open({
 				type: 1,
@@ -179,13 +187,14 @@ var vm = new Vue({
 					    data: data,
 					    dataType: "json",
 					    success: function(result){
+							debugger
 							if(result.code == 0){
+                                layer.alert('修改成功', function(index){
+                                    location.reload();
+                                });
 								layer.close(index);
-								layer.alert(result, function(index){
-									location.reload();
-								});
 							}else{
-								layer.alert(result.msg);
+                                layer.alert(result.msg);
 							}
 						}
 					});

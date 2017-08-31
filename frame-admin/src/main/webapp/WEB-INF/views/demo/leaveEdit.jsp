@@ -53,7 +53,7 @@
 	<script>
 		//提交
 		$("#submitBtn").click(function () {
-			var url ="${wbeRoot}/demo/leave/edit";
+			var url ="${webRoot}/demo/leave/edit";
 			$.post(url,$("#leaveForm").serialize(),function (result) {
 				if(result.code == '0'){
 					if($("#id").val() == ''){

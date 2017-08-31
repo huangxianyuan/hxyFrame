@@ -519,5 +519,28 @@ public class Constant {
         }
     }
 
+    /**
+     * 通知类型
+     */
+    public enum noticeType {
+        /**
+         *普通通知
+         */
+        UL_NOTICE("1"),
+        /**
+         * 流程通知
+         */
+        ACT_NOTICE("2");
+
+        private String value;
+
+        private noticeType(String value) {
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+    }
 
 }

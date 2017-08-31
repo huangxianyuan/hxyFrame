@@ -53,7 +53,7 @@
                                 <button class="layui-btn layui-btn-small layui-btn-normal" type="button" onclick="flowNodeSet('${model.modelId}')"><i class="layui-icon">&#xe614;</i>节点设置</button>
                                 <button class="layui-btn layui-btn-small layui-btn-warm" type="button" onclick="showFlowImg('${model.modelId}')"><i class="layui-icon">&#xe60d;</i>查看流程图</button>
                                 <c:if test="${model.status == 1}">
-                                    <button class="layui-btn layui-btn-small" type="button" onclick="deploy('${model.modelId}')"><i class="layui-icon">&#xe609;</i>部署</button>
+                                    <button class="layui-btn layui-btn-small" type="button" onclick="deploy('${model.modelId}','部署')"><i class="layui-icon">&#xe609;</i>部署</button>
                                     <button class="layui-btn layui-btn-small layui-btn-danger" type="button" onclick="delModel('${model.id}')"><i class="layui-icon">&#xe640;</i>删除</button>
                                 </c:if>
                                 <c:if test="${model.status == 0}">

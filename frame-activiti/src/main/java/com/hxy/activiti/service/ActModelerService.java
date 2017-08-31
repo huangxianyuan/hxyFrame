@@ -88,6 +88,12 @@ public interface ActModelerService {
      */
     Page<ExtendActModelEntity> findMyUpcomingPage(Map<String,Object> params, int pageNum);
 
+    /**
+     * 我的代办条数
+     * @return
+     */
+    int myUpcomingCount();
+
 
     /**
      * 我的已办列表

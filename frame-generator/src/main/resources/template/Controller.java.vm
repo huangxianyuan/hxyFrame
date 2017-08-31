@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ${package}.entity.${className}Entity;
 import ${package}.service.${className}Service;
-import com.hxy.base.controller.BaseController;
 import ${utils}.PageUtils;
 import ${utils}.Query;
 import ${utils}.Result;

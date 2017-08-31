@@ -6,7 +6,7 @@ function flowSumbit(actKey,busId) {
         type: 2,
         title : ["流程提交" , true],
         area: ['70%', '70%'], //宽高
-        content: [url,'no'],
+        content: [url,'yes'],
         shadeClose : false,
     });
 }
@@ -33,7 +33,7 @@ function doTaskTab(actKey,busId,instanceId) {
     var url=webRoot+"/act/deal/flowInfoTab?flag=1&actKey="+actKey+"&busId="+busId+"&instanceId="+instanceId;
     //弹框层
     layer.open({
-        scrollbar: false,
+        scrollbar: true,
         type: 2,
         title : ["审批记录" , true],
         area: ['90%', '90%'], //宽高

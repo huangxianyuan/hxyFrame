@@ -90,9 +90,9 @@
 	<!--查询所有业务相关的回调函数-->
 	<select id="queryCalBackByPid" resultType="java.util.Map">
 		select
-		   act_key AS value , name
+		   classurl AS value , name
 		from extend_act_business
-		WHERE id = #{parentId}
+		WHERE parent_id = #{parentId}
 
 	</select>
 

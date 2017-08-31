@@ -1,6 +1,7 @@
 package com.hxy.sys.service.impl;
 
 import com.hxy.base.common.Constant;
+import com.hxy.base.exception.MyException;
 import com.hxy.base.page.Page;
 import com.hxy.base.page.PageHelper;
 import com.hxy.base.utils.Utils;
