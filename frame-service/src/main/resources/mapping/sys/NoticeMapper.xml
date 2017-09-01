@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hxy.sys.dao.NoticeDao">
+
+
+    <resultMap type="com.hxy.sys.entity.NoticeEntity" id="noticeMap">
+        <result property="id" column="id"/>
+        <result property="context" column="context"/>
+        <result property="title" column="title"/>
+        <result property="soucre" column="soucre"/>
+        <result property="status" column="status"/>
+        <result property="isUrgent" column="is_urgent"/>
+        <result property="releaseTimee" column="release_timee"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="createId" column="create_id"/>
+        <result property="updateId" column="update_id"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+		n.id,
+		n.context,
+		n.title,
+		n.soucre,
+		n.status,
+		n.is_urgent,
+		n.release_timee,
+		n.create_time,
+		n.update_time,
+		n.create_id,
+		n.update_id,
+		n.remark
+    </sql>
+
+	<select id="queryObject" resultType="com.hxy.sys.entity.NoticeEntity" resultMap="noticeMap">
+		select
+		<include refid="Base_Column_List" />,nu.user_id AS userId
+		from sys_notice n LEFT JOIN sys_notice_user nu ON n.id=nu.notice_id
+		where n.id = #{value}
+	</select>
+
+	<select id="queryList" resultType="com.hxy.sys.entity.NoticeEntity" resultMap="noticeMap">
+		select
+		<include refid="Base_Column_List" />
+		from sys_notice
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+
+    <select id="queryListByBean" resultType="com.hxy.sys.entity.NoticeEntity" resultMap="noticeMap">
+        select
+        <include refid="Base_Column_List" />,u.user_name AS userName,nu.status AS showStatus,
+		(select user_name FROM sys_user a where a.id=n.create_id) AS createName
+        from sys_notice n LEFT JOIN sys_notice_user nu ON n.id=nu.notice_id
+		LEFT JOIN sys_user u ON nu.user_id = u.id
+        WHERE 1=1
+		<if test="userId != null and userId != '' ">
+			AND nu.user_id = #{userId}
+		</if>
+		<if test="showStatus != null and showStatus != '' ">
+			AND nu.status = #{showStatus}
+		</if>
+		<if test="title != null and title != '' ">
+			AND n.title LIKE concat('%',#{title},'%');
+		</if>
+		ORDER BY nu.status
+    </select>
+
+	<!--我的通知列表-->
+	<select id="findMyNotice" resultType="com.hxy.sys.entity.NoticeEntity" resultMap="noticeMap">
+		select
+		<include refid="Base_Column_List" />,u.user_name AS userName,nu.status AS showStatus,
+		(select user_name FROM sys_user a where a.id=n.create_id) AS createName
+		from sys_notice n LEFT JOIN sys_notice_user nu ON n.id=nu.notice_id
+		LEFT JOIN sys_user u ON nu.user_id = u.id
+		WHERE 1=1
+		<if test="userId != null and userId != '' ">
+			AND nu.user_id = #{userId}
+		</if>
+		<if test="showStatus != null and showStatus != '' ">
+			AND nu.status = #{showStatus}
+		</if>
+		<if test="title != null and title != '' ">
+			AND n.title LIKE concat('%',#{title},'%');
+		</if>
+		ORDER BY nu.status DESC
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from sys_notice
+	</select>
+	 
+	<insert id="save" parameterType="com.hxy.sys.entity.NoticeEntity">
+		insert into sys_notice
+		(
+			`id`, 
+			`context`, 
+			`title`, 
+			`soucre`, 
+			`status`, 
+			`is_urgent`, 
+			`release_timee`, 
+			`create_time`, 
+			`update_time`, 
+			`create_id`, 
+			`update_id`, 
+			`remark`
+		)
+		values
+		(
+			#{id}, 
+			#{context}, 
+			#{title}, 
+			#{soucre}, 
+			#{status}, 
+			#{isUrgent}, 
+			#{releaseTimee}, 
+			#{createTime}, 
+			#{updateTime}, 
+			#{createId}, 
+			#{updateId}, 
+			#{remark}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.hxy.sys.entity.NoticeEntity">
+		update sys_notice 
+		<set>
+			<if test="context != null">`context` = #{context}, </if>
+			<if test="title != null">`title` = #{title}, </if>
+			<if test="soucre != null">`soucre` = #{soucre}, </if>
+			<if test="status != null">`status` = #{status}, </if>
+			<if test="isUrgent != null">`is_urgent` = #{isUrgent}, </if>
+			<if test="releaseTimee != null">`release_timee` = #{releaseTimee}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="updateTime != null">`update_time` = #{updateTime}, </if>
+			<if test="createId != null">`create_id` = #{createId}, </if>
+			<if test="updateId != null">`update_id` = #{updateId}, </if>
+			<if test="remark != null">`remark` = #{remark}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from sys_notice where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from sys_notice where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>
