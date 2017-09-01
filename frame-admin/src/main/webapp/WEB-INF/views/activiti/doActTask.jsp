@@ -7,7 +7,7 @@
 	<%@include file="/WEB-INF/views/include/taglib.jsp" %>
 </head>
 
-<body class="no-skin">
+<body >
 	<div class="main-container" id="main-container" style="margin-left: 3%;margin-top: 2%">
 		<div class="row" style="width: 99%">
 			<div class="col-xs-12">

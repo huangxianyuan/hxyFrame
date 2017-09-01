@@ -34,4 +34,11 @@ public interface ExtendActTasklogService {
 	 * @return
 	 */
 	int updateByTaskId(ExtendActTasklogEntity extendActTasklogEntity);
+
+	/**
+	 * 转办任务时更新任务日志，有可能会存在多次转办，就会产生多条任务日志，所有这里用 taskId+appAction为空 作唯一
+	 * @param extendActTasklogEntity
+	 * @return
+	 */
+	int updateByTaskIdOpinion(ExtendActTasklogEntity extendActTasklogEntity);
 }

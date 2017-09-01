@@ -36,6 +36,20 @@
 				  AND user_name LIKE concat('%',#{userName},'%')
 			  </if>
 	</select>
+
+	<!--转办变更人选择-->
+	<select id="turnWindowList" resultType="com.hxy.sys.entity.UserEntity">
+		SELECT
+		user_name,id,
+		(SELECT name FROM sys_organ o WHERE o.id=u.bapid) AS bapName,
+		(SELECT name FROM sys_organ o WHERE o.id=u.baid) AS baName
+		FROM sys_user u
+		WHERE 1=1
+		  <if test="userName != null and userName != '' ">
+			  AND user_name LIKE concat('%',#{userName},'%')
+		  </if>
+	</select>
+
 	<!--流程根据业务id查询业务信息-->
 	<select id="queryBusiByBusId" resultType="java.util.Map">
 		select *

@@ -156,19 +156,27 @@ var vm = new Vue({
         newPassWord:'',
         navTitle:"首页",
         myUpcomingCount:"",
+        myNoticeCount:""
 	},
 	methods: {
 		getUser: function(){
 			$.getJSON("sys/user/info?_"+$.now(), function(r){
 				vm.user = r.user;
 				vm.myUpcomingCount=r.myUpcomingCount;
+				vm.myNoticeCount=r.myNoticeCount;
 			});
 		},
         myUpcoming:function () {
-			debugger
-			$("#menuTree a[data-url='act/deal/myUpcoming']").parent().parent().parent().click();
-			$("#menuTree a[data-url='act/deal/myUpcoming']").parent().parent().parent().attr("class","layui-nav-item layui-nav-itemed");
-			$("#menuTree a[data-url='act/deal/myUpcoming']").click();
+            var $Upcoming = $("#menuTree a[data-url='act/deal/myUpcoming']");
+            $Upcoming.parent().parent().parent().click();
+            $Upcoming.parent().parent().parent().addClass("layui-nav-itemed");
+            $Upcoming.click();
+        },
+        myNotice:function () {
+            var $notice = $("#menuTree a[data-url='sys/notice/myList']");
+            $notice.parent().parent().parent().click();
+            $notice.parent().parent().parent().addClass("layui-nav-itemed");
+            $notice.click();
         },
 		updatePassword: function(){
 			layer.open({

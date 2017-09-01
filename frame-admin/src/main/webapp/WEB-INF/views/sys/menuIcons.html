@@ -487,8 +487,7 @@
 <script>
 $("div.fa-item").click(function () {
     var icon=$(this).find("i").attr("class");
-    var $icon=$(parent.parent.document.getElementById("mainFrame").contentWindow.document.body).find("#icon");
-    $icon.val(icon);
+    $(parent.document.getElementById("icon")).val(icon);
     var index = parent.layer.getFrameIndex(window.name); //获取当前窗体索引
     parent.layer.close(index); //执行关闭
 })

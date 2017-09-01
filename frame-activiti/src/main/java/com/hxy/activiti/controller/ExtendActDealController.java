@@ -139,7 +139,25 @@ public class ExtendActDealController {
         int pageNum = Utils.parseInt(request.getParameter("pageNum"), 1);
         Page<UserEntity> mapPage = actModelerService.userWindowPage(nodeId, pageNum, user.getUserName());
         model.addAttribute("page",mapPage);
+        model.addAttribute("url","/act/deal/userWindow");
         model.addAttribute("flag",nodeAction);
+        model.addAttribute("user",user);
+        return "activiti/userWindow.jsp";
+    }
+
+    /**
+     * 转办变更人选择弹框
+     * @param user
+     * @return
+     */
+    @RequestMapping(value = "turnUserWindow")
+    public String turnUserWindow(UserEntity user,HttpServletRequest request,Model model){
+        int pageNum = Utils.parseInt(request.getParameter("pageNum"), 1);
+        Page<UserEntity> mapPage = actModelerService.turnWindowPage(pageNum,user);
+        model.addAttribute("page",mapPage);
+        //1 为单选 2为复选
+        model.addAttribute("flag","1");
+        model.addAttribute("url","/act/deal/turnUserWindow");
         model.addAttribute("user",user);
         return "activiti/userWindow.jsp";
     }
@@ -364,6 +382,40 @@ public class ExtendActDealController {
         } catch (Exception e) {
             e.printStackTrace();
             result=Result.error("驳回到发起人,失败");
+        }
+        return result;
+    }
+
+    /**
+     * 转到转办页面
+     * @param processTaskDto
+     * @param model
+     * @return
+     */
+    @RequestMapping(value = "toTurnToDo")
+    public String toTurnToDo(ProcessTaskDto processTaskDto,Model model){
+        //查询流程基本信息
+        ExtendActFlowbusEntity flowbus = flowbusService.queryByBusIdInsId(processTaskDto.getInstanceId(), processTaskDto.getBusId());
+        model.addAttribute("taskDto",processTaskDto);
+        model.addAttribute("flowbus",flowbus);
+        return "activiti/trunTask.jsp";
+    }
+
+    /**
+     * 转办
+     * @param processTaskDto
+     * @return
+     */
+    @RequestMapping(value = "turnToDo",method = RequestMethod.POST)
+    @ResponseBody
+    public Result turnToDo(ProcessTaskDto processTaskDto,String toUserId,HttpServletRequest request){
+        Result result;
+        try {
+            actModelerService.turnToDo(processTaskDto,toUserId);
+            result=Result.ok("转办任务,成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            result=Result.error("转办任务,失败");
         }
         return result;
     }

@@ -426,7 +426,11 @@ public class Constant {
         /**
          * 驳回
          */
-        TURN_DOWN("4");
+        TURN_DOWN("4"),
+        /**
+         * 转办
+         */
+        TURN_DO("5");
 
         private String value;
 

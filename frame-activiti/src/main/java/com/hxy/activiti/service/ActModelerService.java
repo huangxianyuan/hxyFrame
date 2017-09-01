@@ -68,6 +68,14 @@ public interface ActModelerService {
     Page<UserEntity> userWindowPage(String nodeId, int pageNum, String userName);
 
     /**
+     * 转办变更人选择 目前做成 可以选择所有人
+     * @param pageNum
+     * @param userEntity
+     * @return
+     */
+    Page<UserEntity> turnWindowPage(int pageNum,UserEntity userEntity);
+
+    /**
      * 启动流程
      * @param processTaskDto
      */
@@ -140,6 +148,12 @@ public interface ActModelerService {
      */
     void endFailFolw(ProcessTaskDto processTaskDto,Map<String,Object> map) throws Exception;
 
+    /**
+     * 转办
+     * @param processTaskDto
+     * @param toUserId 被转办人
+     */
+    void turnToDo(ProcessTaskDto processTaskDto,String toUserId);
 
 
 

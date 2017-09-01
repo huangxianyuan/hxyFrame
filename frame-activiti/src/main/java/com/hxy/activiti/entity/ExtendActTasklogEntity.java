@@ -36,7 +36,7 @@ public class ExtendActTasklogEntity implements Serializable {
 	private String agenId;
 	//审批意见
 	private String appOpinion;
-	//审批行为 流程任务审批结果 1=同意，2=反对，3=弃权，4=驳回
+	//审批行为 流程任务审批结果 1=同意，2=反对，3=弃权，4=驳回 5=转办
 	private String appAction;
 	//是否显示签名
 	private String isSign;

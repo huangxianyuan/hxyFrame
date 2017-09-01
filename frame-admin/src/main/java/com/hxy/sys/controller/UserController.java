@@ -6,6 +6,7 @@ import java.util.Map;
 import com.hxy.activiti.service.ActModelerService;
 import com.hxy.base.utils.MD5;
 import com.hxy.sys.entity.UserEntity;
+import com.hxy.sys.service.NoticeService;
 import com.hxy.sys.service.UserRoleService;
 import com.hxy.sys.service.UserService;
 import com.hxy.utils.ShiroUtils;
@@ -35,6 +36,8 @@ public class UserController extends BaseController{
 	private UserRoleService userRoleService;
 	@Autowired
 	private ActModelerService actModelerService;
+	@Autowired
+	private NoticeService noticeService;
 	
 	/**
 	 * 列表
@@ -75,8 +78,11 @@ public class UserController extends BaseController{
 	@RequestMapping("/info")
 	public Result info(){
 		UserEntity user = userService.queryObject(ShiroUtils.getUserId());
+		//待办条数
         int myUpcomingCount = actModelerService.myUpcomingCount();
-        return Result.ok().put("user", user).put("myUpcomingCount",myUpcomingCount);
+        //我的通知条数
+        int myNoticeCount = noticeService.MyNoticeCount();
+        return Result.ok().put("user", user).put("myUpcomingCount",myUpcomingCount).put("myNoticeCount",myNoticeCount);
 	}
 	
 	/**

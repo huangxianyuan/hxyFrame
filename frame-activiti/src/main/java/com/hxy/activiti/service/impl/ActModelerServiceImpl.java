@@ -20,11 +20,11 @@ import com.hxy.base.page.Page;
 import com.hxy.base.page.PageHelper;
 import com.hxy.base.utils.Result;
 import com.hxy.base.utils.Utils;
+import com.hxy.sys.dao.NoticeUserDao;
 import com.hxy.sys.entity.NoticeEntity;
 import com.hxy.sys.entity.NoticeUserEntity;
 import com.hxy.sys.entity.UserEntity;
 import com.hxy.sys.service.NoticeService;
-import com.hxy.sys.service.NoticeUserService;
 import com.hxy.utils.CodeUtils;
 import com.hxy.utils.UserUtils;
 import org.activiti.bpmn.model.*;
@@ -114,7 +114,7 @@ public class ActModelerServiceImpl implements ActModelerService{
     private NoticeService noticeService;
 
     @Autowired
-    private NoticeUserService noticeUserService;
+    private NoticeUserDao noticeUserDao;
 
 
     @Override
@@ -301,6 +301,13 @@ public class ActModelerServiceImpl implements ActModelerService{
         params.put("nodeId",nodeId);
         params.put("userName",userName);
         actExtendDao.userWindowPage(params);
+        return PageHelper.endPage();
+    }
+
+    @Override
+    public Page<UserEntity> turnWindowPage(int pageNum,UserEntity userEntity) {
+        PageHelper.startPage(pageNum,Constant.pageSize);
+        actExtendDao.turnWindowList(userEntity);
         return PageHelper.endPage();
     }
 
@@ -702,6 +709,7 @@ public class ActModelerServiceImpl implements ActModelerService{
                     for (Task t:taskList){
                         //记录任务日志
                         ExtendActTasklogEntity tasklogEntity = new ExtendActTasklogEntity();
+                        tasklogEntity.setId(Utils.uuid());
                         tasklogEntity.setBusId(processTaskDto.getBusId());
                         tasklogEntity.setDefId(processTaskDto.getDefId());
                         tasklogEntity.setInstanceId(processTaskDto.getInstanceId());
@@ -732,6 +740,7 @@ public class ActModelerServiceImpl implements ActModelerService{
                             // TODO: 2017/8/10 如果是下个节点是并行结果，那么这里需要处理下 待开发
                             taskService.setAssignee(t.getId(), processTaskDto.getNextUserIds());
                             ExtendActTasklogEntity tasklogEntity = new ExtendActTasklogEntity();
+                            tasklogEntity.setId(Utils.uuid());
                             tasklogEntity.setBusId(processTaskDto.getBusId());
                             tasklogEntity.setDefId(processTaskDto.getDefId());
                             tasklogEntity.setInstanceId(processTaskDto.getInstanceId());
@@ -778,7 +787,7 @@ public class ActModelerServiceImpl implements ActModelerService{
         noticeUserEntity.setStatus(Constant.YESNO.NO.getValue());
         noticeUserEntity.setUserId(userId);
         noticeService.save(noticeEntity);
-        noticeUserService.save(noticeUserEntity);
+        noticeUserDao.save(noticeUserEntity);
     }
 
 
@@ -929,5 +938,45 @@ public class ActModelerServiceImpl implements ActModelerService{
         flowbusEntity.setStatus(Constant.ActStauts.END.getValue());
         flowbusEntity.setBusId(processTaskDto.getBusId());
         flowbusService.updateByBusId(flowbusEntity);
+    }
+
+    @Override
+    @Transactional
+    public void turnToDo(ProcessTaskDto processTaskDto,String toUserId) {
+        if(StringUtils.isEmpty(processTaskDto.getTaskId())){
+            throw new MyException("任务id不能为空");
+        }
+        if(StringUtils.isEmpty(processTaskDto.getDefId())){
+            throw new MyException("流程定义id不能为空");
+        }
+        if(StringUtils.isEmpty(processTaskDto.getInstanceId())){
+            throw new MyException("流程实例不能为空");
+        }
+        if(StringUtils.isEmpty(processTaskDto.getInstanceId())){
+            throw new MyException("业务id不能为空");
+        }
+        //转办任务
+        Task task = taskService.createTaskQuery().taskId(processTaskDto.getTaskId()).singleResult();
+        //转办
+        ActUtils.transferAssignee(processTaskDto.getTaskId(),toUserId);
+        //记录任务日志 先更新当前任务的日志，再为转办后任务新增一条任务日志
+        ExtendActTasklogEntity updateLog = new ExtendActTasklogEntity();
+        updateLog.setAppAction(Constant.ActTaskResult.TURN_DO.getValue());
+        updateLog.setTaskId(task.getId());
+        updateLog.setAppOpinion(processTaskDto.getRemark());
+        updateLog.setDealId(UserUtils.getCurrentUserId());
+        updateLog.setDealTime(new Date());
+        tasklogService.updateByTaskIdOpinion(updateLog);
+        //为置办任务新增一条任务日志
+        ExtendActTasklogEntity tasklogEntity = new ExtendActTasklogEntity();
+        tasklogEntity.setId(Utils.uuid());
+        tasklogEntity.setBusId(processTaskDto.getBusId());
+        tasklogEntity.setDefId(processTaskDto.getDefId());
+        tasklogEntity.setInstanceId(processTaskDto.getInstanceId());
+        tasklogEntity.setTaskId(task.getId());
+        tasklogEntity.setTaskName(task.getName());
+        tasklogEntity.setAdvanceId(toUserId);
+        tasklogEntity.setCreateTime(task.getCreateTime());
+        tasklogService.save(tasklogEntity);
     }
 }

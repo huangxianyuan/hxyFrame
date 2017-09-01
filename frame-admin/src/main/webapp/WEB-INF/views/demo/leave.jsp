@@ -18,7 +18,7 @@
                             <input type="text" name="title" value="${leave.title}"  placeholder="请输入请假标题"  class="layui-input" >
                         </div>
                         <button class="layui-btn" id="searchSubmit"><i class="layui-icon">&#xe615;</i>搜 索</button>
-                        <button class="layui-btn" type="button" id="refresh">重 置</button>
+                        <button class="layui-btn layui-btn-warm" type="button" id="refresh">重 置</button>
                         <a class="layui-btn" href="${webRoot}/demo/leave/info"><i class="layui-icon">&#xe61f;</i> 新 增</a>
                     </div>
                 </form>

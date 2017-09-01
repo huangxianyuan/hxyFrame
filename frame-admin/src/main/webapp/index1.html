@@ -54,7 +54,10 @@
 			<!-- 右侧导航 -->
 			<ul class="layui-nav larry-header-item" lay-filter="side">
 				<li class="layui-nav-item">
-					<a  href="javascript:;" @click="myUpcoming"><i class="fa fa-certificate"></i> &nbsp;待办<span class="msg-num">{{myUpcomingCount}}</span></a>
+					<a  href="javascript:;" @click="myNotice"><i class="fa fa-bullhorn"></i> &nbsp;通知<span class="msg-num">{{myNoticeCount}}</span></a>
+				</li>
+				<li class="layui-nav-item">
+					<a  href="javascript:;" @click="myUpcoming"><i class="fa fa-envelope-o"></i> &nbsp;待办<span class="msg-num">{{myUpcomingCount}}</span></a>
 				</li>
 				<li class="layui-nav-item">
 					<a href="javascript:;" @click="updatePassword"><i class="fa fa-lock"></i> &nbsp;修改密码</a>

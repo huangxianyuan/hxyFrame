@@ -56,4 +56,9 @@ public class ExtendActTasklogServiceImpl implements ExtendActTasklogService {
 	public int updateByTaskId(ExtendActTasklogEntity extendActTasklogEntity) {
 		return extendActTasklogDao.updateByTaskId(extendActTasklogEntity);
 	}
+
+	@Override
+	public int updateByTaskIdOpinion(ExtendActTasklogEntity extendActTasklogEntity) {
+		return extendActTasklogDao.updateByTaskIdOpinion(extendActTasklogEntity);
+	}
 }

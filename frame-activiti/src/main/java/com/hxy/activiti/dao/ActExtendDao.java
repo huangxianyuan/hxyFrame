@@ -32,6 +32,13 @@ public interface ActExtendDao {
     List<UserEntity> userWindowPage(Map<String,Object> map);
 
     /**
+     * 转办变更人选择
+     * @param userEntity
+     * @return
+     */
+    List<UserEntity> turnWindowList(UserEntity userEntity);
+
+    /**
      * 流程根据业务id查询业务信息
      * @param params key:busId 业务id key:tableName 表名 key:pkName 业务主键
      * @return

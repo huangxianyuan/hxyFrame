@@ -7,7 +7,7 @@
 	    <%@include file="/common/commonJS.jsp" %>
 		<%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 	</head>
-	<body class="no-skin">
+	<body >
 		<div class="main-container" id="main-container">
 			<form class="form-horizontal  bv-form" id="leaveForm">
 				<div style="display: none">

@@ -7,7 +7,7 @@
 	<%@include file="/WEB-INF/views/include/taglib.jsp" %>
 </head>
 
-<body class="no-skin">
+<body >
 	<div class="main-container" id="main-container">
 		<div class="row" style="margin-top: 20px; margin-left: 20px">
 			<form class="layui-form" id="search-from" action="${webRoot}/act/model/userAreaSelect">
@@ -21,6 +21,7 @@
 						<input type="text" name="name"  value="${userWindow.name }" placeholder="请输入标题"  class="layui-input" >
 					</div>
 					<button class="layui-btn" id="searchSubmit"><i class="layui-icon">&#xe615;</i>搜 索</button>
+					<button class="layui-btn layui-btn-warm" type="button" id="refresh">重 置</button>
 					<button class="layui-btn" type="button" id="submitBtn">确 定</button>
 				</div>
 			</form>

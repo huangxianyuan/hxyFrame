@@ -8,7 +8,7 @@
 		<%@ include file="/WEB-INF/views/include/taglib.jsp"%>
 	</head>
 
-	<body class="no-skin">
+	<body >
 		<div class="main-container" id="main-container">
 			<div class="row" style="margin-left: 20px;margin-top: 20px;">
 				<div class="col-md-3 panel panel-default">

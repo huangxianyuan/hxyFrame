@@ -7,10 +7,10 @@
 	<%@include file="/WEB-INF/views/include/taglib.jsp" %>
 </head>
 
-<body class="no-skin">
+<body >
 	<div class="main-container" id="main-container" style="margin-top: 20px;margin-left: 20px">
 		<div class="row" style="margin-top: 20px;">
-			<form class="layui-form" id="search-from" action="${webRoot}/act/deal/userWindow">
+			<form class="layui-form" id="search-from" action="${webRoot}${url}">
 				<div class="layui-form-item">
 					<label class="layui-form-label" style="width:10%;">姓名：</label>
 					<div class="layui-input-inline layui-input-inline">
@@ -18,6 +18,7 @@
 						<input name="nodeAction" type="hidden" value="${flag }" />
 					</div>
 					<button class="layui-btn" id="searchSubmit"><i class="layui-icon">&#xe615;</i>搜 索</button>
+					<button class="layui-btn layui-btn-warm" type="button" id="refresh">重 置</button>
 					<button class="layui-btn" type="button" id="submitBtn">确 定</button>
 				</div>
 			</form>

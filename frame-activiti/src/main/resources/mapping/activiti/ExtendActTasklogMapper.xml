@@ -57,7 +57,7 @@
 	  	<if test="busId != null and bus_id != '' ">
 			AND bus_id=#{busId}
 		</if>
-		ORDER BY create_time
+		ORDER BY create_time,app_action DESC
 	</select>
 	
  	<select id="queryTotal" resultType="int">
@@ -141,6 +141,26 @@
 			<if test="columns != null">`columns` = #{columns}</if>
 		</set>
 		where task_id = #{taskId}
+	</update>
+
+	<!--转办任务时更新任务日志，有可能会存在多次转办，就会产生多条任务日志，所有这里用 taskId+appOpinion为空 作唯一-->
+	<update id="updateByTaskIdOpinion" parameterType="com.hxy.activiti.entity.ExtendActTasklogEntity">
+		update extend_act_tasklog
+		<set>
+			<if test="busId != null">`bus_id` = #{busId}, </if>
+			<if test="defId != null">`def_id` = #{defId}, </if>
+			<if test="taskName != null">`task_Name` = #{taskName}, </if>
+			<if test="advanceId != null">`advance_id` = #{advanceId}, </if>
+			<if test="dealId != null">`deal_id` = #{dealId}, </if>
+			<if test="dealTime != null">`deal_time` = #{dealTime}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="agenId != null">`agen_id` = #{agenId}, </if>
+			<if test="appOpinion != null">`app_opinion` = #{appOpinion}, </if>
+			<if test="appAction != null">`app_action` = #{appAction}, </if>
+			<if test="isSign != null">`is_sign` = #{isSign}, </if>
+			<if test="columns != null">`columns` = #{columns}</if>
+		</set>
+		where task_id = #{taskId} AND app_action IS NULL
 	</update>
 	
 	<delete id="delete">

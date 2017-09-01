@@ -17,7 +17,7 @@
                     <input type="text" name="code" value="${code}"  placeholder="请输入业务编号"  class="layui-input" >
                 </div>
                 <button class="layui-btn" id="searchSubmit"><i class="layui-icon">&#xe615;</i>搜 索</button>
-                <button class="layui-btn" type="button" id="refresh">重 置</button>
+                <button class="layui-btn layui-btn-warm" type="button" id="refresh">重 置</button>
             </div>
         </form>
     </div>

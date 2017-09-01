@@ -26,7 +26,7 @@
         <button class="layui-btn" type="button" onclick="clickSubmit()">办理</button>
         <button class="layui-btn layui-btn-danger" type="button" onclick="backStartUser()">驳回到发起人</button>
         <button class="layui-btn layui-btn-danger" type="button" onclick="backPrevious()">退回上一步</button>
-        <button class="layui-btn layui-btn-warm" type="button" onclick="backPrevious()">转办</button>
+        <button class="layui-btn layui-btn-warm" type="button" onclick="turnToDo()">转办</button>
         <button class="layui-btn layui-btn-danger" type="button" onclick="backPrevious()">跳转</button>
         <button class="layui-btn layui-btn-primary" type="button" onclick="closeThisWindow()">关 闭</button>
     </div>
@@ -110,6 +110,24 @@
             shadeClose : false,
         });
     }
+
+    /**
+     * 转办
+     */
+    function turnToDo() {
+        var params ="busId="+processInfo.busId+"&taskId="+processInfo.taskId+"&defId="+processInfo.defId+"&instanceId="+processInfo.instanceId;
+        var url="${webRoot}/act/deal/toTurnToDo?"+params;
+        //弹框层
+        layer.open({
+            scrollbar: false,
+            type: 2,
+            title : ["转办弹框" , true],
+            area: ['70%', '70%'], //宽高
+            content: [url,'no'],
+            shadeClose : false,
+        });
+    }
+
     /**
      * 驳回到任务发起人，重新编辑之后再提交
      */

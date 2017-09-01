@@ -1046,4 +1046,18 @@ public class ActUtils {
         String activityId=taskList.get(0).getTaskDefinitionKey();
         return getCurrenActivitiy(processDefinitionKey, activityId);
     }
+
+    /**
+     * 转办流程
+     * @param taskId  当前任务节点ID
+     * @param userId 被转办人id
+     */
+    public static boolean transferAssignee(String taskId, String userId) {
+        try{
+            taskService.setAssignee(taskId, userId);
+            return true;
+        }catch(Exception e){
+            return false;
+        }
+    }
 }

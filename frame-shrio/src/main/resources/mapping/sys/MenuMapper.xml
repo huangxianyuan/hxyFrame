@@ -83,6 +83,7 @@
 		select
 		<include refid="Base_Column_List" />,(SELECT tm.name FROM sys_menu tm WHERE tm.id=m.parent_id ) AS parentName
 		from sys_menu m
+		ORDER BY sort
 	</select>
 	
  	<select id="queryTotal" resultType="int">
