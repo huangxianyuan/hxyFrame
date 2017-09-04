@@ -54,7 +54,10 @@
 
 
  **本地部署**
-- 注：目前还未整理完善，请持续关注。
+- 创建数据库hxyframe，数据库编码为UTF-8
+- 修改jdbc.properties文件，更新MySQL账号和密码
+- 项目访问路径：http://localhost/frame-admin/
+
 
 **友请链接** 
 - 项目部分内容参考了人人开源项目,oschina地址:https://git.oschina.net/babaio/renren-security.git
