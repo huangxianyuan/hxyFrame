@@ -43,7 +43,6 @@
         <kaptcha.version>0.0.9</kaptcha.version>
         <quartz.version>2.2.3</quartz.version>
         <solr.version>6.5.1</solr.version>
-        <!--<activiti.version>5.19.0.2</activiti.version>-->
         <jstl.version>1.2</jstl.version>
         <junit.version>4.12</junit.version>
         <activitiMQ.version>5.9.0</activitiMQ.version>

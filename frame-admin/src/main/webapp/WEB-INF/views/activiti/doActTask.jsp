@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<title>审批任务</title>
@@ -151,18 +152,16 @@
                         processInfo.isSelectUser=false;
                         $("#userTab").remove();
 					}
-                    html+='<tr id="def_'+node.nodeId+'" >'+
-                        '<div style="display: none">'+
-                        '<input name="nodeId" value="'+node.nodelId+'" ">'+
-                        '<input name="nodeAction" value="'+node.nodeAction+'" ">'+
-                        '</div>'+
-                        '<td>'+node.nodeName+'</td>'+
-                        '<td>'+node.nodeTypeName+'</td>'+
-                        '<td>'+node.nodeActionName+'</td>';
+                    html+='<tr id="node_'+node.nodeId+'" >'+
+							'<input name="nodeId" type="hidden" value="'+node.nodeId+'" ">'+
+							'<input name="nodeAction" type="hidden" value="'+node.nodeAction+'" ">'+
+							'<td>'+node.nodeName+'</td>'+
+							'<td>'+node.nodeTypeName+'</td>'+
+							'<td>'+node.nodeActionName+'</td>';
                     	//节点为结束节点,不选择下级处理人
                        if(node.nodeType!='5'){
                            html+='<td>'+
-								   '<button type="button"  onclick="selectUser('+node.nodelId+','+node.nodeAction+');" class="layui-btn" >选择审批人</button>'+
+								   '<button type="button"  onclick="selectUser(this);" class="layui-btn" >选择审批人</button>'+
 								   '</td>'+
 							   '</tr>'
 					   }else {
@@ -179,7 +178,9 @@
     }
 
     //选择下一级审批人弹框
-    function selectUser(nodeId , nodeAction) {
+    function selectUser(_this) {
+        var nodeId=$(_this).parent().parent().children("input[name='nodeId']:hidden").val();
+        var nodeAction=$(_this).parent().parent().children("input[name='nodeAction']:hidden").val();
         var url="${webRoot}/act/deal/userWindow?nodeId="+nodeId+"&nodeAction="+nodeAction;
         //弹框层
         layer.open({

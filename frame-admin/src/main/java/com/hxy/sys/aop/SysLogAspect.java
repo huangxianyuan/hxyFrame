@@ -56,9 +56,11 @@ public class SysLogAspect {
 		
 		//请求的参数
 		Object[] args = joinPoint.getArgs();
-		String params = JSON.toJSONString(args[0]);
-		sysLog.setParams(params);
-		
+		if(args.length>0){
+			String params = JSON.toJSONString(args[0]);
+			sysLog.setParams(params);
+		}
+
 		//获取request
 		HttpServletRequest request = HttpContextUtils.getHttpServletRequest();
 		//设置IP地址
@@ -66,6 +68,7 @@ public class SysLogAspect {
 		
 		//用户名
 		String username = ShiroUtils.getUserEntity().getUserName();
+
 		sysLog.setUsername(username);
 		
 		sysLog.setCreateDate(new Date());

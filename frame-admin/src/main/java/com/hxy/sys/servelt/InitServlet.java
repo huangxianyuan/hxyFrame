@@ -34,8 +34,6 @@ public class InitServlet extends HttpServlet{
         log.info("Web根目录:"+config.getServletContext().getAttribute("webRoot"));
         config.getServletContext().setAttribute("resRoot", webRoot+"/statics");//资态资源根目录
         log.info("资态资源根目录:"+config.getServletContext().getAttribute("resRoot"));
-        //config.getServletContext().setAttribute("busiName", Global.getConfig("busiName"));//文件下载根路径
-        //config.getServletContext().setAttribute("fileServer", Global.getConfig("file_server"));//文件服务器
         CodeCache();
     }
 

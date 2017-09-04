@@ -1,5 +1,6 @@
 package com.hxy.sys.controller;
 
+import com.hxy.base.annotation.SysLog;
 import com.hxy.base.cache.CodeCache;
 import com.hxy.base.common.Constant;
 import com.hxy.base.utils.*;
@@ -31,6 +32,7 @@ public class CodeController extends BaseController{
 	 */
 	@RequestMapping("/list")
 	@RequiresPermissions("sys:code:list")
+	@SysLog("查看字典")
 	public Result list(@RequestParam Map<String, Object> params){
 		//查询列表数据
         Query query = new Query(params);
@@ -49,6 +51,7 @@ public class CodeController extends BaseController{
 	 */
 	@RequestMapping(value = "/codeTree")
 	@RequiresPermissions("sys:code:codeTree")
+	@SysLog("查看字典")
 	public Result codeTree(){
         List<CodeEntity> codeEntities = codeService.queryListByBean(new CodeEntity());
         return Result.ok().put("codeTree", codeEntities);
@@ -59,6 +62,7 @@ public class CodeController extends BaseController{
 	 */
 	@RequestMapping("/info/{id}")
 	@RequiresPermissions("sys:code:info")
+	@SysLog("查看字典")
 	public Result info(@PathVariable("id") String id){
 		CodeEntity code = codeService.queryObject(id);
 		
@@ -70,6 +74,7 @@ public class CodeController extends BaseController{
 	 */
 	@RequestMapping("/save")
 	@RequiresPermissions("sys:code:update")
+	@SysLog("保存字典")
 	public Result save(@RequestBody CodeEntity code){
 		CodeEntity queryCode = new CodeEntity();
 		queryCode.setMark(code.getMark());
@@ -87,6 +92,7 @@ public class CodeController extends BaseController{
 	 */
 	@RequestMapping("/update")
 	@RequiresPermissions("sys:code:update")
+	@SysLog("修改字典")
 	public Result update(@RequestBody CodeEntity code){
 		codeService.update(code);
 		
@@ -98,6 +104,7 @@ public class CodeController extends BaseController{
 	 */
 	@RequestMapping("/delete")
 	@RequiresPermissions("sys:code:delete")
+	@SysLog("删除字典")
 	public Result delete(@RequestBody String ids){
         codeService.deleteBatch(StringUtils.getArrayByArray(ids.split(",")));
 		return Result.ok();

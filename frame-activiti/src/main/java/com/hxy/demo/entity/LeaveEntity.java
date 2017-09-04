@@ -5,8 +5,6 @@ import com.hxy.activiti.annotation.ActTable;
 import com.hxy.base.entity.ActivitiBaseEntity;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Table;
-
 /**
  * 类的功能描述.
  * 请假demo

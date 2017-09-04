@@ -26,7 +26,7 @@
 			(SELECT name FROM sys_organ o WHERE o.id=u.bapid) AS bapName,
 			(SELECT name FROM sys_organ o WHERE o.id=u.baid) AS baName
 		FROM sys_user u,
-			(select user_type,nu.id as nodeUserId,ns.node_type  FROM extend_act_nodeuser nu,extend_act_nodeset ns WHERE ns.node_id=nu.node_id AND nu.node_id ='sid-02D7F66B-155A-4CE9-A633-82D6EAE793FD') nodeuser
+			(select user_type,nu.id as nodeUserId,ns.node_type  FROM extend_act_nodeuser nu,extend_act_nodeset ns WHERE ns.node_id=nu.node_id AND nu.node_id =#{nodeId}) nodeuser
 		WHERE (
 				(user_type ='1' AND nodeUserId = u.id)
 				or (user_type = '2' AND u.id IN (SELECT user_id FROM sys_user_role ur WHERE ur.role_id=nodeUserId))

@@ -2,6 +2,7 @@ package com.hxy.sys.controller;
 
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
+import com.hxy.base.annotation.SysLog;
 import com.hxy.base.utils.MD5;
 import com.hxy.base.utils.Result;
 import com.hxy.utils.ShiroUtils;
@@ -90,6 +91,7 @@ public class LoginController extends BaseController{
      * @date 2017-05-02 14:01:23
      */
     @RequestMapping(value="logOut",method = RequestMethod.GET)
+    @SysLog("退出系统")
     public String logOut(){
         String loginName=UserUtils.getCurrentUser().getLoginName();
 

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.hxy.activiti.service.ActModelerService;
+import com.hxy.base.annotation.SysLog;
 import com.hxy.base.utils.MD5;
 import com.hxy.sys.entity.UserEntity;
 import com.hxy.sys.service.NoticeService;
@@ -44,6 +45,7 @@ public class UserController extends BaseController{
 	 */
 	@RequestMapping("/list")
 	@RequiresPermissions("sys:user:list")
+	@SysLog("查看系统用户列表")
 	public Result list(@RequestParam Map<String, Object> params){
 		//查询列表数据
         Query query = new Query(params);
@@ -62,6 +64,7 @@ public class UserController extends BaseController{
 	 */
 	@RequestMapping("/info/{id}")
 	@RequiresPermissions("sys:user:info")
+	@SysLog("查看系统用户信息")
 	public Result info(@PathVariable("id") String id){
 		UserEntity user = userService.queryObject(id);
 		if(user != null){
@@ -90,6 +93,7 @@ public class UserController extends BaseController{
 	 */
 	@RequestMapping("/save")
 	@RequiresPermissions("sys:user:update")
+	@SysLog("新增系统用户")
 	public Result save(@RequestBody UserEntity user){
 		if(StringUtils.isNotEmpty(user.getPassWord())){
 			user.setPassWord(MD5.MD5Encode(user.getPassWord()));
@@ -103,6 +107,7 @@ public class UserController extends BaseController{
 	 */
 	@RequestMapping(value = "/update")
 	@RequiresPermissions("sys:user:update")
+	@SysLog("修改系统用户")
 	public Result update(@RequestBody UserEntity user){
 		user.setPassWord(null);
 		userService.update(user);
@@ -115,6 +120,7 @@ public class UserController extends BaseController{
 	 */
 	@RequestMapping(value = "/updatePassword",method = RequestMethod.POST)
 	@RequiresPermissions("sys:user:updatePassword")
+	@SysLog("系统用户密码")
 	public Result updatePassword(UserEntity user){
         int i = userService.updatePassword(user);
         if(i<1){
@@ -123,12 +129,12 @@ public class UserController extends BaseController{
         return Result.ok("更改密码成功");
 	}
 
-	
 	/**
 	 * 删除
 	 */
 	@RequestMapping("/delete")
 	@RequiresPermissions("sys:user:delete")
+	@SysLog("删除系统用户")
 	public Result delete(@RequestBody String[] ids){
 		userService.deleteBatch(ids);
 		return Result.ok();

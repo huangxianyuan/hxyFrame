@@ -30,5 +30,5 @@ public interface LeaveService {
 	
 	void deleteBatch(String[] ids);
 
-	Page<LeaveEntity> findPage(LeaveEntity leaveEntity,int pageNum);
+	Page<LeaveEntity> findPage(LeaveEntity leaveEntity, int pageNum);
 }

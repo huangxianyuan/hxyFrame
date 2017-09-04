@@ -1,5 +1,6 @@
 package com.hxy.sys.controller;
 
+import com.hxy.base.annotation.SysLog;
 import com.hxy.base.page.Page;
 import com.hxy.base.utils.DateUtils;
 import com.hxy.base.utils.Result;
@@ -48,6 +49,7 @@ public class NoticeController extends BaseController{
 	@RequestMapping("/showNotice")
 	@RequiresPermissions("sys:notice:showNotice")
 	@ResponseBody
+	@SysLog("查阅通知")
 	public Result showNotice(String id){
 		NoticeEntity notice = noticeService.queryObject(id);
 		return Result.ok().put("notice", notice).put("time", DateUtils.format(notice.getReleaseTimee(),"yyyy-MM-dd hh:mm"));
@@ -58,6 +60,7 @@ public class NoticeController extends BaseController{
 	 */
 	@RequestMapping("/save")
 	@RequiresPermissions("sys:notice:save")
+	@SysLog("保存通知")
 	public Result save(@RequestBody NoticeEntity notice){
 		noticeService.save(notice);
 		
@@ -69,6 +72,7 @@ public class NoticeController extends BaseController{
 	 */
 	@RequestMapping("/update")
 	@RequiresPermissions("sys:notice:update")
+	@SysLog("修改通知")
 	public Result update(@RequestBody NoticeEntity notice){
 		noticeService.update(notice);
 		
@@ -80,6 +84,7 @@ public class NoticeController extends BaseController{
 	 */
 	@RequestMapping("/delete")
 	@RequiresPermissions("sys:notice:delete")
+	@SysLog("删除通知")
 	public Result delete(@RequestBody String[] ids){
 		noticeService.deleteBatch(ids);
 		

@@ -1,10 +1,6 @@
 package com.hxy.demo.controller;
 
-import com.hxy.activiti.dto.ProcessNodeDto;
 import com.hxy.activiti.dto.ProcessTaskDto;
-import com.hxy.base.exception.MyException;
-import com.hxy.base.utils.Result;
-import com.hxy.base.utils.StringUtils;
 import com.hxy.demo.entity.LeaveEntity;
 import com.hxy.demo.service.LeaveService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 类的功能描述.

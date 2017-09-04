@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.hxy.base.annotation.SysLog;
 import com.hxy.base.common.Constant;
 import com.hxy.sys.entity.RoleEntity;
 import com.hxy.sys.service.RoleMenuService;
@@ -41,6 +42,7 @@ public class RoleController extends BaseController{
 	 */
 	@RequestMapping("/list")
 	@RequiresPermissions("sys:role:list")
+	@SysLog("查看角色列表")
 	public Result list(@RequestParam Map<String, Object> params){
 		//查询列表数据
         Query query = new Query(params);
@@ -59,6 +61,7 @@ public class RoleController extends BaseController{
 	 */
 	@RequestMapping("/info/{id}")
 	@RequiresPermissions("sys:role:info")
+	@SysLog("查看角色")
 	public Result info(@PathVariable("id") String id){
 		RoleEntity role = roleService.queryObject(id);
         List<String> organIdList = roleService.queryOrganRoleByRoleId(id);
@@ -73,6 +76,7 @@ public class RoleController extends BaseController{
 	 */
 	@RequestMapping("/save")
 	@RequiresPermissions("sys:role:update")
+	@SysLog("新增角色")
 	public Result save(@RequestBody RoleEntity role){
         Result result = Result.ok();
         try {
@@ -106,6 +110,7 @@ public class RoleController extends BaseController{
 	 */
 	@RequestMapping("/update")
 	@RequiresPermissions("sys:role:update")
+	@SysLog("修改角色")
 	public Result update(@RequestBody RoleEntity role){
 		roleService.update(role);
 		
@@ -117,6 +122,7 @@ public class RoleController extends BaseController{
 	 */
 	@RequestMapping("/delete")
 	@RequiresPermissions("sys:role:delete")
+	@SysLog("删除角色")
 	public Result delete(@RequestBody String[] ids){
         Result result = Result.ok();
         try {

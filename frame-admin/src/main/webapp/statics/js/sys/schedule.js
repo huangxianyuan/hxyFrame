@@ -75,7 +75,6 @@ var vm = new Vue({
 		},
 		saveOrUpdate: function (event) {
 			var url = vm.schedule.jobId == null ? "../sys/schedule/save" : "../sys/schedule/update";
-            debugger
 			$.ajax({
 				type: "POST",
 			    url: url,

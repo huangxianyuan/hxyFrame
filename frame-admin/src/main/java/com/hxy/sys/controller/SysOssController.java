@@ -1,6 +1,7 @@
 package com.hxy.sys.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.hxy.base.annotation.SysLog;
 import com.hxy.base.common.Constant;
 import com.hxy.base.common.RRException;
 import com.hxy.base.utils.PageUtils;
@@ -49,6 +50,7 @@ public class SysOssController {
 	 */
 	@RequestMapping("/list")
 	@RequiresPermissions("sys:oss:all")
+	@SysLog("查看云文件上传列表")
 	public Result list(@RequestParam Map<String, Object> params){
 		//查询列表数据
 		Query query = new Query(params);
@@ -60,12 +62,12 @@ public class SysOssController {
 		return Result.ok().put("page", pageUtil);
 	}
 
-
     /**
      * 云存储配置信息
      */
     @RequestMapping("/config")
     @RequiresPermissions("sys:oss:all")
+	@SysLog("查看云文件上传信息")
     public Result config(){
         CloudStorageConfig config = sysConfigService.getConfigObject(KEY, CloudStorageConfig.class);
 
@@ -78,6 +80,7 @@ public class SysOssController {
 	 */
 	@RequestMapping("/saveConfig")
 	@RequiresPermissions("sys:oss:all")
+	@SysLog("保存云文件上传")
 	public Result saveConfig(@RequestBody CloudStorageConfig config){
 		//校验类型
 		ValidatorUtils.validateEntity(config);
@@ -98,39 +101,35 @@ public class SysOssController {
 
 		return Result.ok();
 	}
-	
 
 	/**
 	 * 上传文件
 	 */
 	@RequestMapping("/upload")
 	@RequiresPermissions("sys:oss:all")
+	@SysLog("上传云文件")
 	public Result upload(@RequestParam("file") MultipartFile file) throws Exception {
 		if (file.isEmpty()) {
 			throw new RRException("上传文件不能为空");
 		}
-
 		//上传文件
 		String url = OSSFactory.build().upload(file.getBytes());
-
 		//保存文件信息
 		SysOssEntity ossEntity = new SysOssEntity();
 		ossEntity.setUrl(url);
 		ossEntity.setCreateDate(new Date());
 		sysOssService.save(ossEntity);
-
 		return Result.ok().put("url", url);
 	}
-
 
 	/**
 	 * 删除
 	 */
 	@RequestMapping("/delete")
 	@RequiresPermissions("sys:oss:all")
+	@SysLog("删除云文件")
 	public Result delete(@RequestBody Long[] ids){
 		sysOssService.deleteBatch(ids);
-
 		return Result.ok();
 	}
 

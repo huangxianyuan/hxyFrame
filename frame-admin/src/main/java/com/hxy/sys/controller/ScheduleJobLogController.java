@@ -1,6 +1,7 @@
 package com.hxy.sys.controller;
 
 
+import com.hxy.base.annotation.SysLog;
 import com.hxy.base.utils.PageUtils;
 import com.hxy.base.utils.Query;
 import com.hxy.base.utils.Result;
@@ -33,6 +34,7 @@ public class ScheduleJobLogController {
 	 */
 	@RequestMapping("/list")
 	@RequiresPermissions("sys:schedule:log")
+	@SysLog("定时任务日志列表")
 	public Result list(@RequestParam Map<String, Object> params){
 		//查询列表数据
 		Query query = new Query(params);
@@ -48,6 +50,7 @@ public class ScheduleJobLogController {
 	 * 定时任务日志信息
 	 */
 	@RequestMapping("/info/{logId}")
+	@SysLog("定时任务日志信息")
 	public Result info(@PathVariable("logId") Long logId){
 		ScheduleJobLogEntity log = scheduleJobLogService.queryObject(logId);
 		

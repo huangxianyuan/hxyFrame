@@ -65,7 +65,7 @@ public class SysGeneratorController {
 		byte[] data = sysGeneratorService.generatorCode(tableNames, Constant.genType.webDown.getValue());
 		
 		response.reset();  
-        response.setHeader("Content-Disposition", "attachment; filename=\"renren.zip\"");  
+        response.setHeader("Content-Disposition", "attachment; filename=\"hxyFrame.zip\"");
         response.addHeader("Content-Length", "" + data.length);  
         response.setContentType("application/octet-stream; charset=UTF-8");  
   

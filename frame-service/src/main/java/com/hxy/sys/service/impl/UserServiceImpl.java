@@ -19,7 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.xml.registry.infomodel.User;
 import java.util.*;
 
 
@@ -131,6 +130,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public void deleteBatch(String[] ids){
+	    if(Arrays.asList(ids).contains(Constant.SUPERR_USER)){
+            throw new MyException("超级管理员，不能删除");
+        }
 		userDao.deleteBatch(ids);
 		userRoleDao.deleteBatchByUserId(ids);
 	}

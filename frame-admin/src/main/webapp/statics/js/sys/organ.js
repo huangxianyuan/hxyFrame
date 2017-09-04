@@ -110,14 +110,23 @@ var vm = new Vue({
                     if(r.code == '0'){
                         var organInfo=r.organInfo;
                         var nodes = ztree.getSelectedNodes();
+                        var icon = "";
+                        if(organInfo.type == 1){
+                            //机构
+                            icon='../statics/plugins/ztree/css/zTreeStyle/img/diy/8.png';
+                        }
+                        if(organInfo.type == 2){
+                            //部门
+                            icon='../statics/plugins/ztree/css/zTreeStyle/img/diy/2.png';
+                        }
                         if(vm.organ.id==null || vm.organ.id==''){
                             toast(r.msg,function(){
-                                ztree.addNodes(nodes[0],{id:organInfo.id,parentId:organInfo.parentId,name:organInfo.name,icon:organInfo.icon});
+                                ztree.addNodes(nodes[0],{id:organInfo.id,parentId:organInfo.parentId,name:organInfo.name,icon:icon});
                             });
                         }else{
                             toast(r.msg,function(){
                                 nodes[0].name=organInfo.name;
-                                nodes[0].icon=organInfo.icon;
+                                nodes[0].icon=icon;
                                 ztree.updateNode(nodes[0]);
                             });
                         }

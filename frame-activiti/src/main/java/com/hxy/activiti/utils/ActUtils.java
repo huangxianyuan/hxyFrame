@@ -433,9 +433,8 @@ public class ActUtils {
         // 根据流程定义，获取该流程实例的结束节点
         if (activityId.toUpperCase().equals("END")) {
             for (ActivityImpl activityImpl : processDefinition.getActivities()) {
-                List<PvmTransition> pvmTransitionList = activityImpl
-                        .getOutgoingTransitions();
-                if (pvmTransitionList.isEmpty()) {
+                String type =(String) activityImpl.getProperty("type");
+                if(type.equals("endEvent")){
                     return activityImpl;
                 }
             }

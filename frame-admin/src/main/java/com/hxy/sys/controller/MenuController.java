@@ -36,7 +36,6 @@ public class MenuController extends BaseController{
 	 */
 	@RequestMapping("/list")
 	@RequiresPermissions("sys:menu:list")
-
 	public Result list(@RequestParam Map<String, Object> params){
 		//查询列表数据
         Query query = new Query(params);
@@ -78,6 +77,7 @@ public class MenuController extends BaseController{
 	 */
 	@RequestMapping("/update")
 	@RequiresPermissions("sys:menu:update")
+	@SysLog("修改菜单")
 	public Result update(@RequestBody MenuEntity menu){
 		menuService.update(menu);
 		

@@ -3,6 +3,7 @@ package com.hxy.sys.controller;
 import java.util.List;
 import java.util.Map;
 
+import com.hxy.base.annotation.SysLog;
 import com.hxy.base.common.Constant;
 import com.hxy.base.utils.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -55,6 +56,7 @@ public class OrganController extends BaseController{
 	 */
 	@RequestMapping("/info/{id}")
 	@RequiresPermissions("sys:organ:all")
+	@SysLog("查看组织")
 	public Result info(@PathVariable("id") String id){
 		OrganEntity organ = organService.queryObject(id);
 		
@@ -66,6 +68,7 @@ public class OrganController extends BaseController{
 	 */
 	@RequestMapping("/save")
 	@RequiresPermissions("sys:organ:all")
+	@SysLog("保存组织")
 	public Result save(@RequestBody OrganEntity organ){
         List<OrganEntity> organEntities = organService.queryListByCode(organ.getCode());
         if(organEntities != null && organEntities.size()>0){
@@ -84,6 +87,7 @@ public class OrganController extends BaseController{
      */
     @RequestMapping("/update")
     @RequiresPermissions("sys:organ:all")
+	@SysLog("修改组织")
     public Result update(@RequestBody OrganEntity organEntity){
         int count = organService.update(organEntity);
         if(count<1){
@@ -110,6 +114,7 @@ public class OrganController extends BaseController{
 	 */
 	@RequestMapping("/delete")
 	@RequiresPermissions("sys:organ:all")
+	@SysLog("删除组织")
 	public Result delete(@RequestBody String id){
         int count = organService.updateIsdel(id,Constant.YESNO.YES.getValue());
         if(count<1){

@@ -11,7 +11,7 @@
     <div class="main-container" id="main-container">
         <div class="row" style="margin-top: 20px;">
             <div class="col-md-12">
-                <form class="layui-form" id="search-from" action="${webRoot}/sys/notice/list">
+                <form class="layui-form" id="search-from" action="${webRoot}/sys/notice/myList">
                     <div class="layui-form-item">
                         <label class="layui-form-label" style="width:6%;">通知标题:</label>
                         <div class="layui-input-inline">

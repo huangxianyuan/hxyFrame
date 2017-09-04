@@ -1,6 +1,7 @@
 package com.hxy.sys.controller;
 
 
+import com.hxy.base.annotation.SysLog;
 import com.hxy.base.utils.PageUtils;
 import com.hxy.base.utils.Query;
 import com.hxy.base.utils.Result;
@@ -30,6 +31,7 @@ public class ScheduleJobController {
 	 */
 	@RequestMapping("/list")
 	@RequiresPermissions("sys:schedule:list")
+	@SysLog("查看定时任务列表")
 	public Result list(@RequestParam Map<String, Object> params){
 		//查询列表数据
 		Query query = new Query(params);
@@ -46,6 +48,7 @@ public class ScheduleJobController {
 	 */
 	@RequestMapping("/info/{jobId}")
 	@RequiresPermissions("sys:schedule:info")
+	@SysLog("查看定时任务")
 	public Result info(@PathVariable("jobId") Long jobId){
 		ScheduleJobEntity schedule = scheduleJobService.queryObject(jobId);
 		
@@ -57,6 +60,7 @@ public class ScheduleJobController {
 	 */
 	@RequestMapping("/save")
 	@RequiresPermissions("sys:schedule:update")
+	@SysLog("新增定时任务")
 	public Result save(@RequestBody ScheduleJobEntity scheduleJob){
 		scheduleJobService.save(scheduleJob);
 		
@@ -68,6 +72,7 @@ public class ScheduleJobController {
 	 */
 	@RequestMapping("/update")
 	@RequiresPermissions("sys:schedule:update")
+	@SysLog("修改定时任务")
 	public Result update(@RequestBody ScheduleJobEntity scheduleJob){
 
 		scheduleJobService.update(scheduleJob);
@@ -80,6 +85,7 @@ public class ScheduleJobController {
 	 */
 	@RequestMapping("/delete")
 	@RequiresPermissions("sys:schedule:delete")
+	@SysLog("删除定时任务")
 	public Result delete(@RequestBody Long[] jobIds){
 		scheduleJobService.deleteBatch(jobIds);
 		
@@ -91,6 +97,7 @@ public class ScheduleJobController {
 	 */
 	@RequestMapping("/run")
 	@RequiresPermissions("sys:schedule:run")
+	@SysLog("运行定时任务")
 	public Result run(@RequestBody Long[] jobIds){
 		scheduleJobService.run(jobIds);
 		
@@ -102,6 +109,7 @@ public class ScheduleJobController {
 	 */
 	@RequestMapping("/pause")
 	@RequiresPermissions("sys:schedule:pause")
+	@SysLog("暂停定时任务")
 	public Result pause(@RequestBody Long[] jobIds){
 		scheduleJobService.pause(jobIds);
 		
@@ -113,6 +121,7 @@ public class ScheduleJobController {
 	 */
 	@RequestMapping("/resume")
 	@RequiresPermissions("sys:schedule:resume")
+	@SysLog("恢复定时任务")
 	public Result resume(@RequestBody Long[] jobIds){
 		scheduleJobService.resume(jobIds);
 		

@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/include/taglib.jsp" %>
 <form action="" id="actFieldForm">
@@ -145,7 +144,6 @@
             if (fieldName == ''){
                 continue;
             }
-            debugger
             //父级搜索表单
             var fieldValue=$("#"+fieldName+"").val();
             params[fieldName]=fieldValue;
