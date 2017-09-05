@@ -8,7 +8,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="frame--solr" />
         <module name="frame-activiti" />
-        <module name="frame-activitiMQ" />
         <module name="frame-admin" />
         <module name="frame-common" />
         <module name="frame-generator" />
