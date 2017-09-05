@@ -2,15 +2,14 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <artifactId>hxyFrame</artifactId>
-        <groupId>io.hxyFrame</groupId>
+        <groupId>hxy.hxyFrame</groupId>
         <version>${hxyFrame.version}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>frame-admin</artifactId>
     <packaging>war</packaging>
     <description>admin模块</description>
-    <name>frame-admin Maven Webapp</name>
-    <url>http://maven.apache.org</url>
+    <name>frame-admin</name>
     <properties>
         <qiniu-version>[7.2.0, 7.2.99]</qiniu-version>
         <aliyun-oss-version>2.5.0</aliyun-oss-version>
@@ -18,37 +17,37 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>io.hxyFrame</groupId>
+            <groupId>hxy.hxyFrame</groupId>
             <artifactId>frame-common</artifactId>
             <version>${hxyFrame.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.hxyFrame</groupId>
+            <groupId>hxy.hxyFrame</groupId>
             <artifactId>frame-service</artifactId>
             <version>${hxyFrame.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.hxyFrame</groupId>
+            <groupId>hxy.hxyFrame</groupId>
             <artifactId>frame-shrio</artifactId>
             <version>${hxyFrame.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.hxyFrame</groupId>
+            <groupId>hxy.hxyFrame</groupId>
             <artifactId>frame-activiti</artifactId>
             <version>${hxyFrame.version}</version>
         </dependency>
        <!-- <dependency>
-            <groupId>io.hxyFrame</groupId>
+            <groupId>hxy.hxyFrame</groupId>
             <artifactId>frame-activitiMQ</artifactId>
             <version>${hxyFrame.version}</version>
         </dependency>-->
         <dependency>
-            <groupId>io.hxyFrame</groupId>
+            <groupId>hxy.hxyFrame</groupId>
             <artifactId>frame-generator</artifactId>
             <version>${hxyFrame.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.hxyFrame</groupId>
+            <groupId>hxy.hxyFrame</groupId>
             <artifactId>frame-quartz</artifactId>
             <version>${hxyFrame.version}</version>
         </dependency>

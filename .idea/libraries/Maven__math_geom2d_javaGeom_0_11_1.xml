@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: math.geom2d:javaGeom:0.11.1">
     <CLASSES>
-      <root url="jar://E:/maven/repos2/math/geom2d/javaGeom/0.11.1/javaGeom-0.11.1.jar!/" />
+      <root url="jar://D:/apache-maven-3.2.5/hxyFrame/math/geom2d/javaGeom/0.11.1/javaGeom-0.11.1.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://E:/maven/repos2/math/geom2d/javaGeom/0.11.1/javaGeom-0.11.1-javadoc.jar!/" />
+      <root url="jar://D:/apache-maven-3.2.5/hxyFrame/math/geom2d/javaGeom/0.11.1/javaGeom-0.11.1-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://E:/maven/repos2/math/geom2d/javaGeom/0.11.1/javaGeom-0.11.1-sources.jar!/" />
+      <root url="jar://D:/apache-maven-3.2.5/hxyFrame/math/geom2d/javaGeom/0.11.1/javaGeom-0.11.1-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

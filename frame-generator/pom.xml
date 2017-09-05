@@ -4,23 +4,22 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>hxyFrame</artifactId>
-        <groupId>io.hxyFrame</groupId>
+        <groupId>hxy.hxyFrame</groupId>
         <version>${hxyFrame.version}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>jar</packaging>
     <description>代码生成哭模块</description>
     <artifactId>frame-generator</artifactId>
-    <version>1.0</version>
 
     <dependencies>
         <dependency>
-            <groupId>io.hxyFrame</groupId>
+            <groupId>hxy.hxyFrame</groupId>
             <artifactId>frame-common</artifactId>
             <version>${hxyFrame.version}</version>
         </dependency>
         <dependency>
-            <groupId>io.hxyFrame</groupId>
+            <groupId>hxy.hxyFrame</groupId>
             <artifactId>frame-service</artifactId>
             <version>${hxyFrame.version}</version>
         </dependency>

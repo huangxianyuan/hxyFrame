@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: commons-io:commons-io:2.5">
     <CLASSES>
-      <root url="jar://E:/maven/repos2/commons-io/commons-io/2.5/commons-io-2.5.jar!/" />
+      <root url="jar://D:/apache-maven-3.2.5/hxyFrame/commons-io/commons-io/2.5/commons-io-2.5.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://E:/maven/repos2/commons-io/commons-io/2.5/commons-io-2.5-javadoc.jar!/" />
+      <root url="jar://D:/apache-maven-3.2.5/hxyFrame/commons-io/commons-io/2.5/commons-io-2.5-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://E:/maven/repos2/commons-io/commons-io/2.5/commons-io-2.5-sources.jar!/" />
+      <root url="jar://D:/apache-maven-3.2.5/hxyFrame/commons-io/commons-io/2.5/commons-io-2.5-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

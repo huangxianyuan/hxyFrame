@@ -2,15 +2,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>hxyFrame</artifactId>
-        <groupId>io.hxyFrame</groupId>
+        <groupId>hxy.hxyFrame</groupId>
         <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>frame-activitiMQ</artifactId>
     <version>${hxyFrame.version}</version>
     <packaging>jar</packaging>
-
     <name>frame-activitiMQ</name>
     <url>http://maven.apache.org</url>
 
@@ -20,7 +18,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.hxyFrame</groupId>
+            <groupId>hxy.hxyFrame</groupId>
+            <artifactId>frame-common</artifactId>
+            <version>${hxyFrame.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>hxy.hxyFrame</groupId>
             <artifactId>frame-service</artifactId>
             <version>${hxyFrame.version}</version>
         </dependency>

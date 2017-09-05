@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: com.fasterxml.uuid:java-uuid-generator:3.1.4">
     <CLASSES>
-      <root url="jar://E:/maven/repos2/com/fasterxml/uuid/java-uuid-generator/3.1.4/java-uuid-generator-3.1.4.jar!/" />
+      <root url="jar://D:/apache-maven-3.2.5/hxyFrame/com/fasterxml/uuid/java-uuid-generator/3.1.4/java-uuid-generator-3.1.4.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://E:/maven/repos2/com/fasterxml/uuid/java-uuid-generator/3.1.4/java-uuid-generator-3.1.4-javadoc.jar!/" />
+      <root url="jar://D:/apache-maven-3.2.5/hxyFrame/com/fasterxml/uuid/java-uuid-generator/3.1.4/java-uuid-generator-3.1.4-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://E:/maven/repos2/com/fasterxml/uuid/java-uuid-generator/3.1.4/java-uuid-generator-3.1.4-sources.jar!/" />
+      <root url="jar://D:/apache-maven-3.2.5/hxyFrame/com/fasterxml/uuid/java-uuid-generator/3.1.4/java-uuid-generator-3.1.4-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

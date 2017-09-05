@@ -2,15 +2,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>hxyFrame</artifactId>
-        <groupId>io.hxyFrame</groupId>
-        <version>1.0</version>
+        <groupId>hxy.hxyFrame</groupId>
+        <version>${hxyFrame.version}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>frame-quartz</artifactId>
-    <version>1.0</version>
     <packaging>jar</packaging>
-
     <name>frame-quartz</name>
     <url>http://maven.apache.org</url>
 
@@ -26,12 +24,12 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>io.hxyFrame</groupId>
+            <groupId>hxy.hxyFrame</groupId>
             <artifactId>frame-service</artifactId>
             <version>1.0</version>
         </dependency>
         <dependency>
-            <groupId>io.hxyFrame</groupId>
+            <groupId>hxy.hxyFrame</groupId>
             <artifactId>frame-common</artifactId>
             <version>${hxyFrame.version}</version>
         </dependency>

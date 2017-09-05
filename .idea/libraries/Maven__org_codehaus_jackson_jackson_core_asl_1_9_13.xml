@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: org.codehaus.jackson:jackson-core-asl:1.9.13">
     <CLASSES>
-      <root url="jar://E:/maven/repos2/org/codehaus/jackson/jackson-core-asl/1.9.13/jackson-core-asl-1.9.13.jar!/" />
+      <root url="jar://D:/apache-maven-3.2.5/hxyFrame/org/codehaus/jackson/jackson-core-asl/1.9.13/jackson-core-asl-1.9.13.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://E:/maven/repos2/org/codehaus/jackson/jackson-core-asl/1.9.13/jackson-core-asl-1.9.13-javadoc.jar!/" />
+      <root url="jar://D:/apache-maven-3.2.5/hxyFrame/org/codehaus/jackson/jackson-core-asl/1.9.13/jackson-core-asl-1.9.13-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://E:/maven/repos2/org/codehaus/jackson/jackson-core-asl/1.9.13/jackson-core-asl-1.9.13-sources.jar!/" />
+      <root url="jar://D:/apache-maven-3.2.5/hxyFrame/org/codehaus/jackson/jackson-core-asl/1.9.13/jackson-core-asl-1.9.13-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
