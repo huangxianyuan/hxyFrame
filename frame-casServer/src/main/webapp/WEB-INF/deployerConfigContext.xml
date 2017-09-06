@@ -104,14 +104,15 @@
        | * org.jasig.cas.adaptors.x509.authentication.handler.support.X509CredentialsAuthenticationHandler
        | * org.jasig.cas.support.spnego.authentication.handler.support.JCIFSSpnegoAuthenticationHandler
        -->
-    <bean id="primaryAuthenticationHandler"
+    <!--<bean id="primaryAuthenticationHandler"
           class="org.jasig.cas.authentication.AcceptUsersAuthenticationHandler">
         <property name="users">
             <map>
                 <entry key="admin" value="admin"/>
             </map>
         </property>
-    </bean>
+    </bean>-->
+
 
     <!-- Required for proxy ticket mechanism -->
     <bean id="proxyPrincipalResolver"
