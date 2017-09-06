@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.jasig.service.persondir:person-directory-api:1.5.1">
+    <CLASSES>
+      <root url="jar://E:/maven/repos2/org/jasig/service/persondir/person-directory-api/1.5.1/person-directory-api-1.5.1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://E:/maven/repos2/org/jasig/service/persondir/person-directory-api/1.5.1/person-directory-api-1.5.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://E:/maven/repos2/org/jasig/service/persondir/person-directory-api/1.5.1/person-directory-api-1.5.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
