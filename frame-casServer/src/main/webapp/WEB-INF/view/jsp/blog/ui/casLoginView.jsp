@@ -44,7 +44,7 @@ body {
 .form-signin {
 	margin: 0 auto;
 	max-width: 330px;
-	padding: 15px;
+	padding: 15px 15px 30px 15px;
 }
 
 .form-signin .form-signin-heading, .form-signin .checkbox {
@@ -60,10 +60,9 @@ body {
 	font-size: 16px;
 	height: 38px;
 	line-height: 38px;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 	padding: 4px 8px;
 	position: relative;
-	width: 280px;
 }
 
 .form-signin .form-control:focus {
@@ -79,17 +78,17 @@ body {
 .form-signin input[type="password"] {
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 }
 
 .form-signin input[type="captcha"] {
 	border-top-left-radius: 0;
 	border-top-right-radius: 0;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 }
 
 .form-control.captcha {
-	width: 110px;
+	width: 150px;
 	float: left;
 	margin-right: 10px;
 }
@@ -98,45 +97,79 @@ body {
 	height: 36px;
 	line-height: 36px;
 	padding: 0;
-	width: 280px;
+}
+.login-box-body, .register-box-body {
+	background: #fff;
+	padding: 20px;
+	border-top: 0;
+	color: #666;
+	width: 37%;
+	align-content: center;
+	margin: 0 auto;
+	margin-top: 22%;
+}
+body{
+	min-width: 100%;
+	min-height: 100%;
+	background: black url(images/login-bg.jpg) no-repeat fixed top;
+}
+#msg{
+	color: red;
+	width: 300px;
+	top: 70px;
+	border: 1px solid;
+	background: rgba(255, 0, 0, 0.14);
+	text-indent: 7px;
+	margin: 10px 0 20px;
+}
+.title{
+	font-size: 25px;
+	font-weight: bold;
+	padding-bottom: 25px;
+	text-align: center;
 }
 
 #kaptcha {
-	margin-top: 4px;
+	color: red;
+	font-size: 17px;
+	font-weight: bold;
+	margin-bottom: 14px;
+	margin-top: 5px;
 }
 </style>
 </head>
 
 
-
 <div class="container">
 
-	<form:form cssClass="form-signin" method="post" id="fm1"
-		commandName="${commandName}" htmlEscape="true">
-		<form:errors path="*" id="msg" cssClass="errors" element="div"
-			htmlEscape="false" />
-		<h2 class="form-signin-heading">请登录</h2>
-		<input class="form-control" id="username" name="username" placeholder="UserName"
-			required="" autofocus="" type="username">
-		<input type="hidden" name="lt" value="${loginTicket}" />
-		<input type="hidden" name="execution" value="${flowExecutionKey}" />
-		<input type="hidden" name="_eventId" value="submit" />
+	<div class="login-box-body">
+		<form:form cssClass="form-signin" method="post" id="fm1"
+				   commandName="${commandName}" htmlEscape="true">
+			<h2 class="form-signin-heading title">hxyFrame系统</h2>
+			<form:errors path="*" id="msg" cssClass="errors" element="div"
+						 htmlEscape="false" />
+			<input class="form-control" id="username" name="username" placeholder="帐号"
+				   required="" autofocus="" type="username">
+			<input type="hidden" name="lt" value="${loginTicket}" />
+			<input type="hidden" name="execution" value="${flowExecutionKey}" />
+			<input type="hidden" name="_eventId" value="submit" />
 
 
-		<input class="form-control" id="password" name="password" placeholder="Password"
-			required="" type="password">
-		<%--<div class="checkbox">
-          <label>
-            <input value="remember-me" type="checkbox"> Remember me
-          </label>
-        </div>--%>
-		<input type="text" class="form-control captcha" id="captcha"
-			name="captcha" placeholder="captcha" tabindex="3" type="captcha">
-		<img align="absmiddle" id="kaptcha" src="kaptcha.jpg" >
-		<a id="changeCaptcha" href="javascript:void(0);">换一张</a>
-		<button class="btn btn-lg btn-primary btn-block" type="submit">登
-			录</button>
-	</form:form>
+			<input class="form-control" id="password" name="password" placeholder="密码"
+				   required="" type="password">
+			<%--<div class="checkbox">
+              <label>
+                <input value="remember-me" type="checkbox"> Remember me
+              </label>
+            </div>--%>
+			<input type="text" class="form-control captcha" id="captcha"
+				   name="captcha" placeholder="验证码" tabindex="3" type="captcha">
+			<img align="absmiddle" id="kaptcha" src="kaptcha.jpg" >
+			<a id="changeCaptcha" href="javascript:void(0);">换一张</a>
+			<button class="btn btn-lg btn-primary btn-block" style="background-color: #00a65a;border-color: #008d4c;" type="submit">登
+				录</button>
+		</form:form>
+	</div>
 
 </div>
 

@@ -10,7 +10,8 @@
     <param-value>
       classpath*:spring-scheduler.xml
       classpath*:spring-mybatis.xml
-      classpath*:spring-shrio.xml
+      <!--classpath*:spring-shrio.xml-->
+      classpath*:spring-shrio-cas.xml
       classpath*:spring-activiti.xml
       <!--classpath*:spring-ActiveMQ.xml-->
     </param-value>
@@ -106,7 +107,7 @@
   </filter-mapping>-->
 
   <welcome-file-list>
-    <welcome-file>/login.html</welcome-file>
+    <welcome-file>/index1.html</welcome-file>
   </welcome-file-list>
 
 </web-app>

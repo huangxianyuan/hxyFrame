@@ -96,7 +96,7 @@ public class LoginController extends BaseController{
         String loginName=UserUtils.getCurrentUser().getLoginName();
 
         ShiroUtils.logout();
-        return "redirect:login.html";
+        return "redirect:/login.html";
     }
 
 

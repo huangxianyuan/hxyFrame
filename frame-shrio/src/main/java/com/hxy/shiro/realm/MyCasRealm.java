@@ -1,5 +1,6 @@
 package com.hxy.shiro.realm;
 
+import com.hxy.base.cache.UserCache;
 import com.hxy.base.common.Constant;
 
 import com.hxy.sys.entity.MenuEntity;
@@ -99,6 +100,13 @@ public class MyCasRealm extends CasRealm {
                 Subject subject = SecurityUtils.getSubject();
                 Session session = subject.getSession();
                 session.setAttribute("user", user);
+                //用户对应的机构集合
+                List<String> baidList = userService.queryBapidByUserIdArray(user.getId());
+                //用户对应的部门集合
+                List<String> bapidList= userService.queryBaidByUserIdArray(user.getId());
+                user.setBapidList(bapidList);
+                user.setBaidList(baidList);
+                UserCache.put(Constant.USER_CACHE,user);
                 //保存登陆日志
 //                saveLoinLog(user);
                 return new SimpleAuthenticationInfo(user, ticket, getName());

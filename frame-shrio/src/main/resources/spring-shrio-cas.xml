@@ -11,8 +11,8 @@
 <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
     <property name="securityManager" ref="securityManager" />
     <!-- 设定角色的登录链接，这里为cas登录页面的链接可配置回调地址 -->
-    <property name="loginUrl" value="${cas.server}?service=${cas.client}/login/" />
-    <property name="successUrl" value="${cas.client}/index.html"></property>
+    <property name="loginUrl" value="${cas.server}/login?service=${cas.client}/login/" />
+    <property name="successUrl" value="${cas.client}/index1.html"></property>
     <property name="filters">
         <util:map>
             <entry key="casFilter" value-ref="casFilter" />
@@ -23,12 +23,8 @@
         <value>
             /login/=casFilter
             /statics/**=anon
-            /login.html=anon
             /login/fail=anon
             /loginFail.html=anon
-            /login/login=anon
-            /login/captcha=anon
-            /activitiMq/*=anon
             /**=authc
         </value>
     </property>
@@ -47,7 +43,7 @@
 <bean id="casRealm" class="com.hxy.shiro.realm.MyCasRealm">
     <!-- <property name="defaultRoles" value="ROLE_USER" /> -->
     <!-- 配置cas服务器地址 -->
-    <property name="casServerUrlPrefix" value="${cas.server}" />
+    <property name="casServerUrlPrefix" value="${cas.server}/" />
     <!-- 客户端的回调地址设置，必须和上面的shiro-cas过滤器casFilter拦截的地址一致 -->
     <property name="casService" value="${cas.client}/login/" />
 </bean>
