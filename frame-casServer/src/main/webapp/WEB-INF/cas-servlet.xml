@@ -216,7 +216,7 @@
 
   <bean id="logoutAction" class="org.jasig.cas.web.flow.LogoutAction"
         p:servicesManager-ref="servicesManager"
-        p:followServiceRedirects="${cas.logout.followServiceRedirects:false}"/>
+        p:followServiceRedirects="${cas.logout.followServiceRedirects:true}"/>
 
   <bean id="frontChannelLogoutAction" class="org.jasig.cas.web.flow.FrontChannelLogoutAction"
         c:logoutManager-ref="logoutManager"/>

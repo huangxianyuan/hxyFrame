@@ -58,6 +58,21 @@
     <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
   </listener>
 
+  <!-- 用于单点退出，该过滤器用于实现单点登出功能，可选配置。-->
+  <listener>
+    <listener-class>org.jasig.cas.client.session.SingleSignOutHttpSessionListener</listener-class>
+  </listener>
+  <!-- 该过滤器用于实现单点登出功能，可选配置。 -->
+  <filter>
+    <filter-name>CAS Single Sign Out Filter</filter-name>
+    <filter-class>org.jasig.cas.client.session.SingleSignOutFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>CAS Single Sign Out Filter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+
   <!-- Spring MVC servlet -->
   <servlet>
     <servlet-name>SpringMVC</servlet-name>
@@ -107,7 +122,7 @@
   </filter-mapping>-->
 
   <welcome-file-list>
-    <welcome-file>/index1.html</welcome-file>
+    <welcome-file>/login.html</welcome-file>
   </welcome-file-list>
 
 </web-app>

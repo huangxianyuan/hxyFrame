@@ -17,11 +17,14 @@
         <util:map>
             <entry key="casFilter" value-ref="casFilter" />
             <entry key="logout" value-ref="logout" />
+            <entry key="singleSignOutFilter" value-ref="singleSignOutFilter"/>
+            <!--<entry key="user" value-ref="userAuthorizationFilter" />-->
         </util:map>
     </property>
     <property name="filterChainDefinitions">
         <value>
             /login/=casFilter
+            /logout =singleSignOutFilter,logout
             /statics/**=anon
             /login/fail=anon
             /loginFail.html=anon
@@ -29,6 +32,8 @@
         </value>
     </property>
 </bean>
+<bean name="singleSignOutFilter" class="com.hxy.shiro.filter.SingleSignOutFilter" />
+<!--<bean id="userAuthorizationFilter"  class="com.hxy.shiro.filter.UserAuthorizationFilter"/>-->
 <!-- shiro-cas登录过滤器 -->
 <bean id="casFilter" class="org.apache.shiro.cas.CasFilter">
     <!-- 配置验证错误时的失败页面 ，这里配置为登录页面 -->
@@ -36,7 +41,7 @@
 </bean>
 <!-- 退出登录过滤器 -->
 <bean id="logout" class="org.apache.shiro.web.filter.authc.LogoutFilter">
-    <property name="redirectUrl" value="${cas.server}/logout?service=${cas.client}/login/login" />
+    <property name="redirectUrl" value="${cas.server}/logout?service=${cas.server}/login?service=${cas.client}/index1.html" />
 </bean>
 
 <!-- 自定义casRealm -->
@@ -44,7 +49,7 @@
     <!-- <property name="defaultRoles" value="ROLE_USER" /> -->
     <!-- 配置cas服务器地址 -->
     <property name="casServerUrlPrefix" value="${cas.server}/" />
-    <!-- 客户端的回调地址设置，必须和上面的shiro-cas过滤器casFilter拦截的地址一致 -->
+    <!-- 客户端的回调地址设置，必须和上面的shiro-cas过滤器casFilter拦截的地址一致 否则服务器会判断service不匹配 -->
     <property name="casService" value="${cas.client}/login/" />
 </bean>
 
