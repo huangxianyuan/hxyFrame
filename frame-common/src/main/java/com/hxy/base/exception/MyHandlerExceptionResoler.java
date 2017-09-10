@@ -2,6 +2,7 @@ package com.hxy.base.exception;
 
 import com.hxy.base.utils.JsonUtil;
 import com.hxy.base.utils.Result;
+import com.hxy.base.utils.WebUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerExceptionResolver;
@@ -27,7 +28,7 @@ public class MyHandlerExceptionResoler implements HandlerExceptionResolver {
     @Override
     public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object o, Exception e) {
         //如果请求是ajax 返回json格式
-        if (request.getHeader("accept").indexOf("application/json") > -1 || (request.getHeader("X-Requested-With") != null && request.getHeader("X-Requested-With").indexOf("XMLHttpRequest") > -1)) {
+        if (WebUtils.isAjax(request)) {
             try {
 
                 response.setContentType("application/json;charset=UTF-8");

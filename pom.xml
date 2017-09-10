@@ -47,6 +47,7 @@
         <junit.version>4.12</junit.version>
         <activitiMQ.version>5.9.0</activitiMQ.version>
         <lombok.version>1.16.8.0</lombok.version>
+        <cas.client.version>3.1.9</cas.client.version>
         <hibernate.validator.version>5.4.1.Final</hibernate.validator.version>
     </properties>
     <!-- 阿里云maven仓库 -->
@@ -176,6 +177,11 @@
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-cas</artifactId>
             <version>${shiro.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jasig.cas</groupId>
+            <artifactId>cas-client-core</artifactId>
+            <version>${cas.client.version}</version>
         </dependency>
         <!-- shiro 包结束 -->
 
