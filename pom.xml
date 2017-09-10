@@ -16,6 +16,7 @@
         <module>frame-quartz</module> <!--定时任务-->
         <module>frame-common</module> <!--公共资源-->
         <module>frame-activiti</module> <!--activiti工作流程-->
+        <module>frame-casServer</module> <!--casServer-->
         <!--<module>frame-solr</module>--> <!--solr全文搜索 后续会加入项目中使用-->
         <!--<module>frame-activitiMQ</module> activitiMQ消息中间件 后续会加入项目中使用-->
     </modules>

@@ -30,13 +30,12 @@ import java.io.IOException;
  * @Date 2017/4/28
  */
 @Controller
-@RequestMapping("/login")
 public class LoginController extends BaseController{
 
     @Autowired
     private Producer producer;
 
-    @RequestMapping("captcha")
+    @RequestMapping("/login/captcha")
     public void captcha(HttpServletResponse response)throws ServletException, IOException {
         response.setHeader("Cache-Control", "no-store, no-cache");
         response.setContentType("image/jpeg");
@@ -56,7 +55,7 @@ public class LoginController extends BaseController{
      * 登录
      */
     @ResponseBody
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/login/login", method = RequestMethod.POST)
     public Result login(String username, String password, String captcha,boolean isRememberMe)throws IOException {
       /*  String kaptcha = ShiroUtils.getKaptcha(Constants.KAPTCHA_SESSION_KEY);
         if(!captcha.equalsIgnoreCase(kaptcha)){
@@ -90,7 +89,7 @@ public class LoginController extends BaseController{
      * @auther hxy
      * @date 2017-05-02 14:01:23
      */
-    @RequestMapping(value="logOut",method = RequestMethod.GET)
+    @RequestMapping(value="logout",method = RequestMethod.GET)
     @SysLog("退出系统")
     public String logOut(){
         String loginName=UserUtils.getCurrentUser().getLoginName();

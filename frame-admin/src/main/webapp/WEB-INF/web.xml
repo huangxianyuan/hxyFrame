@@ -10,8 +10,8 @@
     <param-value>
       classpath*:spring-scheduler.xml
       classpath*:spring-mybatis.xml
-      <!--classpath*:spring-shrio.xml-->
-      classpath*:spring-shrio-cas.xml
+      classpath*:spring-shrio.xml
+      <!--classpath*:spring-shrio-cas.xml-->
       classpath*:spring-activiti.xml
       <!--classpath*:spring-ActiveMQ.xml-->
     </param-value>
