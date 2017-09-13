@@ -16,8 +16,8 @@
         <module>frame-quartz</module> <!--定时任务-->
         <module>frame-common</module> <!--公共资源-->
         <module>frame-activiti</module> <!--activiti工作流程-->
-        <module>frame-casServer</module> <!--casServer-->
-        <!--<module>frame-solr</module>--> <!--solr全文搜索 后续会加入项目中使用-->
+        <module>frame-casServer</module>
+        <module>frame-solr</module> <!--solr全文搜索 后续会加入项目中使用-->
         <!--<module>frame-activitiMQ</module> activitiMQ消息中间件 后续会加入项目中使用-->
     </modules>
     <properties>
@@ -40,7 +40,7 @@
         <commons.configuration.version>1.10</commons.configuration.version>
         <velocity.version>1.7</velocity.version>
         <velocity.tools.version>2.0</velocity.tools.version>
-        <java.version>1.7</java.version>
+        <java.version>1.8</java.version>
         <kaptcha.version>0.0.9</kaptcha.version>
         <quartz.version>2.2.3</quartz.version>
         <solr.version>6.5.1</solr.version>
@@ -385,7 +385,7 @@
     <build>
         <finalName>hxyMyFrame</finalName>
         <plugins>
-            <!--<plugin>
+            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>tomcat-maven-plugin</artifactId>
                 <version>1.1</version>
@@ -396,7 +396,7 @@
                     <url>http://localhost:8080/hxyFrame/</url>
                     <server>tomcat7</server>
                 </configuration>
-            </plugin>-->
+            </plugin>
             <plugin>
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>

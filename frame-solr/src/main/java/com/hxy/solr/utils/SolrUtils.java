@@ -2,7 +2,11 @@ package com.hxy.solr.utils;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.hxy.base.page.Page;
 import com.hxy.base.utils.PageUtils;
+import com.hxy.base.utils.PropertiesLoader;
+import com.hxy.base.utils.StringUtils;
+import com.hxy.solr.entity.HightQueryParams;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.solr.client.solrj.SolrClient;
@@ -18,6 +22,7 @@ import org.apache.solr.common.util.NamedList;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 import java.net.MalformedURLException;
 import java.util.*;
 
@@ -31,12 +36,30 @@ import java.util.*;
 public class SolrUtils {
 
     private static final Log logger = LogFactory.getLog(SolrUtils.class);
-    private  String coreName;
+    private String coreName;
     private static   SolrClient solrClient;
 
     public SolrUtils (String coreName){
         this.solrClient = SolrClientFactory.getSolrClient(coreName);
         this.coreName=coreName;
+    }
+
+    /**
+     * 获取高亮前缀
+     * @return
+     */
+    public static String getPreTag(){
+        PropertiesLoader loader = new PropertiesLoader("solrConfig.properties");
+        return loader.getProperty("heihtpreTag");
+    }
+
+    /**
+     * 获取高亮后缀
+     * @return
+     */
+    public static String getPostTag(){
+        PropertiesLoader loader = new PropertiesLoader("solrConfig.properties");
+        return loader.getProperty("heihtpostTag");
     }
 
     public void addBean(Object object) throws IOException, SolrServerException {
@@ -54,25 +77,21 @@ public class SolrUtils {
         solrClient.commit(false, false);
     }
 
-    public void deleteById(String idName, Object id) throws SolrServerException, IOException
+    public static void deleteById(String idName, Object id) throws SolrServerException, IOException
     {
         solrClient.deleteByQuery(idName + ":" + id.toString());
         solrClient.commit(false, false);
     }
 
     /**
-     * @Description: 根据ids批量删除
-     * @author kang
-     * @创建时间 2015下午5:26:39
-     * @param @param idName
-     * @param @param ids
-     * @param @throws SolrServerException
-     * @param @throws IOException
+     * 方法deleteByIds的功能描述:
+     * 根据ids批量删除
+     * @params [idName, ids]
      * @return void
-     * @throws
+     * @auther hxy
+     * @date 2017-09-11 21:48:14
      */
-    public <E> void deleteByIds(String idName, List<E> ids) throws SolrServerException, IOException
-    {
+    public static <E> void deleteByIds(String idName, List<E> ids) throws SolrServerException, IOException {
         if (ids.size() > 0)
         {
             StringBuffer query = new StringBuffer(idName + ":" + ids.get(0));
@@ -182,7 +201,7 @@ public class SolrUtils {
      * @return Page<T>
      * @throws
      */
-    public <T> PageUtils getByPage(String searchStr, int pageNum, int pageSize, Class<T> clzz, Map<String,SolrQuery.ORDER> sortMap) throws IOException, SolrServerException {
+    public static <T> PageUtils getByPage(String searchStr, int pageNum, int pageSize, Class<T> clzz, Map<String,SolrQuery.ORDER> sortMap) throws IOException, SolrServerException {
         SolrQuery query = new SolrQuery();
         query.setQuery(searchStr)// 查询内容
                 .setStart((pageNum - 1) * pageSize)// 分页
@@ -222,29 +241,29 @@ public class SolrUtils {
     }
 
     /**
-     *
-     * @Description:带高亮的关键字查询
-     * @author kang
-     * @创建时间 2015下午9:03:02
-     * @param @param keywords
-     * @param @param pageNum
-     * @param @param pageSize
-     * @param @param hlFields
-     * @param @param preTag
-     * @param @param postTag
-     * @param @param clzz
-     * @param @param idName
-     * @param @return
-     * @return Page<T>
-     * @throws
+     * 方法getHighterByPage的功能描述:
+     * 带高亮的关键字查询
+     * @params [params]
+     * @return com.hxy.base.utils.PageUtils
+     * @auther hxy
+     * @date 2017-09-12 11:17:05
      */
-    public <T> PageUtils getHighterByPage(String keywords, int pageNum, int pageSize, List<String> hlFields, String preTag, String postTag, Class<T> clzz, String idName) throws IOException, SolrServerException {
+    public <T> Page getHighterByPage(HightQueryParams params) throws IOException, SolrServerException {
+        List<String> hlFields = params.getHlFields();
+        Class<T> clzz = params.getClzz();
+        String queryStr=params.getQueryStr();
+        String preTag = params.getPreTag();
+        String postTag = params.getPostTag();
+        int pageNum = params.getPageNum();
+        int pageSize = params.getPageSize();
+        String idName = params.getIdName();
+
         SolrQuery query = new SolrQuery();
-        query.setQuery(keywords)// 查询内容
+        query.setQuery(queryStr)// 查询内容
                 .setHighlight(true)// 设置高亮显示
                 .setHighlightSimplePre(preTag)// 渲染头标签
                 .setHighlightSimplePost(postTag)// 尾标签
-                .setStart((pageNum - 1) * pageSize)// 分页
+                .setStart(( pageNum- 1) * pageSize)// 分页
                 .setRows(pageSize).setFilterQueries("");//
 //        if (distinguish) {
 //            query.addFilterQuery("lang:" + lang);// 中英文区别
@@ -316,7 +335,7 @@ public class SolrUtils {
             e.printStackTrace();
             return null;
         }
-        return new PageUtils(list,total, pageSize, pageNum);
+        return new Page(list,total, pageSize, pageNum);
     }
 
     public static void queryHighlight(String keywords) throws SolrServerException, IOException {

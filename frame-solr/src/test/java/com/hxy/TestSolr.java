@@ -1,5 +1,6 @@
 package com.hxy;
 
+import com.hxy.base.common.Constant;
 import com.hxy.base.utils.PageUtils;
 import com.hxy.base.utils.Utils;
 import com.hxy.solr.entity.SolrTest;
@@ -29,7 +30,7 @@ public class TestSolr {
      */
     @Test
     public void createIndex(){
-        SolrUtils utils = new SolrUtils("new_core");
+        SolrUtils utils = new SolrUtils(Constant.CORE_ARTICLE);
         String[] docs = {"Solr是一个独立的企业级搜索应用服务器",
                 "它对外提供类似于Web-service的API接口",
                 "用户可以通过http请求",
@@ -37,12 +38,14 @@ public class TestSolr {
                 "也可以通过Http Get操作提出查找请求",
                 "并得到XML格式的返回结果"};
         try {
-            for (int i=0;i<docs.length;i++){
-                SolrTest solrTest = new SolrTest();
-                solrTest.setId(i+"");
-                solrTest.setContent(docs[i]);
-                solrTest.setTitle("黄显元"+Utils.uuid());
-                utils.addBean(solrTest);
+            for (int j=0;j<100;j++){
+                for (int i=0;i<docs.length;i++){
+                    SolrTest solrTest = new SolrTest();
+                    solrTest.setId(j+"");
+                    solrTest.setContent(docs[i]);
+                    solrTest.setTitle("hxy"+Utils.uuid());
+                    utils.addBean(solrTest);
+                }
             }
         } catch (SolrServerException e) {
             e.printStackTrace();
@@ -69,11 +72,11 @@ public class TestSolr {
     @Test
     public void getByPage(){
         SolrUtils utils = new SolrUtils("new_core");
-        String searchStr="keyWord:黄显";
+        String searchStr="keyWord:hxy";
         try {
             Map<String,SolrQuery.ORDER> sortMap = new HashMap<>();
             sortMap.put("id", SolrQuery.ORDER.desc);
-            PageUtils byPage = utils.getByPage(searchStr, 2, 2, SolrTest.class,sortMap);
+            PageUtils byPage = utils.getByPage(searchStr, 1, 2, SolrTest.class,sortMap);
             System.out.println("搜索到数据:"+byPage.getTotalCount()+"条。");
             for (Object obj:byPage.getList()){
                 SolrTest solrTest=(SolrTest) obj;
@@ -85,7 +88,7 @@ public class TestSolr {
             e.printStackTrace();
         }
     }
-    @Test
+    /*@Test
     public void getHighterByPage(){
         SolrUtils utils = new SolrUtils("new_core");
             String searchStr="keyWord:服务器";
@@ -108,7 +111,7 @@ public class TestSolr {
         } catch (SolrServerException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
 
 

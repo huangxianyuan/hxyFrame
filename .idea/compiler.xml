@@ -14,20 +14,20 @@
         <module name="frame-quartz" />
         <module name="frame-service" />
         <module name="frame-shrio" />
+        <module name="frame-solr" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="1.7">
-      <module name="frame--solr" target="1.7" />
-      <module name="frame-activiti" target="1.7" />
-      <module name="frame-activitiMQ" target="1.7" />
-      <module name="frame-admin" target="1.7" />
-      <module name="frame-common" target="1.7" />
-      <module name="frame-generator" target="1.7" />
-      <module name="frame-quartz" target="1.7" />
-      <module name="frame-service" target="1.7" />
-      <module name="frame-shrio" target="1.7" />
-      <module name="frame-solr" target="1.7" />
-      <module name="hxyFrame" target="1.7" />
+    <bytecodeTargetLevel target="1.8">
+      <module name="frame--solr" target="1.8" />
+      <module name="frame-activiti" target="1.8" />
+      <module name="frame-admin" target="1.8" />
+      <module name="frame-common" target="1.8" />
+      <module name="frame-generator" target="1.8" />
+      <module name="frame-quartz" target="1.8" />
+      <module name="frame-service" target="1.8" />
+      <module name="frame-shrio" target="1.8" />
+      <module name="frame-solr" target="1.8" />
+      <module name="hxyFrame" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

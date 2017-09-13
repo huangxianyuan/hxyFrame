@@ -22,12 +22,9 @@ public class Page<T> {
      private int startRow;  
      private int endRow;  
      private int total;  
-     private int pages;  
+     private int pages;
      private int first =1;
 
-     private int prev;// 上一页索引
-     private int next;// 下一页索引
- 	
      private List<T> result;  
      private int length = 5;// 显示页面长度
      private int slider = 1;// 前后显示页面长度
@@ -39,7 +36,24 @@ public class Page<T> {
          this.pageSize = pageSize;  
          this.startRow = pageNum > 0 ? (pageNum - 1) * pageSize : 0;  
          this.endRow = pageNum * pageSize;  
-     }  
+     }
+
+	/**
+	 * 分页
+	 * @param result        列表数据
+	 * @param total  总记录数
+	 * @param pageSize    每页记录数
+	 * @param pageNum    当前页数
+	 */
+	public Page(List<T> result, int total, int pageSize, int pageNum) {
+		this.result = result;
+		this.total = total;
+		this.pageSize = pageSize;
+		this.pageNum = pageNum;
+		this.startRow = pageNum > 0 ? (pageNum - 1) * pageSize : 0;
+		this.endRow = pageNum * pageSize;
+		this.pages=total/pageSize+((total%pageSize == 0) ? 0:1);
+	}
 
      public List<T> getResult() {  
          return result;  
@@ -97,19 +111,6 @@ public class Page<T> {
          this.total = total;  
      }  
 
-     
-//     @Override  
-//     public String toString() {  
-//         return "Page{" +  
-//                 "pageNum=" + pageNum +  
-//                 ", pageSize=" + pageSize +  
-//                 ", startRow=" + startRow +  
-//                 ", endRow=" + endRow +  
-//                 ", total=" + total +  
-//                 ", pages=" + pages +  
-//                 '}';  
-//     } 
-     
      public int getFirst() {
 		return first;
 	}
@@ -150,13 +151,6 @@ public class Page<T> {
 		this.funcParam = funcParam;
 	}
 
-	public void setPrev(int prev) {
-		this.prev = prev;
-	}
-
-	public void setNext(int next) {
-		this.next = next;
-	}
 
 	@Override  
  	public String toString() {

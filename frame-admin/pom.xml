@@ -28,6 +28,11 @@
         </dependency>
         <dependency>
             <groupId>hxy.hxyFrame</groupId>
+            <artifactId>frame-solr</artifactId>
+            <version>${hxyFrame.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>hxy.hxyFrame</groupId>
             <artifactId>frame-shrio</artifactId>
             <version>${hxyFrame.version}</version>
         </dependency>
