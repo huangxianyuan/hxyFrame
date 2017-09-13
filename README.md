@@ -36,6 +36,7 @@
 - 核心框架：Spring Framework 4.3.7.RELEASE
 - 工作流引擎：Activiti 5.22.0
 - 全文搜索：Solr 6.5.1
+- 单点登陆: cas 4.0.3
 - 消息中间件：activitiMQ 5.9.0
 - 权限框架：Apache Shiro 1.3
 - 视图框架：Spring MVC 4.3
@@ -47,9 +48,9 @@
 
  **软件环境** 
 - JDK1.7+
-- MySQL5.5+
-- Maven3.0+
-- Tomcat7.0+
+- MySQL5.7.17
+- Maven3.0
+- Tomcat7.0
 
 
  **本地部署**
