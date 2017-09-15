@@ -65,7 +65,7 @@
 		sys_role r on ur.role_id=r.id LEFT JOIN
 		sys_role_menu rm ON r.id=rm.role_id LEFT JOIN
 		sys_menu m on m.id=rm.menu_id
-		WHERE ur.user_id= #{userId} ORDER BY sort;
+		WHERE ur.user_id= #{userId} AND r.status = '0' ORDER BY sort;
 	</select>
 
 	<!--查询所有不包括按钮 的菜单-->

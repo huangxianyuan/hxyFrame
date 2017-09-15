@@ -53,6 +53,12 @@ public interface RoleDao extends BaseDao<RoleEntity> {
      */
     List<UserWindowDto> queryPageByDto(UserWindowDto userWindowDto);
 
+    /**
+     * 批量更新角色状态
+     * @param params key:ids 角色ids
+     * @return
+     */
+    int updateBatchStatus(Map<String,Object> params);
 
 	
 }

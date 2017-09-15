@@ -118,20 +118,37 @@ public class RoleController extends BaseController{
 	}
 	
 	/**
-	 * 删除
+	 * 禁用
 	 */
 	@RequestMapping("/delete")
 	@RequiresPermissions("sys:role:delete")
-	@SysLog("删除角色")
+	@SysLog("禁用角色")
 	public Result delete(@RequestBody String[] ids){
         Result result = Result.ok();
         try {
-            roleService.deleteBatch(ids);
+            roleService.updateBatchStatus(ids,Constant.ABLE_STATUS.NO.getValue());
         } catch (Exception e) {
             result=result.error();
             e.printStackTrace();
         }
         return result;
+	}
+
+	/**
+	 * 启用
+	 */
+	@RequestMapping("/enabled")
+	@RequiresPermissions("sys:role:enabled")
+	@SysLog("启用角色")
+	public Result enabled(@RequestBody String[] ids){
+		Result result = Result.ok();
+		try {
+			roleService.updateBatchStatus(ids,Constant.ABLE_STATUS.YES.getValue());
+		} catch (Exception e) {
+			result=result.error();
+			e.printStackTrace();
+		}
+		return result;
 	}
 	
 }

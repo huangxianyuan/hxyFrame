@@ -52,7 +52,7 @@
 		<include refid="Base_Column_List" />,(SELECT name FROM sys_organ o WHERE o.id=u.baid) AS baName,
 		(SELECT name FROM sys_organ o WHERE o.id=u.bapid) AS bapName
 		from sys_user u
-		where login_name = #{0} AND status = #{1}
+		where login_name = #{0}
 	</select>
 
 	<!--用户对应的组织id,数据权限控制-->
@@ -70,9 +70,10 @@
 		select
 		o.id
 		from sys_user_role ur LEFT JOIN
+		sys_role r on ur.role_id = r.id LEFT JOIN
 		sys_organ_role orl ON ur.role_id=orl.role_id LEFT JOIN
 		sys_organ o ON orl.organ_id=o.id
-		where ur.user_id=#{0} AND o.type=#{1}
+		where ur.user_id=#{0} AND o.type=#{1} AND r.status = '0'
 	</select>
 
 	<select id="queryList" resultType="com.hxy.sys.entity.UserEntity" resultMap="userMap">
@@ -178,6 +179,26 @@
 		update sys_user
 		set pass_word=#{passWord}
 		where id = #{id}
+	</update>
+
+	<!--批量重置密码-->
+	<update id="resetPassWord" parameterType="java.util.Map">
+		update sys_user
+		set pass_word=#{passWord}
+		where id IN
+		<foreach item="id" collection="ids" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</update>
+
+	<!--批量更新用户状态-->
+	<update id="updateBatchStatus" parameterType="java.util.Map">
+		update sys_user
+		set status=#{status}
+		where id IN
+		<foreach item="id" collection="ids" open="(" separator="," close=")">
+			#{id}
+		</foreach>
 	</update>
 
 	<delete id="delete">

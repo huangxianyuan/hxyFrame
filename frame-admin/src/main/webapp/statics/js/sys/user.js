@@ -124,7 +124,51 @@ var vm = new Vue({
 				    data: JSON.stringify(ids),
 				    success: function(r){
 						if(r.code == 0){
-							alert('操作成功', function(index){
+							toast(r, function(index){
+                                vm.reload();
+							});
+						}else{
+                            alertMsg(r.msg);
+						}
+					}
+				});
+			});
+		},
+        enabled: function () {
+			var ids = getSelectedRows();
+			if(ids == null){
+				return ;
+			}
+			confirm('确定要启用选中的记录？', function(){
+				$.ajax({
+					type: "POST",
+				    url: "../sys/user/enabled",
+				    data: JSON.stringify(ids),
+				    success: function(r){
+						if(r.code == 0){
+                            toast(r, function(index){
+                                vm.reload();
+							});
+						}else{
+                            alertMsg(r.msg);
+						}
+					}
+				});
+			});
+		},
+        reset: function () {
+			var ids = getSelectedRows();
+			if(ids == null){
+				return ;
+			}
+			confirm('确定要重置选中的用户密码？', function(){
+				$.ajax({
+					type: "POST",
+				    url: "../sys/user/reset",
+				    data: JSON.stringify(ids),
+				    success: function(r){
+						if(r.code == 0){
+                            toast(r, function(index){
                                 vm.reload();
 							});
 						}else{
@@ -143,7 +187,7 @@ var vm = new Vue({
 			    success: function(r){
                     if(r.code == 0){
                         if(vm.user.id==null){
-                            alert(r,function (index,layer) {
+                            toast(r,function (index,layer) {
                                 vm.reload();
                             },function (index) {
                                 vm.menu.sort=1;

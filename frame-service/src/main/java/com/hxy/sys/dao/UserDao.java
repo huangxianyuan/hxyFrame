@@ -21,10 +21,9 @@ public interface UserDao extends BaseDao<UserEntity> {
     /**
      * 根据登陆用户查询有效的用户
      * @param loginName
-     * @param status
      * @return
      */
-    UserEntity queryByLoginName(String loginName, String status);
+    UserEntity queryByLoginName(String loginName);
 
     /**
      * 用户对应的机构id,数据权限控制
@@ -55,6 +54,21 @@ public interface UserDao extends BaseDao<UserEntity> {
      * @return
      */
     int updatePassword(Map<String,Object> params);
+
+    /**
+     * 批量重置密码
+     * @param params key:passWord 密码， key:sid 主键ids
+     * @return
+     */
+    int resetPassWord(Map<String,Object> params);
+
+    /**
+     * 批量更新用户状态
+     * @param params key:ids 用户ids
+     * @return
+     */
+    int updateBatchStatus(Map<String,Object> params);
+
 
 
 }

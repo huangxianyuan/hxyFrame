@@ -77,15 +77,15 @@ public class MyRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         String userLoginName= (String) token.getPrincipal();
         String passWord=new String((char[]) token.getCredentials());
-        UserEntity user = userService.queryByLoginName(userLoginName, Constant.YESNO.YES.getValue());
+        UserEntity user = userService.queryByLoginName(userLoginName);
         if(user == null){
             throw new AuthenticationException("帐号不存在");
         }
         if(!passWord.equals(user.getPassWord())){
             throw new AuthenticationException("帐号密码错误");
         }
-        if (user.getStatus().equals(Constant.YESNO.NO.getValue())){
-            throw new AuthenticationException("帐号已经被禁用，请联系管理员");
+        if(Constant.ABLE_STATUS.NO.getValue().equals(user.getStatus())){
+            throw new AuthenticationException("帐号被禁用,请联系管理员!");
         }
         SimpleAuthenticationInfo sainfo=new SimpleAuthenticationInfo(user,passWord,getName());
         Subject subject= SecurityUtils.getSubject();

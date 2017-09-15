@@ -95,7 +95,7 @@ public class MyCasRealm extends CasRealm {
             assertion = ticketValidator.validate(ticket,getCasService());
             AttributePrincipal casPrincipal = assertion.getPrincipal();
             String username = casPrincipal.getName();
-            UserEntity user = userService.queryByLoginName(username,Constant.YESNO.YES.getValue());
+            UserEntity user = userService.queryByLoginName(username);
             if (user != null) {
                 Subject subject = SecurityUtils.getSubject();
                 Session session = subject.getSession();

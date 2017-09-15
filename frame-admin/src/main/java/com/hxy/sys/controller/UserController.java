@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.hxy.activiti.service.ActModelerService;
 import com.hxy.base.annotation.SysLog;
+import com.hxy.base.common.Constant;
 import com.hxy.base.utils.MD5;
 import com.hxy.sys.entity.UserEntity;
 import com.hxy.sys.service.NoticeService;
@@ -130,14 +131,36 @@ public class UserController extends BaseController{
 	}
 
 	/**
-	 * 删除
+	 * 禁用、
 	 */
 	@RequestMapping("/delete")
 	@RequiresPermissions("sys:user:delete")
-	@SysLog("删除系统用户")
+	@SysLog("禁用系统用户")
 	public Result delete(@RequestBody String[] ids){
-		userService.deleteBatch(ids);
+		userService.updateBatchStatus(ids, Constant.ABLE_STATUS.NO.getValue());
 		return Result.ok();
 	}
-	
+
+	/**
+	 * 启用、
+	 */
+	@RequestMapping("/enabled")
+	@RequiresPermissions("sys:user:enabled")
+	@SysLog("启用系统用户")
+	public Result enabled(@RequestBody String[] ids){
+		userService.updateBatchStatus(ids, Constant.ABLE_STATUS.YES.getValue());
+		return Result.ok();
+	}
+
+	/**
+	 * 重置密码
+	 */
+	@RequestMapping("/reset")
+	@RequiresPermissions("sys:user:reset")
+	@SysLog("重置密码")
+	public Result reset(@RequestBody String[] ids){
+		userService.resetPassWord(ids);
+		return Result.ok("重置密码成功,密码为:"+Constant.DEF_PASSWORD);
+	}
+
 }

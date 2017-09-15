@@ -20,7 +20,10 @@
 				<button class="layui-btn layui-btn-normal" type="button" @click="update"><i class="layui-icon">&#xe642;</i>编辑</button>
 			#end
 			#if($shiro.hasPermission("sys:role:delete"))
-				<button class="layui-btn layui-btn-danger" type="button" @click="del"><i class="layui-icon">&#xe640;</i>删除</button>
+				<button class="layui-btn layui-btn-danger" type="button" @click="del"><i class="layui-icon">&#xe640;</i>禁用</button>
+			#end
+			#if($shiro.hasPermission("sys:role:enabled"))
+			<button class="layui-btn" type="button" @click="enabled"><i class="layui-icon">&#xe640;</i>启用</button>
 			#end
 		</div>
 	    <table id="jqGrid"></table>

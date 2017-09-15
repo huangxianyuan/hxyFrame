@@ -88,11 +88,13 @@ layui.use(['jquery','layer','element'],function(){
 	});
 });
 
+
 /**
  * 加载菜单树
  */
 function initMenu() {
     var element = layui.element();
+    var clickMenus = ("demo/leave/list");
     $.getJSON("sys/menu/userMenu?_"+$.now(), function(r){
         var menuList = r.menuList;
         var html="";
