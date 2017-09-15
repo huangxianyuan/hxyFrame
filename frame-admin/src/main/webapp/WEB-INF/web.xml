@@ -30,6 +30,23 @@
     <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
   </listener>
 
+  <filter>
+    <filter-name>encodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+    <init-param>
+      <param-name>forceEncoding</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>encodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
   <!-- 配置Shiro过滤器,先让Shiro过滤系统接收到的请求 -->
   <!-- 这里filter-name必须对应applicationContext.xml中定义的<bean id="shiroFilter"/> -->
   <!-- 使用[/*]匹配所有请求,保证所有的可控请求都经过Shiro的过滤 -->
