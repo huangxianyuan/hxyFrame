@@ -24,7 +24,7 @@
 
 
 **项目信息** 
-- 项目demo地址：http://47.95.234.81:8090/frame-admin (正在维护,暂不能访问) 帐户/密码:hxy/a
+- 项目demo地址：http://47.95.234.81:8090/frame-admin 帐户/密码:hxy/a
 - 开发文档：待完善
 - oschina仓库：https://git.oschina.net/huangxianyuan/hxyFrame.git
 - github仓库：https://github.com/huangxianyuan/hxyFrame.git
