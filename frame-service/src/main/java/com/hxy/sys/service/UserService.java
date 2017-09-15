@@ -34,10 +34,9 @@ public interface UserService {
 	/**
 	 * 根据登陆用户查询有效的用户
 	 * @param logName
-	 * @param status
 	 * @return
 	 */
-	UserEntity queryByLoginName(String logName, String status);
+	UserEntity queryByLoginName(String logName);
 
 	/**
 	 * 用户对应的机构id,数据权限控制
@@ -80,6 +79,20 @@ public interface UserService {
 	 * @return
 	 */
 	int updatePassword (UserEntity user);
+
+	/**
+	 * 批量更新角色状态
+	 * @param status 状态(0正常 -1禁用)
+	 * @return
+	 */
+	int updateBatchStatus(String[] ids,String status);
+
+	/**
+	 * 重置密码
+	 * @param ids
+	 * @return
+	 */
+	int resetPassWord(String[] ids);
 
 
 }

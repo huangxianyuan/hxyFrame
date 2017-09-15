@@ -50,4 +50,11 @@ public interface RoleService {
 	 * @return
 	 */
 	Page<UserWindowDto> queryPageByDto(UserWindowDto userWindowDto, int pageNmu);
+
+	/**
+	 * 批量更新用户状态
+	 * @param status 状态(0正常 -1禁用)
+	 * @return
+	 */
+	int updateBatchStatus(String[] ids,String status);
 }

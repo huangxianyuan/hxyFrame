@@ -3,8 +3,12 @@ $(function () {
         url: '../sys/role/list',
         datatype: "json",
         colModel: [			
-			{ label: '角色ID', name: 'id', index: "id", width: 45, key: true },
 			{ label: '角色名称', name: 'name', index: "name", width: 75 },
+            { label: '状态', name: 'status', width: 80, formatter: function(value, options, row){
+                return value == 0 ?
+                    '<span class="label label-success">正常</span>' :
+                    '<span class="label label-danger">禁用</span>';
+            }},
 			{ label: '备注', name: 'remark', width: 100 },
 			{ label: '创建时间', name: 'createTime', index: "create_time", width: 80}
         ],
@@ -91,10 +95,33 @@ var vm = new Vue({
 				return ;
 			}
 			
-			confirm('确定要删除选中的记录？', function(){
+			confirm('确定要禁用选中的记录？', function(){
 				$.ajax({
 					type: "POST",
 				    url: "../sys/role/delete",
+				    data: JSON.stringify(ids),
+				    success: function(r){
+						if(r.code == 0){
+                            toast(r.msg,function(){
+                                vm.reload();
+                            });
+						}else{
+                            alertMsg(r.msg);
+						}
+					}
+				});
+			});
+		},
+        enabled: function (event) {
+			var ids = getSelectedRows();
+			if(ids == null){
+				return ;
+			}
+
+			confirm('确定要启用选中的记录？', function(){
+				$.ajax({
+					type: "POST",
+				    url: "../sys/role/enabled",
 				    data: JSON.stringify(ids),
 				    success: function(r){
 						if(r.code == 0){

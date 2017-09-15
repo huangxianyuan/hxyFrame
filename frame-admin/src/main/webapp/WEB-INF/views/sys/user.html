@@ -18,8 +18,14 @@
 			#if($shiro.hasPermission("sys:user:info"))
 				<button class="layui-btn layui-btn-normal" type="button" @click="update"><i class="layui-icon">&#xe642;</i>编辑</button>
 			#end
+			#if($shiro.hasPermission("sys:user:reset"))
+				<button class="layui-btn layui-btn-danger" type="button" @click="reset"><i class="layui-icon">&#xe642;</i>重置密码</button>
+			#end
 			#if($shiro.hasPermission("sys:user:delete"))
-				<button class="layui-btn layui-btn-danger" type="button" @click="del"><i class="layui-icon">&#xe640;</i>删除</button>
+				<button class="layui-btn layui-btn-danger" type="button" @click="del"><i class="layui-icon">&#xe640;</i>禁用</button>
+			#end
+			#if($shiro.hasPermission("sys:user:enabled"))
+				<button class="layui-btn" type="button" @click="enabled"><i class="layui-icon">&#xe640;</i>启用</button>
 			#end
 		</div>
 	    <table id="jqGrid"></table>
@@ -54,7 +60,7 @@
 					<input type="radio" name="status" value="-1" v-model="user.status"/> 禁用
 				</label>
 				<label class="radio-inline">
-					<input type="radio" name="status" value="0" v-model="user.status"/> 正常
+					<input type="radio" name="status" value="" v-model="user.status"/> 正常
 				</label>
 			</div>
 			<div class="form-group">

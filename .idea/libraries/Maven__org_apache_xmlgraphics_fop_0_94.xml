@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: org.apache.xmlgraphics:fop:0.94">
     <CLASSES>
-      <root url="jar://D:/apache-maven-3.2.5/hxyFrame/org/apache/xmlgraphics/fop/0.94/fop-0.94.jar!/" />
+      <root url="jar://E:/maven/repos2/org/apache/xmlgraphics/fop/0.94/fop-0.94.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://D:/apache-maven-3.2.5/hxyFrame/org/apache/xmlgraphics/fop/0.94/fop-0.94-javadoc.jar!/" />
+      <root url="jar://E:/maven/repos2/org/apache/xmlgraphics/fop/0.94/fop-0.94-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://D:/apache-maven-3.2.5/hxyFrame/org/apache/xmlgraphics/fop/0.94/fop-0.94-sources.jar!/" />
+      <root url="jar://E:/maven/repos2/org/apache/xmlgraphics/fop/0.94/fop-0.94-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

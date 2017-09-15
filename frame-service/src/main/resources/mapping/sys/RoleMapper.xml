@@ -134,6 +134,16 @@
 		</set>
 		where id = #{id}
 	</update>
+
+	<!--批量更新角色状态-->
+	<update id="updateBatchStatus" parameterType="java.util.Map">
+		update sys_role
+		set status=#{status}
+		where id IN
+		<foreach item="id" collection="ids" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</update>
 	
 	<delete id="delete">
 		delete from sys_role where id = #{value}

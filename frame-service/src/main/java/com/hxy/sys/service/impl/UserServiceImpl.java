@@ -45,8 +45,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserEntity queryByLoginName(String logName, String status) {
-		return userDao.queryByLoginName(logName,status);
+	public UserEntity queryByLoginName(String logName) {
+		return userDao.queryByLoginName(logName);
 	}
 
 	@Override
@@ -223,5 +223,21 @@ public class UserServiceImpl implements UserService {
         params.put("id",currentUser.getId());
         params.put("passWord",MD5.MD5Encode((user.getNewPassWord())));
         return userDao.updatePassword(params);
+    }
+
+    @Override
+    public int updateBatchStatus(String[] ids, String status) {
+	    Map<String,Object> params = new HashMap<>();
+	    params.put("ids",ids);
+	    params.put("status",status);
+        return userDao.updateBatchStatus(params);
+    }
+
+    @Override
+    public int resetPassWord(String[] ids) {
+	    Map<String,Object> params = new HashMap<>();
+	    params.put("ids",ids);
+	    params.put("passWord",MD5.MD5Encode(Constant.DEF_PASSWORD));
+        return userDao.resetPassWord(params);
     }
 }

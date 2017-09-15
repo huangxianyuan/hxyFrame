@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: org.apache.httpcomponents:httpcore:4.4.3">
     <CLASSES>
-      <root url="jar://D:/apache-maven-3.2.5/hxyFrame/org/apache/httpcomponents/httpcore/4.4.3/httpcore-4.4.3.jar!/" />
+      <root url="jar://E:/maven/repos2/org/apache/httpcomponents/httpcore/4.4.3/httpcore-4.4.3.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://D:/apache-maven-3.2.5/hxyFrame/org/apache/httpcomponents/httpcore/4.4.3/httpcore-4.4.3-javadoc.jar!/" />
+      <root url="jar://E:/maven/repos2/org/apache/httpcomponents/httpcore/4.4.3/httpcore-4.4.3-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://D:/apache-maven-3.2.5/hxyFrame/org/apache/httpcomponents/httpcore/4.4.3/httpcore-4.4.3-sources.jar!/" />
+      <root url="jar://E:/maven/repos2/org/apache/httpcomponents/httpcore/4.4.3/httpcore-4.4.3-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

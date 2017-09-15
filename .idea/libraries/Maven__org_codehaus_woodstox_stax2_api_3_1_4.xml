@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: org.codehaus.woodstox:stax2-api:3.1.4">
     <CLASSES>
-      <root url="jar://D:/apache-maven-3.2.5/hxyFrame/org/codehaus/woodstox/stax2-api/3.1.4/stax2-api-3.1.4.jar!/" />
+      <root url="jar://E:/maven/repos2/org/codehaus/woodstox/stax2-api/3.1.4/stax2-api-3.1.4.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://D:/apache-maven-3.2.5/hxyFrame/org/codehaus/woodstox/stax2-api/3.1.4/stax2-api-3.1.4-javadoc.jar!/" />
+      <root url="jar://E:/maven/repos2/org/codehaus/woodstox/stax2-api/3.1.4/stax2-api-3.1.4-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://D:/apache-maven-3.2.5/hxyFrame/org/codehaus/woodstox/stax2-api/3.1.4/stax2-api-3.1.4-sources.jar!/" />
+      <root url="jar://E:/maven/repos2/org/codehaus/woodstox/stax2-api/3.1.4/stax2-api-3.1.4-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

@@ -127,4 +127,12 @@ public class RoleServiceImpl implements RoleService {
 		roleDao.queryPageByDto(userWindowDto);
 		return PageHelper.endPage();
 	}
+
+	@Override
+	public int updateBatchStatus(String[] ids, String status) {
+		Map<String,Object> params = new HashMap<>();
+		params.put("ids",ids);
+		params.put("status",status);
+		return roleDao.updateBatchStatus(params);
+	}
 }

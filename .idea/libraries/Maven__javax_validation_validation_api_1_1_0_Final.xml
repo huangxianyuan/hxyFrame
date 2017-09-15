@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: javax.validation:validation-api:1.1.0.Final">
     <CLASSES>
-      <root url="jar://D:/apache-maven-3.2.5/hxyFrame/javax/validation/validation-api/1.1.0.Final/validation-api-1.1.0.Final.jar!/" />
+      <root url="jar://E:/maven/repos2/javax/validation/validation-api/1.1.0.Final/validation-api-1.1.0.Final.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://D:/apache-maven-3.2.5/hxyFrame/javax/validation/validation-api/1.1.0.Final/validation-api-1.1.0.Final-javadoc.jar!/" />
+      <root url="jar://E:/maven/repos2/javax/validation/validation-api/1.1.0.Final/validation-api-1.1.0.Final-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://D:/apache-maven-3.2.5/hxyFrame/javax/validation/validation-api/1.1.0.Final/validation-api-1.1.0.Final-sources.jar!/" />
+      <root url="jar://E:/maven/repos2/javax/validation/validation-api/1.1.0.Final/validation-api-1.1.0.Final-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

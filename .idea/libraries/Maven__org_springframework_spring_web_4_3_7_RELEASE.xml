@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Maven: org.springframework:spring-web:4.3.7.RELEASE">
     <CLASSES>
-      <root url="jar://D:/apache-maven-3.2.5/hxyFrame/org/springframework/spring-web/4.3.7.RELEASE/spring-web-4.3.7.RELEASE.jar!/" />
+      <root url="jar://E:/maven/repos2/org/springframework/spring-web/4.3.7.RELEASE/spring-web-4.3.7.RELEASE.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://D:/apache-maven-3.2.5/hxyFrame/org/springframework/spring-web/4.3.7.RELEASE/spring-web-4.3.7.RELEASE-javadoc.jar!/" />
+      <root url="jar://E:/maven/repos2/org/springframework/spring-web/4.3.7.RELEASE/spring-web-4.3.7.RELEASE-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://D:/apache-maven-3.2.5/hxyFrame/org/springframework/spring-web/4.3.7.RELEASE/spring-web-4.3.7.RELEASE-sources.jar!/" />
+      <root url="jar://E:/maven/repos2/org/springframework/spring-web/4.3.7.RELEASE/spring-web-4.3.7.RELEASE-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

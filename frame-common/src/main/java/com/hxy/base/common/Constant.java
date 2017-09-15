@@ -12,6 +12,11 @@ public class Constant {
     public static final String SUPERR_USER="026a564bbfd84861ac4b65393644beef";
 
     /**
+     * 系统默认密码
+     */
+    public static final String DEF_PASSWORD="hxy";
+
+    /**
      * 分页条数
      */
     public static int pageSize=10;
@@ -99,7 +104,30 @@ public class Constant {
     }
 
     /**
-     * 是否类型
+     * 系统用户状态
+     */
+    public enum ABLE_STATUS{
+        /**
+         * 正常
+         */
+        YES("0"),
+        /**
+         * 禁用
+         */
+        NO("-1");
+        private String value;
+
+        ABLE_STATUS(String value){
+            this.value=value;
+        }
+        public String getValue(){
+            return value;
+        }
+    }
+
+
+    /**
+     * 返回状态值
      */
     public enum RESULT{
         /**
