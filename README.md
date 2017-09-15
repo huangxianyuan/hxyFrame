@@ -24,7 +24,7 @@
 
 
 **项目信息** 
-- 项目demo地址：http://47.95.234.81:8090/frame-admin 帐户/密码:hxy/a
+- 项目demo地址：http://47.95.234.81:8090/frame-admin (正在维护,暂不能访问) 帐户/密码:hxy/a
 - 开发文档：待完善
 - oschina仓库：https://git.oschina.net/huangxianyuan/hxyFrame.git
 - github仓库：https://github.com/huangxianyuan/hxyFrame.git
@@ -70,18 +70,22 @@
 
 **项目图片：**
 
-![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/0e4ae20f3963422c8c93ae0408956be3 "图片说明")
-![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/7ca41c6baa324f729cf9ef82994fa056 "图片说明")
-![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/a4e43a7f37314fc0aeaa02a53de75ae2 "图片说明")
-![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/fd4d21b767b440e5845364e696801690 "图片说明")
-![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/590dc2d93f91436299ca7b32f50fd388 "图片说明")
-![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170829/c5ba9fe470da42169a6ecfdbaa03fc17 "图片说明")
-![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/2fa6368a983a4f14a4ee95a9379092a7 "图片说明")
-![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/932cc2ed67c34690bea97c3c9766ab2c "图片说明")
-![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/f07ca986851248cb98ea2a5008c5daea "图片说明")
-![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/859c2607a84340529114e618ac293872 "图片说明")
-![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/2a7b4ab64d51457fb7bd2bde3575e4a1 "图片说明")
-![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170828/31fa0f9cc88241ec80ca76f90a462243 "图片说明")
+![图片说明]( http://chuantu.biz/t6/49/1505438394x2728329119.png "图片说明")
+![图片说明]( http://chuantu.biz/t6/49/1505438496x2728278883.png "图片说明")
+![图片说明]( http://chuantu.biz/t6/49/1505438510x2728278883.png "图片说明")
+![图片说明]( http://chuantu.biz/t6/49/1505438525x2728278883.png "图片说明")
+![图片说明](http://chuantu.biz/t6/49/1505438549x2728278883.png "图片说明")
+![图片说明](http://chuantu.biz/t6/49/1505438572x2728278883.png "图片说明")
+![图片说明](http://chuantu.biz/t6/49/1505438586x2728278883.png "图片说明")
+![图片说明](http://chuantu.biz/t6/49/1505438599x2728278883.png "图片说明")
+![图片说明](http://chuantu.biz/t6/49/1505438610x2728278883.png "图片说明")
+![图片说明](http://chuantu.biz/t6/49/1505438622x2728278883.png "图片说明")
+![图片说明](http://chuantu.biz/t6/49/1505438634x2728278883.png "图片说明")
+![图片说明](http://chuantu.biz/t6/49/1505438645x2728278883.png "图片说明")
+![图片说明](http://chuantu.biz/t6/49/1505438656x2728278883.png "图片说明")
+![图片说明](http://chuantu.biz/t6/49/1505438667x2728278883.png "图片说明")
+![图片说明](http://chuantu.biz/t6/49/1505438678x2728278883.png "图片说明")
+![图片说明](http://chuantu.biz/t6/49/1505438690x2728278883.png "图片说明")
 
 
 
