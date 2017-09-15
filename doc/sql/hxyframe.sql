@@ -2413,7 +2413,7 @@ CREATE TABLE `sys_user_role` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户角色关系表';
 
 -- ----------------------------
--- Records of sys_user_role
+-- Records of sys_user_role1
 -- ----------------------------
 INSERT INTO `sys_user_role` VALUES ('026a564bbfd84861ac4b65393644beef', '0c3245b565c84f639ab9e05a6d1eedfd');
 INSERT INTO `sys_user_role` VALUES ('98df0e92788c416a9fb983e89a8d01ce', '0c3245b565c84f639ab9e05a6d1eedfd');
