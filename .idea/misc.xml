@@ -40,6 +40,7 @@
   </component>
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/frame-admin" />
+    <file type="web" url="file://$PROJECT_DIR$/frame-casServer" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">

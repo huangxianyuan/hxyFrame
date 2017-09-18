@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/frame-activiti/frame-activiti.iml" filepath="$PROJECT_DIR$/frame-activiti/frame-activiti.iml" />
       <module fileurl="file://$PROJECT_DIR$/frame-admin/frame-admin.iml" filepath="$PROJECT_DIR$/frame-admin/frame-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/frame-cache/frame-cache.iml" filepath="$PROJECT_DIR$/frame-cache/frame-cache.iml" />
       <module fileurl="file://$PROJECT_DIR$/frame-common/frame-common.iml" filepath="$PROJECT_DIR$/frame-common/frame-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/frame-generator/frame-generator.iml" filepath="$PROJECT_DIR$/frame-generator/frame-generator.iml" />
       <module fileurl="file://$PROJECT_DIR$/frame-quartz/frame-quartz.iml" filepath="$PROJECT_DIR$/frame-quartz/frame-quartz.iml" />
