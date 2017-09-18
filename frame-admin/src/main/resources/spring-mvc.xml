@@ -25,35 +25,23 @@
     <!--扫描定时任务-->
     <!--<context:component-scan base-package="com.hxy.sys.task" />-->
     <!--RequestMappingHandlerAdapter可以根据@requestmapping标注调用实际的函数，MappingJackson2HttpMessageConverter是json转换器-->
-    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
-        <property name="messageConverters">
-            <list>
-                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
-            </list>
-        </property>
-    </bean>
 
-   <!-- <mvc:annotation-driven>
-        <mvc:message-converters register-defaults="true">
-            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
-                <property name="supportedMediaTypes">
-                    <list>
-                        <value>text/html;charset=UTF-8</value>
-                        <value>application/json</value>
-                    </list>
-                </property>
-                <property name="features">
-                    <list>
-                        <value>WriteMapNullValue</value>
-                        <value>QuoteFieldNames</value>
-                        <value>WriteDateUseDateFormat</value>
-                        &lt;!&ndash; 禁用fastjson循环引用检测 &ndash;&gt;
-                        <value>DisableCircularReferenceDetect</value>
-                    </list>
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="objectMapper">
+                    <bean class="com.fasterxml.jackson.databind.ObjectMapper">
+                        <property name="dateFormat">
+                            <bean class="java.text.SimpleDateFormat">
+                                <constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss"/>
+                            </bean>
+                        </property>
+                    </bean>
                 </property>
             </bean>
         </mvc:message-converters>
-    </mvc:annotation-driven>-->
+    </mvc:annotation-driven>
+
 
     <!-- 框架异常处理Handler -->
     <bean id="exceptionResolver" class="com.hxy.base.exception.MyHandlerExceptionResoler"></bean>
