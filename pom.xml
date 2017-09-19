@@ -322,6 +322,23 @@
             <version>1.16.8.0</version>
         </dependency>-->
 
+        <!--redis缓存-->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>1.8.0.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>2.7.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.jedis-lock</groupId>
+            <artifactId>jedis-lock</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+
         <!-- Velocity视图所需jar -->
         <dependency>
             <artifactId>velocity</artifactId>
