@@ -4,6 +4,7 @@ import com.hxy.base.cache.CodeCache;
 import com.hxy.base.common.Constant;
 import com.hxy.base.utils.SpringContextUtils;
 import com.hxy.base.utils.StringUtils;
+import com.hxy.sentinelRedis.RedisUtil;
 import com.hxy.sys.dao.CodeDao;
 import com.hxy.sys.entity.CodeEntity;
 import org.apache.log4j.Logger;
@@ -74,6 +75,11 @@ public class InitServlet extends HttpServlet{
             parentMap.put("childList",childMaps);
         }
         CodeCache.put(Constant.CODE_CACHE,allMap);
+        try {
+            RedisUtil.setObject(Constant.CODE_CACHE,allMap);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 

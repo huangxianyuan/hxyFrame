@@ -42,7 +42,6 @@
         </mvc:message-converters>
     </mvc:annotation-driven>
 
-
     <!-- 框架异常处理Handler -->
     <bean id="exceptionResolver" class="com.hxy.base.exception.MyHandlerExceptionResoler"></bean>
 

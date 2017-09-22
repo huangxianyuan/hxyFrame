@@ -1,12 +1,12 @@
-package com.hxy.redis;
+package com.hxy.sentinelRedis;
 
 import com.github.jedis.lock.JedisLock;
+import com.hxy.base.utils.PropertiesLoader;
 import com.hxy.base.utils.SerializeUtil;
 import org.apache.log4j.Logger;
-import org.apache.shiro.session.Session;
 import org.springframework.stereotype.Component;
-import org.springframework.util.Assert;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisSentinelPool;
 import redis.clients.jedis.exceptions.JedisConnectionException;
 
@@ -15,21 +15,57 @@ import javax.annotation.Resource;
 @Component
 public class RedisUtil {
 
+    private static boolean isSentinel;
 
+    private static boolean isAlone;
     private static JedisSentinelPool sentinelPool;
+    private static JedisPool jedisPool;
 
     @Resource(name = "sentinelPool")
     public synchronized void setSentinelPool(JedisSentinelPool sentinelPool) {
         RedisUtil.sentinelPool = sentinelPool;
     }
 
+    @Resource(name = "jedisPool")
+    public synchronized void setJedisPool(JedisPool jedisPool) {
+        RedisUtil.jedisPool = jedisPool;
+    }
+
+    public boolean isSentinel() {
+        return isSentinel;
+    }
+
+    public void setSentinel(boolean sentinel) {
+        isSentinel = sentinel;
+    }
+
+    public boolean isAlone() {
+        return isAlone;
+    }
+
+    public void setAlone(boolean alone) {
+        isAlone = alone;
+    }
+
     private static Logger log = Logger.getLogger(RedisUtil.class);
+
+    static {
+        PropertiesLoader redis = new PropertiesLoader("conf/redis.properties");
+        PropertiesLoader redisSentinel = new PropertiesLoader("conf/redisSentinel.properties");
+        RedisUtil.isAlone=Boolean.parseBoolean(redis.getProperty("redis.isAlone"));
+        RedisUtil.isSentinel=Boolean.parseBoolean(redisSentinel.getProperty("isSentinel"));
+    }
 
 
     private static Jedis getJedis()  {
         Jedis jedis = null;
         try {
-            jedis = sentinelPool.getResource();
+            if(isAlone){
+                jedis = jedisPool.getResource();
+            }
+            if(isSentinel){
+                jedis = sentinelPool.getResource();
+            }
             return  jedis;
         } catch (JedisConnectionException e) {
             log.error("获取Redis 异常", e);

@@ -1,9 +1,9 @@
-package com.hxy.base.tlds.form.select;
+package com.hxy.sys.tlds.form.select;
 
-import com.hxy.base.cache.CodeCache;
 import com.hxy.base.common.Constant;
 import com.hxy.base.utils.JsonUtil;
 import com.hxy.base.utils.StringUtils;
+import com.hxy.sentinelRedis.RedisUtil;
 import org.springframework.util.LinkedCaseInsensitiveMap;
 
 import javax.servlet.jsp.JspException;
@@ -102,7 +102,8 @@ public class SelectTag extends SimpleTagSupport {
     				childs= JsonUtil.getList(data, LinkedCaseInsensitiveMap.class);
     			}else{
                     //从缓存中获取全部字典
-                    Map<String,Map<String,Object>> allCodeMap= CodeCache.get(Constant.CODE_CACHE);
+//                    Map<String,Map<String,Object>> allCodeMap= CodeCache.get(Constant.CODE_CACHE);
+					Map<String,Map<String,Object>> allCodeMap= (Map<String, Map<String, Object>>) RedisUtil.getObject(Constant.CODE_CACHE);
                     //获取mark=nameKey的字典
                     Map<String,Object> objmap = allCodeMap.get(nameKey);
                     childs=(List<Map<String, Object>>) objmap.get("childList");

@@ -24,6 +24,11 @@
             <version>${hxyFrame.version}</version>
         </dependency>
         <dependency>
+            <groupId>hxy.hxyFrame</groupId>
+            <artifactId>frame-redis</artifactId>
+            <version>${hxyFrame.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.quartz-scheduler</groupId>
             <artifactId>quartz</artifactId>
             <version>${quartz.version}</version>

@@ -59,10 +59,6 @@
 - 项目访问路径：http://localhost/frame-admin/
 
 
-**友请链接** 
-- 项目部分内容参考了人人开源项目,oschina地址:https://git.oschina.net/babaio/renren-security.git
-
-
  **捐赠**
 - 开源不易，维护更新更不容易，如果项目帮助到了你，给作者一点动力吧，项目才能更加完善强大。请捐赠时请备注捐赠信息！谢谢支持
  ![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20170829/59da2d5b80464f67a035f529b6eb0dad "图片说明")

@@ -13,6 +13,7 @@
         <module name="frame-common" />
         <module name="frame-generator" />
         <module name="frame-quartz" />
+        <module name="frame-redis" />
         <module name="frame-service" />
         <module name="frame-shrio" />
       </profile>
@@ -27,6 +28,7 @@
       <module name="frame-common" target="1.7" />
       <module name="frame-generator" target="1.7" />
       <module name="frame-quartz" target="1.7" />
+      <module name="frame-redis" target="1.7" />
       <module name="frame-service" target="1.7" />
       <module name="frame-shrio" target="1.7" />
       <module name="frame-solr" target="1.7" />

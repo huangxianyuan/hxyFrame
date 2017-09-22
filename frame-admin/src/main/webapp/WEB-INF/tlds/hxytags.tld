@@ -13,7 +13,7 @@
 	<tag>
 		<description>自定义select标签,获取缓存中的字典</description>
 		<name>select</name>
-		<tag-class>com.hxy.base.tlds.form.select.SelectTag</tag-class>
+		<tag-class>com.hxy.sys.tlds.form.select.SelectTag</tag-class>
 		<body-content>empty</body-content>
    		<attribute>
 			<name>isAddDefaltOption</name>
@@ -128,7 +128,7 @@
 	<tag>
 		<description>自定义checkbox标签,获取缓存中的字典</description>
 		<name>checkbox</name>
-		<tag-class>com.hxy.base.tlds.form.checkbox.CheckBoxTag</tag-class>
+		<tag-class>com.hxy.sys.tlds.form.checkbox.CheckBoxTag</tag-class>
 		<body-content>empty</body-content>
 		<attribute>
 			<name>initCheckKey</name>

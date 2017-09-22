@@ -1,4 +1,4 @@
-package com.hxy.redis;
+package com.hxy.sentinelRedis;
 
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
 import redis.clients.jedis.JedisSentinelPool;

@@ -1,4 +1,4 @@
-package com.hxy.redis;
+package com.hxy.sentinelRedis;
 
 import org.apache.log4j.Logger;
 
@@ -20,7 +20,7 @@ public final class SetSentinel {
         Properties properties = new Properties();
         log.info("-----开始加载redis配置文件-----");
         try {
-            properties.load(SetSentinel.class.getClassLoader().getResourceAsStream("conf/redis.properties"));
+            properties.load(SetSentinel.class.getClassLoader().getResourceAsStream("conf/redisSentinel.properties"));
             String nodesString = properties.getProperty("nodes");
             for (String node :
                     nodesString.split(",")) {

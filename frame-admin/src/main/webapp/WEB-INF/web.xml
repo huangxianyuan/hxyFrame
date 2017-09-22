@@ -8,12 +8,13 @@
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>
-      classpath*:spring-scheduler.xml
-      classpath*:spring-mybatis.xml
-      classpath*:spring-shrio.xml
-      <!--classpath*:spring-shrio-cas.xml-->
-      classpath*:spring-activiti.xml
-      <!--classpath*:spring-ActiveMQ.xml-->
+        classpath*:spring-scheduler.xml
+        classpath*:spring-mybatis.xml
+        classpath*:spring-shrio.xml
+        classpath*:spring-activiti.xml
+        classpath*:spring-redis.xml
+        classpath*:spring-sentinel_redis.xml
+        <!--classpath*:spring-ActiveMQ.xml-->
     </param-value>
   </context-param>
   <!-- 设置由Sprng载入的Log4j配置文件位置 -->

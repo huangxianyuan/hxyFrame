@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- redis属性配置 -->
+    <bean class="redis.clients.jedis.JedisPoolConfig" id="sentinelPoolConfig">
+        <property name="maxTotal" value="${max_Total}"/>
+        <property name="maxIdle" value="${max_Idle}"/>
+        <property name="minIdle" value="${min_Idle}"/>
+        <property name="testOnBorrow" value="true"/>
+        <property name="testOnReturn" value="true"/>
+        <property name="lifo" value="true"/>
+        <!--        &lt;!&ndash;逐出连接的最小空闲时间 默认1800000毫秒(30分钟&ndash;&gt;
+                <property name="minEvictableIdleTimeMillis" value="60000"/>
+                &lt;!&ndash;对象空闲多久后逐出, 当空闲时间>该值 且 空闲连接>最大空闲数 时直接逐出,不再根据MinEvictableIdleTimeMillis判断  (默认逐出策略&ndash;&gt;
+                <property name="softMinEvictableIdleTimeMillis" value="10000"/>
+                &lt;!&ndash;逐出扫描的时间间隔(毫秒) 如果为负数,则不运行逐出线程, 默认-1&ndash;&gt;
+                <property name="timeBetweenEvictionRunsMillis" value="30000"/>
+                <property name="numTestsPerEvictionRun" value="10"/>
+                &lt;!&ndash;获取连接时的最大等待毫秒数(如果设置为阻塞时BlockWhenExhausted),如果超时就抛异常, 小于零:阻塞不确定的时间,  默认-1&ndash;&gt;
+                <property name="maxWaitMillis" value="30000"/>-->
+    </bean>
+
+    <!-- redis集群配置 哨兵模式 -->
+    <bean class="com.hxy.sentinelRedis.RedisSentinelConfigurationCustom" id="sentinelConfiguration">
+        <constructor-arg index="0" value="${masterName}"/>
+    </bean>
+
+
+    <bean class="com.hxy.sentinelRedis.JedisSentinelPoolCustom" id="sentinelPool">
+        <constructor-arg index="0" value="${masterName}"/>
+        <!--此处设置节点无效，已被自定义类写-->
+        <constructor-arg index="1">
+            <set>
+                <value></value>
+            </set>
+        </constructor-arg>
+        <constructor-arg index="2" ref="sentinelPoolConfig"/>
+        <constructor-arg index="3" value="${pool.timeout}"/>
+        <constructor-arg index="4" value="${redisPassword}"/>
+    </bean>
+
+    <bean id="redisUtils" class="com.hxy.sentinelRedis.RedisUtil">
+        <property name="sentinelPool" ref="sentinelPool"/>
+    </bean>
+
+</beans>

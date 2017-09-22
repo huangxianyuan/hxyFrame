@@ -2,6 +2,7 @@ package com.hxy.shiro.realm;
 
 import com.hxy.base.common.Constant;
 import com.hxy.base.cache.UserCache;
+import com.hxy.sentinelRedis.RedisUtil;
 import com.hxy.sys.entity.MenuEntity;
 import com.hxy.sys.entity.RoleEntity;
 import com.hxy.sys.entity.UserEntity;
@@ -26,7 +27,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -97,6 +97,11 @@ public class MyRealm extends AuthorizingRealm {
         List<String> bapidList= userService.queryBaidByUserIdArray(user.getId());
         user.setBapidList(bapidList);
         user.setBaidList(baidList);
+        try {
+            RedisUtil.setObject(Constant.USER_CACHE,user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         UserCache.put(Constant.USER_CACHE,user);
         return sainfo;
     }

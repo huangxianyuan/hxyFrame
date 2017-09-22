@@ -22,6 +22,8 @@
             <list>
                 <value>classpath:conf/jdbc.properties</value>
                 <value>classpath:conf/cas.properties</value>
+                <value>classpath:conf/redisSentinel.properties</value>
+                <value>classpath:conf/redis.properties</value>
             </list>
         </property>
     </bean>

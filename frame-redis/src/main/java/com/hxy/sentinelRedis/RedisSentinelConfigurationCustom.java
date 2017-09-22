@@ -1,4 +1,4 @@
-package com.hxy.redis;
+package com.hxy.sentinelRedis;
 
 import org.springframework.data.redis.connection.RedisSentinelConfiguration;
 
