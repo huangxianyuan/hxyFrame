@@ -1,6 +1,5 @@
 package com.hxy.sentinelRedis;
 
-import com.github.jedis.lock.JedisLock;
 import com.hxy.base.utils.PropertiesLoader;
 import com.hxy.base.utils.SerializeUtil;
 import org.apache.log4j.Logger;
@@ -17,7 +16,6 @@ public class RedisUtil {
 
     private static boolean isSentinel;
 
-    private static boolean isAlone;
     private static JedisSentinelPool sentinelPool;
     private static JedisPool jedisPool;
 
@@ -39,32 +37,21 @@ public class RedisUtil {
         isSentinel = sentinel;
     }
 
-    public boolean isAlone() {
-        return isAlone;
-    }
-
-    public void setAlone(boolean alone) {
-        isAlone = alone;
-    }
-
     private static Logger log = Logger.getLogger(RedisUtil.class);
 
     static {
         PropertiesLoader redis = new PropertiesLoader("conf/redis.properties");
-        PropertiesLoader redisSentinel = new PropertiesLoader("conf/redisSentinel.properties");
-        RedisUtil.isAlone=Boolean.parseBoolean(redis.getProperty("redis.isAlone"));
-        RedisUtil.isSentinel=Boolean.parseBoolean(redisSentinel.getProperty("isSentinel"));
+        RedisUtil.isSentinel=Boolean.parseBoolean(redis.getProperty("isSentinel"));
     }
 
 
     private static Jedis getJedis()  {
         Jedis jedis = null;
         try {
-            if(isAlone){
-                jedis = jedisPool.getResource();
-            }
             if(isSentinel){
                 jedis = sentinelPool.getResource();
+            }else {
+                jedis = jedisPool.getResource();
             }
             return  jedis;
         } catch (JedisConnectionException e) {
@@ -73,71 +60,6 @@ public class RedisUtil {
         }
     }
 
-    /**
-     * 获取指定键值的锁,同时设置获取锁超时时间和锁过期时间
-     *
-     * @param lockKey 锁的键值
-     */
-    private static JedisLock getRedisLock(String lockKey) {
-        Jedis jedis = getJedis();
-        return new JedisLock(sentinelPool, jedis, lockKey, 3000, 960000);
-    }
-
-    /**
-     * 获取调用类的方法锁
-     *
-     * @return 返回一个JedisLock 对象
-     */
-    public static JedisLock getMethodLock() {
-        StackTraceElement stack = Thread.currentThread().getStackTrace()[2];
-        JedisLock lock = getRedisLock("lock_method_" + stack.getClassName() + "_" + stack.getMethodName());
-        return lock;
-    }
-
-    /**
-     * 获取调用类的类锁
-     *
-     * @return 返回一个JedisLock 对象
-     */
-    public static JedisLock getClassLock() {
-        StackTraceElement stack = Thread.currentThread().getStackTrace()[2];
-        JedisLock lock = getRedisLock("lock_class_" + stack.getClassName());
-        return lock;
-    }
-
-    /**
-     * 获取调用类的变量锁
-     *
-     * @param value 需要锁定的唯一值
-     * @return 返回一个JedisLock 对象
-     */
-    public static JedisLock getValueLock(String value) {
-        StackTraceElement stack = Thread.currentThread().getStackTrace()[2];
-        JedisLock lock = getRedisLock("lock_value_" + stack.getClassName() + "_" + stack.getMethodName() + "_" + value);
-        return lock;
-    }
-
-    /**
-     * 获取对象锁
-     *
-     * @param obj 需要加锁的对象
-     * @return 返回一个JedisLock 对象
-     */
-    public static JedisLock getObjLock(Object obj) {
-        StackTraceElement stack = Thread.currentThread().getStackTrace()[2];
-        JedisLock lock = getRedisLock("lock_object_" + stack.getClassName() + "_" + stack.getMethodName() + "_" + obj.getClass().getName());
-        return lock;
-    }
-
-    /**
-     * 单扣锁
-     *
-     * @param loanContractNo 合同编号
-     * @return 返回一个JedisLock 对象
-     */
-    public static JedisLock getSinglePaymentLock(String loanContractNo) {
-        return getRedisLock("lock_singlePayment_" + loanContractNo);
-    }
 
     /**
      * 保存对象到Redis 对象不过期
@@ -290,6 +212,30 @@ public class RedisUtil {
         }
         return result;
     }
+
+    /**
+     * 获取缓存中所有的数据
+     *
+     * @return 返回缓存中所有数据
+     */
+    public static boolean del(String key) throws Exception {
+        Long num;
+        Jedis jedis = null;
+        Boolean result = false;
+        try {
+            jedis = getJedis();
+            num = jedis.del(key);
+            if (num.equals(1L)) {
+                result = true;
+            }
+        } catch (Exception e) {
+            throw  e;
+        } finally {
+            releaseRedis(jedis);
+        }
+        return result;
+    }
+
 
     /**
      * 用户 登陆并踢出已登陆的用户
