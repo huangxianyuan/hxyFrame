@@ -2,25 +2,15 @@ package com.hxy.shiro.redisSession;
 
 
 import com.hxy.sentinelRedis.RedisUtil;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.cache.Cache;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.UnknownSessionException;
 import org.apache.shiro.session.mgt.ValidatingSession;
 import org.apache.shiro.session.mgt.eis.CachingSessionDAO;
 import org.apache.shiro.subject.support.DefaultSubjectContext;
-import org.apache.shiro.util.CollectionUtils;
-import org.apache.zookeeper.server.util.SerializeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.Transaction;
 
 import java.io.Serializable;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
 
 /**
  * 针对自定义的ShiroSession的Redis CRUD操作，通过isChanged标识符，确定是否需要调用Update方法
@@ -160,7 +150,6 @@ public class CachingShiroSessionDao extends CachingSessionDAO {
      */
     @Override
     protected void doDelete(Session session) {
-        Jedis jedis = null;
         try {
             RedisUtil.del(prefix + session.getId());
             logger.debug("Session {} 被删除", session.getId());

@@ -2,6 +2,7 @@ package com.hxy.shiro.redisSession;
 
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.SessionListener;
+import org.apache.shiro.session.SessionListenerAdapter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @auther hxy
  * @date 2017-09-25 11:45:11
  */
-public class ShiroSessionListener implements SessionListener {
+public class ShiroSessionListener extends SessionListenerAdapter {
 
     private static final Logger logger = LoggerFactory.getLogger(ShiroSessionListener.class);
 

@@ -83,10 +83,12 @@
         <property name="sessionIdCookie" ref="sessionIdCookie"/>
         <property name="sessionListeners">
             <list>
-                <bean class="com.hxy.shiro.redisSession.ShiroSessionListener"/>
+                <ref bean="shiroSessionListener"/>
             </list>
         </property>
     </bean>
+
+    <bean id="shiroSessionListener" class="com.hxy.shiro.redisSession.ShiroSessionListener"/>
 
     <bean id="rememberAuthFilter" class="com.hxy.shiro.filter.RememberAuthenticationFilter"/>
 
