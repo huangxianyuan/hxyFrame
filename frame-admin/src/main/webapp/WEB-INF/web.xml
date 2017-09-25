@@ -10,7 +10,8 @@
     <param-value>
         classpath*:spring-scheduler.xml
         classpath*:spring-mybatis.xml
-        classpath*:spring-shrio.xml
+        <!--classpath*:spring-shrio.xml-->
+        classpath*:spring-shrio-redis.xml
         classpath*:spring-activiti.xml
         classpath*:spring-redis.xml
         classpath*:spring-sentinel_redis.xml

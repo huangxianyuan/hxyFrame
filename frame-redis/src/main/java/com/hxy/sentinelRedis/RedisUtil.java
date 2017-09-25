@@ -214,30 +214,6 @@ public class RedisUtil {
     }
 
     /**
-     * 获取缓存中所有的数据
-     *
-     * @return 返回缓存中所有数据
-     */
-    public static boolean del(String key) throws Exception {
-        Long num;
-        Jedis jedis = null;
-        Boolean result = false;
-        try {
-            jedis = getJedis();
-            num = jedis.del(key);
-            if (num.equals(1L)) {
-                result = true;
-            }
-        } catch (Exception e) {
-            throw  e;
-        } finally {
-            releaseRedis(jedis);
-        }
-        return result;
-    }
-
-
-    /**
      * 用户 登陆并踢出已登陆的用户
      * @param user  用户
      * @param session session

@@ -3,6 +3,8 @@ package com.hxy.shiro.realm;
 import com.hxy.base.common.Constant;
 import com.hxy.base.cache.UserCache;
 import com.hxy.sentinelRedis.RedisUtil;
+import com.hxy.shiro.redisSession.CachingShiroSessionDao;
+import com.hxy.shiro.redisSession.ShiroSession;
 import com.hxy.sys.entity.MenuEntity;
 import com.hxy.sys.entity.RoleEntity;
 import com.hxy.sys.entity.UserEntity;
@@ -25,6 +27,7 @@ import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -43,6 +46,8 @@ public class MyRealm extends AuthorizingRealm {
     private RoleService roleService;
     @Autowired
     private MenuService menuService;
+    @Autowired
+    private CachingShiroSessionDao sessionDao;
 
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
@@ -89,20 +94,22 @@ public class MyRealm extends AuthorizingRealm {
         }
         SimpleAuthenticationInfo sainfo=new SimpleAuthenticationInfo(user,passWord,getName());
         Subject subject= SecurityUtils.getSubject();
-        Session session = subject.getSession();
-        session.setAttribute("user",user);
+        Serializable sessionId = subject.getSession().getId();
+        ShiroSession session = (ShiroSession) sessionDao.doReadSessionWithoutExpire(sessionId);
         //用户对应的机构集合
         List<String> baidList = userService.queryBapidByUserIdArray(user.getId());
         //用户对应的部门集合
         List<String> bapidList= userService.queryBaidByUserIdArray(user.getId());
         user.setBapidList(bapidList);
         user.setBaidList(baidList);
-        try {
+        session.setAttribute("user",user);
+        sessionDao.update(session);
+        /*try {
             RedisUtil.setObject(Constant.USER_CACHE,user);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        UserCache.put(Constant.USER_CACHE,user);
+        UserCache.put(Constant.USER_CACHE,user);*/
         return sainfo;
     }
 

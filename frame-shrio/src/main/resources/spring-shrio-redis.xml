@@ -6,7 +6,7 @@
     <!-- 继承自AuthorizingRealm的自定义Realm,即指定Shiro验证用户登录的类为自定义的MyRealm.java -->
     <bean id="myRealm" class="com.hxy.shiro.realm.MyRealm"/>
 
-    <!-- Spring提供的基于的Ehcache实现的缓存管理器 -->
+    <!-- 用户授权信息Cache, 采用EhCache，本地缓存最长时间应比redis中央缓存时间短一些，以确保Session中doReadSession方法调用时更新中央缓存过期时间 -->
     <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
         <property name="configLocation" value="classpath:ehcache.xml"/>
     </bean>
@@ -56,32 +56,36 @@
         -->
     </bean>
 
-    <!-- 会话ID生成器 -->
-    <bean id="sessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>
-
-    <!-- 会话DAO -->
-    <bean id="sessionDAO"
-          class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO">
-        <property name="activeSessionsCacheName" value="shiro-activeSessionCache"/>
-        <property name="sessionIdGenerator" ref="sessionIdGenerator"/>
+    <!-- 自定义缓存Dao，添加标识位，减少doUpdate方法中Redis的连接次数来减轻redis网络压力 -->
+    <bean id="sessionDao" class="com.hxy.shiro.redisSession.CachingShiroSessionDao">
+        <!--sessionId前缀，防重名-->
+        <property name="prefix" value="ShiroSession_"/>
+        <!-- 注意中央缓存有效时间要比本地缓存有效时间长-->
+        <property name="seconds" value="180"/>
     </bean>
 
-    <!-- 会话验证调度器 -->
-   <!-- <bean id="sessionValidationScheduler" class="com.hxy.shiro.quartzSession.QuartzSessionValidationScheduler">
-        <property name="sessionValidationInterval" value="1800000"/>
-        <property name="sessionManager" ref="sessionManager"/>
-    </bean>-->
+    <!-- 自定义Session工厂方法 返回会标识是否修改主要字段的自定义Session-->
+    <bean id="sessionFactory" class="com.hxy.shiro.redisSession.ShiroSessionFactory"/>
 
     <!-- 会话管理器使用用于web 环境的DefaultWebSessionManager -->
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
         <!-- 设置全局会话超时时间，默认30分钟(1800000) -->
         <property name="globalSessionTimeout" value="1800000"/>
-        <property name="deleteInvalidSessions" value="true"/>
-        <property name="sessionValidationSchedulerEnabled" value="true"/>
-        <!--<property name="sessionValidationScheduler" ref="sessionValidationScheduler"/>-->
-        <property name="sessionDAO" ref="sessionDAO"/>
+        <!-- 是否在会话过期后会调用SessionDAO的delete方法删除会话 默认true-->
+        <property name="deleteInvalidSessions" value="false"/>
+        <!-- 是否开启会话验证器任务 默认true -->
+        <property name="sessionValidationSchedulerEnabled" value="false"/>
+        <!-- 会话验证器调度时间 -->
+        <property name="sessionValidationInterval" value="1800000"/>
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <property name="sessionDAO" ref="sessionDao"/>
         <property name="sessionIdCookieEnabled" value="true"/>
         <property name="sessionIdCookie" ref="sessionIdCookie"/>
+        <property name="sessionListeners">
+            <list>
+                <bean class="com.hxy.shiro.redisSession.ShiroSessionListener"/>
+            </list>
+        </property>
     </bean>
 
     <bean id="rememberAuthFilter" class="com.hxy.shiro.filter.RememberAuthenticationFilter"/>
@@ -122,7 +126,6 @@
         </property>
     </bean>
 
-
     <!-- 保证实现了Shiro内部lifecycle函数的bean执行 -->
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
 
@@ -133,24 +136,6 @@
     </bean>
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager"/>
-    </bean>
-
-    <bean id="sessionListener" class="com.hxy.redis.redissession.listener.ShiroSessionListener" >
-        <property name="sessionDao" ref="cachingShiroSessionDao" />
-        <property name="shiroSessionService" ref="shiroSessionService" />
-    </bean>
-
-    <bean id="cachingShiroSessionDao" class="com.hxy.redis.redissession.session.CachingShiroSessionDao">
-        <property name="sessionRepository" ref="shiroSessionRepository"/>
-    </bean>
-
-    <bean id="shiroSessionRepository" class="com.hxy.redis.redissession.service.impl.ShiroSessionRepositoryImpl">
-        <property name="redisTemplate" ref="redisTemplate"/>
-    </bean>
-
-    <bean id="shiroSessionService" class="com.hxy.redis.redissession.service.ShiroSessionService">
-        <property name="redisTemplate" ref="redisTemplate"/>
-        <property name="sessionDao" ref="cachingShiroSessionDao"/>
     </bean>
 
 
