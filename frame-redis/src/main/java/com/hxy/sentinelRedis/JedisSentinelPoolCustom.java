@@ -14,7 +14,7 @@ public class JedisSentinelPoolCustom extends JedisSentinelPool {
         super(masterName, SetSentinel.getSentinelNodes(), poolConfig, password);
     }
 
-    public JedisSentinelPoolCustom(String masterName, Set<String> sentinels, GenericObjectPoolConfig poolConfig, int timeout, String password) {
-        super(masterName, SetSentinel.getSentinelNodes(), poolConfig, timeout, password);
+    public JedisSentinelPoolCustom(String masterName, Set<String> sentinels, GenericObjectPoolConfig poolConfig, int timeout, String password,int database) {
+        super(masterName, SetSentinel.getSentinelNodes(), poolConfig, timeout, password,database);
     }
 }

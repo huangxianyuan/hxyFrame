@@ -92,7 +92,6 @@ public class RoleController extends BaseController{
 	 * 角色列表
 	 */
 	@RequestMapping("/select")
-	@RequiresPermissions("sys:role:select")
 	public Result select(){
 		Map<String, Object> map = new HashMap<>();
 

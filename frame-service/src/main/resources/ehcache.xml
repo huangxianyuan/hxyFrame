@@ -9,17 +9,20 @@
 	monitoring="autodetect" dynamicConfig="true">
     <diskStore path="user.dir/cache"/>
     <!--
-    timeToIdleSeconds 当缓存闲置n秒后销毁 为了保障会调用ShiroSessionDao的doReadSession方法，所以不配置该属性
-    timeToLiveSeconds 当缓存存活n秒后销毁 必须比Redis中央缓存中过期时间短
+    timeToLiveSeconds 当缓存闲置n秒后销毁 为了保障会调用ShiroSessionDao的doReadSession方法，所以不配置该属性
+    timeToIdleSeconds 当缓存存活n秒后销毁 必须比Redis中央缓存中过期时间短
     -->
     <defaultCache
-           maxEntriesLocalHeap="1000"  
-           eternal="false"
-           timeToLiveSeconds="60"
-           overflowToDisk="false" memoryStoreEvictionPolicy="LRU"/>
+            maxElementsInMemory="10000"
+            eternal="false"
+            timeToIdleSeconds="600"
+            overflowToDisk="false"
+            diskPersistent="false"
+            diskExpiryThreadIntervalSeconds="10"
+    />
 
 	
-	<!-- 用户缓存 -->
+	<!--&lt;!&ndash; 用户缓存 &ndash;&gt;
 	<cache name="userCache" maxEntriesLocalHeap="1000" eternal="false" 
            timeToLiveSeconds="3600"
            timeToIdleSeconds="3600"
@@ -28,15 +31,15 @@
            memoryStoreEvictionPolicy="LRU"
            />
 
-    <!-- 字典缓存 -->
+    &lt;!&ndash; 字典缓存 &ndash;&gt;
     <cache name="codeCache" maxEntriesLocalHeap="1000" eternal="true"
            overflowToDisk="true"
            diskPersistent="true"
            memoryStoreEvictionPolicy="LRU"
-    />
+    />-->
 
 
-    <cache name="authorizationCache"
+    <!--<cache name="authorizationCache"
            maxElementsInMemory="2000"
            eternal="false"
            timeToIdleSeconds="1800"
@@ -60,7 +63,7 @@
            timeToIdleSeconds="1800"
            timeToLiveSeconds="0"
            overflowToDisk="false">
-    </cache>
+    </cache>-->
 
 </ehcache>
 

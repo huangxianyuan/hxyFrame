@@ -90,7 +90,7 @@ var vm = new Vue({
                 var url="../sys/code/delete";
                 var childs=nodes[0].id;
                 childs=getAllNodes(nodes[0],childs);
-                $.post(url,childs,function (r) {
+                $.post(url,JSON.stringify(childs),function (r) {
                     if(r.code == 0){
                         toast(r.msg,function(){
                             ztree.removeNode(nodes[0]);

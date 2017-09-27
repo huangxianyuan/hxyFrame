@@ -32,24 +32,6 @@ public class MenuController extends BaseController{
 	private MenuService menuService;
 
 	/**
-	 * 列表
-	 */
-	@RequestMapping("/list")
-	@RequiresPermissions("sys:menu:list")
-	public Result list(@RequestParam Map<String, Object> params){
-		//查询列表数据
-        Query query = new Query(params);
-
-		List<MenuEntity> menuList = menuService.queryList(query);
-		int total = menuService.queryTotal(query);
-		
-		PageUtils pageUtil = new PageUtils(menuList, total, query.getLimit(), query.getPage());
-		
-		return Result.ok().put("page", pageUtil);
-	}
-	
-	
-	/**
 	 * 信息
 	 */
 	@RequestMapping("/info/{id}")
@@ -129,6 +111,7 @@ public class MenuController extends BaseController{
      * @return
      */
 	@RequestMapping(value = "/selectMenu")
+	@RequiresPermissions("sys:menu:list")
 	public Result selectMenu(){
         List<MenuEntity> menuEntities = menuService.queryNotButtonnList();
         return  Result.ok().put("menuEntities",menuEntities);

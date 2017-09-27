@@ -21,7 +21,7 @@
         <constructor-arg name="database" value="${redis.db.index}" type="int" />
     </bean>
 
-    <bean id="redisUtils" class="com.hxy.sentinelRedis.RedisUtil">
+    <bean id="redisUtils" class="com.hxy.utils.RedisUtil">
         <property name="jedisPool" ref="jedisPool"/>
     </bean>
 

@@ -1,6 +1,5 @@
 package com.hxy.utils;
 
-import com.hxy.base.cache.CodeCache;
 import com.hxy.base.common.Constant;
 import com.hxy.base.utils.SpringContextUtils;
 import com.hxy.sys.entity.CodeEntity;
@@ -26,8 +25,14 @@ public class CodeUtils {
      */
     public static String getCodeName(String preName,String value){
         String name ="";
-        Map<String,Map<String,Object>> allMap = CodeCache.get(Constant.CODE_CACHE);
-        //首先从ehcache中取，没有再去数据库查询
+//        Map<String,Map<String,Object>> allMap = CodeCache.get(Constant.CODE_CACHE);
+        Map<String,Map<String,Object>> allMap = null;
+        try {
+            allMap = (Map<String, Map<String, Object>>) RedisUtil.getObject(Constant.CODE_CACHE);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //首先从redis中取，没有再去数据库查询
         if(allMap != null || allMap.size()>0){
             Map<String,Object> markMap = allMap.get(preName+"_"+value);
             if(markMap !=null && markMap.size()>0){

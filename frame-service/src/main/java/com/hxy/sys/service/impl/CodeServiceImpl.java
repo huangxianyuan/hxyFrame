@@ -1,30 +1,30 @@
 package com.hxy.sys.service.impl;
 
-import com.hxy.base.cache.CodeCache;
 import com.hxy.base.common.Constant;
 import com.hxy.base.exception.MyException;
 import com.hxy.base.utils.StringUtils;
 import com.hxy.base.utils.Utils;
+import com.hxy.sys.dao.CodeDao;
+import com.hxy.sys.entity.CodeEntity;
 import com.hxy.sys.entity.UserEntity;
+import com.hxy.sys.service.CodeService;
+import com.hxy.utils.RedisUtil;
 import com.hxy.utils.UserUtils;
-import org.aspectj.apache.bcel.classfile.Code;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-
-import com.hxy.sys.dao.CodeDao;
-import com.hxy.sys.entity.CodeEntity;
-import com.hxy.sys.service.CodeService;
-import org.springframework.transaction.annotation.Transactional;
-
-import javax.persistence.Id;
 
 import static com.hxy.utils.UserUtils.getCurrentUser;
 
 
 @Service("codeService")
 public class CodeServiceImpl implements CodeService {
+
+    private static final Logger logger = LoggerFactory.getLogger(CodeServiceImpl.class);
+
 	@Autowired
 	private CodeDao codeDao;
 	
@@ -52,7 +52,13 @@ public class CodeServiceImpl implements CodeService {
 	    code.setCreateId(currentUser.getId());
 	    code.setId(Utils.uuid());
 	    codeDao.save(code);
-        updateCodeCahce(code,true);
+        try {
+            updateCodeCahce(code,true);
+            logger.info("新增数据字典:{} 缓存成功!",code.getName());
+        } catch (Exception e) {
+            logger.info("新增数据字典:{} 缓存失败!",code.getName());
+            e.printStackTrace();
+        }
         return code.getId();
 	}
 	
@@ -61,7 +67,13 @@ public class CodeServiceImpl implements CodeService {
 	    code.setUpdateTime(new Date());
 	    code.setUpdateId(UserUtils.getCurrentUserId());
 		codeDao.update(code);
-        updateCodeCahce(code,false);
+        try {
+            updateCodeCahce(code,true);
+            logger.info("数据字典:{} 缓存成功!",code.getName());
+        } catch (Exception e) {
+            logger.warn("数据字典:{} 缓存失败!",code.getName());
+            e.printStackTrace();
+        }
 	}
 
     /**
@@ -69,10 +81,11 @@ public class CodeServiceImpl implements CodeService {
      * @param code 字典实体
      * @param isSave 是否是保存
      */
-	public  void updateCodeCahce(CodeEntity code,Boolean isSave){
+	public  void updateCodeCahce(CodeEntity code,Boolean isSave) throws Exception {
         //更新缓存
         CodeEntity parentCode = codeDao.queryObject(code.getParentId());
-        Map<String,Map<String,Object>> allMap = CodeCache.get(Constant.CODE_CACHE);
+//        Map<String,Map<String,Object>> allMap = CodeCache.get(Constant.CODE_CACHE);
+        Map<String,Map<String,Object>> allMap = (Map<String, Map<String, Object>>) RedisUtil.getObject(Constant.CODE_CACHE);
         Map<String,Object> parentMap = allMap.get(parentCode.getMark());
         //第一步取出父字典，添加新子字典
         List<Map<String, Object>> childList=(List<Map<String, Object>>) parentMap.get("childList");
@@ -102,7 +115,8 @@ public class CodeServiceImpl implements CodeService {
         //更新父类字典
         parentMap.put("childList",childList);
         allMap.put(parentCode.getMark(),parentMap);
-        CodeCache.put(Constant.CODE_CACHE,allMap);
+//        CodeCache.put(Constant.CODE_CACHE,allMap);
+        RedisUtil.setObject(Constant.CODE_CACHE,allMap);
     }
 
 
@@ -113,7 +127,15 @@ public class CodeServiceImpl implements CodeService {
 	
 	@Override
 	public void deleteBatch(String[] ids){
-        Map<String,Map<String,Object>> allMap = CodeCache.get(Constant.CODE_CACHE);
+//        Map<String,Map<String,Object>> allMap = CodeCache.get(Constant.CODE_CACHE);
+        Map<String,Map<String,Object>> allMap = null;
+        try {
+            allMap = (Map<String, Map<String, Object>>) RedisUtil.getObject(Constant.CODE_CACHE);
+            logger.info("读取数据字典缓存成功!");
+        } catch (Exception e) {
+            logger.warn("读取数据字典缓存失败!");
+            e.printStackTrace();
+        }
         for (String id:ids){
             //清除该字典的缓存
             CodeEntity code = codeDao.queryObject(id);
@@ -133,7 +155,14 @@ public class CodeServiceImpl implements CodeService {
                 allMap.put(parentCode.getMark(),parentMap);
             }
         }
-        CodeCache.put(Constant.CODE_CACHE,allMap);
+//        CodeCache.put(Constant.CODE_CACHE,allMap);
+        try {
+            RedisUtil.setObject(Constant.CODE_CACHE,allMap);
+            logger.info("更新数据字典缓存成功!");
+        } catch (Exception e) {
+            logger.warn("更新数据字典缓存失败!");
+            e.printStackTrace();
+        }
         codeDao.deleteBatch(ids);
 	}
 

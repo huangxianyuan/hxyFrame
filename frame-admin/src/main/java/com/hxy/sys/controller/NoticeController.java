@@ -33,7 +33,7 @@ public class NoticeController extends BaseController{
 	 * 我的通知列表
 	 */
 	@RequestMapping("/myList")
-	@RequiresPermissions("sys:notice:myList")
+	@RequiresPermissions("sys:notice:all")
 	public String list(Model model, NoticeEntity noticeEntity, HttpServletRequest request){
 		int pageNum = Utils.parseInt(request.getParameter("pageNum"), 1);
 		Page<NoticeEntity> page = noticeService.findMyNoticePage(noticeEntity, pageNum);
@@ -47,7 +47,7 @@ public class NoticeController extends BaseController{
 	 * 查阅
 	 */
 	@RequestMapping("/showNotice")
-	@RequiresPermissions("sys:notice:showNotice")
+	@RequiresPermissions("sys:notice:all")
 	@ResponseBody
 	@SysLog("查阅通知")
 	public Result showNotice(String id){
@@ -59,7 +59,7 @@ public class NoticeController extends BaseController{
 	 * 保存
 	 */
 	@RequestMapping("/save")
-	@RequiresPermissions("sys:notice:save")
+	@RequiresPermissions("sys:notice:all")
 	@SysLog("保存通知")
 	public Result save(@RequestBody NoticeEntity notice){
 		noticeService.save(notice);
@@ -71,7 +71,7 @@ public class NoticeController extends BaseController{
 	 * 修改
 	 */
 	@RequestMapping("/update")
-	@RequiresPermissions("sys:notice:update")
+	@RequiresPermissions("sys:notice:all")
 	@SysLog("修改通知")
 	public Result update(@RequestBody NoticeEntity notice){
 		noticeService.update(notice);
@@ -83,7 +83,7 @@ public class NoticeController extends BaseController{
 	 * 删除
 	 */
 	@RequestMapping("/delete")
-	@RequiresPermissions("sys:notice:delete")
+	@RequiresPermissions("sys:notice:all")
 	@SysLog("删除通知")
 	public Result delete(@RequestBody String[] ids){
 		noticeService.deleteBatch(ids);

@@ -24,7 +24,7 @@
                 <ul id="busTree" class="ztree"></ul>
             </div>
         </div>
-        <div class="col-md-5 panel panel-default" id="treeInfo" style="display: none;margin-left: 100px">
+        <div class="col-md-5 col-sm-8 panel panel-default" id="treeInfo" style="display: none;margin-left: 100px">
             <div style="font-size: 20px;margin-bottom: 10px">
                 <i class="layui-icon" style="font-size: 20px; color: #009688;">&#xe63c;</i> 业务信息
             </div>

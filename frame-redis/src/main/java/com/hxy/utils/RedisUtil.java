@@ -1,4 +1,4 @@
-package com.hxy.sentinelRedis;
+package com.hxy.utils;
 
 import com.hxy.base.utils.PropertiesLoader;
 import com.hxy.base.utils.SerializeUtil;
@@ -17,6 +17,7 @@ public class RedisUtil {
     private static boolean isSentinel;
 
     private static JedisSentinelPool sentinelPool;
+    
     private static JedisPool jedisPool;
 
     @Resource(name = "sentinelPool")

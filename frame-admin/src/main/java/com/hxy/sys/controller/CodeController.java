@@ -28,24 +28,6 @@ public class CodeController extends BaseController{
 	private CodeService codeService;
 	
 	/**
-	 * 列表
-	 */
-	@RequestMapping("/list")
-	@RequiresPermissions("sys:code:list")
-	@SysLog("查看字典")
-	public Result list(@RequestParam Map<String, Object> params){
-		//查询列表数据
-        Query query = new Query(params);
-
-		List<CodeEntity> codeList = codeService.queryList(query);
-		int total = codeService.queryTotal(query);
-		
-		PageUtils pageUtil = new PageUtils(codeList, total, query.getLimit(), query.getPage());
-		
-		return Result.ok().put("page", pageUtil);
-	}
-
-	/**
 	 * 查询码值树
 	 * @return
 	 */

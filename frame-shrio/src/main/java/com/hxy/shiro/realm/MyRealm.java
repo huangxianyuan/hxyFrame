@@ -1,16 +1,14 @@
 package com.hxy.shiro.realm;
 
 import com.hxy.base.common.Constant;
-import com.hxy.base.cache.UserCache;
-import com.hxy.sentinelRedis.RedisUtil;
 import com.hxy.shiro.redisSession.CachingShiroSessionDao;
-import com.hxy.shiro.redisSession.ShiroSession;
 import com.hxy.sys.entity.MenuEntity;
 import com.hxy.sys.entity.RoleEntity;
 import com.hxy.sys.entity.UserEntity;
 import com.hxy.sys.service.MenuService;
 import com.hxy.sys.service.RoleService;
 import com.hxy.sys.service.UserService;
+import com.hxy.utils.RedisUtil;
 import org.apache.commons.collections.map.HashedMap;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
@@ -21,10 +19,10 @@ import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
-import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
@@ -40,14 +38,14 @@ import java.util.Set;
  */
 
 public class MyRealm extends AuthorizingRealm {
+
+    private static final Logger logger = LoggerFactory.getLogger(MyRealm.class);
     @Autowired
     private UserService userService;
     @Autowired
     private RoleService roleService;
     @Autowired
     private MenuService menuService;
-    @Autowired
-    private CachingShiroSessionDao sessionDao;
 
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
@@ -92,34 +90,21 @@ public class MyRealm extends AuthorizingRealm {
         if(Constant.ABLE_STATUS.NO.getValue().equals(user.getStatus())){
             throw new AuthenticationException("帐号被禁用,请联系管理员!");
         }
-        SimpleAuthenticationInfo sainfo=new SimpleAuthenticationInfo(user,passWord,getName());
-        Subject subject= SecurityUtils.getSubject();
-        Serializable sessionId = subject.getSession().getId();
-        ShiroSession session = (ShiroSession) sessionDao.doReadSessionWithoutExpire(sessionId);
         //用户对应的机构集合
         List<String> baidList = userService.queryBapidByUserIdArray(user.getId());
         //用户对应的部门集合
         List<String> bapidList= userService.queryBaidByUserIdArray(user.getId());
         user.setBapidList(bapidList);
         user.setBaidList(baidList);
-        session.setAttribute("user",user);
-        sessionDao.update(session);
+        SimpleAuthenticationInfo sainfo=new SimpleAuthenticationInfo(user,passWord,getName());
         /*try {
             RedisUtil.setObject(Constant.USER_CACHE,user);
+            logger.info("登陆缓存用户【{}】信息成功!",user.getUserName());
         } catch (Exception e) {
+            logger.info("登陆缓存用户【{}】信息失败!",user.getUserName());
             e.printStackTrace();
-        }
-        UserCache.put(Constant.USER_CACHE,user);*/
+        }*/
         return sainfo;
     }
 
-    /**
-     * 移除授权信息
-     * @param username
-     */
-    public void removeUserAuthorizationInfoCache(String username) {
-        SimplePrincipalCollection pc = new SimplePrincipalCollection();
-        pc.add(username, super.getName());
-        super.clearCachedAuthorizationInfo(pc);
-    }
 }

@@ -11,6 +11,7 @@ import com.hxy.base.utils.JsonUtil;
 import com.hxy.base.utils.Result;
 import com.hxy.base.validator.ValidatorUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,6 +40,7 @@ public class ExtendActBusinessController {
     ExtendActBusinessService businessService;
 
     @RequestMapping("busTree")
+    @RequiresPermissions("act:bus:all")
     public String busTree(Model model , ExtendActBusinessEntity businessEntity){
         List<ExtendActBusinessEntity> businessEntityList = businessService.queryListByBean(businessEntity);
         model.addAttribute("busTree", JsonUtil.getJsonByObj(businessEntityList));
@@ -53,6 +55,7 @@ public class ExtendActBusinessController {
      */
     @RequestMapping(value = "edit",method = RequestMethod.POST)
     @ResponseBody
+    @RequiresPermissions("act:bus:all")
     public Result edit(Model model , ExtendActBusinessEntity businessEntity){
         ValidatorUtils.validateEntity(businessEntity);
         boolean isSave=false;
@@ -83,6 +86,7 @@ public class ExtendActBusinessController {
      */
     @RequestMapping(value = "info",method = RequestMethod.POST)
     @ResponseBody
+    @RequiresPermissions("act:bus:all")
     public Result info(String id, HttpServletRequest request){
         ExtendActBusinessEntity businessEntity = businessService.queryObject(id);
         return Result.ok().put("bus",businessEntity);
@@ -95,6 +99,7 @@ public class ExtendActBusinessController {
      */
     @RequestMapping(value = "del",method = RequestMethod.POST)
     @ResponseBody
+    @RequiresPermissions("act:bus:all")
     public Result del(String id, HttpServletRequest request){
         int count = businessService.delete(id);
         if(count>0){

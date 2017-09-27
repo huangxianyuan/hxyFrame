@@ -21,10 +21,6 @@ public class Constant {
      */
     public static int pageSize=10;
 
-    /**
-     * redis session key 前缀
-     * */
-    public static final String REDIS_SHIRO_SESSION = "shiro-session:";
 
     /**
      * 用户缓存

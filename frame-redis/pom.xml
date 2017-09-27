@@ -19,11 +19,6 @@
         </dependency>
         <dependency>
             <groupId>hxy.hxyFrame</groupId>
-            <artifactId>frame-service</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>hxy.hxyFrame</groupId>
             <artifactId>frame-common</artifactId>
             <version>${hxyFrame.version}</version>
         </dependency>

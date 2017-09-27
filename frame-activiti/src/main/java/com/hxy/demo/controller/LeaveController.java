@@ -6,6 +6,7 @@ import com.hxy.base.utils.StringUtils;
 import com.hxy.base.utils.Utils;
 import com.hxy.demo.entity.LeaveEntity;
 import com.hxy.demo.service.LeaveService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,6 +37,7 @@ public class LeaveController {
      * @return
      */
     @RequestMapping("list")
+    @RequiresPermissions("act:model:all")
     public String list(Model model , LeaveEntity leaveEntity,HttpServletRequest request){
         int pageNum = Utils.parseInt(request.getParameter("pageNum"), 1);
         Page<LeaveEntity> page = leaveService.findPage(leaveEntity, pageNum);
@@ -52,6 +54,7 @@ public class LeaveController {
      * @return
      */
     @RequestMapping("info")
+    @RequiresPermissions("act:model:all")
     public String info(Model model , String id,HttpServletRequest request){
         if(!StringUtils.isEmpty(id)){
             LeaveEntity leaveEntity = leaveService.queryObject(id);
@@ -66,6 +69,7 @@ public class LeaveController {
      * @return
      */
     @RequestMapping(value = "edit",method = RequestMethod.POST)
+    @RequiresPermissions("act:model:all")
     @ResponseBody
     public Result edit(LeaveEntity leaveEntity){
         if(StringUtils.isEmpty(leaveEntity.getId())){
@@ -83,6 +87,7 @@ public class LeaveController {
      * @return
      */
     @RequestMapping(value = "delete",method = RequestMethod.POST)
+    @RequiresPermissions("act:model:all")
     @ResponseBody
     public Result edit(String id){
        if(leaveService.delete(id)<1){

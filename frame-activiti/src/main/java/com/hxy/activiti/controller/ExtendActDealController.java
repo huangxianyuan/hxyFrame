@@ -19,6 +19,7 @@ import com.hxy.sys.service.UserService;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.task.Task;
 import org.apache.log4j.Logger;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -213,6 +214,7 @@ public class ExtendActDealController {
      * @return
      */
     @RequestMapping("myUpcoming")
+    @RequiresPermissions("act:model:myUpcoming")
     public String myUpcoming(Model model,String code,String busId, HttpServletRequest request){
         int pageNum = Utils.parseInt(request.getParameter("pageNum"), 1);
         Map<String,Object> params = new HashMap<>();
@@ -234,6 +236,7 @@ public class ExtendActDealController {
      * @return
      */
     @RequestMapping("myDoneList")
+    @RequiresPermissions("act:model:myUpcoming")
     public String myDoneList(Model model,String code,String busId, HttpServletRequest request){
         int pageNum = Utils.parseInt(request.getParameter("pageNum"), 1);
         Map<String,Object> params = new HashMap<>();

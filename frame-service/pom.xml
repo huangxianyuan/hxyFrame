@@ -19,6 +19,11 @@
             <artifactId>frame-common</artifactId>
             <version>${hxyFrame.version}</version>
         </dependency>
+        <dependency>
+            <groupId>hxy.hxyFrame</groupId>
+            <artifactId>frame-redis</artifactId>
+            <version>${hxyFrame.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

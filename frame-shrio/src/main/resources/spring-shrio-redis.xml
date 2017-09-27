@@ -58,14 +58,11 @@
 
     <!-- 自定义缓存Dao，添加标识位，减少doUpdate方法中Redis的连接次数来减轻redis网络压力 -->
     <bean id="sessionDao" class="com.hxy.shiro.redisSession.CachingShiroSessionDao">
-        <!--sessionId前缀，防重名-->
-        <property name="prefix" value="ShiroSession_"/>
+        <!--sessionId前缀-->
+        <property name="prefix" value="shiro-session:"/>
         <!-- 注意中央缓存有效时间要比本地缓存有效时间长-->
-        <property name="seconds" value="180"/>
+        <property name="seconds" value="1800"/>
     </bean>
-
-    <!-- 自定义Session工厂方法 返回会标识是否修改主要字段的自定义Session-->
-    <bean id="sessionFactory" class="com.hxy.shiro.redisSession.ShiroSessionFactory"/>
 
     <!-- 会话管理器使用用于web 环境的DefaultWebSessionManager -->
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
@@ -77,7 +74,6 @@
         <property name="sessionValidationSchedulerEnabled" value="false"/>
         <!-- 会话验证器调度时间 -->
         <property name="sessionValidationInterval" value="1800000"/>
-        <property name="sessionFactory" ref="sessionFactory"/>
         <property name="sessionDAO" ref="sessionDao"/>
         <property name="sessionIdCookieEnabled" value="true"/>
         <property name="sessionIdCookie" ref="sessionIdCookie"/>

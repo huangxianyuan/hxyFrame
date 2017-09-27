@@ -25,16 +25,11 @@ public class UserUtils {
     private UserService userService;
 
     /**
-     * 获取当前登陆用户 待完善缓存
+     * 获取当前登陆用户
      * @return
      */
     public static UserEntity getCurrentUser(){
-        //UserEntity userEntity = ShiroUtils.getUserEntity();
-        UserEntity user = UserCache.get(Constant.USER_CACHE);
-        if(user == null){
-            user= ShiroUtils.getUserEntity();
-            UserCache.put(Constant.USER_CACHE,user);
-        }
+        UserEntity user = ShiroUtils.getUserEntity();
         return user;
     }
 
@@ -43,12 +38,7 @@ public class UserUtils {
      * @return
      */
     public static String getCurrentUserId(){
-        //UserEntity userEntity = ShiroUtils.getUserEntity();
-        UserEntity user = UserCache.get(Constant.USER_CACHE);
-        if(user == null){
-            user= ShiroUtils.getUserEntity();
-            UserCache.put(Constant.USER_CACHE,user);
-        }
+        UserEntity user = ShiroUtils.getUserEntity();
         return user.getId();
     }
 

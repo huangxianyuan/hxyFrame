@@ -3,7 +3,7 @@ package com.hxy.sys.tlds.form.select;
 import com.hxy.base.common.Constant;
 import com.hxy.base.utils.JsonUtil;
 import com.hxy.base.utils.StringUtils;
-import com.hxy.sentinelRedis.RedisUtil;
+import com.hxy.utils.RedisUtil;
 import org.springframework.util.LinkedCaseInsensitiveMap;
 
 import javax.servlet.jsp.JspException;

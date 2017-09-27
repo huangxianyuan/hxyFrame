@@ -120,7 +120,7 @@ var vm = new Vue({
 			confirm('确定要删除'+nodes[0].name+'？', function(){
 				var url="../sys/menu/delete";
                 var params=nodes[0].id;
-                $.post(url,params,function (r) {
+                $.post(url,JSON.stringify(params),function (r) {
                     if(r.code == 0){
 					   toast(r.msg,function(){
 						   ztree2.removeNode(nodes[0]);
