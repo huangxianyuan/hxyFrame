@@ -77,7 +77,7 @@ layui.define(['element'], function(exports){
         // 若不存在
         if(tabIndex === -1){
             globalTabIdIndex++;
-            var content = '<iframe src="' + data.href + '" data-id="' + globalTabIdIndex + '" class="larry-iframe"></iframe>';
+            var content = '<iframe id="iframe'+ globalTabIdIndex + '" src="' + data.href + '" data-id="' + globalTabIdIndex + '" class="larry-iframe"></iframe>';
             var title = '';
             // 若icon有定义
             if(data.icon !== undefined){
@@ -95,6 +95,14 @@ layui.define(['element'], function(exports){
             element.tabAdd(ELEM.tabFilter, {
                 title: title,
                 content: content
+            });
+            //显示loading提示
+            var loading = layer.load(0, {shade: false});
+            // debugger;
+            $('#iframe'+globalTabIdIndex).load(function () {
+                console.log("2222222222")
+                //iframe加载完成后隐藏loading提示
+                layer.close(loading);
             });
             //iframe 自适应
             ELEM.contentBox.find('iframe[data-id=' + globalTabIdIndex + ']').each(function() {
