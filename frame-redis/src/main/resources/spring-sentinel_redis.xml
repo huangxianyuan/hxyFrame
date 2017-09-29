@@ -23,8 +23,9 @@
     </bean>
 
     <!-- redis集群配置 哨兵模式 -->
-    <bean class="com.hxy.sentinelRedis.RedisSentinelConfigurationCustom" id="sentinelConfiguration">
-        <constructor-arg index="0" value="${masterName}"/>
+    <bean class="com.hxy.sentinelRedis.RedisSentinelSelect" id="sentinelConfiguration">
+        <constructor-arg index="0" value="${isSentinel}"/>
+        <constructor-arg index="1" value="${masterName}"/>
     </bean>
 
 
