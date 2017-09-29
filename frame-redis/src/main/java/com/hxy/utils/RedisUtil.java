@@ -1,12 +1,10 @@
 package com.hxy.utils;
 
-import com.hxy.base.utils.PropertiesLoader;
 import com.hxy.base.utils.SerializeUtil;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.JedisSentinelPool;
 import redis.clients.jedis.exceptions.JedisConnectionException;
 
 import javax.annotation.Resource;
@@ -14,46 +12,29 @@ import javax.annotation.Resource;
 @Component
 public class RedisUtil {
 
-    private static boolean isSentinel;
 
-    private static JedisSentinelPool sentinelPool;
+//    private static JedisSentinelPool sentinelPool;
     
     private static JedisPool jedisPool;
 
-    @Resource(name = "sentinelPool")
+   /* @Resource(name = "sentinelPool")
     public synchronized void setSentinelPool(JedisSentinelPool sentinelPool) {
         RedisUtil.sentinelPool = sentinelPool;
-    }
+    }*/
 
     @Resource(name = "jedisPool")
     public synchronized void setJedisPool(JedisPool jedisPool) {
         RedisUtil.jedisPool = jedisPool;
     }
 
-    public boolean isSentinel() {
-        return isSentinel;
-    }
-
-    public void setSentinel(boolean sentinel) {
-        isSentinel = sentinel;
-    }
 
     private static Logger log = Logger.getLogger(RedisUtil.class);
-
-    static {
-        PropertiesLoader redis = new PropertiesLoader("conf/redis.properties");
-        RedisUtil.isSentinel=Boolean.parseBoolean(redis.getProperty("isSentinel"));
-    }
-
 
     private static Jedis getJedis()  {
         Jedis jedis = null;
         try {
-            if(isSentinel){
-                jedis = sentinelPool.getResource();
-            }else {
-                jedis = jedisPool.getResource();
-            }
+//            jedis = sentinelPool.getResource();
+            jedis = jedisPool.getResource();
             return  jedis;
         } catch (JedisConnectionException e) {
             log.error("获取Redis 异常", e);
