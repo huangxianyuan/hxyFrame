@@ -6,6 +6,7 @@ import java.util.Map;
 import com.hxy.activiti.service.ActModelerService;
 import com.hxy.base.annotation.SysLog;
 import com.hxy.base.common.Constant;
+import com.hxy.base.exception.MyException;
 import com.hxy.base.utils.MD5;
 import com.hxy.sys.entity.UserEntity;
 import com.hxy.sys.service.NoticeService;

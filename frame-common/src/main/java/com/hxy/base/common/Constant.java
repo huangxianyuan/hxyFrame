@@ -14,7 +14,7 @@ public class Constant {
     /**
      * 系统默认密码
      */
-    public static final String DEF_PASSWORD="hxy";
+    public static final String DEF_PASSWORD="a";
 
     /**
      * 分页条数
