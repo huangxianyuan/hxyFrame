@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2017-09-27 11:13:02
+Date: 2017-10-12 10:25:19
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -811,7 +811,7 @@ CREATE TABLE `extend_act_business` (
 -- ----------------------------
 INSERT INTO `extend_act_business` VALUES ('2dd79ea6652244b789cfeffbece4fec9', '请假', 'leave', 'com.hxy.demo.entity.LeaveEntity', '3', 'dc2c625a139e4b05bd8ee33e1fe38a40', '1', 'true', '请假流程', '026a564bbfd84861ac4b65393644beef', '2017-07-26 15:07:27', '026a564bbfd84861ac4b65393644beef', '2017-09-26 21:42:05', '772a287903f14e01bc4077e5082823cf', '6804cf9cd7eb46148183f16f99d5e6c6');
 INSERT INTO `extend_act_business` VALUES ('79cc0fe7bac741d0a6d7f8d72bbee313', '业务树根目录', 'root', '111', '1', '79cc0fe7bac741d0a6d7f8d72bbee313', '1', 'true', '业务树初始化', '026a564bbfd84861ac4b65393644beef', '2017-07-25 21:43:52', '026a564bbfd84861ac4b65393644beef', '2017-07-26 15:14:43', '772a287903f14e01bc4077e5082823cf', '6804cf9cd7eb46148183f16f99d5e6c6');
-INSERT INTO `extend_act_business` VALUES ('9146ff7b2d3248df8f89bef6fa5dfbd3', '请假回调', 'leave_1', 'com.hxy.demo.callBack.ActCallBack.leaveBack', '4', '2dd79ea6652244b789cfeffbece4fec9', '1', 'false', '请假回调', '026a564bbfd84861ac4b65393644beef', '2017-07-27 16:30:27', '026a564bbfd84861ac4b65393644beef', '2017-09-18 16:22:18', null, null);
+INSERT INTO `extend_act_business` VALUES ('9146ff7b2d3248df8f89bef6fa5dfbd3', '请假回调', 'leave_1', 'com.hxy.demo.callBack.ActCallBack.leaveBack', '4', '2dd79ea6652244b789cfeffbece4fec9', '1', 'false', '请假回调', '026a564bbfd84861ac4b65393644beef', '2017-07-27 16:30:27', '026a564bbfd84861ac4b65393644beef', '2017-10-12 10:20:43', null, null);
 INSERT INTO `extend_act_business` VALUES ('dc2c625a139e4b05bd8ee33e1fe38a40', '人事部门', 'renshi', '', '2', '79cc0fe7bac741d0a6d7f8d72bbee313', '1', 'true', '', '026a564bbfd84861ac4b65393644beef', '2017-07-27 11:22:58', '026a564bbfd84861ac4b65393644beef', '2017-09-04 09:58:06', '772a287903f14e01bc4077e5082823cf', '6804cf9cd7eb46148183f16f99d5e6c6');
 
 -- ----------------------------
@@ -875,7 +875,7 @@ INSERT INTO `extend_act_model` VALUES ('4915e6e4fd4a44f6b574f3760c5dcf69', '1', 
 INSERT INTO `extend_act_model` VALUES ('5947b681892c418998c749ae9f98ed25', '1', '2dd79ea6652244b789cfeffbece4fec9', null, '测试角色权限', '0d5ab866-99e1-11e7-9702-005056c00001', '测试角色权限', '1', '4ec329625a1047ea87a8dfe8dd0750d1', 'a694d140b8e44eb2baa5f26435c6a7f8', null, null, null, null, null, null, null, '2017-09-15 14:42:33', '026a564bbfd84861ac4b65393644beef');
 INSERT INTO `extend_act_model` VALUES ('7de12ab9ddd047dda454d85f78e9c6e5', '1', '2dd79ea6652244b789cfeffbece4fec9', null, 'a', 'b13d5f08-99e1-11e7-9702-005056c00001', 'a', '1', '4ec329625a1047ea87a8dfe8dd0750d1', 'a694d140b8e44eb2baa5f26435c6a7f8', null, null, null, null, null, null, null, '2017-09-15 14:47:08', 'f68afc12a1924deaa2051154fe0efecc');
 INSERT INTO `extend_act_model` VALUES ('81c416c8ca974ccd8dfe983cb426cf7b', '1', '2dd79ea6652244b789cfeffbece4fec9', null, '234', 'e9c6f7b1-9c35-11e7-9e14-005056c00001', '324', '1', '4ec329625a1047ea87a8dfe8dd0750d1', 'a694d140b8e44eb2baa5f26435c6a7f8', null, null, null, null, null, null, null, '2017-09-18 13:55:03', '026a564bbfd84861ac4b65393644beef');
-INSERT INTO `extend_act_model` VALUES ('88f468df7dfb489e949037e02590396f', '1', '2dd79ea6652244b789cfeffbece4fec9', null, 'tew', '919fc208-9c37-11e7-8ae4-005056c00001', 'test', '1', '4ec329625a1047ea87a8dfe8dd0750d1', 'a694d140b8e44eb2baa5f26435c6a7f8', null, null, null, null, null, null, null, '2017-09-18 14:06:54', '026a564bbfd84861ac4b65393644beef');
+INSERT INTO `extend_act_model` VALUES ('88f468df7dfb489e949037e02590396f', '1', '2dd79ea6652244b789cfeffbece4fec9', null, 'tew', '919fc208-9c37-11e7-8ae4-005056c00001', 'test', '1', '4ec329625a1047ea87a8dfe8dd0750d1', 'a694d140b8e44eb2baa5f26435c6a7f8', null, null, null, null, null, '026a564bbfd84861ac4b65393644beef', '2017-10-12 10:20:38', '2017-09-18 14:06:54', '026a564bbfd84861ac4b65393644beef');
 INSERT INTO `extend_act_model` VALUES ('96dc74e55c9c4e7b84e5309faddb8bdf', '1', '2dd79ea6652244b789cfeffbece4fec9', null, '324', '61eabc43-9c36-11e7-9e14-005056c00001', 'idea+ov', '1', '4ec329625a1047ea87a8dfe8dd0750d1', 'a694d140b8e44eb2baa5f26435c6a7f8', null, null, null, null, null, null, null, '2017-09-18 13:58:24', '026a564bbfd84861ac4b65393644beef');
 
 -- ----------------------------
@@ -1183,7 +1183,7 @@ CREATE TABLE `qrtz_scheduler_state` (
 -- ----------------------------
 -- Records of qrtz_scheduler_state
 -- ----------------------------
-INSERT INTO `qrtz_scheduler_state` VALUES ('HxyScheduler', 'AGOBW-7071507071506480949196', '1506481943597', '15000');
+INSERT INTO `qrtz_scheduler_state` VALUES ('HxyScheduler', 'AGOBW-7071507071507774374384', '1507775115837', '15000');
 
 -- ----------------------------
 -- Table structure for qrtz_simple_triggers
@@ -1287,7 +1287,7 @@ CREATE TABLE `schedule_job` (
   `remark` varchar(255) DEFAULT NULL COMMENT '备注',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`job_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='定时任务';
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='定时任务';
 
 -- ----------------------------
 -- Records of schedule_job
@@ -1366,7 +1366,7 @@ CREATE TABLE `sys_code` (
 -- ----------------------------
 INSERT INTO `sys_code` VALUES ('008517347a0447a08b7f6faab1fea325', 'act_judg_>', '>', '>', '2', 'c11c36c32e17411c8ec5ba638ad28731', '2', '>', '026a564bbfd84861ac4b65393644beef', '2017-07-28', '026a564bbfd84861ac4b65393644beef', '2017-07-28', 'false');
 INSERT INTO `sys_code` VALUES ('03a63d9c56474fe1ae183f31bf3933fc', 'act_judg_>=', '>=', '>=', '2', 'c11c36c32e17411c8ec5ba638ad28731', '3', '>=', '026a564bbfd84861ac4b65393644beef', '2017-07-28', '026a564bbfd84861ac4b65393644beef', '2017-07-28', 'false');
-INSERT INTO `sys_code` VALUES ('103df6829961455ca09bb9a2b9987daf', 'act_el_operator', '逻辑运算符', '', '1', 'e8a9e485ff8947718f43706c6de85c60', '1', '逻辑运算符', '026a564bbfd84861ac4b65393644beef', '2017-08-09', '026a564bbfd84861ac4b65393644beef', '2017-09-26', 'false');
+INSERT INTO `sys_code` VALUES ('103df6829961455ca09bb9a2b9987daf', 'act_el_operator', '逻辑运算符', '', '1', 'e8a9e485ff8947718f43706c6de85c60', '1', '逻辑运算符', '026a564bbfd84861ac4b65393644beef', '2017-08-09', '026a564bbfd84861ac4b65393644beef', '2017-10-12', 'false');
 INSERT INTO `sys_code` VALUES ('107d1d36e7444f8cb1a3320de7f1ed02', 'YES_NO_1', '否', '1', '2', '2b0281e730ac4923a1f02b4cea3ec03c', '2', '否', '026a564bbfd84861ac4b65393644beef', '2017-07-19', null, null, '0');
 INSERT INTO `sys_code` VALUES ('1178fe5df7d64a55ae5b896776ce0684', 'act_task_result_1', '同意', '1', '2', 'c19fd8a436714d8d922726df6d97d5fc', '10', '同意', '026a564bbfd84861ac4b65393644beef', '2017-08-15', null, null, 'false');
 INSERT INTO `sys_code` VALUES ('1c4d727d678d44bba18c880f85ad647a', 'act_task_result_2', '反对', '2', '2', 'c19fd8a436714d8d922726df6d97d5fc', '2', '反对', '026a564bbfd84861ac4b65393644beef', '2017-08-15', null, null, 'false');
@@ -1439,7 +1439,7 @@ CREATE TABLE `sys_config` (
   `remark` varchar(500) DEFAULT NULL COMMENT '备注',
   PRIMARY KEY (`id`),
   UNIQUE KEY `key` (`key`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='系统配置信息表';
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='系统配置信息表';
 
 -- ----------------------------
 -- Records of sys_config
@@ -1459,7 +1459,7 @@ CREATE TABLE `sys_log` (
   `ip` varchar(64) DEFAULT NULL COMMENT 'IP地址',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1529 DEFAULT CHARSET=utf8 COMMENT='系统日志';
+) ENGINE=InnoDB AUTO_INCREMENT=1750 DEFAULT CHARSET=utf8 COMMENT='系统日志';
 
 -- ----------------------------
 -- Records of sys_log
@@ -2576,6 +2576,227 @@ INSERT INTO `sys_log` VALUES ('1525', '超级管理员', '查阅通知', 'com.hx
 INSERT INTO `sys_log` VALUES ('1526', '超级管理员', '查阅通知', 'com.hxy.sys.controller.NoticeController.showNotice()', '\"71c9f07ae7934eb881b051cb139ed764\"', '0:0:0:0:0:0:0:1', '2017-09-27 11:10:11');
 INSERT INTO `sys_log` VALUES ('1527', '超级管理员', '查阅通知', 'com.hxy.sys.controller.NoticeController.showNotice()', '\"71c9f07ae7934eb881b051cb139ed764\"', '0:0:0:0:0:0:0:1', '2017-09-27 11:10:14');
 INSERT INTO `sys_log` VALUES ('1528', '超级管理员', '查看角色列表', 'com.hxy.sys.controller.RoleController.list()', '{\"nd\":\"1506481822138\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1506481822062\"}', '0:0:0:0:0:0:0:1', '2017-09-27 11:10:22');
+INSERT INTO `sys_log` VALUES ('1529', '超级管理员', '查看字典', 'com.hxy.sys.controller.CodeController.codeTree()', null, '0:0:0:0:0:0:0:1', '2017-09-27 11:28:33');
+INSERT INTO `sys_log` VALUES ('1530', '超级管理员', '查看字典', 'com.hxy.sys.controller.CodeController.info()', '\"2f06861a28ff4fd68e73203ca2757b00\"', '0:0:0:0:0:0:0:1', '2017-09-27 11:28:36');
+INSERT INTO `sys_log` VALUES ('1531', '超级管理员', '查看定时任务列表', 'com.hxy.sys.controller.ScheduleJobController.list()', '{\"nd\":\"1506482925954\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1506482925855\"}', '0:0:0:0:0:0:0:1', '2017-09-27 11:28:46');
+INSERT INTO `sys_log` VALUES ('1532', '超级管理员', '退出系统', 'com.hxy.sys.controller.LoginController.logOut()', null, '0:0:0:0:0:0:0:1', '2017-09-29 12:46:35');
+INSERT INTO `sys_log` VALUES ('1533', '超级管理员', '退出系统', 'com.hxy.sys.controller.LoginController.logOut()', null, '0:0:0:0:0:0:0:1', '2017-09-29 12:46:51');
+INSERT INTO `sys_log` VALUES ('1534', '超级管理员', '查看字典', 'com.hxy.sys.controller.CodeController.codeTree()', null, '0:0:0:0:0:0:0:1', '2017-09-29 13:09:38');
+INSERT INTO `sys_log` VALUES ('1535', '超级管理员', '查看角色列表', 'com.hxy.sys.controller.RoleController.list()', '{\"nd\":\"1506675180916\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1506675180793\"}', '0:0:0:0:0:0:0:1', '2017-09-29 16:53:01');
+INSERT INTO `sys_log` VALUES ('1536', '超级管理员', '查看角色列表', 'com.hxy.sys.controller.RoleController.list()', '{\"nd\":\"1506675701733\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1506675700643\"}', '0:0:0:0:0:0:0:1', '2017-09-29 17:01:43');
+INSERT INTO `sys_log` VALUES ('1537', '超级管理员', '查看字典', 'com.hxy.sys.controller.CodeController.codeTree()', null, '0:0:0:0:0:0:0:1', '2017-09-29 17:02:07');
+INSERT INTO `sys_log` VALUES ('1538', '超级管理员', '退出系统', 'com.hxy.sys.controller.LoginController.logOut()', null, '0:0:0:0:0:0:0:1', '2017-09-29 17:02:14');
+INSERT INTO `sys_log` VALUES ('1539', '超级管理员', '查看字典', 'com.hxy.sys.controller.CodeController.codeTree()', null, '0:0:0:0:0:0:0:1', '2017-10-09 09:45:19');
+INSERT INTO `sys_log` VALUES ('1540', '超级管理员', '查看配置列表', 'com.hxy.sys.controller.SysConfigController.list()', '{\"nd\":\"1507513522888\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507513522850\"}', '0:0:0:0:0:0:0:1', '2017-10-09 09:45:23');
+INSERT INTO `sys_log` VALUES ('1541', '超级管理员', '查看配置列表', 'com.hxy.sys.controller.SysConfigController.list()', '{\"nd\":\"1507513539682\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507513539639\"}', '0:0:0:0:0:0:0:1', '2017-10-09 09:45:40');
+INSERT INTO `sys_log` VALUES ('1542', '超级管理员', '查看定时任务列表', 'com.hxy.sys.controller.ScheduleJobController.list()', '{\"nd\":\"1507513540502\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507513540461\"}', '0:0:0:0:0:0:0:1', '2017-10-09 09:45:41');
+INSERT INTO `sys_log` VALUES ('1543', '超级管理员', '查看角色列表', 'com.hxy.sys.controller.RoleController.list()', '{\"nd\":\"1507513542398\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507513542357\"}', '0:0:0:0:0:0:0:1', '2017-10-09 09:45:42');
+INSERT INTO `sys_log` VALUES ('1544', '超级管理员', '查看系统用户列表', 'com.hxy.sys.controller.UserController.list()', '{\"nd\":\"1507513543607\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507513543546\"}', '0:0:0:0:0:0:0:1', '2017-10-09 09:45:44');
+INSERT INTO `sys_log` VALUES ('1545', '超级管理员', '重置密码', 'com.hxy.sys.controller.UserController.reset()', '[\"98df0e92788c416a9fb983e89a8d01ce\"]', '0:0:0:0:0:0:0:1', '2017-10-09 09:46:04');
+INSERT INTO `sys_log` VALUES ('1546', '超级管理员', '查看系统用户列表', 'com.hxy.sys.controller.UserController.list()', '{\"nd\":\"1507513608054\",\"limit\":\"10\",\"page\":\"1\",\"userName\":\"\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507513543547\"}', '0:0:0:0:0:0:0:1', '2017-10-09 09:46:48');
+INSERT INTO `sys_log` VALUES ('1547', '超级管理员', '退出系统', 'com.hxy.sys.controller.LoginController.logOut()', null, '0:0:0:0:0:0:0:1', '2017-10-11 16:34:28');
+INSERT INTO `sys_log` VALUES ('1548', '超级管理员', '查看系统用户列表', 'com.hxy.sys.controller.UserController.list()', '{\"nd\":\"1507712749540\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507712749277\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:05:50');
+INSERT INTO `sys_log` VALUES ('1549', '超级管理员', '查看系统用户列表', 'com.hxy.sys.controller.UserController.list()', '{\"nd\":\"1507712898375\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507712898197\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:08:19');
+INSERT INTO `sys_log` VALUES ('1550', '超级管理员', '重置密码', 'com.hxy.sys.controller.UserController.reset()', '[\"98df0e92788c416a9fb983e89a8d01ce\"]', '0:0:0:0:0:0:0:1', '2017-10-11 17:08:32');
+INSERT INTO `sys_log` VALUES ('1551', '超级管理员', '查看系统用户列表', 'com.hxy.sys.controller.UserController.list()', '{\"nd\":\"1507712926357\",\"limit\":\"10\",\"page\":\"1\",\"userName\":\"\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507712898198\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:08:46');
+INSERT INTO `sys_log` VALUES ('1552', '超级管理员', '退出系统', 'com.hxy.sys.controller.LoginController.logOut()', null, '0:0:0:0:0:0:0:1', '2017-10-11 17:08:57');
+INSERT INTO `sys_log` VALUES ('1553', '小五', '退出系统', 'com.hxy.sys.controller.LoginController.logOut()', null, '0:0:0:0:0:0:0:1', '2017-10-11 17:09:13');
+INSERT INTO `sys_log` VALUES ('1554', '超级管理员', '用户修改密码', 'com.hxy.sys.controller.UserController.updatePassword()', '{\"newPassWord\":\"23\",\"passWord\":\"121\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:18:03');
+INSERT INTO `sys_log` VALUES ('1555', '超级管理员', '查看角色列表', 'com.hxy.sys.controller.RoleController.list()', '{\"nd\":\"1507713509299\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507713509172\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:18:29');
+INSERT INTO `sys_log` VALUES ('1556', '超级管理员', '查看系统用户列表', 'com.hxy.sys.controller.UserController.list()', '{\"nd\":\"1507713510167\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507713510082\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:18:30');
+INSERT INTO `sys_log` VALUES ('1557', '超级管理员', '重置密码', 'com.hxy.sys.controller.UserController.reset()', '[\"026a564bbfd84861ac4b65393644beef\"]', '0:0:0:0:0:0:0:1', '2017-10-11 17:18:38');
+INSERT INTO `sys_log` VALUES ('1558', '超级管理员', '禁用系统用户', 'com.hxy.sys.controller.UserController.delete()', '[\"026a564bbfd84861ac4b65393644beef\"]', '0:0:0:0:0:0:0:1', '2017-10-11 17:18:44');
+INSERT INTO `sys_log` VALUES ('1559', '超级管理员', '重置密码', 'com.hxy.sys.controller.UserController.reset()', '[\"f68afc12a1924deaa2051154fe0efecc\"]', '0:0:0:0:0:0:0:1', '2017-10-11 17:18:51');
+INSERT INTO `sys_log` VALUES ('1560', '超级管理员', '查看系统用户列表', 'com.hxy.sys.controller.UserController.list()', '{\"nd\":\"1507713538378\",\"limit\":\"10\",\"page\":\"1\",\"userName\":\"\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507713510083\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:18:58');
+INSERT INTO `sys_log` VALUES ('1561', '超级管理员', '查看系统用户列表', 'com.hxy.sys.controller.UserController.list()', '{\"nd\":\"1507713539124\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507713539044\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:18:59');
+INSERT INTO `sys_log` VALUES ('1562', '超级管理员', '退出系统', 'com.hxy.sys.controller.LoginController.logOut()', null, '0:0:0:0:0:0:0:1', '2017-10-11 17:19:02');
+INSERT INTO `sys_log` VALUES ('1563', '小马', '退出系统', 'com.hxy.sys.controller.LoginController.logOut()', null, '0:0:0:0:0:0:0:1', '2017-10-11 17:19:16');
+INSERT INTO `sys_log` VALUES ('1564', '超级管理员', '退出系统', 'com.hxy.sys.controller.LoginController.logOut()', null, '0:0:0:0:0:0:0:1', '2017-10-11 17:19:22');
+INSERT INTO `sys_log` VALUES ('1565', '小五', '用户修改密码', 'com.hxy.sys.controller.UserController.updatePassword()', '{\"newPassWord\":\"b\",\"passWord\":\"b\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:19:37');
+INSERT INTO `sys_log` VALUES ('1566', '小五', '用户修改密码', 'com.hxy.sys.controller.UserController.updatePassword()', '{\"newPassWord\":\"b\",\"passWord\":\"a\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:19:43');
+INSERT INTO `sys_log` VALUES ('1567', '小五', '用户修改密码', 'com.hxy.sys.controller.UserController.updatePassword()', '{\"newPassWord\":\"b\",\"passWord\":\"a\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:26:52');
+INSERT INTO `sys_log` VALUES ('1568', '小五', '用户修改密码', 'com.hxy.sys.controller.UserController.updatePassword()', '{\"newPassWord\":\"b\",\"passWord\":\"a\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:27:35');
+INSERT INTO `sys_log` VALUES ('1569', '小五', '退出系统', 'com.hxy.sys.controller.LoginController.logOut()', null, '0:0:0:0:0:0:0:1', '2017-10-11 17:27:52');
+INSERT INTO `sys_log` VALUES ('1570', '小马', '查看角色列表', 'com.hxy.sys.controller.RoleController.list()', '{\"nd\":\"1507714087086\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507714086994\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:28:07');
+INSERT INTO `sys_log` VALUES ('1571', '小马', '查看系统用户列表', 'com.hxy.sys.controller.UserController.list()', '{\"nd\":\"1507714087385\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507714087328\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:28:07');
+INSERT INTO `sys_log` VALUES ('1572', '小马', '退出系统', 'com.hxy.sys.controller.LoginController.logOut()', null, '0:0:0:0:0:0:0:1', '2017-10-11 17:28:12');
+INSERT INTO `sys_log` VALUES ('1573', '小五', '查看系统用户列表', 'com.hxy.sys.controller.UserController.list()', '{\"nd\":\"1507714105895\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507714105800\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:28:26');
+INSERT INTO `sys_log` VALUES ('1574', '小五', '重置密码', 'com.hxy.sys.controller.UserController.reset()', '[\"98df0e92788c416a9fb983e89a8d01ce\"]', '0:0:0:0:0:0:0:1', '2017-10-11 17:28:31');
+INSERT INTO `sys_log` VALUES ('1575', '小五', '查看系统用户列表', 'com.hxy.sys.controller.UserController.list()', '{\"nd\":\"1507714112703\",\"limit\":\"10\",\"page\":\"1\",\"userName\":\"\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507714105801\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:28:33');
+INSERT INTO `sys_log` VALUES ('1576', '小五', '退出系统', 'com.hxy.sys.controller.LoginController.logOut()', null, '0:0:0:0:0:0:0:1', '2017-10-11 17:28:35');
+INSERT INTO `sys_log` VALUES ('1577', '小五', '查看角色列表', 'com.hxy.sys.controller.RoleController.list()', '{\"nd\":\"1507714121556\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507714121472\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:28:42');
+INSERT INTO `sys_log` VALUES ('1578', '小五', '用户修改密码', 'com.hxy.sys.controller.UserController.updatePassword()', '{\"newPassWord\":\"b\",\"passWord\":\"a\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:28:46');
+INSERT INTO `sys_log` VALUES ('1579', '小五', '退出系统', 'com.hxy.sys.controller.LoginController.logOut()', null, '0:0:0:0:0:0:0:1', '2017-10-11 17:28:51');
+INSERT INTO `sys_log` VALUES ('1580', '小五', '查看角色列表', 'com.hxy.sys.controller.RoleController.list()', '{\"nd\":\"1507714139682\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507714139604\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:29:00');
+INSERT INTO `sys_log` VALUES ('1581', '小五', '查看角色', 'com.hxy.sys.controller.RoleController.info()', '\"695a97ae34b94d57899833a3ebcd656a\"', '0:0:0:0:0:0:0:1', '2017-10-11 17:30:33');
+INSERT INTO `sys_log` VALUES ('1582', '小五', '查看字典', 'com.hxy.sys.controller.CodeController.codeTree()', null, '0:0:0:0:0:0:0:1', '2017-10-11 17:30:39');
+INSERT INTO `sys_log` VALUES ('1583', '小五', '查看定时任务列表', 'com.hxy.sys.controller.ScheduleJobController.list()', '{\"nd\":\"1507714241083\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507714241025\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:30:41');
+INSERT INTO `sys_log` VALUES ('1584', '小五', '查看定时任务列表', 'com.hxy.sys.controller.ScheduleJobController.list()', '{\"nd\":\"1507714276740\",\"limit\":\"10\",\"beanName\":\"\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507714241037\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:31:17');
+INSERT INTO `sys_log` VALUES ('1585', '小五', '查看字典', 'com.hxy.sys.controller.CodeController.info()', '\"103df6829961455ca09bb9a2b9987daf\"', '0:0:0:0:0:0:0:1', '2017-10-11 17:31:24');
+INSERT INTO `sys_log` VALUES ('1586', '小五', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"1\"', '0:0:0:0:0:0:0:1', '2017-10-11 17:31:32');
+INSERT INTO `sys_log` VALUES ('1587', '小五', '查看定时任务列表', 'com.hxy.sys.controller.ScheduleJobController.list()', '{\"nd\":\"1507714307069\",\"limit\":\"10\",\"beanName\":\"\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507714241038\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:31:47');
+INSERT INTO `sys_log` VALUES ('1588', '小五', '查看定时任务列表', 'com.hxy.sys.controller.ScheduleJobController.list()', '{\"nd\":\"1507714311685\",\"limit\":\"10\",\"beanName\":\"\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507714241043\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:31:52');
+INSERT INTO `sys_log` VALUES ('1589', '小五', '查看定时任务列表', 'com.hxy.sys.controller.ScheduleJobController.list()', '{\"nd\":\"1507714312292\",\"limit\":\"10\",\"beanName\":\"\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507714241044\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:31:52');
+INSERT INTO `sys_log` VALUES ('1590', '小五', '查看定时任务列表', 'com.hxy.sys.controller.ScheduleJobController.list()', '{\"nd\":\"1507714312469\",\"limit\":\"10\",\"beanName\":\"\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507714241045\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:31:52');
+INSERT INTO `sys_log` VALUES ('1591', '小五', '查看定时任务列表', 'com.hxy.sys.controller.ScheduleJobController.list()', '{\"nd\":\"1507714312644\",\"limit\":\"10\",\"beanName\":\"\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507714241046\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:31:53');
+INSERT INTO `sys_log` VALUES ('1592', '小五', '查看定时任务列表', 'com.hxy.sys.controller.ScheduleJobController.list()', '{\"nd\":\"1507714312829\",\"limit\":\"10\",\"beanName\":\"\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507714241047\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:31:53');
+INSERT INTO `sys_log` VALUES ('1593', '小五', '查看定时任务列表', 'com.hxy.sys.controller.ScheduleJobController.list()', '{\"nd\":\"1507714461809\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507714461530\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:34:22');
+INSERT INTO `sys_log` VALUES ('1594', '小五', '查看定时任务列表', 'com.hxy.sys.controller.ScheduleJobController.list()', '{\"nd\":\"1507714574004\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507714573728\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:36:14');
+INSERT INTO `sys_log` VALUES ('1595', '小五', '查看定时任务列表', 'com.hxy.sys.controller.ScheduleJobController.list()', '{\"nd\":\"1507714575031\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507714574705\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:36:15');
+INSERT INTO `sys_log` VALUES ('1596', '小五', '查看定时任务列表', 'com.hxy.sys.controller.ScheduleJobController.list()', '{\"nd\":\"1507714575903\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507714575689\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:36:16');
+INSERT INTO `sys_log` VALUES ('1597', '小五', '查看字典', 'com.hxy.sys.controller.CodeController.codeTree()', null, '0:0:0:0:0:0:0:1', '2017-10-11 17:47:14');
+INSERT INTO `sys_log` VALUES ('1598', '小五', '查看字典', 'com.hxy.sys.controller.CodeController.codeTree()', null, '0:0:0:0:0:0:0:1', '2017-10-11 17:48:25');
+INSERT INTO `sys_log` VALUES ('1599', '小五', '查看字典', 'com.hxy.sys.controller.CodeController.info()', '\"103df6829961455ca09bb9a2b9987daf\"', '0:0:0:0:0:0:0:1', '2017-10-11 17:48:26');
+INSERT INTO `sys_log` VALUES ('1600', '小五', '查看字典', 'com.hxy.sys.controller.CodeController.info()', '\"3cc90674a0d5416594cf5afcaca10a6e\"', '0:0:0:0:0:0:0:1', '2017-10-11 17:48:27');
+INSERT INTO `sys_log` VALUES ('1601', '小五', '查看定时任务列表', 'com.hxy.sys.controller.ScheduleJobController.list()', '{\"nd\":\"1507715308355\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507715308209\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:48:28');
+INSERT INTO `sys_log` VALUES ('1602', '小五', '查看角色列表', 'com.hxy.sys.controller.RoleController.list()', '{\"nd\":\"1507715311267\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507715311140\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:48:31');
+INSERT INTO `sys_log` VALUES ('1603', '小五', '查看角色列表', 'com.hxy.sys.controller.RoleController.list()', '{\"nd\":\"1507715414195\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507715413814\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:50:14');
+INSERT INTO `sys_log` VALUES ('1604', '小五', '查看配置列表', 'com.hxy.sys.controller.SysConfigController.list()', '{\"nd\":\"1507715420549\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507715420406\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:50:21');
+INSERT INTO `sys_log` VALUES ('1605', '小五', '查看定时任务列表', 'com.hxy.sys.controller.ScheduleJobController.list()', '{\"nd\":\"1507715476131\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507715475855\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:51:16');
+INSERT INTO `sys_log` VALUES ('1606', '小五', '查看系统用户列表', 'com.hxy.sys.controller.UserController.list()', '{\"nd\":\"1507715482979\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507715482860\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:51:23');
+INSERT INTO `sys_log` VALUES ('1607', '小五', '查看系统用户信息', 'com.hxy.sys.controller.UserController.info()', '\"98df0e92788c416a9fb983e89a8d01ce\"', '0:0:0:0:0:0:0:1', '2017-10-11 17:51:26');
+INSERT INTO `sys_log` VALUES ('1608', '小五', '查看系统用户列表', 'com.hxy.sys.controller.UserController.list()', '{\"nd\":\"1507715487278\",\"limit\":\"10\",\"page\":\"1\",\"userName\":\"\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507715482863\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:51:27');
+INSERT INTO `sys_log` VALUES ('1609', '小五', '查看角色', 'com.hxy.sys.controller.RoleController.info()', '\"695a97ae34b94d57899833a3ebcd656a\"', '0:0:0:0:0:0:0:1', '2017-10-11 17:51:30');
+INSERT INTO `sys_log` VALUES ('1610', '小五', '查看系统用户信息', 'com.hxy.sys.controller.UserController.info()', '\"98df0e92788c416a9fb983e89a8d01ce\"', '0:0:0:0:0:0:0:1', '2017-10-11 17:51:54');
+INSERT INTO `sys_log` VALUES ('1611', '小五', '查看系统用户列表', 'com.hxy.sys.controller.UserController.list()', '{\"nd\":\"1507715515574\",\"limit\":\"10\",\"page\":\"1\",\"userName\":\"\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507715482866\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:51:56');
+INSERT INTO `sys_log` VALUES ('1612', '小五', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"1\"', '0:0:0:0:0:0:0:1', '2017-10-11 17:54:39');
+INSERT INTO `sys_log` VALUES ('1613', '小五', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"1\"', '0:0:0:0:0:0:0:1', '2017-10-11 17:54:41');
+INSERT INTO `sys_log` VALUES ('1614', '小五', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"feb235067fd7400090b0aa5451e4a5a4\"', '0:0:0:0:0:0:0:1', '2017-10-11 17:54:41');
+INSERT INTO `sys_log` VALUES ('1615', '小五', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"0\"', '0:0:0:0:0:0:0:1', '2017-10-11 17:54:42');
+INSERT INTO `sys_log` VALUES ('1616', '小五', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"0\"', '0:0:0:0:0:0:0:1', '2017-10-11 17:54:48');
+INSERT INTO `sys_log` VALUES ('1617', '小五', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"feb235067fd7400090b0aa5451e4a5a4\"', '0:0:0:0:0:0:0:1', '2017-10-11 17:54:53');
+INSERT INTO `sys_log` VALUES ('1618', '小五', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"0\"', '0:0:0:0:0:0:0:1', '2017-10-11 17:54:54');
+INSERT INTO `sys_log` VALUES ('1619', '小五', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"0\"', '0:0:0:0:0:0:0:1', '2017-10-11 17:54:54');
+INSERT INTO `sys_log` VALUES ('1620', '小五', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"feb235067fd7400090b0aa5451e4a5a4\"', '0:0:0:0:0:0:0:1', '2017-10-11 17:54:55');
+INSERT INTO `sys_log` VALUES ('1621', '小五', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"feb235067fd7400090b0aa5451e4a5a4\"', '0:0:0:0:0:0:0:1', '2017-10-11 17:54:56');
+INSERT INTO `sys_log` VALUES ('1622', '小五', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"feb235067fd7400090b0aa5451e4a5a4\"', '0:0:0:0:0:0:0:1', '2017-10-11 17:55:03');
+INSERT INTO `sys_log` VALUES ('1623', '小五', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"e700f061dae448e58cd81a68e17b3439\"', '0:0:0:0:0:0:0:1', '2017-10-11 17:55:04');
+INSERT INTO `sys_log` VALUES ('1624', '小五', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"e700f061dae448e58cd81a68e17b3439\"', '0:0:0:0:0:0:0:1', '2017-10-11 17:55:05');
+INSERT INTO `sys_log` VALUES ('1625', '小五', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"0\"', '0:0:0:0:0:0:0:1', '2017-10-11 17:58:40');
+INSERT INTO `sys_log` VALUES ('1626', '小五', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"e700f061dae448e58cd81a68e17b3439\"', '0:0:0:0:0:0:0:1', '2017-10-11 17:58:41');
+INSERT INTO `sys_log` VALUES ('1627', '小五', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"feb235067fd7400090b0aa5451e4a5a4\"', '0:0:0:0:0:0:0:1', '2017-10-11 17:58:41');
+INSERT INTO `sys_log` VALUES ('1628', '小五', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"e700f061dae448e58cd81a68e17b3439\"', '0:0:0:0:0:0:0:1', '2017-10-11 17:58:43');
+INSERT INTO `sys_log` VALUES ('1629', '小五', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"feb235067fd7400090b0aa5451e4a5a4\"', '0:0:0:0:0:0:0:1', '2017-10-11 17:58:44');
+INSERT INTO `sys_log` VALUES ('1630', '小五', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"0\"', '0:0:0:0:0:0:0:1', '2017-10-11 17:58:54');
+INSERT INTO `sys_log` VALUES ('1631', '小五', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"1\"', '0:0:0:0:0:0:0:1', '2017-10-11 17:58:54');
+INSERT INTO `sys_log` VALUES ('1632', '小五', '查看定时任务列表', 'com.hxy.sys.controller.ScheduleJobController.list()', '{\"nd\":\"1507715935169\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507715935021\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:58:55');
+INSERT INTO `sys_log` VALUES ('1633', '小五', '查看配置列表', 'com.hxy.sys.controller.SysConfigController.list()', '{\"nd\":\"1507715937505\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507715937381\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:58:58');
+INSERT INTO `sys_log` VALUES ('1634', '小五', '查看配置列表', 'com.hxy.sys.controller.SysConfigController.list()', '{\"nd\":\"1507715943206\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"key\":\"\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507715937382\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:59:03');
+INSERT INTO `sys_log` VALUES ('1635', '小五', '退出系统', 'com.hxy.sys.controller.LoginController.logOut()', null, '0:0:0:0:0:0:0:1', '2017-10-11 17:59:08');
+INSERT INTO `sys_log` VALUES ('1636', '超级管理员', '查看字典', 'com.hxy.sys.controller.CodeController.codeTree()', null, '0:0:0:0:0:0:0:1', '2017-10-11 17:59:13');
+INSERT INTO `sys_log` VALUES ('1637', '超级管理员', '查看字典', 'com.hxy.sys.controller.CodeController.info()', '\"325d95a84e6c46c0a37b2534815e6d8d\"', '0:0:0:0:0:0:0:1', '2017-10-11 17:59:13');
+INSERT INTO `sys_log` VALUES ('1638', '超级管理员', '查看配置列表', 'com.hxy.sys.controller.SysConfigController.list()', '{\"nd\":\"1507715956179\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507715956032\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:59:16');
+INSERT INTO `sys_log` VALUES ('1639', '超级管理员', '查看定时任务列表', 'com.hxy.sys.controller.ScheduleJobController.list()', '{\"nd\":\"1507715962192\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507715962039\"}', '0:0:0:0:0:0:0:1', '2017-10-11 17:59:22');
+INSERT INTO `sys_log` VALUES ('1640', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"feb235067fd7400090b0aa5451e4a5a4\"', '0:0:0:0:0:0:0:1', '2017-10-11 18:00:02');
+INSERT INTO `sys_log` VALUES ('1641', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"1f936af47d064ab4989aadf6373e6502\"', '0:0:0:0:0:0:0:1', '2017-10-11 18:00:12');
+INSERT INTO `sys_log` VALUES ('1642', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"4e053e35bfed492fa6248e4888addd67\"', '0:0:0:0:0:0:0:1', '2017-10-11 18:00:13');
+INSERT INTO `sys_log` VALUES ('1643', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"4e053e35bfed492fa6248e4888addd67\"', '0:0:0:0:0:0:0:1', '2017-10-11 18:00:14');
+INSERT INTO `sys_log` VALUES ('1644', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"2\"', '0:0:0:0:0:0:0:1', '2017-10-11 18:00:14');
+INSERT INTO `sys_log` VALUES ('1645', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"2\"', '0:0:0:0:0:0:0:1', '2017-10-11 18:00:15');
+INSERT INTO `sys_log` VALUES ('1646', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"f4f6af97585d401f918afedd3ca223e9\"', '0:0:0:0:0:0:0:1', '2017-10-11 18:00:17');
+INSERT INTO `sys_log` VALUES ('1647', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"4565ee01959c478d96c4071d3bb2a36f\"', '0:0:0:0:0:0:0:1', '2017-10-11 18:00:20');
+INSERT INTO `sys_log` VALUES ('1648', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"cefab951f1474646b9419828db47c362\"', '0:0:0:0:0:0:0:1', '2017-10-11 18:00:20');
+INSERT INTO `sys_log` VALUES ('1649', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"cefab951f1474646b9419828db47c362\"', '0:0:0:0:0:0:0:1', '2017-10-11 18:00:23');
+INSERT INTO `sys_log` VALUES ('1650', '超级管理员', '修改菜单', 'com.hxy.sys.controller.MenuController.update()', '{\"createId\":\"026a564bbfd84861ac4b65393644beef\",\"createTime\":1503624575000,\"id\":\"cefab951f1474646b9419828db47c362\",\"name\":\"保存/更新\",\"open\":\"false\",\"parentId\":\"f4f6af97585d401f918afedd3ca223e9\",\"parentIds\":\"0\",\"parentName\":\"定时任务\",\"permission\":\"sys:schedule:update\",\"sort\":14,\"status\":\"1\",\"type\":\"2\",\"updateId\":\"026a564bbfd84861ac4b65393644beef\",\"updateTime\":1504015548000,\"url\":\"\"}', '0:0:0:0:0:0:0:1', '2017-10-11 18:01:01');
+INSERT INTO `sys_log` VALUES ('1651', '超级管理员', '查看定时任务列表', 'com.hxy.sys.controller.ScheduleJobController.list()', '{\"nd\":\"1507716075129\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507716075017\"}', '0:0:0:0:0:0:0:1', '2017-10-11 18:01:15');
+INSERT INTO `sys_log` VALUES ('1652', '超级管理员', '暂停定时任务', 'com.hxy.sys.controller.ScheduleJobController.pause()', '[14]', '0:0:0:0:0:0:0:1', '2017-10-11 18:01:22');
+INSERT INTO `sys_log` VALUES ('1653', '超级管理员', '查看定时任务列表', 'com.hxy.sys.controller.ScheduleJobController.list()', '{\"nd\":\"1507716083383\",\"limit\":\"10\",\"beanName\":\"\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507716075019\"}', '0:0:0:0:0:0:0:1', '2017-10-11 18:01:23');
+INSERT INTO `sys_log` VALUES ('1654', '超级管理员', '查看定时任务列表', 'com.hxy.sys.controller.ScheduleJobController.list()', '{\"nd\":\"1507716104257\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507716104031\"}', '0:0:0:0:0:0:0:1', '2017-10-11 18:01:44');
+INSERT INTO `sys_log` VALUES ('1655', '超级管理员', '查看字典', 'com.hxy.sys.controller.CodeController.codeTree()', null, '0:0:0:0:0:0:0:1', '2017-10-11 19:22:27');
+INSERT INTO `sys_log` VALUES ('1656', '超级管理员', '查看定时任务列表', 'com.hxy.sys.controller.ScheduleJobController.list()', '{\"nd\":\"1507720947918\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507720947779\"}', '0:0:0:0:0:0:0:1', '2017-10-11 19:22:28');
+INSERT INTO `sys_log` VALUES ('1657', '超级管理员', '查看配置列表', 'com.hxy.sys.controller.SysConfigController.list()', '{\"nd\":\"1507720950203\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507720950060\"}', '0:0:0:0:0:0:0:1', '2017-10-11 19:22:30');
+INSERT INTO `sys_log` VALUES ('1658', '超级管理员', '查看定时任务列表', 'com.hxy.sys.controller.ScheduleJobController.list()', '{\"nd\":\"1507720957484\",\"limit\":\"10\",\"beanName\":\"\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507720947781\"}', '0:0:0:0:0:0:0:1', '2017-10-11 19:22:38');
+INSERT INTO `sys_log` VALUES ('1659', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"1515daa136ba41f783e82318f851d343\"', '0:0:0:0:0:0:0:1', '2017-10-11 19:23:11');
+INSERT INTO `sys_log` VALUES ('1660', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"2\"', '0:0:0:0:0:0:0:1', '2017-10-11 19:23:11');
+INSERT INTO `sys_log` VALUES ('1661', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"f4f6af97585d401f918afedd3ca223e9\"', '0:0:0:0:0:0:0:1', '2017-10-11 19:23:12');
+INSERT INTO `sys_log` VALUES ('1662', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"690b7470fe394a6a8d9d0fa1340f18dc\"', '0:0:0:0:0:0:0:1', '2017-10-11 19:23:13');
+INSERT INTO `sys_log` VALUES ('1663', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"f4d418f7f9174338acc595151daa020f\"', '0:0:0:0:0:0:0:1', '2017-10-11 19:23:14');
+INSERT INTO `sys_log` VALUES ('1664', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"f7a850cb503c4b2cb5dc27081aca3325\"', '0:0:0:0:0:0:0:1', '2017-10-11 19:23:14');
+INSERT INTO `sys_log` VALUES ('1665', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"0c7df2638a464cd5b165547e07dd5409\"', '0:0:0:0:0:0:0:1', '2017-10-11 19:23:15');
+INSERT INTO `sys_log` VALUES ('1666', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"cefab951f1474646b9419828db47c362\"', '0:0:0:0:0:0:0:1', '2017-10-11 19:23:15');
+INSERT INTO `sys_log` VALUES ('1667', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"0c7df2638a464cd5b165547e07dd5409\"', '0:0:0:0:0:0:0:1', '2017-10-11 19:23:16');
+INSERT INTO `sys_log` VALUES ('1668', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"cefab951f1474646b9419828db47c362\"', '0:0:0:0:0:0:0:1', '2017-10-11 19:23:17');
+INSERT INTO `sys_log` VALUES ('1669', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"cefab951f1474646b9419828db47c362\"', '0:0:0:0:0:0:0:1', '2017-10-11 19:23:19');
+INSERT INTO `sys_log` VALUES ('1670', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"0c7df2638a464cd5b165547e07dd5409\"', '0:0:0:0:0:0:0:1', '2017-10-11 19:23:21');
+INSERT INTO `sys_log` VALUES ('1671', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"cefab951f1474646b9419828db47c362\"', '0:0:0:0:0:0:0:1', '2017-10-11 19:23:22');
+INSERT INTO `sys_log` VALUES ('1672', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"0c7df2638a464cd5b165547e07dd5409\"', '0:0:0:0:0:0:0:1', '2017-10-11 19:23:23');
+INSERT INTO `sys_log` VALUES ('1673', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"f7a850cb503c4b2cb5dc27081aca3325\"', '0:0:0:0:0:0:0:1', '2017-10-11 19:23:25');
+INSERT INTO `sys_log` VALUES ('1674', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"f4d418f7f9174338acc595151daa020f\"', '0:0:0:0:0:0:0:1', '2017-10-11 19:23:25');
+INSERT INTO `sys_log` VALUES ('1675', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"690b7470fe394a6a8d9d0fa1340f18dc\"', '0:0:0:0:0:0:0:1', '2017-10-11 19:23:26');
+INSERT INTO `sys_log` VALUES ('1676', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"4565ee01959c478d96c4071d3bb2a36f\"', '0:0:0:0:0:0:0:1', '2017-10-11 19:23:27');
+INSERT INTO `sys_log` VALUES ('1677', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"f4f6af97585d401f918afedd3ca223e9\"', '0:0:0:0:0:0:0:1', '2017-10-11 19:23:28');
+INSERT INTO `sys_log` VALUES ('1678', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"cefab951f1474646b9419828db47c362\"', '0:0:0:0:0:0:0:1', '2017-10-11 19:23:30');
+INSERT INTO `sys_log` VALUES ('1679', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"f4f6af97585d401f918afedd3ca223e9\"', '0:0:0:0:0:0:0:1', '2017-10-11 19:24:51');
+INSERT INTO `sys_log` VALUES ('1680', '超级管理员', '退出系统', 'com.hxy.sys.controller.LoginController.logOut()', null, '0:0:0:0:0:0:0:1', '2017-10-11 19:25:19');
+INSERT INTO `sys_log` VALUES ('1681', '超级管理员', '查看定时任务列表', 'com.hxy.sys.controller.ScheduleJobController.list()', '{\"nd\":\"1507721127417\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507721127269\"}', '0:0:0:0:0:0:0:1', '2017-10-11 19:25:27');
+INSERT INTO `sys_log` VALUES ('1682', '超级管理员', '查看定时任务', 'com.hxy.sys.controller.ScheduleJobController.info()', '14', '0:0:0:0:0:0:0:1', '2017-10-11 19:25:29');
+INSERT INTO `sys_log` VALUES ('1683', '超级管理员', '查看定时任务列表', 'com.hxy.sys.controller.ScheduleJobController.list()', '{\"nd\":\"1507721133268\",\"limit\":\"10\",\"beanName\":\"\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507721127271\"}', '0:0:0:0:0:0:0:1', '2017-10-11 19:25:33');
+INSERT INTO `sys_log` VALUES ('1684', '超级管理员', '查看角色列表', 'com.hxy.sys.controller.RoleController.list()', '{\"nd\":\"1507721152397\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507721152081\"}', '0:0:0:0:0:0:0:1', '2017-10-11 19:25:52');
+INSERT INTO `sys_log` VALUES ('1685', '超级管理员', '查看角色列表', 'com.hxy.sys.controller.RoleController.list()', '{\"nd\":\"1507721153884\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"name\",\"order\":\"asc\",\"_\":\"1507721152082\"}', '0:0:0:0:0:0:0:1', '2017-10-11 19:25:54');
+INSERT INTO `sys_log` VALUES ('1686', '超级管理员', '查看角色列表', 'com.hxy.sys.controller.RoleController.list()', '{\"nd\":\"1507721154716\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"name\",\"order\":\"desc\",\"_\":\"1507721152083\"}', '0:0:0:0:0:0:0:1', '2017-10-11 19:25:55');
+INSERT INTO `sys_log` VALUES ('1687', '超级管理员', '查看角色', 'com.hxy.sys.controller.RoleController.info()', '\"695a97ae34b94d57899833a3ebcd656a\"', '0:0:0:0:0:0:0:1', '2017-10-11 19:25:56');
+INSERT INTO `sys_log` VALUES ('1688', '超级管理员', '查看角色列表', 'com.hxy.sys.controller.RoleController.list()', '{\"nd\":\"1507721161940\",\"limit\":\"10\",\"name\":\"\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"name\",\"order\":\"desc\",\"_\":\"1507721152087\"}', '0:0:0:0:0:0:0:1', '2017-10-11 19:26:02');
+INSERT INTO `sys_log` VALUES ('1689', '超级管理员', '查看系统用户列表', 'com.hxy.sys.controller.UserController.list()', '{\"nd\":\"1507721163636\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507721163490\"}', '0:0:0:0:0:0:0:1', '2017-10-11 19:26:04');
+INSERT INTO `sys_log` VALUES ('1690', '超级管理员', '查看系统用户信息', 'com.hxy.sys.controller.UserController.info()', '\"f68afc12a1924deaa2051154fe0efecc\"', '0:0:0:0:0:0:0:1', '2017-10-11 19:26:05');
+INSERT INTO `sys_log` VALUES ('1691', '超级管理员', '修改系统用户', 'com.hxy.sys.controller.UserController.update()', '{\"baName\":\"IT信息中心\",\"baid\":\"0eec919538bd4cd7bf3b1aebd54808f5\",\"bapid\":\"7180f5a0c3624f4bb6fb758ab2c3bda6\",\"createId\":\"026a564bbfd84861ac4b65393644beef\",\"createTime\":1505457805000,\"id\":\"f68afc12a1924deaa2051154fe0efecc\",\"loginName\":\"xm\",\"passWord\":\"\",\"phone\":\"1522\",\"roleIdList\":[\"0c3245b565c84f639ab9e05a6d1eedfd\",\"695a97ae34b94d57899833a3ebcd656a\"],\"salt\":\"TnKS2uGqEsKwLDntbG5D\",\"status\":\"\",\"updateId\":\"026a564bbfd84861ac4b65393644beef\",\"updateTime\":1506436345000,\"userName\":\"小马\"}', '0:0:0:0:0:0:0:1', '2017-10-11 19:26:15');
+INSERT INTO `sys_log` VALUES ('1692', '超级管理员', '查看系统用户列表', 'com.hxy.sys.controller.UserController.list()', '{\"nd\":\"1507721177171\",\"limit\":\"10\",\"page\":\"1\",\"userName\":\"\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507721163493\"}', '0:0:0:0:0:0:0:1', '2017-10-11 19:26:17');
+INSERT INTO `sys_log` VALUES ('1693', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"feb235067fd7400090b0aa5451e4a5a4\"', '0:0:0:0:0:0:0:1', '2017-10-11 19:26:20');
+INSERT INTO `sys_log` VALUES ('1694', '超级管理员', '查看字典', 'com.hxy.sys.controller.CodeController.codeTree()', null, '0:0:0:0:0:0:0:1', '2017-10-11 19:28:52');
+INSERT INTO `sys_log` VALUES ('1695', '超级管理员', '查看字典', 'com.hxy.sys.controller.CodeController.info()', '\"103df6829961455ca09bb9a2b9987daf\"', '0:0:0:0:0:0:0:1', '2017-10-11 19:28:53');
+INSERT INTO `sys_log` VALUES ('1696', '超级管理员', '查看字典', 'com.hxy.sys.controller.CodeController.codeTree()', null, '0:0:0:0:0:0:0:1', '2017-10-11 19:29:06');
+INSERT INTO `sys_log` VALUES ('1697', '超级管理员', '查看字典', 'com.hxy.sys.controller.CodeController.info()', '\"325d95a84e6c46c0a37b2534815e6d8d\"', '0:0:0:0:0:0:0:1', '2017-10-11 19:29:06');
+INSERT INTO `sys_log` VALUES ('1698', '超级管理员', '查看字典', 'com.hxy.sys.controller.CodeController.info()', '\"e8a9e485ff8947718f43706c6de85c60\"', '0:0:0:0:0:0:0:1', '2017-10-11 19:29:10');
+INSERT INTO `sys_log` VALUES ('1699', '超级管理员', '查看字典', 'com.hxy.sys.controller.CodeController.info()', '\"103df6829961455ca09bb9a2b9987daf\"', '0:0:0:0:0:0:0:1', '2017-10-11 19:29:10');
+INSERT INTO `sys_log` VALUES ('1700', '超级管理员', '查看定时任务列表', 'com.hxy.sys.controller.ScheduleJobController.list()', '{\"nd\":\"1507721352637\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507721352437\"}', '0:0:0:0:0:0:0:1', '2017-10-11 19:29:13');
+INSERT INTO `sys_log` VALUES ('1701', '超级管理员', '查看配置列表', 'com.hxy.sys.controller.SysConfigController.list()', '{\"nd\":\"1507721354458\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507721354311\"}', '0:0:0:0:0:0:0:1', '2017-10-11 19:29:14');
+INSERT INTO `sys_log` VALUES ('1702', '超级管理员', '查看定时任务', 'com.hxy.sys.controller.ScheduleJobController.info()', '14', '0:0:0:0:0:0:0:1', '2017-10-11 19:29:18');
+INSERT INTO `sys_log` VALUES ('1703', '超级管理员', '查看定时任务列表', 'com.hxy.sys.controller.ScheduleJobController.list()', '{\"nd\":\"1507721359652\",\"limit\":\"10\",\"beanName\":\"\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507721352439\"}', '0:0:0:0:0:0:0:1', '2017-10-11 19:29:20');
+INSERT INTO `sys_log` VALUES ('1704', '超级管理员', '查看角色', 'com.hxy.sys.controller.RoleController.info()', '\"695a97ae34b94d57899833a3ebcd656a\"', '0:0:0:0:0:0:0:1', '2017-10-11 19:29:26');
+INSERT INTO `sys_log` VALUES ('1705', '超级管理员', '查看角色列表', 'com.hxy.sys.controller.RoleController.list()', '{\"nd\":\"1507721370972\",\"limit\":\"10\",\"name\":\"\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"name\",\"order\":\"desc\",\"_\":\"1507721152091\"}', '0:0:0:0:0:0:0:1', '2017-10-11 19:29:31');
+INSERT INTO `sys_log` VALUES ('1706', '超级管理员', '查看组织', 'com.hxy.sys.controller.OrganController.info()', '\"0eec919538bd4cd7bf3b1aebd54808f5\"', '0:0:0:0:0:0:0:1', '2017-10-11 19:29:34');
+INSERT INTO `sys_log` VALUES ('1707', '超级管理员', '查看组织', 'com.hxy.sys.controller.OrganController.info()', '\"0eec919538bd4cd7bf3b1aebd54808f5\"', '0:0:0:0:0:0:0:1', '2017-10-11 19:29:53');
+INSERT INTO `sys_log` VALUES ('1708', '超级管理员', '查阅通知', 'com.hxy.sys.controller.NoticeController.showNotice()', '\"71c9f07ae7934eb881b051cb139ed764\"', '0:0:0:0:0:0:0:1', '2017-10-11 19:37:35');
+INSERT INTO `sys_log` VALUES ('1709', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"1\"', '0:0:0:0:0:0:0:1', '2017-10-11 21:07:25');
+INSERT INTO `sys_log` VALUES ('1710', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"fdd70e08ae994de18009bc95f4f51fff\"', '0:0:0:0:0:0:0:1', '2017-10-11 21:07:48');
+INSERT INTO `sys_log` VALUES ('1711', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"239474f2afbf4196a6fc755c88be008d\"', '0:0:0:0:0:0:0:1', '2017-10-11 21:07:50');
+INSERT INTO `sys_log` VALUES ('1712', '超级管理员', '修改菜单', 'com.hxy.sys.controller.MenuController.update()', '{\"createId\":\"026a564bbfd84861ac4b65393644beef\",\"createTime\":1507727265000,\"icon\":\"fa fa-cog\",\"id\":\"239474f2afbf4196a6fc755c88be008d\",\"name\":\"sql监控\",\"open\":\"false\",\"parentId\":\"1\",\"parentIds\":\"0\",\"parentName\":\"系统管理\",\"permission\":\"\",\"sort\":1,\"status\":\"1\",\"type\":\"1\",\"updateId\":\"026a564bbfd84861ac4b65393644beef\",\"updateTime\":1503551889000,\"url\":\"druid/sql.html\"}', '0:0:0:0:0:0:0:1', '2017-10-11 21:08:55');
+INSERT INTO `sys_log` VALUES ('1713', '超级管理员', '修改菜单', 'com.hxy.sys.controller.MenuController.update()', '{\"createId\":\"026a564bbfd84861ac4b65393644beef\",\"createTime\":1507727265000,\"icon\":\"fa fa-tachometer\",\"id\":\"239474f2afbf4196a6fc755c88be008d\",\"name\":\"sql监控\",\"open\":\"false\",\"parentId\":\"1\",\"parentIds\":\"0\",\"parentName\":\"系统管理\",\"permission\":\"\",\"sort\":1,\"status\":\"1\",\"type\":\"1\",\"updateId\":\"026a564bbfd84861ac4b65393644beef\",\"updateTime\":1503551889000,\"url\":\"druid/sql.html\"}', '0:0:0:0:0:0:0:1', '2017-10-11 21:09:06');
+INSERT INTO `sys_log` VALUES ('1714', '超级管理员', '查看字典', 'com.hxy.sys.controller.CodeController.codeTree()', null, '0:0:0:0:0:0:0:1', '2017-10-11 21:10:55');
+INSERT INTO `sys_log` VALUES ('1715', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"239474f2afbf4196a6fc755c88be008d\"', '0:0:0:0:0:0:0:1', '2017-10-11 21:23:43');
+INSERT INTO `sys_log` VALUES ('1716', '超级管理员', '修改菜单', 'com.hxy.sys.controller.MenuController.update()', '{\"createId\":\"026a564bbfd84861ac4b65393644beef\",\"createTime\":1507727265000,\"icon\":\"fa fa-tachometer\",\"id\":\"239474f2afbf4196a6fc755c88be008d\",\"name\":\"sql监控\",\"open\":\"false\",\"parentId\":\"1\",\"parentIds\":\"0\",\"parentName\":\"系统管理\",\"permission\":\"\",\"sort\":8,\"status\":\"1\",\"type\":\"1\",\"updateId\":\"026a564bbfd84861ac4b65393644beef\",\"updateTime\":1507727346000,\"url\":\"druid/sql.html\"}', '0:0:0:0:0:0:0:1', '2017-10-11 21:23:56');
+INSERT INTO `sys_log` VALUES ('1717', '超级管理员', '修改菜单', 'com.hxy.sys.controller.MenuController.update()', '{\"createId\":\"026a564bbfd84861ac4b65393644beef\",\"createTime\":1507727265000,\"icon\":\"fa fa-tachometer\",\"id\":\"239474f2afbf4196a6fc755c88be008d\",\"name\":\"sql监控\",\"open\":\"false\",\"parentId\":\"1\",\"parentIds\":\"0\",\"parentName\":\"系统管理\",\"permission\":\"\",\"sort\":8,\"status\":\"1\",\"type\":\"1\",\"updateId\":\"026a564bbfd84861ac4b65393644beef\",\"updateTime\":1507727346000,\"url\":\"druid/sql.html\"}', '0:0:0:0:0:0:0:1', '2017-10-11 21:24:21');
+INSERT INTO `sys_log` VALUES ('1718', '超级管理员', '查看字典', 'com.hxy.sys.controller.CodeController.codeTree()', null, '0:0:0:0:0:0:0:1', '2017-10-11 21:37:13');
+INSERT INTO `sys_log` VALUES ('1719', '超级管理员', '查看配置列表', 'com.hxy.sys.controller.SysConfigController.list()', '{\"nd\":\"1507730308304\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507730308156\"}', '0:0:0:0:0:0:0:1', '2017-10-11 21:58:28');
+INSERT INTO `sys_log` VALUES ('1720', '超级管理员', '查看字典', 'com.hxy.sys.controller.CodeController.codeTree()', null, '0:0:0:0:0:0:0:1', '2017-10-12 09:53:25');
+INSERT INTO `sys_log` VALUES ('1721', '超级管理员', '查看字典', 'com.hxy.sys.controller.CodeController.info()', '\"3cc90674a0d5416594cf5afcaca10a6e\"', '0:0:0:0:0:0:0:1', '2017-10-12 09:56:28');
+INSERT INTO `sys_log` VALUES ('1722', '超级管理员', '查看字典', 'com.hxy.sys.controller.CodeController.info()', '\"325d95a84e6c46c0a37b2534815e6d8d\"', '0:0:0:0:0:0:0:1', '2017-10-12 09:56:29');
+INSERT INTO `sys_log` VALUES ('1723', '超级管理员', '查看字典', 'com.hxy.sys.controller.CodeController.info()', '\"fe58d909108f4fbda7ee78e9bde849ea\"', '0:0:0:0:0:0:0:1', '2017-10-12 09:56:29');
+INSERT INTO `sys_log` VALUES ('1724', '超级管理员', '查看定时任务列表', 'com.hxy.sys.controller.ScheduleJobController.list()', '{\"nd\":\"1507773403426\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507773403332\"}', '0:0:0:0:0:0:0:1', '2017-10-12 09:56:43');
+INSERT INTO `sys_log` VALUES ('1725', '超级管理员', '查看角色列表', 'com.hxy.sys.controller.RoleController.list()', '{\"nd\":\"1507773405498\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507773405460\"}', '0:0:0:0:0:0:0:1', '2017-10-12 09:56:46');
+INSERT INTO `sys_log` VALUES ('1726', '超级管理员', '查看定时任务', 'com.hxy.sys.controller.ScheduleJobController.info()', '14', '0:0:0:0:0:0:0:1', '2017-10-12 09:56:50');
+INSERT INTO `sys_log` VALUES ('1727', '超级管理员', '查看角色列表', 'com.hxy.sys.controller.RoleController.list()', '{\"nd\":\"1507773538246\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507773538104\"}', '0:0:0:0:0:0:0:1', '2017-10-12 09:58:58');
+INSERT INTO `sys_log` VALUES ('1728', '超级管理员', '查看字典', 'com.hxy.sys.controller.CodeController.codeTree()', null, '0:0:0:0:0:0:0:1', '2017-10-12 09:59:00');
+INSERT INTO `sys_log` VALUES ('1729', '超级管理员', '查看字典', 'com.hxy.sys.controller.CodeController.info()', '\"adffbaacc25543129abc86352ecf7b52\"', '0:0:0:0:0:0:0:1', '2017-10-12 09:59:01');
+INSERT INTO `sys_log` VALUES ('1730', '超级管理员', '查看字典', 'com.hxy.sys.controller.CodeController.codeTree()', null, '0:0:0:0:0:0:0:1', '2017-10-12 10:14:25');
+INSERT INTO `sys_log` VALUES ('1731', '超级管理员', '查看字典', 'com.hxy.sys.controller.CodeController.info()', '\"3cc90674a0d5416594cf5afcaca10a6e\"', '0:0:0:0:0:0:0:1', '2017-10-12 10:14:27');
+INSERT INTO `sys_log` VALUES ('1732', '超级管理员', '退出系统', 'com.hxy.sys.controller.LoginController.logOut()', null, '0:0:0:0:0:0:0:1', '2017-10-12 10:14:29');
+INSERT INTO `sys_log` VALUES ('1733', '超级管理员', '查看字典', 'com.hxy.sys.controller.CodeController.codeTree()', null, '0:0:0:0:0:0:0:1', '2017-10-12 10:17:41');
+INSERT INTO `sys_log` VALUES ('1734', '超级管理员', '查看字典', 'com.hxy.sys.controller.CodeController.info()', '\"46e85988afa24fe4acaa90addec3046a\"', '0:0:0:0:0:0:0:1', '2017-10-12 10:19:51');
+INSERT INTO `sys_log` VALUES ('1735', '超级管理员', '查看字典', 'com.hxy.sys.controller.CodeController.info()', '\"103df6829961455ca09bb9a2b9987daf\"', '0:0:0:0:0:0:0:1', '2017-10-12 10:19:51');
+INSERT INTO `sys_log` VALUES ('1736', '超级管理员', '修改字典', 'com.hxy.sys.controller.CodeController.update()', '{\"createId\":\"026a564bbfd84861ac4b65393644beef\",\"createTime\":1502208000000,\"id\":\"103df6829961455ca09bb9a2b9987daf\",\"mark\":\"act_el_operator\",\"name\":\"逻辑运算符\",\"open\":\"false\",\"parentId\":\"e8a9e485ff8947718f43706c6de85c60\",\"parentName\":\"工作流\",\"remark\":\"逻辑运算符\",\"sort\":\"1\",\"type\":\"1\",\"updateId\":\"026a564bbfd84861ac4b65393644beef\",\"updateTime\":1506355200000,\"value\":\"\"}', '0:0:0:0:0:0:0:1', '2017-10-12 10:19:52');
+INSERT INTO `sys_log` VALUES ('1737', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"1\"', '0:0:0:0:0:0:0:1', '2017-10-12 10:19:59');
+INSERT INTO `sys_log` VALUES ('1738', '超级管理员', '修改菜单', 'com.hxy.sys.controller.MenuController.update()', '{\"icon\":\"fa fa-cog\",\"id\":\"1\",\"name\":\"系统管理\",\"open\":\"false\",\"parentId\":\"0\",\"parentIds\":\"0\",\"permission\":\"32\",\"sort\":1,\"status\":\"1\",\"type\":\"0\",\"updateId\":\"026a564bbfd84861ac4b65393644beef\",\"updateTime\":1503551889000,\"url\":\"23\"}', '0:0:0:0:0:0:0:1', '2017-10-12 10:20:01');
+INSERT INTO `sys_log` VALUES ('1739', '超级管理员', '查看定时任务列表', 'com.hxy.sys.controller.ScheduleJobController.list()', '{\"nd\":\"1507774802637\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507774802491\"}', '0:0:0:0:0:0:0:1', '2017-10-12 10:20:03');
+INSERT INTO `sys_log` VALUES ('1740', '超级管理员', '查看定时任务', 'com.hxy.sys.controller.ScheduleJobController.info()', '14', '0:0:0:0:0:0:0:1', '2017-10-12 10:20:05');
+INSERT INTO `sys_log` VALUES ('1741', '超级管理员', '修改定时任务', 'com.hxy.sys.controller.ScheduleJobController.update()', '{\"beanName\":\"testTask\",\"createTime\":1498630390000,\"cronExpression\":\"0 0/30 * * * ?\",\"jobId\":14,\"methodName\":\"test\",\"params\":\"hxyFrame\",\"remark\":\"1\",\"status\":1}', '0:0:0:0:0:0:0:1', '2017-10-12 10:20:06');
+INSERT INTO `sys_log` VALUES ('1742', '超级管理员', '查看定时任务列表', 'com.hxy.sys.controller.ScheduleJobController.list()', '{\"nd\":\"1507774807185\",\"limit\":\"10\",\"beanName\":\"\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507774802493\"}', '0:0:0:0:0:0:0:1', '2017-10-12 10:20:07');
+INSERT INTO `sys_log` VALUES ('1743', '超级管理员', '查看配置列表', 'com.hxy.sys.controller.SysConfigController.list()', '{\"nd\":\"1507774808804\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507774808657\"}', '0:0:0:0:0:0:0:1', '2017-10-12 10:20:09');
+INSERT INTO `sys_log` VALUES ('1744', '超级管理员', '查看配置列表', 'com.hxy.sys.controller.SysConfigController.list()', '{\"nd\":\"1507774809619\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"id\",\"order\":\"asc\",\"_\":\"1507774808658\"}', '0:0:0:0:0:0:0:1', '2017-10-12 10:20:10');
+INSERT INTO `sys_log` VALUES ('1745', '超级管理员', '查看角色列表', 'com.hxy.sys.controller.RoleController.list()', '{\"nd\":\"1507774818822\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507774818700\"}', '0:0:0:0:0:0:0:1', '2017-10-12 10:20:19');
+INSERT INTO `sys_log` VALUES ('1746', '超级管理员', '查看系统用户列表', 'com.hxy.sys.controller.UserController.list()', '{\"nd\":\"1507774822117\",\"limit\":\"10\",\"page\":\"1\",\"_search\":\"false\",\"sidx\":\"\",\"order\":\"asc\",\"_\":\"1507774821942\"}', '0:0:0:0:0:0:0:1', '2017-10-12 10:20:22');
+INSERT INTO `sys_log` VALUES ('1747', '超级管理员', '查看组织', 'com.hxy.sys.controller.OrganController.info()', '\"a694d140b8e44eb2baa5f26435c6a7f8\"', '0:0:0:0:0:0:0:1', '2017-10-12 10:20:28');
+INSERT INTO `sys_log` VALUES ('1748', '超级管理员', '修改组织', 'com.hxy.sys.controller.OrganController.update()', '{\"bapid\":\"0\",\"code\":\"002\",\"createId\":\"026a564bbfd84861ac4b65393644beef\",\"createTime\":1502853976000,\"id\":\"a694d140b8e44eb2baa5f26435c6a7f8\",\"isDel\":\"1\",\"name\":\"北京分公司\",\"open\":\"true\",\"parentId\":\"ff6d5335b1c7456e9a2e7734062820b2\",\"remark\":\"宜宾分公司\",\"sort\":\"2\",\"sysmark\":\"ff6d5335b1c7456e9a2e7734062820b2\",\"type\":\"1\",\"updateId\":\"026a564bbfd84861ac4b65393644beef\",\"updateTime\":1504490837000}', '0:0:0:0:0:0:0:1', '2017-10-12 10:20:29');
+INSERT INTO `sys_log` VALUES ('1749', '超级管理员', '查看菜单', 'com.hxy.sys.controller.MenuController.info()', '\"239474f2afbf4196a6fc755c88be008d\"', '0:0:0:0:0:0:0:1', '2017-10-12 10:23:05');
 
 -- ----------------------------
 -- Table structure for sys_menu
@@ -2606,18 +2827,19 @@ CREATE TABLE `sys_menu` (
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
-INSERT INTO `sys_menu` VALUES ('0', null, null, '根目录', null, '', '0', null, null, null, '2017-06-29 17:29:00', null, '026a564bbfd84861ac4b65393644beef', '2017-07-20 18:20:50', '0', 'true', null, null);
 INSERT INTO `sys_menu` VALUES ('0c410538dff54d35a1e19c7524c20e47', '1eabb55ae2fa4f5e890c7739c1678e44', '0', '删除', '', null, '17', '1', 'sys:config:delete', null, '2017-08-29 22:03:44', '026a564bbfd84861ac4b65393644beef', '026a564bbfd84861ac4b65393644beef', '2017-06-29 11:36:06', '2', 'false', null, null);
 INSERT INTO `sys_menu` VALUES ('0c7df2638a464cd5b165547e07dd5409', 'f4f6af97585d401f918afedd3ca223e9', '0', '日志列表', '', null, '14', '1', 'sys:schedule:log', null, '2017-08-29 22:06:44', '026a564bbfd84861ac4b65393644beef', '026a564bbfd84861ac4b65393644beef', '2017-06-29 11:32:31', '2', 'false', null, null);
 INSERT INTO `sys_menu` VALUES ('0e6213b719bd424a9c794ee87f64333e', '1e7867f5ef3748bbaa2060b0192b8ff0', '0', '生成代码', '', null, '20', '1', 'sys:generator:code', null, '2017-08-29 22:00:22', '44b66661d5954f36a26465d96e837cf7', '026a564bbfd84861ac4b65393644beef', '2017-06-26 15:10:40', '2', 'false', null, null);
-INSERT INTO `sys_menu` VALUES ('1', '0', '0', '系统管理', '23', 'fa fa-cog', '1', '1', '32', null, null, null, '026a564bbfd84861ac4b65393644beef', '2017-08-24 13:18:09', '0', 'false', null, null);
+INSERT INTO `sys_menu` VALUES ('1', '0', '0', '系统管理', '23', 'fa fa-cog', '1', '1', '32', null, null, null, '026a564bbfd84861ac4b65393644beef', '2017-10-12 10:20:01', '0', 'false', null, null);
 INSERT INTO `sys_menu` VALUES ('14c58e44d6754c92806e1b97614c49b9', 'b7ab517a15b74dea812ee7ef32847a48', '0', '所有权限', '', null, '1', '1', 'sys:organ:all', null, '2017-08-29 22:11:25', '026a564bbfd84861ac4b65393644beef', '026a564bbfd84861ac4b65393644beef', '2017-08-16 11:30:16', '2', 'false', null, null);
 INSERT INTO `sys_menu` VALUES ('1515daa136ba41f783e82318f851d343', '1', '0', '字典管理', 'sys/code.html', 'fa fa-bell-o', '6', '1', 'sys:code:codeTree', null, '2017-07-14 15:14:04', '026a564bbfd84861ac4b65393644beef', '026a564bbfd84861ac4b65393644beef', '2017-09-26 11:45:35', '1', null, null, null);
 INSERT INTO `sys_menu` VALUES ('15d2074a502f443cb760f613a40df598', '8b1f46f8ba6e455790a515c32e0329c5', null, '保存/更新', null, null, '0', '1', 'sys:user:update', null, '2017-05-18 19:31:05', '026a564bbfd84861ac4b65393644beef', '026a564bbfd84861ac4b65393644beef', '2017-08-29 22:08:39', '2', 'false', null, null);
+INSERT INTO `sys_menu` VALUES ('1cabf71492834ffa9eb5fb85aeca9f14', 'f4f6af97585d401f918afedd3ca223e9', '0', '查看信息', '', null, '14', '1', 'sys:schedule:info', null, '2017-10-11 19:25:17', '026a564bbfd84861ac4b65393644beef', '026a564bbfd84861ac4b65393644beef', '2017-06-29 11:32:31', '2', 'false', null, null);
 INSERT INTO `sys_menu` VALUES ('1e7867f5ef3748bbaa2060b0192b8ff0', '1', '0', '代码生成', 'sys/generator.html', 'fa fa-check-circle', '20', '1', 'sys:generator:list', null, '2017-06-28 17:35:34', '026a564bbfd84861ac4b65393644beef', '026a564bbfd84861ac4b65393644beef', '2017-09-26 10:31:16', '1', 'false', null, null);
 INSERT INTO `sys_menu` VALUES ('1eabb55ae2fa4f5e890c7739c1678e44', '1', '0', '系统参数', 'sys/config.html', 'fa fa-cog', '17', '1', 'sys:config:list', null, '2017-06-29 11:33:47', '026a564bbfd84861ac4b65393644beef', '026a564bbfd84861ac4b65393644beef', '2017-06-29 11:36:06', '1', null, null, null);
 INSERT INTO `sys_menu` VALUES ('1f936af47d064ab4989aadf6373e6502', '1515daa136ba41f783e82318f851d343', '0', '保存/更新', '', null, '6', '1', 'sys:code:update', null, '2017-07-24 09:46:51', '026a564bbfd84861ac4b65393644beef', '026a564bbfd84861ac4b65393644beef', '2017-08-29 21:54:24', '2', 'false', null, null);
 INSERT INTO `sys_menu` VALUES ('2', '1', '1', '菜单', 'sys/menu.html', 'fa fa-bullhorn', '12', '1', 'sys:menu:list', null, null, null, '026a564bbfd84861ac4b65393644beef', '2017-09-26 10:40:07', '1', 'false', null, null);
+INSERT INTO `sys_menu` VALUES ('239474f2afbf4196a6fc755c88be008d', '1', '0', 'sql监控', 'druid/sql.html', 'fa fa-tachometer', '8', '1', '', null, '2017-10-11 21:07:45', '026a564bbfd84861ac4b65393644beef', '026a564bbfd84861ac4b65393644beef', '2017-10-11 21:24:21', '1', 'false', null, null);
 INSERT INTO `sys_menu` VALUES ('39cb0308a7fc4f7fb6c49440224ac2a4', '9e8dc02fe5614580bdf5f6ca9a852b70', null, '启用', '', null, '0', '1', 'sys:role:enabled', null, '2017-09-15 14:11:24', '026a564bbfd84861ac4b65393644beef', '026a564bbfd84861ac4b65393644beef', '2017-06-29 17:32:59', '2', 'false', null, null);
 INSERT INTO `sys_menu` VALUES ('4', '2', '2', '保存/更新', null, null, null, '1', 'sys:menu:update', null, null, null, '026a564bbfd84861ac4b65393644beef', '2017-08-29 22:04:39', '2', 'false', null, null);
 INSERT INTO `sys_menu` VALUES ('4565ee01959c478d96c4071d3bb2a36f', 'f4f6af97585d401f918afedd3ca223e9', '0', '立即执行', 'sys/schedule.html', null, '11', '1', 'sys:schedule:run', null, '2017-06-26 15:57:14', '026a564bbfd84861ac4b65393644beef', '026a564bbfd84861ac4b65393644beef', '2017-08-29 22:05:58', '2', 'false', null, null);
@@ -2646,7 +2868,7 @@ INSERT INTO `sys_menu` VALUES ('bbe03cab3b4a45c2a4dd972c80ef4224', 'e700f061dae4
 INSERT INTO `sys_menu` VALUES ('bc82a59fa9034622a66e13fd830def06', 'e700f061dae448e58cd81a68e17b3439', '0', '我的已办', 'act/deal/myDoneList', 'fa fa-puzzle-piece', '5', '1', 'act:model:myUpcoming', null, '2017-08-14 11:23:37', '026a564bbfd84861ac4b65393644beef', '026a564bbfd84861ac4b65393644beef', '2017-09-26 21:35:46', '1', 'false', null, null);
 INSERT INTO `sys_menu` VALUES ('c898d73ff1fb49dc89909ed13452103a', '9e8dc02fe5614580bdf5f6ca9a852b70', null, '保存/更新', null, null, '0', '1', 'sys:role:update', null, '2017-05-18 20:37:18', '026a564bbfd84861ac4b65393644beef', '026a564bbfd84861ac4b65393644beef', '2017-08-29 22:10:19', '2', 'false', null, null);
 INSERT INTO `sys_menu` VALUES ('ce4a2b7afad24616abd283f4741fe3e0', '9e8dc02fe5614580bdf5f6ca9a852b70', null, '查看信息', '', null, null, '1', 'sys:role:info', null, '2017-05-18 20:34:07', '026a564bbfd84861ac4b65393644beef', '026a564bbfd84861ac4b65393644beef', '2017-08-29 22:10:47', '2', 'false', null, null);
-INSERT INTO `sys_menu` VALUES ('cefab951f1474646b9419828db47c362', 'f4f6af97585d401f918afedd3ca223e9', '0', '保存/更新', '', null, '14', '1', 'sys:schedule:update', null, '2017-08-25 09:29:35', '026a564bbfd84861ac4b65393644beef', '026a564bbfd84861ac4b65393644beef', '2017-08-29 22:05:48', '2', 'false', null, null);
+INSERT INTO `sys_menu` VALUES ('cefab951f1474646b9419828db47c362', 'f4f6af97585d401f918afedd3ca223e9', '0', '保存/更新', '', null, '14', '1', 'sys:schedule:update', null, '2017-08-25 09:29:35', '026a564bbfd84861ac4b65393644beef', '026a564bbfd84861ac4b65393644beef', '2017-10-11 18:01:02', '2', 'false', null, null);
 INSERT INTO `sys_menu` VALUES ('e700f061dae448e58cd81a68e17b3439', '0', '0', '工作流管理', 'test/testjsp', 'fa fa-archive', '3', '1', '', null, '2017-07-10 14:10:15', '026a564bbfd84861ac4b65393644beef', '026a564bbfd84861ac4b65393644beef', '2017-09-01 11:36:24', '0', null, null, null);
 INSERT INTO `sys_menu` VALUES ('f161e717976340e89c68b93abb87419d', 'f8524c36e2584ff5a2e374c3727c39c5', '0', '所有权限', '', null, '16', '1', 'sys:oss:all', null, '2017-08-29 22:07:42', '026a564bbfd84861ac4b65393644beef', '026a564bbfd84861ac4b65393644beef', '2017-06-29 11:35:45', '2', 'false', null, null);
 INSERT INTO `sys_menu` VALUES ('f4d418f7f9174338acc595151daa020f', 'f4f6af97585d401f918afedd3ca223e9', '0', '恢复定时', 'sys/schedule.html', null, '11', '1', 'sys:schedule:resume', null, '2017-06-26 15:57:44', '026a564bbfd84861ac4b65393644beef', '026a564bbfd84861ac4b65393644beef', '2017-08-29 22:06:12', '2', 'false', null, null);
@@ -2732,7 +2954,7 @@ INSERT INTO `sys_organ` VALUES ('7180f5a0c3624f4bb6fb758ab2c3bda6', '0', '1', '0
 INSERT INTO `sys_organ` VALUES ('8a726eabdc8d4bff880b7d6f6ed59d52', 'a694d140b8e44eb2baa5f26435c6a7f8', '2', '2', '2', 'ff6d5335b1c7456e9a2e7734062820b2', '0', 'ff6d5335b1c7456e9a2e7734062820b2', '2', 'true', '', '026a564bbfd84861ac4b65393644beef', '2017-09-04 10:30:37', '026a564bbfd84861ac4b65393644beef', '2017-08-22 18:41:27');
 INSERT INTO `sys_organ` VALUES ('988fed2319e14ebbb1ecf6ddc74e594c', 'a694d140b8e44eb2baa5f26435c6a7f8', '1', '1', '1', 'ff6d5335b1c7456e9a2e7734062820b2', '0', 'ff6d5335b1c7456e9a2e7734062820b2', '1', 'true', '1', '026a564bbfd84861ac4b65393644beef', '2017-09-04 10:30:27', '026a564bbfd84861ac4b65393644beef', '2017-08-22 18:41:27');
 INSERT INTO `sys_organ` VALUES ('9e6a3c71bcd84d45807aa6641ab1a642', 'a694d140b8e44eb2baa5f26435c6a7f8', '2', '202', '测试部门', 'a694d140b8e44eb2baa5f26435c6a7f8', '1', 'ff6d5335b1c7456e9a2e7734062820b2', '2', 'true', '测试部门', '026a564bbfd84861ac4b65393644beef', '2017-08-16 11:29:10', null, null);
-INSERT INTO `sys_organ` VALUES ('a694d140b8e44eb2baa5f26435c6a7f8', '0', '1', '002', '北京分公司', 'ff6d5335b1c7456e9a2e7734062820b2', '1', 'ff6d5335b1c7456e9a2e7734062820b2', '2', 'true', '宜宾分公司', '026a564bbfd84861ac4b65393644beef', '2017-08-16 11:26:16', '026a564bbfd84861ac4b65393644beef', '2017-09-04 10:07:17');
+INSERT INTO `sys_organ` VALUES ('a694d140b8e44eb2baa5f26435c6a7f8', '0', '1', '002', '北京分公司', 'ff6d5335b1c7456e9a2e7734062820b2', '1', 'ff6d5335b1c7456e9a2e7734062820b2', '2', 'true', '宜宾分公司', '026a564bbfd84861ac4b65393644beef', '2017-08-16 11:26:16', '026a564bbfd84861ac4b65393644beef', '2017-10-12 10:20:29');
 INSERT INTO `sys_organ` VALUES ('b416c33a10674690b2fbf77c639aeb5d', 'a694d140b8e44eb2baa5f26435c6a7f8', '1', '320', 'test', 'ff6d5335b1c7456e9a2e7734062820b2', '0', 'ff6d5335b1c7456e9a2e7734062820b2', '3', 'true', '', '026a564bbfd84861ac4b65393644beef', '2017-09-04 10:08:01', '026a564bbfd84861ac4b65393644beef', '2017-08-22 18:41:27');
 INSERT INTO `sys_organ` VALUES ('d3a2d739512040a6a7608de76baeef97', '0', '1', '23', '23', 'ff6d5335b1c7456e9a2e7734062820b2', '0', 'ff6d5335b1c7456e9a2e7734062820b2', '23', 'true', '32', '026a564bbfd84861ac4b65393644beef', '2017-08-22 18:41:19', '026a564bbfd84861ac4b65393644beef', '2017-08-22 18:36:12');
 INSERT INTO `sys_organ` VALUES ('ff6d5335b1c7456e9a2e7734062820b2', '0', '0', '0', '组织机构树', '0', '1', 'ff6d5335b1c7456e9a2e7734062820b2', '1', 'true', '根节点', '026a564bbfd84861ac4b65393644beef', '2017-08-16 11:24:51', '026a564bbfd84861ac4b65393644beef', '2017-08-22 18:41:27');
@@ -2777,11 +2999,12 @@ CREATE TABLE `sys_oss` (
   `url` varchar(200) DEFAULT NULL COMMENT 'URL地址',
   `create_date` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='文件上传';
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='文件上传';
 
 -- ----------------------------
 -- Records of sys_oss
 -- ----------------------------
+INSERT INTO `sys_oss` VALUES ('1', 'http://osaowv4s0.bkt.clouddn.com/upload/20171011/e64857969e71400b906967721bb70e0c', '2017-10-11 21:58:38');
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -2913,15 +3136,16 @@ CREATE TABLE `sys_user` (
   `update_id` varchar(32) DEFAULT NULL COMMENT '更新者',
   `remark` varchar(255) DEFAULT NULL COMMENT '备注',
   `baid` varchar(32) DEFAULT NULL COMMENT '部门id',
+  `salt` varchar(64) DEFAULT NULL COMMENT '盐',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='系统用户表';
 
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES ('026a564bbfd84861ac4b65393644beef', 'a694d140b8e44eb2baa5f26435c6a7f8', '超级管理员', 'hxy', '0cc175b9c0f1b6a831c399e269772661', '2017-04-27 21:51:49', '2017-09-04 10:04:52', '0', null, null, null, null, '026a564bbfd84861ac4b65393644beef', null, '4ec329625a1047ea87a8dfe8dd0750d1');
-INSERT INTO `sys_user` VALUES ('98df0e92788c416a9fb983e89a8d01ce', 'a694d140b8e44eb2baa5f26435c6a7f8', '小五', 'xw', '0cc175b9c0f1b6a831c399e269772661', '2017-09-15 11:04:12', '2017-09-26 22:33:51', '0', '324', null, null, '026a564bbfd84861ac4b65393644beef', '026a564bbfd84861ac4b65393644beef', null, '4ec329625a1047ea87a8dfe8dd0750d1');
-INSERT INTO `sys_user` VALUES ('f68afc12a1924deaa2051154fe0efecc', '7180f5a0c3624f4bb6fb758ab2c3bda6', '小马', 'xm', '0cc175b9c0f1b6a831c399e269772661', '2017-09-15 14:43:25', '2017-09-26 22:32:25', '', '1522', null, null, '026a564bbfd84861ac4b65393644beef', '026a564bbfd84861ac4b65393644beef', null, '0eec919538bd4cd7bf3b1aebd54808f5');
+INSERT INTO `sys_user` VALUES ('026a564bbfd84861ac4b65393644beef', 'a694d140b8e44eb2baa5f26435c6a7f8', '超级管理员', 'hxy', 'a459e9fbc01a43de4b75bc73d7c6c2bac94ff8556ffd758074f3d2268b6479d8', '2017-04-27 21:51:49', '2017-09-04 10:04:52', '0', null, null, null, null, '026a564bbfd84861ac4b65393644beef', null, '4ec329625a1047ea87a8dfe8dd0750d1', 'dQCXHbIgU6lhmEeqh7G3');
+INSERT INTO `sys_user` VALUES ('98df0e92788c416a9fb983e89a8d01ce', 'a694d140b8e44eb2baa5f26435c6a7f8', '小五', 'xw', '668e915f3e15ad14fc900f5b16580862000d34be7eeb4bd4d940826ea6f025d8', '2017-09-15 11:04:12', '2017-09-26 22:33:51', '0', '324', null, null, '026a564bbfd84861ac4b65393644beef', '026a564bbfd84861ac4b65393644beef', null, '4ec329625a1047ea87a8dfe8dd0750d1', 'UjVH5houK2sarbqjSxKt');
+INSERT INTO `sys_user` VALUES ('f68afc12a1924deaa2051154fe0efecc', '7180f5a0c3624f4bb6fb758ab2c3bda6', '小马', 'xm', '46f18a346cd1a0453b7c28d90ec551187f895a896eb022ff059ab4368b656e53', '2017-09-15 14:43:25', '2017-10-11 19:26:15', '', '1522', null, null, '026a564bbfd84861ac4b65393644beef', '026a564bbfd84861ac4b65393644beef', null, '0eec919538bd4cd7bf3b1aebd54808f5', 'TnKS2uGqEsKwLDntbG5D');
 
 -- ----------------------------
 -- Table structure for sys_user_role
