@@ -97,9 +97,6 @@ public class UserController extends BaseController{
 	@RequiresPermissions("sys:user:update")
 	@SysLog("新增系统用户")
 	public Result save(@RequestBody UserEntity user){
-		if(StringUtils.isNotEmpty(user.getPassWord())){
-			user.setPassWord(MD5.MD5Encode(user.getPassWord()));
-		}
 		userService.save(user);
 		return Result.ok();
 	}
@@ -121,8 +118,7 @@ public class UserController extends BaseController{
 	 * 修改密码
 	 */
 	@RequestMapping(value = "/updatePassword",method = RequestMethod.POST)
-	@RequiresPermissions("sys:user:updatePassword")
-	@SysLog("系统用户密码")
+	@SysLog("用户修改密码")
 	public Result updatePassword(UserEntity user){
         int i = userService.updatePassword(user);
         if(i<1){

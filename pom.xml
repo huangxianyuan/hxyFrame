@@ -10,7 +10,7 @@
     <version>${hxyFrame.version}</version>
     <modules>
         <module>frame-admin</module> <!--后面web项目-->
-        <module>frame-shrio</module> <!--shrio权限管理-->
+        <module>frame-shiro</module> <!--shiro权限管理-->
         <module>frame-service</module> <!--数据模块-->
         <module>frame-generator</module> <!--代码生成模块-->
         <module>frame-quartz</module> <!--定时任务-->
@@ -42,6 +42,7 @@
         <velocity.version>1.7</velocity.version>
         <velocity.tools.version>2.0</velocity.tools.version>
         <java.version>1.7</java.version>
+        <druid-version>1.0.28</druid-version>
         <kaptcha.version>0.0.9</kaptcha.version>
         <quartz.version>2.2.3</quartz.version>
         <solr.version>6.5.1</solr.version>
@@ -142,6 +143,12 @@
             <version>${spring.version}</version>
         </dependency>
         <!-- springMVC包 结束 -->
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>${druid-version}</version>
+        </dependency>
 
         <!-- shiro包开始 -->
         <dependency>

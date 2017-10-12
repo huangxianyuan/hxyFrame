@@ -10,11 +10,11 @@
     <param-value>
         classpath*:spring-scheduler.xml
         classpath*:spring-mybatis.xml
-        classpath*:spring-shrio-redis.xml
+        classpath*:spring-shiro-redis.xml
         classpath*:spring-activiti.xml
         <!--classpath*:spring-sentinel_redis.xml-->
         classpath*:spring-redis.xml
-      <!--classpath*:spring-shrio.xml-->
+      <!--classpath*:spring-shiro.xml-->
       <!--classpath*:spring-ActiveMQ.xml-->
     </param-value>
   </context-param>
@@ -140,8 +140,36 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>-->
 
+  <servlet>
+    <servlet-name>DruidStatView</servlet-name>
+    <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>DruidStatView</servlet-name>
+    <url-pattern>/druid/*</url-pattern>
+  </servlet-mapping>
+
+  <!--更多详细配置参考https://github.com/alibaba/druid/wiki/%E9%85%8D%E7%BD%AE_%E9%85%8D%E7%BD%AEWebStatFilter-->
+  <filter>
+    <filter-name>DruidWebStatFilter</filter-name>
+    <filter-class>com.alibaba.druid.support.http.WebStatFilter</filter-class>
+    <init-param>
+      <!--经常需要排除一些不必要的url，比如*.js,/jslib/*等等-->
+      <param-name>exclusions</param-name>
+      <param-value>*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>DruidWebStatFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+
   <welcome-file-list>
     <welcome-file>/login.html</welcome-file>
   </welcome-file-list>
+
+
 
 </web-app>

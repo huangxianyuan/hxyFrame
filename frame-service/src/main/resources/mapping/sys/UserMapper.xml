@@ -14,6 +14,7 @@
         <result property="createTime" column="create_time"/>
         <result property="updateTime" column="update_time"/>
         <result property="status" column="status"/>
+        <result property="salt" column="salt"/>
         <result property="phone" column="phone"/>
         <result property="photo" column="photo"/>
         <result property="email" column="email"/>
@@ -32,7 +33,8 @@
 		create_time, 
 		update_time, 
 		status, 
-		phone, 
+		salt,
+		phone,
 		photo, 
 		email, 
 		create_id, 
@@ -127,7 +129,8 @@
 			`create_time`, 
 			`update_time`, 
 			`status`, 
-			`phone`, 
+			`salt`,
+			`phone`,
 			`photo`, 
 			`email`, 
 			`create_id`, 
@@ -145,7 +148,8 @@
 			#{createTime}, 
 			#{updateTime}, 
 			#{status}, 
-			#{phone}, 
+			#{salt},
+			#{phone},
 			#{photo}, 
 			#{email}, 
 			#{createId}, 
@@ -165,6 +169,7 @@
 			<if test="createTime != null">`create_time` = #{createTime}, </if>
 			<if test="updateTime != null">`update_time` = #{updateTime}, </if>
 			<if test="status != null">`status` = #{status}, </if>
+			<if test="salt != null">`salt` = #{salt}, </if>
 			<if test="phone != null">`phone` = #{phone}, </if>
 			<if test="photo != null">`photo` = #{photo}, </if>
 			<if test="email != null">`email` = #{email}, </if>
@@ -177,14 +182,14 @@
 
 	<update id="updatePassword" parameterType="java.util.Map">
 		update sys_user
-		set pass_word=#{passWord}
+		set pass_word=#{passWord},salt=#{salt}
 		where id = #{id}
 	</update>
 
 	<!--批量重置密码-->
 	<update id="resetPassWord" parameterType="java.util.Map">
 		update sys_user
-		set pass_word=#{passWord}
+		set pass_word=#{passWord},salt=#{salt}
 		where id IN
 		<foreach item="id" collection="ids" open="(" separator="," close=")">
 			#{id}

@@ -107,7 +107,13 @@ var vm = new Vue({
 		},
 		getInfo: function(${pk.attrname}){
 			$.get("../${pathName}/info/"+${pk.attrname}, function(r){
-                vm.${classname} = r.${classname};
+                if(r.code == 0){
+                    alert(r, function(index){
+                        vm.${classname} = r.${classname};
+                    });
+                }else{
+                    alert(r.msg);
+                }
             });
 		},
 		reload: function (event) {

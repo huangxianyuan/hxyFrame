@@ -68,6 +68,9 @@ var vm = new Vue({
 			}
 			
 			$.get("../sys/schedule/info/"+jobId, function(r){
+                if(r.code != 0){
+                    alert(r.msg);
+                }
 				vm.showList = false;
                 vm.title = "修改";
 				vm.schedule = r.schedule;
@@ -81,7 +84,7 @@ var vm = new Vue({
                 contentType: "application/json",
 			    data: JSON.stringify(vm.schedule),
 			    success: function(r){
-			    	if(r.code === 0){
+			    	if(r.code == 0){
 						alert(r, function(index){
 							vm.reload();
 						});

@@ -39,6 +39,8 @@ public class UserEntity extends BaseEntity implements Serializable {
 	private String photo;
 	//邮箱
 	private String email;
+	//salt盐加密
+	private String salt;
 
 	/**
 	 * 新密码
@@ -158,5 +160,13 @@ public class UserEntity extends BaseEntity implements Serializable {
 
 	public void setNewPassWord(String newPassWord) {
 		this.newPassWord = newPassWord;
+	}
+
+	public String getSalt() {
+		return salt;
+	}
+
+	public void setSalt(String salt) {
+		this.salt = salt;
 	}
 }

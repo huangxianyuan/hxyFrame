@@ -12,7 +12,7 @@
 				<input  class="form-control" v-model="q.beanName" @keyup.enter="query" placeholder="bean名称">
 			</div>
 			<button class="layui-btn" id="searchSubmit" @click="query"><i class="layui-icon">&#xe615;</i>查 询</button>
-			#if($shiro.hasPermission("sys:schedule:update"))
+			#if($shiro.hasPermission("sys:schedule:info"))
 				<button class="layui-btn layui-btn-normal" type="button" @click="update"><i class="layui-icon">&#xe642;</i>编辑</button>
 				<button class="layui-btn" @click="add" type="button"><i class="layui-icon">&#xe61f;</i> 新 增</button>
 			#end

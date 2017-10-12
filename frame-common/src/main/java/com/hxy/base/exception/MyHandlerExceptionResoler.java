@@ -3,6 +3,7 @@ package com.hxy.base.exception;
 import com.hxy.base.utils.JsonUtil;
 import com.hxy.base.utils.Result;
 import com.hxy.base.utils.WebUtils;
+import org.apache.shiro.authz.UnauthorizedException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerExceptionResolver;
@@ -38,7 +39,11 @@ public class MyHandlerExceptionResoler implements HandlerExceptionResolver {
                     logger.info("一个ajax请求，发生业务错误,错误内容:"+e.getMessage());
                     Result error = Result.error(e.getMessage());
                     writer.write(JsonUtil.getJsonByObj(error));
-                }else {
+                }else if (e instanceof UnauthorizedException){
+                    logger.info("一个ajax请求，发生系统错误,错误内容:"+e.getMessage());
+                    Result error = Result.error("对不起，没有权限操作!");
+                    writer.write(JsonUtil.getJsonByObj(error));
+                } else {
                     logger.info("一个ajax请求，发生系统错误,错误内容:"+e.getMessage());
                     Result error = Result.error("系统异常,请联系技术人员!");
                     writer.write(JsonUtil.getJsonByObj(error));
@@ -54,7 +59,10 @@ public class MyHandlerExceptionResoler implements HandlerExceptionResolver {
             if(e instanceof MyException){
                 logger.info("一个非ajax请求，发生业务错误,错误内容:"+e.getMessage());
                 result = Result.error(e.getMessage());
-            }else {
+            }else if (e instanceof UnauthorizedException){
+                logger.info("一个ajax请求，发生系统错误,错误内容:"+e.getMessage());
+                result = Result.error("对不起，没有权限操作!");
+            } else {
                 logger.info("一个非ajax请求，发生系统错误,错误内容:"+e.getMessage());
                 result = Result.error("系统异常,请联系技术人员!");
             }

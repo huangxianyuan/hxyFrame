@@ -15,6 +15,7 @@
         <module name="frame-quartz" />
         <module name="frame-redis" />
         <module name="frame-service" />
+        <module name="frame-shiro" />
         <module name="frame-shrio" />
       </profile>
     </annotationProcessing>
@@ -30,6 +31,7 @@
       <module name="frame-quartz" target="1.7" />
       <module name="frame-redis" target="1.7" />
       <module name="frame-service" target="1.7" />
+      <module name="frame-shiro" target="1.7" />
       <module name="frame-shrio" target="1.7" />
       <module name="frame-solr" target="1.7" />
       <module name="hxyFrame" target="1.7" />

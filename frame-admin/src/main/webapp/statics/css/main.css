@@ -49,5 +49,5 @@ tbody > tr > th {font-weight: normal; }
 .col-xs-6{padding-left: 0px;padding-right: 0px;}
 .form-horizontal .form-group {margin-left:0px;margin-right:0px;}
 .form-horizontal{
-	padding-top:20px;
+    width:550px;padding-top:20px;
 }

@@ -14,7 +14,9 @@ import com.hxy.sys.entity.OrganEntity;
 import com.hxy.sys.entity.UserEntity;
 import com.hxy.sys.service.OrganService;
 import com.hxy.sys.service.UserService;
+import com.hxy.utils.ShiroUtils;
 import com.hxy.utils.UserUtils;
+import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -57,6 +59,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	@Transactional
 	public void save(UserEntity user){
+        //生成salt
+        String salt = RandomStringUtils.randomAlphanumeric(20);
+        if(!StringUtils.isEmpty(user.getPassWord())){
+            ////md5加密，加盐
+            user.setPassWord(ShiroUtils.EncodeSalt(user.getPassWord(),salt));
+        }
 		user.setId(Utils.uuid());
         //保存用户与角色关系
         UserEntity currentUser = UserUtils.getCurrentUser();
@@ -64,6 +72,7 @@ public class UserServiceImpl implements UserService {
         user.setBaid(currentUser.getBaid());
         user.setCreateId(currentUser.getId());
         user.setCreateTime(new Date());
+        user.setSalt(salt);
         saveUserRole(user);
         userDao.save(user);
 	}
@@ -214,19 +223,28 @@ public class UserServiceImpl implements UserService {
         if(StringUtils.isEmpty(user.getNewPassWord())){
 	        throw new MyException("新密码不能为空");
         }
-        String vialPassWord = MD5.MD5Encode(user.getPassWord());
         UserEntity currentUser = UserUtils.getCurrentUser();
-        if(!vialPassWord.equals(currentUser.getPassWord())){
+        String newPassWord = ShiroUtils.EncodeSalt(user.getPassWord(),currentUser.getSalt());
+        if(Constant.SUPERR_USER.equals(currentUser.getId())){
+            throw new MyException("不能修改超级管理员密码!");
+        }
+        if(!newPassWord.equals(currentUser.getPassWord())){
             throw new MyException("密码不正确");
         }
         Map<String,Object> params = new HashMap<>();
+        //生成salt
+        String salt = RandomStringUtils.randomAlphanumeric(20);
         params.put("id",currentUser.getId());
-        params.put("passWord",MD5.MD5Encode((user.getNewPassWord())));
+        params.put("salt",salt);
+        params.put("passWord",ShiroUtils.EncodeSalt(user.getNewPassWord(),salt));
         return userDao.updatePassword(params);
     }
 
     @Override
     public int updateBatchStatus(String[] ids, String status) {
+        if(Arrays.asList(ids).contains(Constant.SUPERR_USER)){
+            throw new MyException("不能重置超级管理员密码!");
+        }
 	    Map<String,Object> params = new HashMap<>();
 	    params.put("ids",ids);
 	    params.put("status",status);
@@ -236,8 +254,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public int resetPassWord(String[] ids) {
 	    Map<String,Object> params = new HashMap<>();
+        if(Arrays.asList(ids).contains(Constant.SUPERR_USER)){
+            throw new MyException("不能重置超级管理员密码!");
+        }
+        //生成salt
+        String salt = RandomStringUtils.randomAlphanumeric(20);
 	    params.put("ids",ids);
-	    params.put("passWord",MD5.MD5Encode(Constant.DEF_PASSWORD));
+	    params.put("salt",salt);
+	    params.put("passWord",ShiroUtils.EncodeSalt(Constant.DEF_PASSWORD,salt));
         return userDao.resetPassWord(params);
     }
 }

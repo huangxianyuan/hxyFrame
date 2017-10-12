@@ -28,7 +28,7 @@
         </dependency>
         <dependency>
             <groupId>hxy.hxyFrame</groupId>
-            <artifactId>frame-shrio</artifactId>
+            <artifactId>frame-shiro</artifactId>
             <version>${hxyFrame.version}</version>
         </dependency>
         <dependency>

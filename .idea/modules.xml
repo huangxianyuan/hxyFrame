@@ -9,7 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/frame-quartz/frame-quartz.iml" filepath="$PROJECT_DIR$/frame-quartz/frame-quartz.iml" />
       <module fileurl="file://$PROJECT_DIR$/frame-redis/frame-redis.iml" filepath="$PROJECT_DIR$/frame-redis/frame-redis.iml" />
       <module fileurl="file://$PROJECT_DIR$/frame-service/frame-service.iml" filepath="$PROJECT_DIR$/frame-service/frame-service.iml" />
-      <module fileurl="file://$PROJECT_DIR$/frame-shrio/frame-shrio.iml" filepath="$PROJECT_DIR$/frame-shrio/frame-shrio.iml" />
+      <module fileurl="file://$PROJECT_DIR$/frame-shiro/frame-shiro.iml" filepath="$PROJECT_DIR$/frame-shiro/frame-shiro.iml" />
       <module fileurl="file://$PROJECT_DIR$/hxyFrame.iml" filepath="$PROJECT_DIR$/hxyFrame.iml" />
     </modules>
   </component>

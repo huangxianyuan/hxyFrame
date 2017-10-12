@@ -63,19 +63,17 @@ public class LoginController extends BaseController{
         }*/
         try{
             Subject subject = ShiroUtils.getSubject();
-            //md5加密
-            password = MD5.MD5Encode(password);
             UsernamePasswordToken token = new UsernamePasswordToken(username, password);
             token.setRememberMe(isRememberMe);
             subject.login(token);
         }catch (UnknownAccountException e) {
             return Result.error(e.getMessage());
         }catch (IncorrectCredentialsException e) {
-            return Result.error(e.getMessage());
+            return Result.error("账号或密码不正确");
         }catch (LockedAccountException e) {
-            return Result.error(e.getMessage());
+            return Result.error("账号已被锁定,请联系管理员");
         }catch (AuthenticationException e) {
-            return Result.error(e.getMessage());
+            return Result.error("账户验证失败");
         }
 
         return Result.ok();
