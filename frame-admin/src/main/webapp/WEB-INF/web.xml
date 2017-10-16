@@ -8,12 +8,12 @@
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>
-        classpath*:spring-scheduler.xml
-        classpath*:spring-mybatis.xml
-        classpath*:spring-shrio-redis.xml
-        classpath*:spring-activiti.xml
-        <!--classpath*:spring-sentinel_redis.xml-->
-        classpath*:spring-redis.xml
+      classpath*:spring-scheduler.xml
+      classpath*:spring-mybatis.xml
+      classpath*:spring-shrio-redis.xml
+      classpath*:spring-activiti.xml
+      classpath*:spring-redis.xml
+      classpath*:spring-mvc-app.xml
       <!--classpath*:spring-shrio.xml-->
       <!--classpath*:spring-ActiveMQ.xml-->
     </param-value>

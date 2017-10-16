@@ -24,6 +24,7 @@
                 <value>classpath:conf/cas.properties</value>
                 <value>classpath:conf/redisSentinel.properties</value>
                 <value>classpath:conf/redis.properties</value>
+                <value>classpath:conf/app.properties</value>
             </list>
         </property>
     </bean>

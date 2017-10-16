@@ -9,6 +9,7 @@
         <module name="frame--solr" />
         <module name="frame-activiti" />
         <module name="frame-admin" />
+        <module name="frame-app" />
         <module name="frame-cache" />
         <module name="frame-common" />
         <module name="frame-generator" />
@@ -23,6 +24,7 @@
       <module name="frame-activiti" target="1.7" />
       <module name="frame-activitiMQ" target="1.7" />
       <module name="frame-admin" target="1.7" />
+      <module name="frame-app" target="1.7" />
       <module name="frame-cache" target="1.7" />
       <module name="frame-cas" target="1.5" />
       <module name="frame-common" target="1.7" />
