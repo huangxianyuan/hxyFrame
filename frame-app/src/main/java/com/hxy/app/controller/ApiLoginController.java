@@ -5,7 +5,6 @@ import com.hxy.app.service.UserApiService;
 import com.hxy.app.utils.JwtUtils;
 import com.hxy.base.utils.Result;
 import com.hxy.base.validator.Assert;
-import com.hxy.sys.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +31,10 @@ public class ApiLoginController {
      * 登录
      */
     @PostMapping("login")
-    public Result login(UserEntity userEntity){
+    public Result login(String mobile, String password){
+        Assert.isBlank(mobile, "手机号不能为空");
+        Assert.isBlank(password, "密码不能为空");
+
         //用户登录
         String userId = userApiService.login(mobile, password);
 
