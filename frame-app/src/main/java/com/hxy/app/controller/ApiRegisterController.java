@@ -1,14 +1,13 @@
 package com.hxy.app.controller;
 
+import com.hxy.app.entity.UserApiEntity;
 import com.hxy.app.service.UserApiService;
 import com.hxy.base.utils.Result;
-import com.hxy.base.validator.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 类ApiRegisterController的功能描述:
@@ -26,12 +25,9 @@ public class ApiRegisterController {
      * 注册
      */
     @RequestMapping(value = "register",method = RequestMethod.POST)
-    public Result register(String mobile, String password){
-        Assert.isBlank(mobile, "手机号不能为空");
-        Assert.isBlank(password, "密码不能为空");
-
-        userApiService.save(mobile, password);
-
+    @ResponseBody
+    public Result register(UserApiEntity userApiEntity){
+        userApiService.save(userApiEntity);
         return Result.ok();
     }
 }
