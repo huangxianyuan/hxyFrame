@@ -14,6 +14,7 @@
         classpath*:spring-activiti.xml
         <!--classpath*:spring-sentinel_redis.xml-->
         classpath*:spring-redis.xml
+        classpath*:spring-mvc-app.xml
       <!--classpath*:spring-shiro.xml-->
       <!--classpath*:spring-ActiveMQ.xml-->
     </param-value>

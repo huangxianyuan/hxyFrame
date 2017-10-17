@@ -119,6 +119,7 @@
                 /login/login=anon
                 /login/captcha=anon
                 /activitiMq/*=anon
+                /app/*=anon
                 /**=rememberAuthFilter
             </value>
         </property>

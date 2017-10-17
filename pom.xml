@@ -18,6 +18,7 @@
         <module>frame-activiti</module> <!--activiti工作流程-->
         <module>frame-casServer</module> <!--casServer-->
         <module>frame-redis</module> <!--缓存模块-->
+        <module>frame-app</module> <!--缓存模块-->
         <!--<module>frame-solr</module>--> <!--solr全文搜索 后续会加入项目中使用-->
         <!--<module>frame-activitiMQ</module> activitiMQ消息中间件 后续会加入项目中使用-->
     </modules>
@@ -43,6 +44,7 @@
         <velocity.tools.version>2.0</velocity.tools.version>
         <java.version>1.7</java.version>
         <druid-version>1.0.28</druid-version>
+        <jwt.version>0.7.0</jwt.version>
         <kaptcha.version>0.0.9</kaptcha.version>
         <quartz.version>2.2.3</quartz.version>
         <solr.version>6.5.1</solr.version>
@@ -345,8 +347,11 @@
             <artifactId>jedis-lock</artifactId>
             <version>1.0.1</version>
         </dependency>-->
-
-
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jwt.version}</version>
+        </dependency>
         <!-- Velocity视图所需jar -->
         <dependency>
             <artifactId>velocity</artifactId>

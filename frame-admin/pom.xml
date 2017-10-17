@@ -36,6 +36,11 @@
             <artifactId>frame-activiti</artifactId>
             <version>${hxyFrame.version}</version>
         </dependency>
+        <dependency>
+            <groupId>hxy.hxyFrame</groupId>
+            <artifactId>frame-app</artifactId>
+            <version>${hxyFrame.version}</version>
+        </dependency>
        <!-- <dependency>
             <groupId>hxy.hxyFrame</groupId>
             <artifactId>frame-activitiMQ</artifactId>
