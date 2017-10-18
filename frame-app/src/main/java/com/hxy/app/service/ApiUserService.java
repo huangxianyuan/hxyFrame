@@ -1,6 +1,7 @@
 package com.hxy.app.service;
 
 
+import com.hxy.app.entity.ApiUserEntity;
 import com.hxy.sys.entity.UserEntity;
 import com.hxy.sys.service.UserService;
 
@@ -10,11 +11,19 @@ import com.hxy.sys.service.UserService;
  * @auther hxy
  * @date 2017-10-16 14:17:17
  */
-public interface UserApiService extends UserService{
+public interface ApiUserService extends UserService{
 
 	/**
 	 * 用户登录
 	 * @return          返回用户ID
 	 */
 	String login(UserEntity userEntity);
+
+	/**
+	 * 根据id获取用户相关信息
+	 * @param id
+	 * @return
+	 */
+	ApiUserEntity userInfo(String id);
+
 }

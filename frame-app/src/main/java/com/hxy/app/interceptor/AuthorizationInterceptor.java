@@ -2,13 +2,14 @@ package com.hxy.app.interceptor;
 
 
 import com.hxy.app.annotation.LoginRequired;
-import com.hxy.app.service.UserApiService;
+import com.hxy.app.service.ApiUserService;
 import com.hxy.app.utils.JwtUtils;
 import com.hxy.base.exception.MyException;
 import com.hxy.sys.entity.UserEntity;
 import io.jsonwebtoken.Claims;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -21,12 +22,13 @@ import javax.servlet.http.HttpServletResponse;
  * @auther hxy
  * @date 2017-10-16 14:16:47
  */
+@Component
 public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
     @Autowired
     private JwtUtils jwtUtils;
 
     @Autowired
-    private UserApiService userApiService;
+    private ApiUserService userApiService;
 
     public static final String CURRENT_USER = "userId";
 
@@ -46,13 +48,12 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
 
         //需要验证，获取用户凭证
         String token = request.getHeader(jwtUtils.getHeader());
-        if(StringUtils.isBlank(token)){
-            token = request.getParameter(jwtUtils.getHeader());
-        }
-
         //凭证为空
         if(StringUtils.isBlank(token)){
             throw new MyException("无token，请重新登录");
+        }
+        if(StringUtils.isBlank(token)){
+            token = request.getParameter(jwtUtils.getHeader());
         }
 
         //验证token
@@ -68,7 +69,7 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
         }
 
         //设置userId到request里，后续根据userId，获取用户信息
-        request.setAttribute(CURRENT_USER, Long.parseLong(claims.getSubject()));
+        request.setAttribute(CURRENT_USER, claims.getSubject());
 
         return true;
     }

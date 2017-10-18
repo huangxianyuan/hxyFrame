@@ -27,6 +27,10 @@
     <!--RequestMappingHandlerAdapter可以根据@requestmapping标注调用实际的函数，MappingJackson2HttpMessageConverter是json转换器-->
 
     <mvc:annotation-driven>
+        <mvc:argument-resolvers>
+            <bean class="com.hxy.app.resolver.LoginUserHandlerMethodArgumentResolver">
+            </bean>
+        </mvc:argument-resolvers>
         <mvc:message-converters>
             <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
                 <property name="objectMapper">
@@ -112,5 +116,4 @@
             </bean>
         </property>
     </bean>
-
 </beans>

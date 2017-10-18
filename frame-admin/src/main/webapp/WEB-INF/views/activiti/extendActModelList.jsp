@@ -55,7 +55,7 @@
                                 <button class="layui-btn layui-btn-small layui-btn-warm" type="button" onclick="showFlowImg('${model.modelId}')"><i class="layui-icon">&#xe60d;</i>查看流程图</button>
                                 <c:if test="${model.status == 1}">
                                     <button class="layui-btn layui-btn-small" type="button" onclick="deploy('${model.modelId}','部署')"><i class="layui-icon">&#xe609;</i>部署</button>
-                                    <button class="layui-btn layui-btn-small layui-btn-danger" type="button" onclick="delModel('${model.id}')"><i class="layui-icon">&#xe640;</i>删除</button>
+                                    <button class="layui-btn layui-btn-small layui-btn-danger" id="" type="button" onclick="delModel('${model.id}')"><i class="layui-icon">&#xe640;</i>删除</button>
                                 </c:if>
                                 <c:if test="${model.status == 0}">
                                     <button class="layui-btn layui-btn-small" type="button" onclick="deploy('${model.modelId}','升级')"><i class="layui-icon">&#xe62f;</i>升级版本</button>
@@ -180,7 +180,7 @@
             $.post(url,"modelId="+modelId,function (result) {
                 if(result.code == '0'){
                     toast(title+":"+result.msg);
-                    $("#searchForm").submit();
+                    $("#search-from").submit();
                 }else {
                     alertMsg(title+":"+result.msg);
                 }

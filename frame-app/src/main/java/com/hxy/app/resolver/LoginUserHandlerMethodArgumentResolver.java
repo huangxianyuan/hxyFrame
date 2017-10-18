@@ -1,9 +1,9 @@
 package com.hxy.app.resolver;
 
 import com.hxy.app.annotation.CurrentUser;
+import com.hxy.app.entity.ApiUserEntity;
 import com.hxy.app.interceptor.AuthorizationInterceptor;
-import com.hxy.app.service.UserApiService;
-import com.hxy.sys.entity.UserEntity;
+import com.hxy.app.service.ApiUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;
@@ -22,11 +22,11 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 @Component
 public class LoginUserHandlerMethodArgumentResolver implements HandlerMethodArgumentResolver {
     @Autowired
-    private UserApiService userService;
+    private ApiUserService userService;
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        return parameter.getParameterType().isAssignableFrom(UserEntity.class) && parameter.hasParameterAnnotation(CurrentUser.class);
+        return parameter.getParameterType().isAssignableFrom(ApiUserEntity.class) && parameter.hasParameterAnnotation(CurrentUser.class);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class LoginUserHandlerMethodArgumentResolver implements HandlerMethodArgu
             return null;
         }
         //获取用户信息
-        UserEntity user = userService.queryObject((String) object);
+        ApiUserEntity user = userService.userInfo((String) object);
         return user;
     }
 }

@@ -1,10 +1,9 @@
 package com.hxy.app.controller;
 
 
-import com.hxy.app.service.UserApiService;
+import com.hxy.app.service.ApiUserService;
 import com.hxy.app.utils.JwtUtils;
 import com.hxy.base.utils.Result;
-import com.hxy.base.validator.Assert;
 import com.hxy.sys.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,7 +22,7 @@ import java.util.Map;
 @RequestMapping("/app")
 public class ApiLoginController {
     @Autowired
-    private UserApiService userApiService;
+    private ApiUserService userApiService;
     @Autowired
     private JwtUtils jwtUtils;
 
@@ -32,8 +31,7 @@ public class ApiLoginController {
      */
     @RequestMapping(value = "login",method = RequestMethod.POST)
     @ResponseBody
-    public Result login(String userName){
-        UserEntity userEntity=null;
+    public Result login(UserEntity userEntity){
         //用户登录
         String userId = userApiService.login(userEntity);
 

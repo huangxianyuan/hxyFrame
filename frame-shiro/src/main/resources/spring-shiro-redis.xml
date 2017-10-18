@@ -112,6 +112,7 @@
         </property>
         <property name="filterChainDefinitions">
             <value>
+                /app/**=anon
                 /service/**=anon
                 /statics/**=anon
                 /js/**=anon
@@ -119,7 +120,6 @@
                 /login/login=anon
                 /login/captcha=anon
                 /activitiMq/*=anon
-                /app/*=anon
                 /**=rememberAuthFilter
             </value>
         </property>

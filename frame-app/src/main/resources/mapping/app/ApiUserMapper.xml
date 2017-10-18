@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hxy.app.dao.ApiUserDao">
+
+	<!--根据id获取用户相关信息-->
+	<select id="userInfo" resultType="com.hxy.app.entity.ApiUserEntity">
+		select
+		id,
+		bapid,
+		baid,
+		user_name,
+		login_name,
+		create_time,
+		update_time,
+		status,
+		phone,
+		photo,
+		email,
+		remark,
+		(SELECT name FROM sys_organ o WHERE o.id=u.baid) AS baName,
+		(SELECT name FROM sys_organ o WHERE o.id=u.bapid) AS bapName
+		from sys_user u
+		where id = #{value}
+	</select>
+
+
+</mapper>

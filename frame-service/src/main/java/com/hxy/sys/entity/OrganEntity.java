@@ -40,6 +40,8 @@ public class OrganEntity extends BaseEntity implements Serializable {
 	//图标
 	private String icon;
 
+	private String parentName;
+
 	/**
 	 * 设置：
 	 */
@@ -163,5 +165,13 @@ public class OrganEntity extends BaseEntity implements Serializable {
 
 	public void setIcon(String icon) {
 		this.icon = icon;
+	}
+
+	public String getParentName() {
+		return parentName;
+	}
+
+	public void setParentName(String parentName) {
+		this.parentName = parentName;
 	}
 }

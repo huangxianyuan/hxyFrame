@@ -34,7 +34,7 @@ public class ApiTestController {
      */
     @LoginRequired
     @GetMapping("userId")
-    public Result userInfo(@RequestAttribute("userId") Integer userId){
+    public Result userInfo(@RequestAttribute("userId") String userId){
         return Result.ok().put("userId", userId);
     }
 

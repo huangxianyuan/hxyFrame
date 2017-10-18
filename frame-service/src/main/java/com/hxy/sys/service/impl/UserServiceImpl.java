@@ -82,6 +82,8 @@ public class UserServiceImpl implements UserService {
 	    if(user == null || StringUtils.isEmpty(user.getId())){
 	        throw new MyException("更新失败，用户id不能为空!");
         }
+        user.setPassWord(null);
+        user.setSalt(null);
         user.setUpdateId(UserUtils.getCurrentUserId());
 	    user.setUpdateTime(new Date());
         //保存用户与角色关系

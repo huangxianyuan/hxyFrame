@@ -1,6 +1,7 @@
 package com.hxy.base.utils;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Enumeration;
 
 /**
  * 类的功能描述.
@@ -17,7 +18,9 @@ public class WebUtils {
      * @return
      */
     public static boolean isAjax(HttpServletRequest request){
-        if(request.getHeader("accept").indexOf("application/json") > -1 || (request.getHeader("X-Requested-With") != null && request.getHeader("X-Requested-With").indexOf("XMLHttpRequest") > -1)){
+        Enumeration<String> headerNames = request.getHeaderNames();
+        String accept = request.getHeader("accept");
+        if(accept != null && accept.indexOf("application/json") > -1 || (request.getHeader("X-Requested-With") != null && request.getHeader("X-Requested-With").indexOf("XMLHttpRequest") > -1)){
             return true;
         }
         return false;

@@ -1,22 +1,31 @@
 package com.hxy.app.service.impl;
 
 
-import com.hxy.app.service.UserApiService;
+import com.hxy.app.dao.ApiUserDao;
+import com.hxy.app.entity.ApiUserEntity;
+import com.hxy.app.service.ApiUserService;
 import com.hxy.base.exception.MyException;
 import com.hxy.sys.dao.UserDao;
 import com.hxy.sys.entity.UserEntity;
 import com.hxy.sys.service.impl.UserServiceImpl;
 import com.hxy.utils.ShiroUtils;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 
 @Service("userApiService")
-public class UserApiServiceImpl extends UserServiceImpl implements UserApiService {
+public class ApiUserServiceImpl extends UserServiceImpl implements ApiUserService {
 	@Autowired
-	private UserDao userDao;
+	private ApiUserDao userDao;
+
+	@Override
+	public ApiUserEntity userInfo(String id) {
+		if(StringUtils.isEmpty(id)){
+			throw new MyException("用户id不能为空");
+		}
+		return userDao.userInfo(id);
+	}
 
 	@Override
 	public String login(UserEntity userEntity) {

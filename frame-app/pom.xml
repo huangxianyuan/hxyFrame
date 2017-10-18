@@ -22,6 +22,11 @@
             <artifactId>frame-service</artifactId>
             <version>${hxyFrame.version}</version>
         </dependency>
+        <dependency>
+            <groupId>hxy.hxyFrame</groupId>
+            <artifactId>frame-activiti</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 
 </project>

@@ -7,22 +7,21 @@
 		http://www.springframework.org/schema/mvc
      	http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd">
 
-	<bean id="authorizationInterceptor" class="com.hxy.app.interceptor.AuthorizationInterceptor"/>
 	<!-- 引入配置文件 -->
 	<bean id="jwtUtils" class="com.hxy.app.utils.JwtUtils">
 		<constructor-arg name="secret" value="${secret}"/>
-		<constructor-arg name="expire" value="${expire}"/>
+		<constructor-arg name="expire" type="long" value="${expire}"/>
 		<constructor-arg name="header" value="${header}"/>
 		<!--<property name="secret" value="${secret}"/>
 		<property name="expire" value="${expire}"/>
 		<property name="header" value="${header}"/>-->
-
 	</bean>
+
 	<!-- 这个前端控制器只配置一个token拦截器  。不能重复配置<mvc:annotation-driven> 否则和冲掉spring-mvc.xml中的配置文件-->
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/app/**" />
-			<ref bean="authorizationInterceptor" />
+			<bean class="com.hxy.app.interceptor.AuthorizationInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
 
