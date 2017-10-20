@@ -5,6 +5,8 @@ import com.hxy.app.entity.ApiUserEntity;
 import com.hxy.sys.entity.UserEntity;
 import com.hxy.sys.service.UserService;
 
+import javax.xml.registry.infomodel.User;
+
 /**
  * 类UserService的功能描述:
  * 用户
@@ -25,5 +27,13 @@ public interface ApiUserService extends UserService{
 	 * @return
 	 */
 	ApiUserEntity userInfo(String id);
+
+	/**
+	 * 修改密码
+	 * @param oldUser
+	 * @param newUser
+	 * @return
+	 */
+	int updatePassword (UserEntity newUser, UserEntity oldUser);
 
 }

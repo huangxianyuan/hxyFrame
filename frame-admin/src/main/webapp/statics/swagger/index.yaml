@@ -1,0 +1,304 @@
+swagger: '2.0'
+info:
+  description: hxyFrame是后台管理系统，采用流行的框架springMvc+spring+mybatis+shiro+redis+ehcache开发,实现了权限管理（菜单权限、数据权限），solr全文搜索引擎，activiti工作流程引擎，cas单点登陆等功能，完善的代码生成器 后期还会考虑改造成模块微服务化,做到模块的相对独立，使用更加灵活，努力做到快速开发OA办公系统
+  version: 1.0.0
+  title: hxyFrame 接口文档
+
+basePath: /frame-admin
+
+schemes:
+  - http
+
+#认证
+securityDefinitions:
+  api_key:
+    type: "apiKey"
+    name: "token"
+    in: "header"
+
+#定义接口数据
+paths:
+  /app/login:
+    post:
+      tags:
+        - 用户登录
+      summary: 用户登录
+      produces:
+        - application/json
+      parameters:
+        - name: loginName
+          description: 用户名
+          in: query
+          type: string
+          required: true
+        - name: passWord
+          description: 密码
+          in: query
+          type: string
+          required: true
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/login'
+
+  /app/user/userInfo:
+    post:
+      tags:
+        - 用户管理
+      summary: 用户信息
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: 返回用户信息
+          schema:
+            $ref: '#/definitions/ApiUserEntity'
+  /app/user/update:
+    post:
+      tags:
+        - 用户管理
+      summary: 修改用户
+      produces:
+        - application/json
+      parameters:
+        - name: body
+          description: 用户对象
+          in: body
+          type: string
+          schema:
+            $ref: '#/definitions/ApiUserEntity'
+          required: true
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/R'
+  /app/user/updatePassword:
+    post:
+      tags:
+        - 用户管理
+      summary: 修改当前用户密码
+      produces:
+        - application/json
+      parameters:
+        - name: passWord
+          description: 原密码
+          in: query
+          type: string
+          required: true
+        - name: newPassWord
+          description: 新密码
+          in: query
+          type: string
+          required: true
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/R'
+  /app/activiti/myUpcomingCount:
+    post:
+      tags:
+        - 工作流管理
+      summary: 待办条数
+      produces:
+        - application/json
+      responses:
+        '200':
+          schema:
+            type: object
+            properties:
+              code:
+                description: 状态码 0：成功  非0：失败
+                type: string
+              msg:
+                description: 消息
+                type: string
+              myUpcomingCount:
+                description: 待办条数
+                type: integer
+                format: int32
+
+
+  /app/activiti/myUpcomingPage:
+    post:
+      tags:
+        - 工作流管理
+      summary: 我的待办列表
+      produces:
+        - application/json
+      parameters:
+        - name: pageNum
+          description: 页码
+          in: query
+          type: string
+          required: true
+        - name: pageSize
+          description: 每页条数
+          in: query
+          type: string
+          required: true
+        - name: code
+          description: 业务编码
+          in: query
+          type: string
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/ApiActTasklList'
+  /app/activiti/myDonePage:
+    post:
+      tags:
+        - 工作流管理
+      summary: 我的已办列表
+      produces:
+        - application/json
+      parameters:
+        - name: pageNum
+          description: 页码
+          in: query
+          type: string
+          required: true
+        - name: pageSize
+          description: 每页条数
+          in: query
+          type: string
+          required: true
+        - name: code
+          description: 业务编码
+          in: query
+          type: string
+      responses:
+        '200':
+          schema:
+            $ref: '#/definitions/ApiActTasklList'
+
+
+#定义数据结构
+definitions:
+  R:
+    type: object
+    properties:
+      code:
+        description: 状态码 0：成功  非0：失败
+        type: string
+      msg:
+        description: 消息
+        type: string
+  login:
+    type: object
+    properties:
+      code:
+        description: 状态码 0：成功  非0：失败
+        type: string
+      token:
+        description: token
+        type: string
+      expire:
+        description: 过期时长
+        type: integer
+        format: int32
+      msg:
+        description: 失败原因
+        type: string
+  ApiUserEntity:
+    type: object
+    properties:
+      id:
+        description: 用户ID
+        type: string
+      userName:
+        description: 用户名
+        type: string
+      loginName:
+        description: 用户帐号
+        type: string
+      passWord:
+        description: 密码
+        type: string
+      email:
+        description: 邮箱
+        type: string
+      mobile:
+        description: 手机号
+        type: string
+      myUpcomingCount:
+        description: 待办条数
+        type: int32
+      myNoticeCount:
+        description: 通知条数
+        type: int32
+      status:
+        description: 状态  0：禁用   1：正常
+        type: string
+      createId:
+        description: 创建者ID
+        type: string
+      createTime:
+        description: 创建时间
+        type: string
+        format: date-time
+  ApiActTaskEntity:
+   type: object
+   properties:
+     taskId:
+       description: 任务ID
+       type: string
+     taskName:
+       description: 任务名称
+       type: string
+     code:
+       description: 业务编号
+       type: string
+     busName:
+       description: 业务名称
+       type: string
+     remark:
+       description: 处理意见
+       type: string
+     startUserName:
+       description: 流程发起人
+       type: string
+     dealName:
+       description: 办理人
+       type: int32
+     advanceName:
+       description: 预处理人
+       type: int32
+     status:
+       description: 流程状态
+       type: string
+     createTime:
+       description: 任务创建时间
+       type: date-time
+     dealTime:
+       description: 任务办理时间
+       type: string
+       format: date-time
+  ApiActTasklList:
+   type: object
+   properties:
+     code:
+       description: 状态码 0：成功  非0：失败
+       type: string
+     page:
+       type: object
+       properties:
+         total:
+           description: 总记录数
+           type: integer
+           format: int32
+         pageSize:
+           description: 每页记录数
+           type: integer
+           format: int32
+         pages:
+           description: 总页数
+           type: integer
+           format: int32
+         pageNum:
+           description: 当前页数
+           type: integer
+           format: int32
+         list:
+           type: array
+           items:
+             $ref: '#/definitions/ApiActTaskEntity'

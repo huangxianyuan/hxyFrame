@@ -6,6 +6,8 @@ import com.hxy.activiti.service.ActModelerService;
 import com.hxy.app.annotation.CurrentUser;
 import com.hxy.app.annotation.LoginRequired;
 import com.hxy.app.entity.ApiUserEntity;
+import com.hxy.app.service.ApiActivitiService;
+import com.hxy.app.service.ApiNoticeService;
 import com.hxy.app.service.ApiUserService;
 import com.hxy.base.annotation.SysLog;
 import com.hxy.base.page.Page;
@@ -40,7 +42,9 @@ public class ApiUserController {
     @Autowired
     private ActModelerService actModelerService;
     @Autowired
-    private NoticeService noticeService;
+    private ApiNoticeService apiNoticeService;
+    @Autowired
+    private ApiActivitiService apiActivitiService;
 
     /**
      * 用户信息
@@ -51,11 +55,11 @@ public class ApiUserController {
     public Result info(@CurrentUser ApiUserEntity apiUserEntity){
         ApiUserEntity user = userApiService.userInfo(apiUserEntity.getId());
         //待办条数
-//        int myUpcomingCount = actModelerService.myUpcomingCount();
-//        //我的通知条数
-//        int myNoticeCount = noticeService.MyNoticeCount();
-//        user.setMyNoticeCount(myUpcomingCount);
-//        user.setMyNoticeCount(myNoticeCount);
+        int myUpcomingCount = apiActivitiService.myUpcomingCount(apiUserEntity.getId());
+        //我的通知条数
+        int myNoticeCount = apiNoticeService.myNoticeCount(apiUserEntity.getId());
+        user.setMyUpcomingCount(myUpcomingCount);
+        user.setMyNoticeCount(myNoticeCount);
         return Result.ok().put("user", user);
     }
 
@@ -71,13 +75,13 @@ public class ApiUserController {
     }
 
     /**
-     * 修改密码
+     * 修改当前用户密码
      */
     @RequestMapping(value = "/updatePassword",method = RequestMethod.POST)
     @LoginRequired
     @ResponseBody
-    public Result updatePassword(UserEntity user){
-        int i = userApiService.updatePassword(user);
+    public Result updatePassword(UserEntity newUser,@CurrentUser ApiUserEntity apiUserEntity){
+        int i = userApiService.updatePassword(newUser,apiUserEntity);
         if(i<1){
             return Result.error("更改密码失败");
         }

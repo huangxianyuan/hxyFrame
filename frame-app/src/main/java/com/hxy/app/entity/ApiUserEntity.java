@@ -10,12 +10,13 @@ import com.hxy.sys.entity.UserEntity;
  */
 
 public class ApiUserEntity extends UserEntity{
+
     /**
      * 我的待办条数
      */
     private int myUpcomingCount;
     /**
-     * 我的已办条数
+     * 我的消息条数
      */
     private int myNoticeCount;
 
