@@ -5,7 +5,6 @@ import com.alibaba.fastjson.JSONObject;
 import com.hxy.base.page.Page;
 import com.hxy.base.utils.PageUtils;
 import com.hxy.base.utils.PropertiesLoader;
-import com.hxy.base.utils.StringUtils;
 import com.hxy.solr.entity.HightQueryParams;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -22,8 +21,6 @@ import org.apache.solr.common.util.NamedList;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
-import java.net.MalformedURLException;
 import java.util.*;
 
 /**
@@ -263,6 +260,7 @@ public class SolrUtils {
                 .setHighlight(true)// 设置高亮显示
                 .setHighlightSimplePre(preTag)// 渲染头标签
                 .setHighlightSimplePost(postTag)// 尾标签
+                .setHighlightFragsize(4)//返回语段数量
                 .setStart(( pageNum- 1) * pageSize)// 分页
                 .setRows(pageSize).setFilterQueries("");//
 //        if (distinguish) {
