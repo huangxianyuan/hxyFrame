@@ -23,6 +23,7 @@ import org.apache.shiro.cas.CasToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
+import org.apache.shiro.util.ByteSource;
 import org.jasig.cas.client.authentication.AttributePrincipal;
 import org.jasig.cas.client.validation.Assertion;
 import org.jasig.cas.client.validation.TicketValidationException;
@@ -94,23 +95,21 @@ public class MyCasRealm extends CasRealm {
         try {
             assertion = ticketValidator.validate(ticket,getCasService());
             AttributePrincipal casPrincipal = assertion.getPrincipal();
-            String username = casPrincipal.getName();
-            UserEntity user = userService.queryByLoginName(username);
-            if (user != null) {
-                Subject subject = SecurityUtils.getSubject();
-                Session session = subject.getSession();
-                session.setAttribute("user", user);
-                //用户对应的机构集合
-                List<String> baidList = userService.queryBapidByUserIdArray(user.getId());
-                //用户对应的部门集合
-                List<String> bapidList= userService.queryBaidByUserIdArray(user.getId());
-                user.setBapidList(bapidList);
-                user.setBaidList(baidList);
-                UserCache.put(Constant.USER_CACHE,user);
-                //保存登陆日志
-//                saveLoinLog(user);
-                return new SimpleAuthenticationInfo(user, ticket, getName());
+            String userLoginName = casPrincipal.getName();
+            UserEntity user = userService.queryByLoginName(userLoginName);
+            if(user == null){
+                throw new AuthenticationException("帐号密码错误");
             }
+            if(Constant.ABLE_STATUS.NO.getValue().equals(user.getStatus())){
+                throw new AuthenticationException("帐号被禁用,请联系管理员!");
+            }
+            //用户对应的机构集合
+            List<String> baidList = userService.queryBapidByUserIdArray(user.getId());
+            //用户对应的部门集合
+            List<String> bapidList= userService.queryBaidByUserIdArray(user.getId());
+            user.setBapidList(bapidList);
+            user.setBaidList(baidList);
+            return new SimpleAuthenticationInfo(user, ticket, getName());
         } catch (TicketValidationException e) {
             e.printStackTrace();
         }

@@ -83,7 +83,6 @@ public class MyRealm extends AuthorizingRealm {
 
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         String userLoginName= (String) token.getPrincipal();
-        String passWord=new String((char[]) token.getCredentials());
         UserEntity user = userService.queryByLoginName(userLoginName);
         if(user == null){
             throw new AuthenticationException("帐号密码错误");

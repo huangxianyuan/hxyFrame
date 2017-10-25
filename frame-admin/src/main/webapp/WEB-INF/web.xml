@@ -12,6 +12,7 @@
         classpath*:spring-scheduler.xml
         classpath*:spring-mybatis.xml
         classpath*:spring-shiro-redis.xml
+        <!--classpath*:spring-shiro-cas.xml-->
         classpath*:spring-activiti.xml
         <!--classpath*:spring-sentinel_redis.xml-->
         classpath*:spring-redis.xml

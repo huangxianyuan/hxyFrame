@@ -28,6 +28,11 @@
             /statics/**=anon
             /login/fail=anon
             /loginFail.html=anon
+            /app/**=anon
+            /service/**=anon
+            /js/**=anon
+            /activitiMq/*=anon
+            /swagger/**=anon
             /**=authc
         </value>
     </property>
@@ -53,15 +58,64 @@
     <property name="casService" value="${cas.client}/login/" />
 </bean>
 
+<!-- 用户授权信息Cache, 采用EhCache，本地缓存最长时间应比redis中央缓存时间短一些，以确保Session中doReadSession方法调用时更新中央缓存过期时间 -->
+<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+    <property name="configLocation" value="classpath:ehcache.xml"/>
+</bean>
+
 <!--缓存机制 -->
-<bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
-    <property name="cacheManagerConfigFile" value="classpath:ehcache.xml" />
+<bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+    <property name="cacheManager" ref="cacheManager" />
 </bean>
 
 <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
     <property name="realm" ref="casRealm" />
     <property name="subjectFactory" ref="casSubjectFactory" />
-    <property name="cacheManager" ref="cacheManager" />
+    <property name="cacheManager" ref="shiroCacheManager" />
+    <!-- 注入会话管理器    进行交互-->
+    <property name="sessionManager" ref="sessionManager"></property>
+</bean>
+
+<!-- 会话管理器使用用于web 环境的DefaultWebSessionManager -->
+<bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+    <!-- 设置全局会话超时时间，默认30分钟(1800000) -->
+    <property name="globalSessionTimeout" value="1800000"/>
+    <!-- 是否在会话过期后会调用SessionDAO的delete方法删除会话 默认true-->
+    <property name="deleteInvalidSessions" value="false"/>
+    <!-- 是否开启会话验证器任务 默认true -->
+    <property name="sessionValidationSchedulerEnabled" value="false"/>
+    <!-- 会话验证器调度时间 -->
+    <property name="sessionValidationInterval" value="1800000"/>
+    <property name="sessionDAO" ref="sessionDao"/>
+    <property name="sessionIdCookieEnabled" value="true"/>
+    <property name="sessionIdCookie" ref="sessionIdCookie"/>
+    <property name="sessionListeners">
+        <list>
+            <ref bean="shiroSessionListener"/>
+        </list>
+    </property>
+</bean>
+
+<bean id="shiroSessionListener" class="com.hxy.shiro.redisSession.ShiroSessionListener"/>
+
+<!-- 自定义缓存Dao，添加标识位，减少doUpdate方法中Redis的连接次数来减轻redis网络压力 -->
+<bean id="sessionDao" class="com.hxy.shiro.redisSession.CachingShiroSessionDao">
+    <!--sessionId前缀-->
+    <property name="prefix" value="shiro-session:"/>
+    <!-- 注意中央缓存有效时间要比本地缓存有效时间长-->
+    <property name="seconds" value="1800"/>
+</bean>
+
+<!-- 会话Cookie 模板 sessionIdCookie是用于生产Session ID Cookie 的模板；-->
+<bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+    <!--cookie的name -->
+    <constructor-arg value="sid"/>
+    <property name="httpOnly" value="true"/>
+    <!--maxAge=-1 表示浏览器关闭时失效此Cookie-->
+    <property name="maxAge" value="-1"/>
+    <!-- 配置存储Session Cookie的domain为 一级域名
+    <property name="domain" value=".sojson.com"/>
+    -->
 </bean>
 
 <!-- 如果要实现cas的remember me的功能，需要用到下面这个bean，并设置到securityManager的subjectFactory中 -->

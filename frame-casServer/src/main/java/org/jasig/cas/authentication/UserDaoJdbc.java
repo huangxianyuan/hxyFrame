@@ -1,6 +1,6 @@
 package org.jasig.cas.authentication;
 
-import org.jasig.cas.utils.MD5;
+import org.jasig.cas.utils.ShiroUtils;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -13,7 +13,6 @@ import java.sql.SQLException;
 
 @Repository
 public class UserDaoJdbc {
-	private static final String SQL_USER_VERIFY = "SELECT COUNT(*) FROM sys_user WHERE login_name=? AND pass_word=?";
 	private static final String SQL_USER_GET = "SELECT * FROM sys_user WHERE login_name=?";
 
 	private JdbcTemplate jdbcTemplate;
@@ -31,16 +30,19 @@ public class UserDaoJdbc {
 	 */
 	public boolean verifyAccount(String username, String password){
 		try{
-			//md5加密
-			password = MD5.MD5Encode(password);
-			return 1==this.jdbcTemplate.queryForObject(SQL_USER_VERIFY, new Object[]{username, password}, Integer.class);
+			User user = getByUsername(username);
+			String newPassWord = ShiroUtils.EncodeSalt(password,user.getSalt());
+			if(!newPassWord.equals(user.getPassWord())){
+				return false;
+			}
 		}catch(EmptyResultDataAccessException e){
 			return false;
 		}
+		return true;
 	}
 
 	/**
-	 * 根据用户名获取用户信息
+	 * 根据登陆帐号获取用户信息
 	 * @param username
 	 * @return
 	 */
@@ -60,6 +62,8 @@ class UserRowMapper implements RowMapper<User> {
 		User user = new User();
 		user.setLoginName(rs.getString("login_name"));
 		user.setId(rs.getString("id"));
+		user.setSalt(rs.getString("salt"));
+		user.setPassWord(rs.getString("pass_word"));
 		return user;
 	}
 }
