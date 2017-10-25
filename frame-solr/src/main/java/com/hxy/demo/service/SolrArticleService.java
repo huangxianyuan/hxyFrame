@@ -36,4 +36,6 @@ public interface SolrArticleService {
 	int deleteBatch(String[] ids) throws Exception;
 
 	Page findPage(SolrArticleEntity solrArticle,int pageNum) throws Exception;
+
+	Page search(SolrArticleEntity solrArticleEntity,int pageNum) throws IOException, SolrServerException;
 }

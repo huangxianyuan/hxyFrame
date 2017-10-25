@@ -99,7 +99,7 @@ public class SolrArticleServiceImpl implements SolrArticleService {
 		hlFields.add("title");
 		hlFields.add("content");
 		HightQueryParams params = new HightQueryParams();
-		params.setClzz(solrArticle.getClass());
+		params.setClzz(SolrArticleEntity.class);
 		params.setHlFields(hlFields);
 		params.setQueryStr(queryStr);
 		params.setIdName("id");
@@ -110,4 +110,26 @@ public class SolrArticleServiceImpl implements SolrArticleService {
 		return utils.getHighterByPage(params);
 	}
 
+	@Override
+	public Page search(SolrArticleEntity solrArticle, int pageNum) throws IOException, SolrServerException {
+		String queryStr = solrArticle.getKeyWords();
+		if(StringUtils.isEmpty(queryStr)){
+			queryStr="*:*";
+		}else {
+			queryStr="keyWord:"+queryStr+"&sort=id desc";
+		}
+		List<String> hlFields=new ArrayList<>();
+		hlFields.add("title");
+		hlFields.add("content");
+		HightQueryParams params = new HightQueryParams();
+		params.setClzz(solrArticle.getClass());
+		params.setHlFields(hlFields);
+		params.setQueryStr(queryStr);
+		params.setIdName("id");
+		params.setPageNum(pageNum);
+		params.setPageSize(Constant.pageSize);
+		params.setPostTag(SolrUtils.getPostTag());
+		params.setPreTag(SolrUtils.getPreTag());
+		return utils.getHighterByPage(params);
+	}
 }

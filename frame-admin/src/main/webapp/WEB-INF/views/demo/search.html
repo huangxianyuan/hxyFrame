@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>管理员列表</title>
+<title>文章搜索</title>
 #parse("sys/header.html")
 </head>
 <body>
 	<di class="main-container" id="main-container">
-
 		<div id="search">
-			<form class="layui-form" id="search-from" action="${webRoot}/demo/article/list">
+			<form class="layui-form" id="search-from">
 				<div class="row">
 					<div class="col-md-4">
 						<div class="col-md-3">
 							<label class="layui-form-label">关键字:</label>
 						</div>
 						<div class="col-md-6">
-							<input type="text" name="keyWords" placeholder="搜索关键字"  class="layui-input" >
+							<input type="text" name="keyWords" id="keyWords" placeholder="搜索关键字"  class="layui-input" >
 						</div>
 						<div class="col-md-3">
-							<button class="layui-btn" id="searchSubmit"><i class="layui-icon">&#xe615;</i>搜 索</button>
+							<button class="layui-btn" type="button" @click="query" id="searchSubmit"><i class="layui-icon">&#xe615;</i>搜 索</button>
 						</div>
 					</div>
 				</div>
@@ -26,47 +25,52 @@
 		</div>
 
 		<div id="resultList">
-			<div style="width: 25%;margin-top: 30px;">
+			<div v-for="article in page.result" style="width: 25%;margin-top: 30px;">
 				<div>
-					<a href="#">双世宠妃_百度百科</a>
+					<a href="#">{{article.title}}</a>
 				</div>
 				<div>
-					<label>简介：《双世宠妃》是由企鹅影视出品，余洲影视承制的古装穿越爱情网络剧，该剧由元德执导， 杨十夜担任编剧，赵洁、杨朔担任总制片人，邢昭林、梁洁、孙艺宁、辛瑞琪、钟祺、王瑞昌...</label>
-				</div>
-			</div>
-			<div style="width: 25%;margin-top: 30px;">
-				<div>
-					<a href="#">双世宠妃_百度百科</a>
-				</div>
-				<div>
-					<label>简介：《双世宠妃》是由企鹅影视出品，余洲影视承制的古装穿越爱情网络剧，该剧由元德执导， 杨十夜担任编剧，赵洁、杨朔担任总制片人，邢昭林、梁洁、孙艺宁、辛瑞琪、钟祺、王瑞昌...</label>
-				</div>
-			</div>
-			<div style="width: 25%;margin-top: 30px;">
-				<div>
-					<a href="#">双世宠妃_百度百科</a>
-				</div>
-				<div>
-					<label>简介：《双世宠妃》是由企鹅影视出品，余洲影视承制的古装穿越爱情网络剧，该剧由元德执导， 杨十夜担任编剧，赵洁、杨朔担任总制片人，邢昭林、梁洁、孙艺宁、辛瑞琪、钟祺、王瑞昌...</label>
-				</div>
-			</div>
-			<div style="width: 25%;margin-top: 30px;">
-				<div>
-					<a href="#">双世宠妃_百度百科</a>
-				</div>
-				<div>
-					<label>简介：《双世宠妃》是由企鹅影视出品，余洲影视承制的古装穿越爱情网络剧，该剧由元德执导， 杨十夜担任编剧，赵洁、杨朔担任总制片人，邢昭林、梁洁、孙艺宁、辛瑞琪、钟祺、王瑞昌...</label>
-				</div>
-			</div>
-			<div style="width: 25%;margin-top: 30px;">
-				<div>
-					<a href="#">双世宠妃_百度百科</a>
-				</div>
-				<div>
-					<label>简介：《双世宠妃》是由企鹅影视出品，余洲影视承制的古装穿越爱情网络剧，该剧由元德执导， 杨十夜担任编剧，赵洁、杨朔担任总制片人，邢昭林、梁洁、孙艺宁、辛瑞琪、钟祺、王瑞昌...</label>
+					<label>{{article.content}}</label>
 				</div>
 			</div>
 		</div>
+		<div id="page" style="margin-top: 35%"></div>
 	</di>
 </body>
+<script>
+	$("#searchSubmit").click(function () {
+	    var pageNum = 1;
+	    var keyWords = $("#keyWords").val();
+	    if(keyWords==''){
+            location.replace(location.href);
+            return;
+		}
+        var url = '../demo/article/search/'+pageNum+"?keyWords="+keyWords;
+        $.get(url,function (r) {
+            console.log(r);
+            if(r.code=='0'){
+				var pages =r.page.pages;
+				var array=r.result;
+				debugger
+			}else {
+                alertMsg(r.msg);
+			}
+        });
+    });
+    layui.use(['laypage', 'layer'], function(){
+        var laypage = layui.laypage
+            ,layer = layui.layer;
+        laypage.render({
+            elem: 'page'
+            ,count: 100
+            ,first: '首页'
+            ,last: '尾页'
+            ,prev: '上一页'
+            ,next: '下一页'
+			,jump:function (obj,first) {//点击页码出发的事件
+
+            }
+        });
+    });
+</script>
 </html>

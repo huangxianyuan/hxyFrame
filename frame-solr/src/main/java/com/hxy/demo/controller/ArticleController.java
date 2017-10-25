@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -82,6 +83,23 @@ public class ArticleController {
             e.printStackTrace();
         }
         return Result.ok();
+    }
+
+    /**
+     * 搜索文章
+     * @param pageNum
+     * @return
+     */
+    @RequestMapping(value = "/search/{pageNum}")
+    @ResponseBody
+    public Result search(@PathVariable("pageNum") int pageNum,SolrArticleEntity articleEntity){
+        Page<SolrArticleEntity> page = null;
+        try {
+            page = solrArticleService.findPage(articleEntity, pageNum);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Result.ok().put("page",page);
     }
 
     /**
