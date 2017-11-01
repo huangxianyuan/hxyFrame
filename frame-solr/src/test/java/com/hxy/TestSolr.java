@@ -60,7 +60,7 @@ public class TestSolr {
      */
     @Test
     public void deleteAll(){
-        SolrUtils utils = new SolrUtils("new_core");
+        SolrUtils utils = new SolrUtils("article");
         try {
             utils.deleteAll();
         } catch (SolrServerException e) {

@@ -256,11 +256,12 @@ public class SolrUtils {
         String idName = params.getIdName();
 
         SolrQuery query = new SolrQuery();
+        query.setSort("createTime", SolrQuery.ORDER.desc);
         query.setQuery(queryStr)// 查询内容
                 .setHighlight(true)// 设置高亮显示
                 .setHighlightSimplePre(preTag)// 渲染头标签
                 .setHighlightSimplePost(postTag)// 尾标签
-                .setHighlightFragsize(4)//返回语段数量
+                .setHighlightFragsize(150)//返回语段数量
                 .setStart(( pageNum- 1) * pageSize)// 分页
                 .setRows(pageSize).setFilterQueries("");//
 //        if (distinguish) {

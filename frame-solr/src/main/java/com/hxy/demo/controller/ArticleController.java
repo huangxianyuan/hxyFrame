@@ -1,9 +1,12 @@
 package com.hxy.demo.controller;
 
+import com.hxy.base.common.Constant;
 import com.hxy.base.page.Page;
 import com.hxy.base.utils.Result;
 import com.hxy.base.utils.Utils;
-import com.hxy.sys.entity.SolrArticleEntity;
+import com.hxy.demo.entity.SolrArticleEntity;
+import com.hxy.sys.entity.CodeEntity;
+import com.hxy.sys.service.CodeService;
 import com.hxy.sys.service.SolrArticleService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * 类的功能描述.
@@ -28,6 +32,9 @@ public class ArticleController {
 
     @Autowired
     private SolrArticleService solrArticleService;
+
+    @Autowired
+    private CodeService codeService;
 
     /**
      * 文章列表
@@ -66,6 +73,18 @@ public class ArticleController {
     }
 
     /**
+     * 文章详情 搜索用
+     * @param id
+     * @return
+     */
+    @RequestMapping("detailInfo/{id}")
+    @ResponseBody
+    public Result detailInfo(@PathVariable String id){
+        SolrArticleEntity solrArticle = solrArticleService.queryObject(id);
+        return Result.ok().put("article",solrArticle);
+    }
+
+    /**
      * 保存/更新
      * @param articleEntity
      * @return
@@ -81,6 +100,7 @@ public class ArticleController {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            return Result.error();
         }
         return Result.ok();
     }
@@ -95,11 +115,22 @@ public class ArticleController {
     public Result search(@PathVariable("pageNum") int pageNum,SolrArticleEntity articleEntity){
         Page<SolrArticleEntity> page = null;
         try {
-            page = solrArticleService.findPage(articleEntity, pageNum);
+            page = solrArticleService.search(articleEntity, pageNum);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return Result.ok().put("page",page);
+    }
+
+    /**
+     * 获取所有文章类型
+     * @return
+     */
+    @RequestMapping(value = "types",method = RequestMethod.POST)
+    @ResponseBody
+    public Result types(){
+        List<CodeEntity> codes = codeService.queryChildsByMark(Constant.ARTCLE_TYPE);
+        return Result.ok().put("codes",codes);
     }
 
     /**

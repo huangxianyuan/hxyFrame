@@ -1,4 +1,4 @@
-package com.hxy.sys.entity;
+package com.hxy.demo.entity;
 
 import org.apache.solr.client.solrj.beans.Field;
 
@@ -22,15 +22,30 @@ public class SolrArticleEntity implements Serializable {
 	//文章标题
 	@Field
 	private String title;
-	//文章内容 仅用来测试
+	//文章内容
 	@Field
 	private String content;
+	//文章内容包含html
+	private String contentHtml;
+	//文章作者
+	@Field
+	private String author;
+	//文章类型
+	@Field
+	private String type;
 	//创建时间
 	@Field
 	private Date createTime;
 	//更新时间
 	@Field
 	private Date updateTime;
+
+	/**
+	 * 封面图片
+	 */
+	@Field
+	private String img;
+
 	//
 	private String createId;
 	//
@@ -132,5 +147,37 @@ public class SolrArticleEntity implements Serializable {
 
 	public void setKeyWords(String keyWords) {
 		this.keyWords = keyWords;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
+	}
+
+	public String getContentHtml() {
+		return contentHtml;
+	}
+
+	public void setContentHtml(String contentHtml) {
+		this.contentHtml = contentHtml;
 	}
 }

@@ -14,9 +14,9 @@
             <div class="col-md-12">
                 <form class="layui-form" id="search-from" action="${webRoot}/demo/article/list">
                     <div class="layui-form-item">
-                        <label class="layui-form-label" style="width:6%;">关键字:</label>
+                        <label class="layui-form-label" style="width:6%;">标题:</label>
                         <div class="layui-input-inline">
-                            <input type="text" name="keyWords" value="${article.keyWords}"  placeholder="搜索关键字"  class="layui-input" >
+                            <input type="text" name="title" value="${article.title}"  placeholder="搜索标题"  class="layui-input" >
                         </div>
                         <button class="layui-btn" id="searchSubmit"><i class="layui-icon">&#xe615;</i>搜 索</button>
                         <button class="layui-btn layui-btn-warm" type="button" id="refresh">重 置</button>
@@ -32,7 +32,7 @@
                         <tr>
                             <th>序号</th>
                             <th>标题</th>
-                            <th>内容</th>
+                            <th>类型</th>
                             <th>新建时间</th>
                             <th>更新时间</th>
                             <th>操作</th>
@@ -43,7 +43,7 @@
                             <tr id="article_${article.id }">
                                 <td>${i.index+1 }</td>
                                 <td>${article.title}</td>
-                                <td>${article.content}</td>
+                                <td>${fns:getCodeName("artcle_type",article.type)}</td>
                                 <td><fmt:formatDate value="${article.createTime}" pattern="yyyy-MM-dd hh:mm"/></td>
                                 <td><fmt:formatDate value="${article.updateTime}" pattern="yyyy-MM-dd hh:mm"/></td>
                                 <td>
@@ -69,6 +69,7 @@
         var url ="${webRoot}/demo/article/delete";
         confirm('确定要删除选中的记录？', function(){
             $.post(url,"id="+id,function (r) {
+                console.log(r);
                 if(r.code=='0'){
                     toast(r.msg);
                     $("#article_"+id+"").remove();

@@ -178,4 +178,12 @@ public class CodeServiceImpl implements CodeService {
         }
         return codeDao.queryByMark(mark);
     }
+
+    @Override
+    public List<CodeEntity> queryChildsByMark(String mark) {
+	    if(StringUtils.isEmpty(mark)){
+	        throw new MyException("字典标识不能为空");
+        }
+        return codeDao.queryChildsByMark(mark);
+    }
 }

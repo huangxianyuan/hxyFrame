@@ -45,4 +45,10 @@ public interface CodeService {
 	 */
 	CodeEntity queryByMark(String mark);
 
+	/**
+	 * 查询所有的字典及子字典(用做字典缓存)
+	 * @return
+	 */
+	List<CodeEntity> queryChildsByMark(String mark);
+
 }

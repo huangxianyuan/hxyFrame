@@ -1,7 +1,7 @@
-package com.hxy.sys.dao;
+package com.hxy.demo.dao;
 
-import com.hxy.sys.entity.SolrArticleEntity;
 import com.hxy.base.dao.BaseDao;
+import com.hxy.demo.entity.SolrArticleEntity;
 import org.springframework.stereotype.Repository;
 
 /**

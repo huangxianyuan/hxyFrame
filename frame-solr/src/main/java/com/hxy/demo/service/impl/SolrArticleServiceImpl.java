@@ -2,11 +2,15 @@ package com.hxy.demo.service.impl;
 
 import com.hxy.base.common.Constant;
 import com.hxy.base.page.Page;
-import com.hxy.base.utils.PageUtils;
+import com.hxy.base.page.PageHelper;
 import com.hxy.base.utils.StringUtils;
 import com.hxy.base.utils.Utils;
+import com.hxy.demo.dao.SolrArticleDao;
+import com.hxy.demo.entity.SolrArticleEntity;
 import com.hxy.solr.entity.HightQueryParams;
 import com.hxy.solr.utils.SolrUtils;
+import com.hxy.sys.entity.UserEntity;
+import com.hxy.sys.service.UserService;
 import com.hxy.utils.UserUtils;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +19,8 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.*;
 
-import com.hxy.sys.dao.SolrArticleDao;
-import com.hxy.sys.entity.SolrArticleEntity;
 import com.hxy.sys.service.SolrArticleService;
-
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service("solrArticleService")
@@ -50,12 +52,14 @@ public class SolrArticleServiceImpl implements SolrArticleService {
 	}
 	
 	@Override
+	@Transactional
 	public int save(SolrArticleEntity solrArticle) throws Exception {
 		solrArticle.setCreateId(UserUtils.getCurrentUserId());
 		solrArticle.setCreateTime(new Date());
 		solrArticle.setId(Utils.uuid());
+		int count = solrArticleDao.save(solrArticle);
 		addSolrIndex(solrArticle);
-		return solrArticleDao.save(solrArticle);
+		return count;
 	}
 
 	/**
@@ -68,63 +72,57 @@ public class SolrArticleServiceImpl implements SolrArticleService {
 	}
 
 	@Override
+	@Transactional
 	public int update(SolrArticleEntity solrArticle) throws Exception {
 		solrArticle.setUpdateId(UserUtils.getCurrentUserId());
 		solrArticle.setUpdateTime(new Date());
+		SolrArticleEntity oldArticle = solrArticleDao.queryObject(solrArticle.getId());
+		solrArticle.setCreateTime(oldArticle.getCreateTime());
+		int count = solrArticleDao.update(solrArticle);
 		addSolrIndex(solrArticle);
-        return solrArticleDao.update(solrArticle);
+        return count;
 	}
 	
 	@Override
+	@Transactional
 	public int delete(String id) throws Exception {
+		int count = solrArticleDao.delete(id);
 		utils.deleteById("id",id);
-        return solrArticleDao.delete(id);
+        return count;
 	}
 	
 	@Override
 	public int deleteBatch(String[] ids) throws Exception {
+		int count = solrArticleDao.deleteBatch(ids);
 		utils.deleteByIds(Constant.CORE_ARTICLE, Arrays.asList(ids));
-        return solrArticleDao.deleteBatch(ids);
+        return count;
 	}
 
 	@Override
 	public Page findPage(SolrArticleEntity solrArticle, int pageNum) throws Exception {
-		String queryStr = solrArticle.getKeyWords();
-		if(StringUtils.isEmpty(queryStr)){
-			queryStr="*:*";
-		}else {
-			queryStr="keyWord:"+queryStr+"&sort=id desc";
-		}
-		List<String> hlFields=new ArrayList<>();
-		hlFields.add("title");
-		hlFields.add("content");
-		HightQueryParams params = new HightQueryParams();
-		params.setClzz(SolrArticleEntity.class);
-		params.setHlFields(hlFields);
-		params.setQueryStr(queryStr);
-		params.setIdName("id");
-		params.setPageNum(pageNum);
-		params.setPageSize(Constant.pageSize);
-		params.setPostTag(SolrUtils.getPostTag());
-		params.setPreTag(SolrUtils.getPreTag());
-		return utils.getHighterByPage(params);
+		PageHelper.startPage(pageNum,Constant.pageSize);
+		solrArticleDao.queryListByBean(solrArticle);
+		return PageHelper.endPage();
 	}
 
 	@Override
 	public Page search(SolrArticleEntity solrArticle, int pageNum) throws IOException, SolrServerException {
-		String queryStr = solrArticle.getKeyWords();
-		if(StringUtils.isEmpty(queryStr)){
-			queryStr="*:*";
-		}else {
-			queryStr="keyWord:"+queryStr+"&sort=id desc";
+		StringBuilder sb = new StringBuilder();
+		if(!StringUtils.isEmpty(solrArticle.getKeyWords())){
+			sb.append("keyWord:"+solrArticle.getKeyWords());
 		}
+		if(!StringUtils.isEmpty(solrArticle.getType())){
+			sb.append(" AND type:"+solrArticle.getType());
+		}
+		sb.append(" &sort=createTime desc");
 		List<String> hlFields=new ArrayList<>();
 		hlFields.add("title");
 		hlFields.add("content");
+		hlFields.add("author");
 		HightQueryParams params = new HightQueryParams();
 		params.setClzz(solrArticle.getClass());
 		params.setHlFields(hlFields);
-		params.setQueryStr(queryStr);
+		params.setQueryStr(sb.toString());
 		params.setIdName("id");
 		params.setPageNum(pageNum);
 		params.setPageSize(Constant.pageSize);

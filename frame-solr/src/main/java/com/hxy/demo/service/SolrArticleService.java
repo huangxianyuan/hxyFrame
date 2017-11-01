@@ -2,8 +2,8 @@ package com.hxy.sys.service;
 
 import com.hxy.base.page.Page;
 import com.hxy.base.utils.PageUtils;
+import com.hxy.demo.entity.SolrArticleEntity;
 import com.hxy.dto.UserWindowDto;
-import com.hxy.sys.entity.SolrArticleEntity;
 import org.apache.solr.client.solrj.SolrServerException;
 
 import java.io.IOException;

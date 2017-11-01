@@ -68,6 +68,14 @@
 		</if>
 	</select>
 
+	<!--根据mark获取所有的子字典-->
+	<select id="queryChildsByMark" resultType="com.hxy.sys.entity.CodeEntity" resultMap="codeMap">
+		select
+		<include refid="Base_Column_List" />
+		from sys_code
+		WHERE parent_id = (SELECT id FROM sys_code WHERE mark=#{mark})
+	</select>
+
 	<select id="queryListByBean" resultType="com.hxy.sys.entity.CodeEntity" resultMap="codeMap">
 		select
 		<include refid="Base_Column_List" />
