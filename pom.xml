@@ -43,7 +43,7 @@
         <commons.configuration.version>1.10</commons.configuration.version>
         <velocity.version>1.7</velocity.version>
         <velocity.tools.version>2.0</velocity.tools.version>
-        <java.version>1.7</java.version>
+        <java.version>1.8</java.version>
         <druid-version>1.0.28</druid-version>
         <jwt.version>0.7.0</jwt.version>
         <kaptcha.version>0.0.9</kaptcha.version>

@@ -53,7 +53,7 @@
 
 
  **软件环境** 
-- JDK1.7+
+- JDK1.8
 - MySQL5.7.17
 - Maven3.0
 - Tomcat7.0
