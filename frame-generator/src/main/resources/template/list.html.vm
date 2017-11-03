@@ -14,13 +14,13 @@ $header
 	<div v-show="showList">
 		<div class="grid-btn">
 			$save
-			<a class="btn btn-primary" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+            <button class="layui-btn" @click="add" type="button"><i class="layui-icon">&#xe61f;</i> 新 增</button>
 			$end
 			$update
-			<a class="btn btn-primary" @click="update"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+            <button class="layui-btn layui-btn-normal" type="button" @click="update"><i class="layui-icon">&#xe642;</i>编辑</button>
 			$end
 			$delete
-			<a class="btn btn-primary" @click="del"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+            <button class="layui-btn layui-btn-danger" type="button" @click="del"><i class="layui-icon">&#xe640;</i>删除</button>
 			$end
 		</div>
 	    <table id="jqGrid"></table>
@@ -41,14 +41,14 @@ $header
 		#end
 		#end
 			<div class="form-group">
-				<div class="col-sm-2 control-label"></div> 
-				<input type="button" class="btn btn-primary" @click="saveOrUpdate" value="确定"/>
-				&nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="reload" value="返回"/>
+				<div class="col-sm-2 control-label"></div>
+                <button class="layui-btn" type="button" @click="saveOrUpdate" >保存</button>
+                <button class="layui-btn layui-btn-warm" type="button" @click="reload" style="margin-left: 30px">返回</button>
 			</div>
 		</form>
 	</div>
 </div>
 
-<script src="${rc.contextPath}/statics/js/generator/${pathName}.js?_${date.systemTime}"></script>
+<script src="${rc.contextPath}/statics/js/${module}/${pathName}.js?_${date.systemTime}"></script>
 </body>
 </html>

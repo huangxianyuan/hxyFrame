@@ -3,6 +3,7 @@ package com.hxy.gen.utils;
 import com.hxy.base.common.Constant;
 import com.hxy.base.common.RRException;
 import com.hxy.base.utils.DateUtils;
+import com.hxy.base.utils.Utils;
 import com.hxy.gen.entity.ColumnEntity;
 import com.hxy.gen.entity.TableEntity;
 import org.apache.commons.configuration.Configuration;
@@ -43,7 +44,7 @@ public class GenUtils {
 		templates.add("template/Controller.java.vm");
 		templates.add("template/list.html.vm");
 		templates.add("template/list.js.vm");
-		//templates.add("template/menu.sql.vm");
+		templates.add("template/menu.sql.vm");
 		return templates;
 	}
 
@@ -108,6 +109,11 @@ public class GenUtils {
 		
 		//封装模板数据
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", Utils.uuid());
+		map.put("rid", Utils.uuid());
+		map.put("cid", Utils.uuid());
+		map.put("uid", Utils.uuid());
+		map.put("did", Utils.uuid());
 		map.put("tableName", tableEntity.getTableName());
 		map.put("comments", tableEntity.getComments());
 		map.put("pk", tableEntity.getPk());
@@ -117,6 +123,7 @@ public class GenUtils {
 		map.put("columns", tableEntity.getColumns());
 		map.put("package", config.getString("package"));
 		map.put("author", config.getString("author"));
+		map.put("module", config.getString("module"));
 		map.put("email", config.getString("email"));
 		map.put("baseDao", config.getString("baseDao"));
 		map.put("utils", config.getString("utils"));
@@ -253,10 +260,9 @@ public class GenUtils {
 		if(template.contains("list.js.vm")){
 			return config.getString("js") + File.separator + className.toLowerCase() + ".js";
 		}
-/*
 		if(template.contains("menu.sql.vm")){
 			return config.getString("sql") + File.separator + className.toLowerCase() + "_menu.sql";
-		}*/
+		}
 		return null;
 	}
     /**
@@ -301,9 +307,9 @@ public class GenUtils {
             return "main" + File.separator + "webapp" + File.separator + "js" + File.separator + "generator" + File.separator + className.toLowerCase() + ".js";
         }
 
-        /*if(template.contains("menu.sql.vm")){
+        if(template.contains("menu.sql.vm")){
             return className.toLowerCase() + "_menu.sql";
-        }*/
+        }
 
         return null;
     }

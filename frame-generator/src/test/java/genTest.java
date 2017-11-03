@@ -28,10 +28,7 @@ public class genTest {
     }
     @Test
     public void generatorCode(){
-
-        //byte[] bytes=generatorService.generatorCode(new String[]{"solr_article"}, Constant.genType.local.getValue());
-
-
+        byte[] bytes=generatorService.generatorCode(new String[]{"bus_demo"}, Constant.genType.local.getValue());
     }
 }
 
