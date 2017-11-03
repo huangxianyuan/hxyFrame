@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.hxy.demo.dao.SolrArticleDao">
+
+
+    <resultMap type="com.hxy.demo.entity.SolrArticleEntity" id="solrArticleMap">
+        <result property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="contentHtml" column="content_html"/>
+        <result property="img" column="img"/>
+        <result property="type" column="type"/>
+        <result property="author" column="author"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="createId" column="create_id"/>
+        <result property="updateId" column="update_id"/>
+    </resultMap>
+
+    <sql id="Base_Column_List" >
+		id, 
+		title, 
+		content, 
+		content_html,
+		img,
+		create_time,
+		update_time, 
+		create_id, 
+		update_id,
+		author,
+		type
+    </sql>
+
+	<select id="queryObject" resultType="com.hxy.demo.entity.SolrArticleEntity" resultMap="solrArticleMap">
+		select
+		<include refid="Base_Column_List" />
+		from solr_article
+		where id = #{value}
+	</select>
+
+
+    <select id="queryListByBean" resultType="com.hxy.demo.entity.SolrArticleEntity" resultMap="solrArticleMap">
+        select
+        <include refid="Base_Column_List" />
+        from solr_article
+        WHERE 1=1
+		<if test="title != null">
+			AND title LIKE concat('%',#{title},'%')
+		</if>
+		ORDER BY create_time DESC
+    </select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from solr_article
+	</select>
+	 
+	<insert id="save" parameterType="com.hxy.demo.entity.SolrArticleEntity">
+		insert into solr_article
+		(
+			`id`, 
+			`title`, 
+			`content`,
+			`content_html`,
+			`img`,
+			`author`,
+			`type`,
+			`create_time`,
+			`update_time`, 
+			`create_id`, 
+			`update_id`
+		)
+		values
+		(
+			#{id}, 
+			#{title}, 
+			#{content}, 
+			#{contentHtml},
+			#{img},
+			#{author},
+			#{type},
+			#{createTime},
+			#{updateTime}, 
+			#{createId}, 
+			#{updateId}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.hxy.demo.entity.SolrArticleEntity">
+		update solr_article 
+		<set>
+			<if test="title != null">`title` = #{title}, </if>
+			<if test="content != null">`content` = #{content}, </if>
+			<if test="contentHtml != null">`content_html` = #{contentHtml}, </if>
+			<if test="img != null">`img` = #{img}, </if>
+			<if test="author != null">`author` = #{author}, </if>
+			<if test="type != null">`type` = #{type}, </if>
+			<if test="createTime != null">`create_time` = #{createTime}, </if>
+			<if test="updateTime != null">`update_time` = #{updateTime}, </if>
+			<if test="createId != null">`create_id` = #{createId}, </if>
+			<if test="updateId != null">`update_id` = #{updateId}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from solr_article where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from solr_article where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

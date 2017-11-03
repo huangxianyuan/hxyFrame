@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisSentinelPool;
 import redis.clients.jedis.exceptions.JedisConnectionException;
 
 import javax.annotation.Resource;
@@ -13,7 +14,7 @@ import javax.annotation.Resource;
 public class RedisUtil {
 
 
-//    private static JedisSentinelPool sentinelPool;
+    /*private static JedisSentinelPool sentinelPool;*/
     
     private static JedisPool jedisPool;
 
@@ -33,7 +34,7 @@ public class RedisUtil {
     private static Jedis getJedis()  {
         Jedis jedis = null;
         try {
-//            jedis = sentinelPool.getResource();
+            //jedis = sentinelPool.getResource();
             jedis = jedisPool.getResource();
             return  jedis;
         } catch (JedisConnectionException e) {

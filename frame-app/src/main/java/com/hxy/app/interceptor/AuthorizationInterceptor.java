@@ -48,12 +48,14 @@ public class AuthorizationInterceptor extends HandlerInterceptorAdapter {
 
         //需要验证，获取用户凭证
         String token = request.getHeader(jwtUtils.getHeader());
+
+        if(StringUtils.isBlank(token)){
+            token = request.getParameter(jwtUtils.getHeader());
+        }
+
         //凭证为空
         if(StringUtils.isBlank(token)){
             throw new MyException("无token，请重新登录");
-        }
-        if(StringUtils.isBlank(token)){
-            token = request.getParameter(jwtUtils.getHeader());
         }
 
         //验证token

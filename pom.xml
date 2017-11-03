@@ -5,6 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>hxy.hxyFrame</groupId>
+
     <artifactId>hxyFrame</artifactId>
     <packaging>pom</packaging>
     <version>${hxyFrame.version}</version>
@@ -19,7 +20,7 @@
         <module>frame-casServer</module> <!--casServer-->
         <module>frame-redis</module> <!--缓存模块-->
         <module>frame-app</module> <!--缓存模块-->
-        <!--<module>frame-solr</module>--> <!--solr全文搜索 后续会加入项目中使用-->
+        <module>frame-solr</module> <!--solr全文搜索 后续会加入项目中使用-->
         <!--<module>frame-activitiMQ</module> activitiMQ消息中间件 后续会加入项目中使用-->
     </modules>
     <properties>

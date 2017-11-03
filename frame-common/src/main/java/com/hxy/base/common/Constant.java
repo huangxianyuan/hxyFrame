@@ -46,14 +46,23 @@ public class Constant {
      */
     public final static String CLOUD_STORAGE_CONFIG_KEY = "CLOUD_STORAGE_CONFIG_KEY";
 
-    /*******************************数据字典mark前缀 开始*************************/
+    /*******************************solr Core名称 开始*************************/
 
     /**
-     * 审批者类型
+     * 文章
      */
-    public static final String ACT_EXAMINE_TYPE ="act_examine_type";
+    public static final String CORE_ARTICLE ="article";
 
-    /*******************************数据字典mark前缀 结束*************************/
+    /*******************************solr Core名称 结束*************************/
+
+    /*******************************数据字典mark 开始*************************/
+
+    /**
+     * 文章
+     */
+    public static final String ARTCLE_TYPE ="artcle_type";
+
+    /*******************************数据字典mark 结束*************************/
 
     /**
      * 菜单类型

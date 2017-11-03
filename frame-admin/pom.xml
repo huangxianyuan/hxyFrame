@@ -46,6 +46,11 @@
             <artifactId>frame-activitiMQ</artifactId>
             <version>${hxyFrame.version}</version>
         </dependency>-->
+         <dependency>
+            <groupId>hxy.hxyFrame</groupId>
+            <artifactId>frame-solr</artifactId>
+            <version>${hxyFrame.version}</version>
+        </dependency>
         <dependency>
             <groupId>hxy.hxyFrame</groupId>
             <artifactId>frame-generator</artifactId>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:v-bind="http://java.sun.com/jsf/composite">
+<head>
+<title>文章搜索</title>
+#parse("sys/header.html")
+</head>
+<style>
+	.sort-btn{
+		display: inline-block;
+		height: 26px;
+	}
+	.sort-btn a:hover,.sort-btn a:active {
+		color: #fff;
+		background-color: #fd6e0f;
+		text-decoration:none;
+	}
+	.Btn5 a {
+		display: inline-block;
+		height: 24px;
+		margin-left: -1px;
+		padding: 0 8px;
+		color: #333;
+		line-height: 24px;
+		background: #fff;
+		border: 1px solid #d6d6d6;
+	}
+	.cur{
+		color: #fff;
+		background-color: #fd6e0f;
+	}
+	.Btn5 a.cur, .Btn5 a.cur:hover {
+		color: #fff;
+		background-color: #fd6e0f;
+	}
+	.type-select{
+		height: 38px;
+		margin-left: 49px;
+		border: 1px solid #e6e6e6;
+	}
+	.bot-page{
+		margin-top: 60px;
+		margin-left: 72px;
+	}
+</style>
+<body>
+	<div id="vm-content">
+		<di v-show="showList" class="main-container" >
+			<div id="search">
+				<form id="search-from">
+					<div class="row">
+						<div class="col-md-4">
+							<div class="col-md-3">
+								<select v-model="type" class="type-select">
+									<option selected="selected"></option>
+									<option v-for="option in options" v-bind:value="option.value">
+										{{ option.name }}
+									</option>
+								</select>
+							</div>
+
+							<div class="col-md-5">
+								<input type="text" name="keyWords" id="keyWords" placeholder="搜索关键字"  class="layui-input" >
+							</div>
+							<div class="col-md-3" style="margin-left: -30px;">
+								<button class="layui-btn" type="button" @click="query" id="searchSubmit"><i class="layui-icon">&#xe615;</i>搜 索</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div id="sorts"  style="margin-left: 75px;margin-top: 20px">
+				排序:<span class="sort-btn">
+						<a href="#" @click="querySort($event)">默认</a>
+						<a href="#" @click="querySort($event)" data-key="createTime">发表时间 <i></i></a>
+					</span>
+			</div>
+			<div id="resultList" style="margin-left: 75px">
+				<div v-for="article in page.result" style="height: 174px;width: 25%;margin-top: 30px;" v-if="article.id">
+					<div>
+						<span>标题：</span><a href="#" @click="detailInfo(article.id)" v-html="article.title"></a>
+					</div>
+					<div>
+						<span>作者：</span><a href="#" @click="detailInfo(article.id)" v-html="article.author"></a>
+					</div>
+					<div>
+						<span v-html="article.createTime">时间：</span></a>
+					</div>
+					<div>
+						<div class="col-xs-6">
+							<a href="#" @click="detailInfo(article.id)"> <img :src="article.img" style=" height: 150px; width: 200px;"></a>
+						</div>
+						<div class="col-xs-6" style="height: 153px;overflow: hidden;">
+							<label v-html="article.content"></label>
+						</div>
+					</div>
+				</div>
+				<div id="noResult" style="display: none">
+					<span>无搜索结果，请确认关键字</span>
+				</div>
+			</div>
+			<div id="page" class="bot-page" v-show="pageShow"></div>
+		</di>
+
+		<div v-show="!showList" class="panel panel-default">
+			<div class="row">
+				<div class="col-xs-12 ">
+					<label class="col-xs-3" style="font-size: 16px;">{{article.title}}</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 ">
+					作者:{{article.author}}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 ">
+					<img style="width: 450px;" :src="article.img"/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 ">
+					<label class="col-xs-3" v-html="article.contentHtml"></label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 " style="margin-left: 200px;">
+					时间:{{article.createTime}}
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 ">
+					<button class="layui-btn layui-btn-warm" type="button" @click="reload" style="margin-left: 30px;margin-bottom: 30px">返回搜索结果</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+<script src="${rc.contextPath}/statics/js/article/search.js?_${date.systemTime}"></script>
+</html>
