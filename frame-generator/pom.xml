@@ -39,10 +39,10 @@
                 <artifactId>tomcat-maven-plugin</artifactId>
                 <version>1.1</version>
                 <configuration>
-                    <path>/hxyMyFrame</path>
+                    <path>/frame-admin</path>
                     <port>8080</port>
                     <uriEncoding>UTF-8</uriEncoding>
-                    <url>http://localhost:8081/hxyMyFrame/</url>
+                    <url>http://localhost:8080/frame-admin/</url>
                     <server>tomcat7</server>
                 </configuration>
             </plugin>
