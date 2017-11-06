@@ -30,7 +30,7 @@
 
 **项目信息** 
 - 项目demo地址(测试系统性能有限,如访问速度较慢,还请耐心等待)：http://47.95.234.81:8090/frame-admin 帐户/密码:hxy/a 
-- 开发文档：待完善
+- 项目文档：http://pan.baidu.com/s/1kVaeDW7
 - oschina仓库：https://git.oschina.net/huangxianyuan/hxyFrame.git
 - github仓库：https://github.com/huangxianyuan/hxyFrame.git
 - 交流QQ群：210315502
