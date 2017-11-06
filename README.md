@@ -9,7 +9,7 @@
 - 工作流程引擎：采用主流的activiti流程引擎,在原基础上扩展了动态添加审批人员范围选择、会签节点的动态设置、排它路由条件设置、
               节点可编辑字段设置、节点执行后回调函数、办理任务、驳回到发起人从新发起、退回到上一步、自由跳转、转办等功能。在开发的过程中，
               只需要简单业务流程树，尊守一些规则就可以很方便的使用流程，后面还考虑加入自定义表单，使开发变的更加简单。
-- CAS单点登陆:整合cas+shiro单点登陆,实现多个系统统一登陆登出。
+- CAS单点登陆:整合cas+shiro+redis单点登陆,实现多个系统统一登陆登出。
 - 缓存：使用redis+ehcahe整合shiro自定义sessionDao实现分布式集群共享session，redis可采用单机方式，也可以集群哨兵模式。可以灵活的切换模式
 - solr全文搜索引擎，最基本的增、删、改、查、关键字分页查询、带高亮的关键字查询，建立索引分为三种方式：
     1.CRUD时调用solr添加索引
@@ -29,7 +29,7 @@
 
 
 **项目信息** 
-- 项目demo地址：http://47.95.234.81:8090/frame-admin 帐户/密码:hxy/a
+- 项目demo地址(测试系统性能有限,如访问速度较慢,还请耐心等待)：http://47.95.234.81:8090/frame-admin 帐户/密码:hxy/a 
 - 开发文档：待完善
 - oschina仓库：https://git.oschina.net/huangxianyuan/hxyFrame.git
 - github仓库：https://github.com/huangxianyuan/hxyFrame.git
@@ -58,13 +58,15 @@
 - Maven3.0
 - Tomcat7.0
 - redis 3.07
+- Solr 6.5.1
 
 
  **本地部署**
-- 创建数据库hxyframe，数据库编码为UTF-8
-- 修改jdbc.properties文件，更新MySQL账号和密码
+- 创建数据库hxyframe，数据库编码为UTF-8,导入doc/sql/hxyframe.sql脚本
+- 修改conf/jdbc.properties文件，更改MySQL账号和密码
 - redis服务,可以使用单机redis也可以配置哨兵集群模式，如果不会部署可以加群咨询：210315502
-- 项目访问路径：http://127.0.0.1:8080/frame-admin/
+- solr服务器,可自行下载配置,也可以到官方qq群下载配置完善的
+- 项目访问路径：http://localhost:8080/frame-admin/
 
 
  **捐赠**
@@ -88,8 +90,8 @@
 ![图片说明](http://chuantu.biz/t6/49/1505438645x2728278883.png "图片说明")
 ![图片说明](http://chuantu.biz/t6/49/1505438656x2728278883.png "图片说明")
 ![图片说明](http://chuantu.biz/t6/49/1505438667x2728278883.png "图片说明")
-![图片说明](http://chuantu.biz/t6/49/1505438678x2728278883.png "图片说明")
-![图片说明](http://chuantu.biz/t6/49/1505438690x2728278883.png "图片说明")
+![图片说明](http://osaowv4s0.bkt.clouddn.com/upload/20171106/a0d3dc5e99294f1aa74425875c04da44 "图片说明")
+![solr全文搜索](http://osaowv4s0.bkt.clouddn.com/upload/20171106/d6603b6acf1d4529ade3dab1b46abf8d "solr全文搜索")
 
 
 
