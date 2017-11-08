@@ -2,10 +2,10 @@ package com.hxy.sys.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.hxy.base.common.Constant;
-import com.hxy.base.filter.XssHttpServletRequestWrapper;
 import com.hxy.base.utils.PageUtils;
 import com.hxy.base.utils.Query;
 import com.hxy.base.utils.Result;
+import com.hxy.base.xss.XssHttpServletRequestWrapper;
 import com.hxy.gen.service.SysGeneratorService;
 import org.apache.commons.io.IOUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;

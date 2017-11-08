@@ -133,7 +133,7 @@
     <load-on-startup>1</load-on-startup>
   </servlet>
 
-<!--  <filter> 由于activiti流程配置中用到了特殊符号，这里先注解，后面解决
+  <filter>
     <filter-name>xssFilter</filter-name>
     <filter-class>com.hxy.base.xss.XssFilter</filter-class>
   </filter>
@@ -141,7 +141,7 @@
   <filter-mapping>
     <filter-name>xssFilter</filter-name>
     <url-pattern>/*</url-pattern>
-  </filter-mapping>-->
+  </filter-mapping>
 
   <servlet>
     <servlet-name>DruidStatView</servlet-name>

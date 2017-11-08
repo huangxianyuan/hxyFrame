@@ -68,7 +68,7 @@ public class CodeServiceImpl implements CodeService {
 	    code.setUpdateId(UserUtils.getCurrentUserId());
 		codeDao.update(code);
         try {
-            updateCodeCahce(code,true);
+            updateCodeCahce(code,false);
             logger.info("数据字典:{} 缓存成功!",code.getName());
         } catch (Exception e) {
             logger.warn("数据字典:{} 缓存失败!",code.getName());

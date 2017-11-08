@@ -136,7 +136,7 @@ public class ExtendActNodesetServiceImpl implements ExtendActNodesetService {
 				//根据nodeId删除所有节点对应的连线条件
 				nodefieldDao.delByNodeId(actNodeset.getNodeId());
 			}
-			//el条件 例如${dhb_st_apptype>3 && isagree==1}
+			//el条件 例如${day>3 && isagree==1}
 			StringBuilder condition = new StringBuilder("${");
 			if(actNodeset.getJudgList() != null && actNodeset.getJudgList().size() > 0){
 				List<ExtendActNodefieldEntity> judgList = new ArrayList<>();
@@ -145,11 +145,12 @@ public class ExtendActNodesetServiceImpl implements ExtendActNodesetService {
 					if(StringUtils.isEmpty(nodefield.getFieldName()) || StringUtils.isEmpty(nodefield.getRule())){
 						continue;
 					}
+					Map<String, Object> map = tranceCode(nodefield);
 					nodefield.setId(Utils.uuid());
-					condition.append(nodefield.getFieldName()).append(nodefield.getRule()).append(nodefield.getFieldVal());
 					if(!StringUtils.isEmpty(nodefield.getElOperator())){
-						condition.append(" "+nodefield.getElOperator()+" ");
+						condition.append(" "+map.get("elOperator")+" ");
 					}
+					condition.append(nodefield.getFieldName()).append(map.get("rule")).append(nodefield.getFieldVal());
 					nodefield.setNodeId(actNodeset.getNodeId());
 					nodefield.setSort(sort+"");
 					sort++;
@@ -173,6 +174,37 @@ public class ExtendActNodesetServiceImpl implements ExtendActNodesetService {
 			}
 		}
 		return actNodeset;
+	}
+
+	/**
+	 * 将中文字符转换为el运算符
+	 * @param extendActNodefieldEntity
+	 */
+	private Map<String,Object> tranceCode(ExtendActNodefieldEntity extendActNodefieldEntity){
+		Map<String,Object> map = new HashMap<>();
+		if(extendActNodefieldEntity.getElOperator() != null){
+			switch (extendActNodefieldEntity.getElOperator()){
+				case "并且":
+					map.put("elOperator","&&");break;
+				case "或者":
+					map.put("elOperator","||");break;
+			}
+		}
+		if(extendActNodefieldEntity.getRule() != null){
+			switch (extendActNodefieldEntity.getRule()){
+				case "大于":
+					map.put("rule",">");break;
+				case "大于等于":
+					map.put("rule",">=");break;
+				case "小于":
+					map.put("rule","<");break;
+				case "小于等于":
+					map.put("rule","<=");break;
+				case "等于":
+					map.put("rule","==");break;
+			}
+		}
+		return map;
 	}
 
     @Override
