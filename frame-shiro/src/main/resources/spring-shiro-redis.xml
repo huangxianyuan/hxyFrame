@@ -48,6 +48,7 @@
     <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
         <!--cookie的name -->
         <constructor-arg value="sid"/>
+        <!--设置了HttpOnly属性，那么通过js脚本将无法读取到cookie信息，这样能有效的防止XSS攻击-->
         <property name="httpOnly" value="true"/>
         <!--maxAge=-1 表示浏览器关闭时失效此Cookie-->
         <property name="maxAge" value="-1"/>
@@ -56,7 +57,7 @@
         -->
     </bean>
 
-    <!-- 自定义缓存Dao，添加标识位，减少doUpdate方法中Redis的连接次数来减轻redis网络压力 -->
+    <!-- 自定义缓存Dao -->
     <bean id="sessionDao" class="com.hxy.shiro.redisSession.CachingShiroSessionDao">
         <!--sessionId前缀-->
         <property name="prefix" value="shiro-session:"/>

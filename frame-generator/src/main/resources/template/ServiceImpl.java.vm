@@ -39,6 +39,7 @@ public class ${className}ServiceImpl implements ${className}Service {
 	
 	@Override
 	public int save(${className}Entity ${classname}){
+	    ${classname}.set${pk.attrName}(Utils.uuid());
 		return ${classname}Dao.save(${classname});
 	}
 	

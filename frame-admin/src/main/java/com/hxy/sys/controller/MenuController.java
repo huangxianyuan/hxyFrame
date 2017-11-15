@@ -5,6 +5,7 @@ import com.hxy.base.common.Constant;
 import com.hxy.base.utils.PageUtils;
 import com.hxy.base.utils.Query;
 import com.hxy.base.utils.Result;
+import com.hxy.base.utils.StringUtils;
 import com.hxy.sys.entity.MenuEntity;
 import com.hxy.sys.service.MenuService;
 import com.hxy.utils.ShiroUtils;
@@ -72,8 +73,7 @@ public class MenuController extends BaseController{
 	@RequestMapping(value = "/delete",method = RequestMethod.POST)
 	@RequiresPermissions("sys:menu:delete")
 	public Result delete(@RequestBody  String ids){
-//		menuService.deleteBatch(ids.split(","));
-		menuService.delete(ids);
+		menuService.deleteBatch(StringUtils.getArrayByArray(ids.split(",")));
 		return Result.ok();
 	}
 

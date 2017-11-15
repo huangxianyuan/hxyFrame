@@ -32,7 +32,6 @@ layui.define(['element'], function(exports){
         var $container;
         if(typeof(_config.elem) === 'string') {
             $container = $('' + _config.elem + '');
-            //console.log($container);
         }
         if(typeof(_config.elem) === 'object') {
             $container = _config.elem;
@@ -100,7 +99,6 @@ layui.define(['element'], function(exports){
             var loading = layer.load(0, {shade: false});
             // debugger;
             $('#iframe'+globalTabIdIndex).load(function () {
-                console.log("2222222222")
                 //iframe加载完成后隐藏loading提示
                 layer.close(loading);
             });

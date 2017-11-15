@@ -20,7 +20,7 @@
         <result property="updateId" column="update_id"/>
         <result property="updateTime" column="update_time"/>
         <result property="type" column="type"/>
-        <result property="open" column="pen"/>
+        <result property="open" column="open"/>
     </resultMap>
 
     <sql id="Base_Column_List" >

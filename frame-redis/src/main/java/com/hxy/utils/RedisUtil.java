@@ -15,7 +15,7 @@ public class RedisUtil {
 
 
     /*private static JedisSentinelPool sentinelPool;*/
-    
+
     private static JedisPool jedisPool;
 
    /* @Resource(name = "sentinelPool")

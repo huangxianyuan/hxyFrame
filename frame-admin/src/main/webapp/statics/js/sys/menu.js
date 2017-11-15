@@ -117,10 +117,11 @@ var vm = new Vue({
             if(nodes.length<=0){
                 alertMsg("请选择要删除的菜单");
             }
-			confirm('确定要删除'+nodes[0].name+'？', function(){
+            confirm('确定要删除菜单【'+nodes[0].name+'】,及下面的子菜单么？', function(){
 				var url="../sys/menu/delete";
-                var params=nodes[0].id;
-                $.post(url,JSON.stringify(params),function (r) {
+                var childs=nodes[0].id;
+                childs=getAllNodes(nodes[0],childs);
+                $.post(url,JSON.stringify(childs),function (r) {
                     if(r.code == 0){
 					   toast(r.msg,function(){
 						   ztree2.removeNode(nodes[0]);
