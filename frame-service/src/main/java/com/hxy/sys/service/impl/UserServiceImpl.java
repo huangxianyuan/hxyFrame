@@ -68,8 +68,6 @@ public class UserServiceImpl implements UserService {
 		user.setId(Utils.uuid());
         //保存用户与角色关系
         UserEntity currentUser = UserUtils.getCurrentUser();
-        user.setBapid(currentUser.getBapid());
-        user.setBaid(currentUser.getBaid());
         user.setCreateId(currentUser.getId());
         user.setCreateTime(new Date());
         user.setSalt(salt);

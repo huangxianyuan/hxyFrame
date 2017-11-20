@@ -115,11 +115,8 @@ public class OrganController extends BaseController{
 	@RequestMapping("/delete")
 	@RequiresPermissions("sys:organ:all")
 	@SysLog("删除组织")
-	public Result delete(@RequestBody String id){
-        int count = organService.updateIsdel(id,Constant.YESNO.YES.getValue());
-        if(count<1){
-            return Result.error("删除失败!");
-        }
+	public Result delete(@RequestBody String ids){
+		organService.updateIsdel(ids,Constant.YESNO.YES.getValue());
         return Result.ok("删除成功!");
 	}
 	

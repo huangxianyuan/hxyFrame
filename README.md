@@ -1,6 +1,7 @@
 **项目说明** 
 - hxyFrame是后台管理系统，采用流行的框架springMvc+spring+mybatis+shiro+redis+ehcache开发,实现了权限管理（菜单权限、数据权限），solr全文搜索引擎，activiti工作流程引擎，cas单点登陆等功能，完善的代码生成器
 后期还会考虑改造成模块微服务化,做到模块的相对独立，使用更加灵活，努力做到快速开发OA办公系统。
+提供了SpringBoot基础版hxyFrame-base-boot，获取【[SpringBoot版](https://gitee.com/soEasyCode/hxyFrame-base-boot)】
 感兴趣可以Watch、Start持续关注项目最新状态，加入QQ群：210315502 解决各种疑难杂证，丰富的学习资源。
 
 

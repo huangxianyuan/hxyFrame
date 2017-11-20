@@ -41,11 +41,11 @@ public interface OrganService {
 
 	/**
 	 * 更新机构状态
-	 * @param id
+	 * @param ids
 	 * @param type
 	 * @return
 	 */
-	int updateIsdel(String id,String type);
+	void updateIsdel(String ids,String type);
 
 	/**
 	 * 分页查询组织审批选择范围

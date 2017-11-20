@@ -57,10 +57,10 @@ public class LoginController extends BaseController{
     @ResponseBody
     @RequestMapping(value = "/login/login", method = RequestMethod.POST)
     public Result login(String username, String password, String captcha,boolean isRememberMe)throws IOException {
-      /*  String kaptcha = ShiroUtils.getKaptcha(Constants.KAPTCHA_SESSION_KEY);
+        String kaptcha = ShiroUtils.getKaptcha(Constants.KAPTCHA_SESSION_KEY);
         if(!captcha.equalsIgnoreCase(kaptcha)){
             return Result.error("验证码不正确");
-        }*/
+        }
         try{
             Subject subject = ShiroUtils.getSubject();
             UsernamePasswordToken token = new UsernamePasswordToken(username, password);
@@ -73,7 +73,7 @@ public class LoginController extends BaseController{
         }catch (LockedAccountException e) {
             return Result.error("账号已被锁定,请联系管理员");
         }catch (AuthenticationException e) {
-            return Result.error("账户验证失败");
+            return Result.error(e.getMessage());
         }
 
         return Result.ok();

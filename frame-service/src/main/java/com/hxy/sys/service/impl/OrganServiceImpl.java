@@ -20,7 +20,7 @@ import com.hxy.sys.dao.OrganDao;
 import com.hxy.sys.entity.OrganEntity;
 import com.hxy.sys.service.OrganService;
 import com.hxy.base.common.Constant.OrganType;
-
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service("organService")
@@ -153,11 +153,14 @@ public class OrganServiceImpl implements OrganService {
     }
 
     @Override
-    public int updateIsdel(String id, String type) {
-        OrganEntity organEntity = new OrganEntity();
-        organEntity.setId(id);
-        organEntity.setIsDel(type);
-        return organDao.update(organEntity);
+    @Transactional
+    public void updateIsdel(String ids, String type) {
+        for (String id:ids.split(",")){
+            OrganEntity organEntity = new OrganEntity();
+            organEntity.setId(id);
+            organEntity.setIsDel(type);
+            organDao.update(organEntity);
+        }
     }
 
     @Override
