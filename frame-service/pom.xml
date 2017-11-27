@@ -30,18 +30,6 @@
         <finalName>frame-service</finalName>
         <plugins>
             <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>tomcat-maven-plugin</artifactId>
-                <version>1.1</version>
-                <configuration>
-                    <path>/frame-admin</path>
-                    <port>8080</port>
-                    <uriEncoding>UTF-8</uriEncoding>
-                    <url>http://localhost:8080/frame-admin/</url>
-                    <server>tomcat7</server>
-                </configuration>
-            </plugin>
-            <plugin>
                 <groupId>org.mybatis.generator</groupId>
                 <artifactId>mybatis-generator-maven-plugin</artifactId>
                 <version>1.3.2</version>

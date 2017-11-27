@@ -14,7 +14,7 @@
         	</button>
   		  </div>
         </div>
-       <div class="btn-group pull-right" ng-show="!secondaryItems.length">
+        <div class="btn-group pull-right" ng-show="!secondaryItems.length">
 	        <div class="btn-toolbar pull-right" ng-controller="ToolbarController">
         	<button title="{{item.title | translate}}" ng-repeat="item in secondaryItems" ng-switch on="item.type" class="btn btn-inverse" ng-class="{'separator': item.type == 'separator'}"
                 ng-disabled="item.type == 'separator'" ng-click="toolbarSecondaryButtonClicked($index)" id="{{item.id}}">
@@ -95,7 +95,7 @@
            <div id="propertiesHelpWrapper" class="col-xs-9">
             	<div class="propertySection" id="propertySection"
                 	ng-class="{collapsed: propertyWindowState.collapsed}">
-	                <div class="selected-item-section" style="background-color: #FFFFFF;">
+	                <div class="selected-item-section">
 	                	<div class="clearfix">
 		                    <div class="pull-right" ng-if="selectedItem.auditData.createDate">
 		                        <strong>{{'ELEMENT.DATE_CREATED' | translate}}: </strong> {{selectedItem.auditData.createDate}}

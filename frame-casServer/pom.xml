@@ -115,7 +115,7 @@
     </dependency>
   </dependencies>
   <build>
-    <finalName>frame-admin</finalName>
+    <finalName>frame-casServer</finalName>
     <plugins>
       <!-- mvn install 跳过单元测试 -->
       <plugin>
