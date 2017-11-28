@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * 系统用户表
  * 
- * @author chenshun
+ * @author hxy
  * @email huangxianyuan@gmail.com
  * @date 2017-05-03 09:41:38
  */

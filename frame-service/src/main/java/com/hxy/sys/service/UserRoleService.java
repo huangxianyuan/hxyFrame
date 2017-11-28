@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * 用户角色关系表
  * 
- * @author chenshun
+ * @author hxy
  * @email huangxianyuan@gmail.com
  * @date 2017-05-03 10:07:59
  */

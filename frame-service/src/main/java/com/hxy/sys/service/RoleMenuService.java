@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * 权限角色表
  * 
- * @author chenshun
+ * @author hxy
  * @email huangxianyuan@gmail.com
  * @date 2017-05-03 10:07:59
  */
