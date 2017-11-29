@@ -98,7 +98,6 @@
         }
         return false;
     }
-
     /**
      * 根据Json字符串填充表单
      * @param form 表单id
@@ -108,7 +107,7 @@
         for(var name in data){
             var val=data[name];
             //var rr=$("input[name=\""+name+"\"][type=radio], input[name=\""+name+"\"][type=checkbox]",form);
-            var rr=$("#"+form+" input[name='"+name+"'][type=checkbox],input[name='"+name+"'][type=radio]",);
+            var rr=$("#"+form+" input[name='"+name+"'][type=checkbox],input[name='"+name+"'][type=radio]");
             $.fn.prop?rr.prop("checked",false):rr.attr("checked",false);
             rr.each(function(){
                 var f=$(this);
