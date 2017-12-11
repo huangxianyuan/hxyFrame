@@ -86,14 +86,19 @@ public class ExtendActBusinessServiceImpl implements ExtendActBusinessService {
         UserEntity currentUser = UserUtils.getCurrentUser();
         bus.setBapid(currentUser.getBapid());
         bus.setBaid(currentUser.getBaid());
-	    if(StringUtils.isEmpty(bus.getId())){
+        //根据流程key查询
+        ExtendActBusinessEntity businessEntity = extendActBusinessDao.queryByActKey(bus.getActKey());
+        if(businessEntity != null){
+            throw new MyException("流程key已经存在,请重复输入");
+        }
+        if(StringUtils.isEmpty(bus.getId())){
             //保存
             bus.setCreateTime(new Date());
             bus.setCreateId(currentUser.getId());
             bus.setId(Utils.uuid());
             return extendActBusinessDao.save(bus);
         }else {
-	        //更新
+            //更新
             bus.setUpdateId(currentUser.getId());
             bus.setUpdateTime(new Date());
             return extendActBusinessDao.update(bus);
