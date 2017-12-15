@@ -21,7 +21,6 @@
         <module>frame-redis</module> <!--缓存模块-->
         <module>frame-app</module> <!--缓存模块-->
         <module>frame-solr</module> <!--solr全文搜索 后续会加入项目中使用-->
-        <!--<module>frame-activitiMQ</module> activitiMQ消息中间件 后续会加入项目中使用-->
     </modules>
     <properties>
         <spring.version>4.3.7.RELEASE</spring.version>
@@ -51,7 +50,6 @@
         <solr.version>6.5.1</solr.version>
         <jstl.version>1.2</jstl.version>
         <junit.version>4.12</junit.version>
-        <activitiMQ.version>5.9.0</activitiMQ.version>
         <lombok.version>1.16.8.0</lombok.version>
         <cas.client.version>3.1.9</cas.client.version>
         <hibernate.validator.version>5.4.1.Final</hibernate.validator.version>
