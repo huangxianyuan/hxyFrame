@@ -19,7 +19,6 @@
 - quartz定时任务：可动态完成任务的添加、修改、删除、暂停、恢复及日志查看等功能
 - app接口：基于Json web token (JWT)认证用户信息,使用swagger生成一个具有互动性的api文档控制台。
 - 页面交互使用了vue+html和最普通的jsp+jstl标签，两种交互都写了相应的模板，可以选择适合的交互方式。
-- activitiMQ 消息中间件，目录还没在项目中使用，后期可能会加入，做分布式集群redis+ehcahe，节点间发送更新通知，可以会用redis的消息控件替代。
 - 完善的代码生成机制，可在线生成entity、xml、dao、service、html、js、sql代码,可快速开发基本功能代码，能把更多的精力放在问题难点。
 - 采用layer友好的弹框，和layerUI相对漂亮的界面，让OA系统看起来稍微好看点。
 
@@ -44,7 +43,6 @@
 - 全文搜索：Solr 6.5.1
 - 单点登陆: cas 4.0.3
 - 缓存：redis 3.07
-- 消息中间件：activitiMQ 5.9.0
 - 权限框架：Apache Shiro 1.3
 - 视图框架：Spring MVC 4.3
 - 持久层框架：MyBatis 3.3

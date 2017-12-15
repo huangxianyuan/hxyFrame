@@ -31,7 +31,6 @@
             /app/**=anon
             /service/**=anon
             /js/**=anon
-            /activitiMq/*=anon
             /swagger/**=anon
             /**=authc
         </value>

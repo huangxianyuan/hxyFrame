@@ -116,7 +116,6 @@
                 /login.html=anon
                 /login/login=anon
                 /login/captcha=anon
-                /activitiMq/*=anon
                 /**=rememberAuthFilter
             </value>
         </property>

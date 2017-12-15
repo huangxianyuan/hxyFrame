@@ -120,7 +120,6 @@
                 /login.html=anon
                 /login/login=anon
                 /login/captcha=anon
-                /activitiMq/*=anon
                 /swagger/**=anon
                 /**=rememberAuthFilter
             </value>
