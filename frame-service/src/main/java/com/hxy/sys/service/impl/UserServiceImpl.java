@@ -112,8 +112,8 @@ public class UserServiceImpl implements UserService {
         }
 		//保存用户与角色关系
 		Map<String, Object> map = new HashMap<>();
-		map.put("userId", user.getId());
-		map.put("roleIdList", user.getRoleIdList());
+        map.put("roleIdList", user.getRoleIdList());
+        map.put("userId", user.getId());
 		userRoleDao.save(map);
 	}
 
