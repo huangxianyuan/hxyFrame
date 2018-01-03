@@ -1,4 +1,4 @@
-package com.hxy.sys.service;
+package com.hxy.demo.service;
 
 import com.hxy.base.page.Page;
 import com.hxy.base.utils.PageUtils;

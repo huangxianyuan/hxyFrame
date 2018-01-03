@@ -7,6 +7,7 @@ import com.hxy.base.utils.StringUtils;
 import com.hxy.base.utils.Utils;
 import com.hxy.demo.dao.SolrArticleDao;
 import com.hxy.demo.entity.SolrArticleEntity;
+import com.hxy.demo.service.SolrArticleService;
 import com.hxy.solr.entity.HightQueryParams;
 import com.hxy.solr.utils.SolrUtils;
 import com.hxy.sys.entity.UserEntity;
@@ -19,7 +20,6 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.*;
 
-import com.hxy.sys.service.SolrArticleService;
 import org.springframework.transaction.annotation.Transactional;
 
 
