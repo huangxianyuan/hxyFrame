@@ -9,6 +9,7 @@
         <module name="frame-activiti" />
         <module name="frame-admin" />
         <module name="frame-app" />
+        <module name="frame-casServer" />
         <module name="frame-common" />
         <module name="frame-generator" />
         <module name="frame-quartz" />
@@ -24,6 +25,7 @@
       <module name="frame-admin" target="1.8" />
       <module name="frame-app" target="1.8" />
       <module name="frame-cas" target="1.8" />
+      <module name="frame-casServer" target="1.7" />
       <module name="frame-common" target="1.8" />
       <module name="frame-generator" target="1.8" />
       <module name="frame-quartz" target="1.8" />
