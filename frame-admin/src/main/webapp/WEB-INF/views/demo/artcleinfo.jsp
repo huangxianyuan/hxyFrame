@@ -93,8 +93,8 @@
 
     //提交
     $("#submitBtn").click(function () {
-        alertMsg("由于演示服务器，资源有限，暂未部署全文搜索服务器，望理解！")
-        return;
+        /*alertMsg("由于演示服务器，资源有限，暂未部署全文搜索服务器，望理解！")
+        return;*/
         var contentHtml = editor.txt.html();
         var content = editor.txt.text();
         var formVal = $("#articleForm").serialize();

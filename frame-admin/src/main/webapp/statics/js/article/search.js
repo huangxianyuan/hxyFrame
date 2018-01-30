@@ -90,8 +90,8 @@ var vm = new Vue({
           vm.showList=true;
         },
         search:function (pageNum) {
-            alertMsg("由于演示服务器，资源有限，暂未部署全文搜索服务器，望理解！")
-            return;
+            /*alertMsg("由于演示服务器，资源有限，暂未部署全文搜索服务器，望理解！")
+            return;*/
             var keyWords = $("#keyWords").val();
             if(keyWords==''){
                 alertMsg("查询关键字不能为空");
