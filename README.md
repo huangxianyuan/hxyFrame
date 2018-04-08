@@ -30,7 +30,7 @@
 **项目信息** 
 - SpringBoot基础版hxyFrame-base-boot，获取【[SpringBoot基础版](https://gitee.com/soEasyCode/hxyFrame-base-boot)】
 - SpringBoot工作流版本hxyFrame-activiti-boot，获取【[hxyFrame-activiti-boot基础版](https://gitee.com/soEasyCode/hxyFrame-activiti-boot)】
-- 项目demo地址(测试系统性能有限,如访问速度较慢,还请耐心等待)：http://47.95.234.81:8090/frame-admin 帐户/密码:hxy/a 
+- 项目demo地址(测试系统性能有限,如访问速度较慢,还请耐心等待)：http://118.24.146.49:8080/frame-admin 帐户/密码:hxy/a 
 - 项目开发文档：https://pan.baidu.com/s/1i5oymod
 - oschina仓库：https://git.oschina.net/huangxianyuan/hxyFrame.git
 - github仓库：https://github.com/huangxianyuan/hxyFrame.git
