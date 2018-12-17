@@ -33,7 +33,7 @@ public class CodeUtils {
             e.printStackTrace();
         }
         //首先从redis中取，没有再去数据库查询
-        if(allMap != null || allMap.size()>0){
+        if(allMap != null && allMap.size()>0){
             Map<String,Object> markMap = allMap.get(preName+"_"+value);
             if(markMap !=null && markMap.size()>0){
                 name =(String) markMap.get("name");
